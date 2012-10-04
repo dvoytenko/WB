@@ -1,0 +1,671 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+  
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+      canvas {
+        border: 1px solid #9C9898;
+      }
+    </style>
+
+    <script src="jquery-1.7.1.js"></script>
+    <script src="wb-proto.js"></script>
+    <script src="wb-common.js"></script>
+    <script src="wb-soundfx.js"></script>
+    <script src="wb-segment.js"></script>
+    <script src="wb-shape.js"></script>
+    <script src="wb-path.js"></script>
+    <script src="wb-curve.js"></script>
+    <script src="wb-basicshapes.js"></script>
+    <script src="wb-text.js"></script>
+    <script src="wb-parser.js"></script>
+    <script src="wb-board.js"></script>
+    <script src="wb-player.js"></script>
+
+  </head>
+
+  <body>
+  
+	<div id="toolbar" style="width: 720px;">
+		<a href="javascript:void(0);" onclick="sounfdx1()">SoundFX 1</a>
+		<a href="javascript:void(0);" onclick="draw1()">Draw 1</a>
+		<a href="javascript:void(0);" onclick="segment1()">Segment 1</a>
+		<a href="javascript:void(0);" onclick="path1()">Path 1</a>
+		<a href="javascript:void(0);" onclick="transform1()">Transform 1</a>
+		<a href="javascript:void(0);" onclick="parse1()">Parse 1</a>
+		<a href="javascript:void(0);" onclick="anim1()">Anim 1</a>
+		<a href="javascript:void(0);" onclick="animRect1()">Anim Rect 1</a>
+		<a href="javascript:void(0);" onclick="arc1()">Arc 1</a>
+		<a href="javascript:void(0);" onclick="arc2()">Arc 2</a>
+		<a href="javascript:void(0);" onclick="arc2anim()">Arc 2 Anim</a>
+		<a href="javascript:void(0);" onclick="cubic1()">Cubic 1</a>
+		<a href="javascript:void(0);" onclick="quad1()">Quad 1</a>
+		<a href="javascript:void(0);" onclick="cloud1()">Cloud 1</a>
+		<a href="javascript:void(0);" onclick="text1()">Text 1</a>
+		<a href="javascript:void(0);" onclick="text1anim()">Text 1 Anim</a>
+	</div>
+	
+	<div id="container" style="position: relative; margin: 4px; padding: 0; width: 720px; height: 405px;">
+		<canvas id="canvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 1;"></canvas>
+		<canvas id="animCanvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 2;"></canvas>
+	</div>
+
+	<div id="status" style="border: 1px solid gray; margin: 4px; width: 720px;">
+		status
+	</div>
+	
+	<script>
+	
+		function status(s) {
+			$('#status').text(s);
+		}
+		
+		function sounfdx1() {
+			status('Running DrawingSoundEngine...');
+			
+			var soundEngine = new WB.DrawingSoundEngine();
+			status('Engine: ' + soundEngine);
+			
+			status('normal');
+			soundEngine.update(0, 100);
+			
+			for (var i = 0; i < 10; i++) {
+				setTimeout(function() {
+					var speed = Math.random() * 400;
+					if (speed < 25) {
+						speed = 0;
+					}
+					status('speed: ' + speed);
+					soundEngine.update(0, speed);
+				}, 2000 * (i + 1));
+			}
+
+			setTimeout(function() {
+				status('speed: 0 - stop');
+				soundEngine.update(0, 0);
+			}, 2000 * (10 + 1));
+		}
+		
+		function draw1() {
+			
+			var pane = new WB.Pane({canvas: document.getElementById('canvas')});
+	
+			var Shape1 = WB.Class.extend({
+				draw: function(pane) {
+					console.log('Shape1 at ' + pane);
+					pane.moveTo({x: 10, y: 10});
+					pane.lineTo({x: 100, y: 100});
+					pane.stroke();
+				}
+			});
+			
+			var shape = new Shape1();
+			shape.draw(pane);
+		}
+		
+		function segment1() {
+			
+			var pane = new WB.Pane({canvas: document.getElementById('canvas')});
+			
+			new WB.MoveToSegment({point: {x: 10, y: 10}}).outline(pane);
+			new WB.LineToSegment({point: {x: 100, y: 100}}).outline(pane);
+	
+			pane.stroke();
+		}
+	
+		function path1() {
+			
+			var pane = new WB.Pane({canvas: document.getElementById('canvas')});
+			pane.context.scale(0.5, 0.5);
+			pane.context.translate(pane.canvas.width, pane.canvas.height);
+			
+			var path = new WB.PathShape({
+					segments: [
+						new WB.MoveToSegment({point: {x: 10, y: 10}}),
+						new WB.LineToSegment({point: {x: 100, y: 100}}),
+						new WB.LineToSegment({point: {x: 100, y: 200}}),
+						new WB.LineToSegment({point: {x: 10, y: 10}})
+						]
+				});
+			
+			path.draw(pane);
+		}
+		
+		function transform1() {
+			
+			var pane = new WB.Pane({canvas: document.getElementById('canvas')});
+
+			var path = new WB.PathShape({
+				segments: [
+					new WB.MoveToSegment({point: {x: 10, y: 10}}),
+					new WB.LineToSegment({point: {x: 100, y: 100}}),
+					new WB.LineToSegment({point: {x: 100, y: 200}}),
+					new WB.LineToSegment({point: {x: 10, y: 10}})
+					]
+			});
+			
+			// normal
+			path.draw(pane);
+			
+			var tr;
+
+			// move
+			tr = new WB.Transform();
+			tr.translate(100, 100);
+			pane.withTr(tr, function() {
+				path.draw(pane);
+				
+				/*
+				// move + scale + rotate
+				tr = new WB.Transform();
+				tr.translate(100, 0);
+				tr.scale(0.5, 0.5);
+				tr.rotate(WB.Geom.rad(45));
+				pane.withTr(tr, function() {
+					path.draw(pane);
+				});
+				*/
+			});
+		}
+		
+		function parse1() {
+			
+			var parser = new WB.Parser();
+			
+			var pathJson = {
+				_type: 'PathShape',
+				segments: [
+					{
+						_type: 'MoveToSegment',
+						point: {x: 10, y: 10} 
+					},
+					{
+						_type: 'LineToSegment',
+						point: {x: 100, y: 100}
+					},
+					{
+						_type: 'LineToSegment',
+						point: {x: 100, y: 200}
+					},
+					{
+						_type: 'LineToSegment',
+						point: {x: 10, y: 10}
+					}
+				]
+			};
+			
+			var groupJson = {
+				_type: 'GroupShape',
+				transform: new WB.Transform().translate(100, 0).rotate(WB.Geom.rad(45)),
+				shapes: [pathJson]
+			};
+			
+			var shape = parser.parse(groupJson);
+
+			var pane = new WB.Pane({canvas: document.getElementById('canvas')});
+			shape.draw(pane);
+		}
+		
+		function anim1() {
+			
+			// 720 x 405
+			var canvasWidth = 720;
+			var canvasHeight = 405;
+			var realWidth = 1440; // mm
+			var realHeight = 810; // mm
+			
+			var defaultTransform = new WB.Transform()
+					.scale(canvasWidth/realWidth, canvasHeight/realHeight)
+					.translate(realWidth/2, realHeight/2);
+			
+			/*
+			var p = new WB.Pane({canvas: document.getElementById('canvas'), 
+				defaultTransform: defaultTransform});
+			p.beginPath();
+			p.moveTo({x: 0, y: 0});
+			p.lineTo({x: 100, y: 100});
+			p.stroke();
+			console.log('1: loc: ' + JSON.stringify(p.getCurrentPoint()));
+			console.log('1: glob: ' + JSON.stringify(p.getCurrentPoint(true)));
+			
+			var tr = new WB.Transform()
+				.translate(100, 0);
+			p.withTr(tr, function() {
+				p.beginPath();
+				p.moveTo({x: 0, y: 0});
+				p.lineTo({x: 200, y: 100});
+				p.stroke();
+				console.log('2: loc: ' + JSON.stringify(p.getCurrentPoint()));
+				console.log('2: glob: ' + JSON.stringify(p.getCurrentPoint(true)));
+			});
+
+			p.beginPath();
+			p.moveTo({x: 0, y: 0});
+			p.lineTo({x: 200, y: 100});
+			p.stroke();
+			console.log('3: loc: ' + JSON.stringify(p.getCurrentPoint()));
+			console.log('3: glob: ' + JSON.stringify(p.getCurrentPoint(true)));
+			return;
+			*/
+			
+			var board = new WB.Board({
+				commitPane: new WB.Pane({canvas: document.getElementById('canvas'), 
+											defaultTransform: defaultTransform}),
+				animationPane: new WB.Pane({canvas: document.getElementById('animCanvas'), 
+											defaultTransform: defaultTransform}),
+				});
+			
+			var path = new WB.PathShape({
+				segments: [
+					new WB.MoveToSegment({point: {x: 0, y: 0}}),
+					new WB.LineToSegment({point: {x: 100, y: 100}}),
+					new WB.LineToSegment({point: {x: 100, y: 200}}),
+					new WB.LineToSegment({point: {x: 0, y: 0}})
+					]
+			});
+
+			var player = new WB.Player({board: board});
+			player.postFrame(function(time) {
+				var p = board.animationPane.getCurrentPoint();
+				status('Time: ' + (time) + ' milliseconds' 
+						+ '; Position: ' + Math.round(p.x) + ',' + Math.round(p.y));
+			});
+			
+			var group = new WB.GroupShape({
+				transform: new WB.Transform().scale(2, 2),
+				shapes: [path]
+			});
+			
+			player.playShape(path, function() {
+				player.playShape(group);
+			});
+		}
+		
+		function animRect1() {
+			
+			// 720 x 405
+			var canvasWidth = 720;
+			var canvasHeight = 405;
+			var realWidth = 1440; // mm
+			var realHeight = 810; // mm
+			
+			var defaultTransform = new WB.Transform()
+					.scale(canvasWidth/realWidth, canvasHeight/realHeight)
+					.translate(realWidth/2, realHeight/2);
+			
+			var board = new WB.Board({
+				commitPane: new WB.Pane({canvas: document.getElementById('canvas'), 
+											defaultTransform: defaultTransform}),
+				animationPane: new WB.Pane({canvas: document.getElementById('animCanvas'), 
+											defaultTransform: defaultTransform}),
+				});
+			
+			var rect = new WB.RectangleShape({
+				topleft: {x: 0, y: 0},
+				width: 150,
+				height: 80
+				});
+
+			var player = new WB.Player({board: board});
+			player.postFrame(function(time) {
+				var p = board.animationPane.getCurrentPoint();
+				status('Time: ' + (time) + ' milliseconds' 
+						+ '; Position: ' + Math.round(p.x) + ',' + Math.round(p.y));
+			});
+
+			var group = new WB.GroupShape({
+				transform: new WB.Transform().rotate(WB.Geom.rad(45)),
+				shapes: [rect]
+			});
+			
+			player.playShape(rect, function() {
+				player.playShape(group);
+			});
+		}
+		
+		function arc1() {
+
+			var canvas = document.getElementById('canvas');
+			var defaultTransform = new WB.Transform()
+				.scale(0.5, 0.5)
+				.translate(canvas.width, canvas.height);
+
+			var pane = new WB.Pane({canvas: canvas, defaultTransform: defaultTransform});
+			
+			var arcA = new WB.PathShape({
+					segments: [
+						new WB.ArcSegment({
+							arc: {
+								center: {x: 0, y: 0},
+								radiusX: 50,
+								radiusY: 50,
+								xAxisRotation: 0,
+								startAngle: WB.Geom.rad(-70),
+								endAngle: WB.Geom.rad(70),
+								counterclockwise: false
+							}
+							})
+						]
+				});
+			arcA.draw(pane);
+
+			var arcB = new WB.PathShape({
+					segments: [
+						new WB.ArcSegment({
+							arc: {
+								center: {x: 0, y: 0},
+								radiusX: 50,
+								radiusY: 50,
+								xAxisRotation: 0,
+								startAngle: WB.Geom.rad(-80),
+								endAngle: WB.Geom.rad(80),
+								counterclockwise: true
+							}
+							})
+						]
+				});
+			arcB.draw(pane);
+
+			var arcC = new WB.PathShape({
+					segments: [
+						new WB.ArcSegment({
+							arc: {
+								center: {x: 0, y: 0},
+								radiusX: 100,
+								radiusY: 50,
+								xAxisRotation: 0,
+								startAngle: WB.Geom.rad(-70),
+								endAngle: WB.Geom.rad(70),
+								counterclockwise: false
+							}
+							})
+						]
+				});
+			arcC.draw(pane);
+
+			var arcD = new WB.PathShape({
+					segments: [
+						new WB.ArcSegment({
+							arc: {
+								center: {x: 0, y: 0},
+								radiusX: 100,
+								radiusY: 50,
+								xAxisRotation: WB.Geom.rad(45),
+								startAngle: WB.Geom.rad(-70),
+								endAngle: WB.Geom.rad(70),
+								counterclockwise: false
+							}
+							})
+						]
+				});
+			arcD.draw(pane);
+		}
+		
+		function arc2() {
+			
+			var canvas = document.getElementById('canvas');
+			var defaultTransform = new WB.Transform();
+				//.scale(0.5, 0.5)
+				//.translate(canvas.width, canvas.height);
+
+			var pane = new WB.Pane({canvas: canvas, defaultTransform: defaultTransform});
+			
+			var path = new WB.PathShape({
+					segments: [
+						new WB.MoveToSegment({point: {x: 10, y: 300}}),
+						new WB.LineToSegment({point: {x: 60, y: 275}}),
+						new WB.ArcToSvgSegment({
+							radiusX: 25, 
+							radiusY: 25,
+							xAxisRotation: WB.Geom.rad(-30),
+							largeArcFlag: 0,
+							sweepFlag: 1,
+							endPoint: {x: 110, y: 250}
+						}),
+						new WB.LineToSegment({point: {x: 160, y: 225}}),
+						new WB.ArcToSvgSegment({
+							radiusX: 25, 
+							radiusY: 50,
+							xAxisRotation: WB.Geom.rad(-30),
+							largeArcFlag: 0,
+							sweepFlag: 1,
+							endPoint: {x: 210, y: 200}
+						}),
+						new WB.LineToSegment({point: {x: 260, y: 175}}),
+						new WB.ArcToSvgSegment({
+							radiusX: 25, 
+							radiusY: 75,
+							xAxisRotation: WB.Geom.rad(-30),
+							largeArcFlag: 0,
+							sweepFlag: 1,
+							endPoint: {x: 310, y: 150}
+						}),
+						new WB.LineToSegment({point: {x: 360, y: 125}}),
+						new WB.ArcToSvgSegment({
+							radiusX: 25, 
+							radiusY: 100,
+							xAxisRotation: WB.Geom.rad(-30),
+							largeArcFlag: 0,
+							sweepFlag: 1,
+							endPoint: {x: 410, y: 100}
+						}),
+						new WB.LineToSegment({point: {x: 460, y: 75}})
+						]
+				});
+			path.draw(pane);
+		}
+		
+		function arc2anim() {
+			
+			// 720 x 405
+			var canvasWidth = 720;
+			var canvasHeight = 405;
+			var realWidth = 1440; // mm
+			var realHeight = 810; // mm
+			
+			var defaultTransform = new WB.Transform();
+					//.scale(canvasWidth/realWidth, canvasHeight/realHeight)
+					//.translate(realWidth/2, realHeight/2);
+			
+			var board = new WB.Board({
+				commitPane: new WB.Pane({canvas: document.getElementById('canvas'), 
+											defaultTransform: defaultTransform}),
+				animationPane: new WB.Pane({canvas: document.getElementById('animCanvas'), 
+											defaultTransform: defaultTransform}),
+				baseVelocity: 100
+				});
+			
+			var path = new WB.PathShape({
+					segments: [
+						new WB.MoveToSegment({point: {x: 10, y: 300}}),
+						new WB.LineToSegment({point: {x: 60, y: 275}}),
+						new WB.ArcToSvgSegment({
+							radiusX: 25, 
+							radiusY: 25,
+							xAxisRotation: WB.Geom.rad(-30),
+							largeArcFlag: 0,
+							sweepFlag: 1,
+							endPoint: {x: 110, y: 250}
+						}),
+						new WB.LineToSegment({point: {x: 160, y: 225}}),
+						new WB.ArcToSvgSegment({
+							radiusX: 25, 
+							radiusY: 50,
+							xAxisRotation: WB.Geom.rad(-30),
+							largeArcFlag: 0,
+							sweepFlag: 1,
+							endPoint: {x: 210, y: 200}
+						}),
+						new WB.LineToSegment({point: {x: 260, y: 175}}),
+						new WB.ArcToSvgSegment({
+							radiusX: 25, 
+							radiusY: 75,
+							xAxisRotation: WB.Geom.rad(-30),
+							largeArcFlag: 0,
+							sweepFlag: 1,
+							endPoint: {x: 310, y: 150}
+						}),
+						new WB.LineToSegment({point: {x: 360, y: 125}}),
+						new WB.ArcToSvgSegment({
+							radiusX: 25, 
+							radiusY: 100,
+							xAxisRotation: WB.Geom.rad(-30),
+							largeArcFlag: 0,
+							sweepFlag: 1,
+							endPoint: {x: 410, y: 100}
+						}),
+						new WB.LineToSegment({point: {x: 460, y: 75}})
+						]
+				});
+
+			var player = new WB.Player({board: board});
+			player.postFrame(function(time) {
+				var p = board.animationPane.getCurrentPoint();
+				status('Time: ' + (time) + ' milliseconds' 
+						+ '; Position: ' + Math.round(p.x) + ',' + Math.round(p.y));
+			});
+
+			player.playShape(path);
+		}
+		
+		function cubic1() {
+			
+			var path = new WB.PathShape({
+				segments: [
+						new WB.MoveToSegment({point: {x: 126, y: 214}}),
+						new WB.CubicSegment({
+							cp1: {x: 158, y: 27}, 
+							cp2: {x: 33, y: 225}, 
+							endPoint: {x: 211, y: 77}
+						})
+					]
+			});
+
+			playShape(path);
+		}
+		
+		function quad1() {
+			var path = new WB.PathShape({
+				segments: [
+						new WB.MoveToSegment({point: {x: 100, y: 100}}),
+						new WB.QuadSegment({
+							cp: {x: 80, y: 20}, 
+							endPoint: {x: 200, y: 200}
+						})
+					]
+			});
+			playShape(path);
+		}
+		
+		function playShape(shape) {
+			
+			// 720 x 405
+			var canvasWidth = 720;
+			var canvasHeight = 405;
+			var realWidth = 1440; // mm
+			var realHeight = 810; // mm
+			
+			var defaultTransform = new WB.Transform();
+					//.scale(canvasWidth/realWidth, canvasHeight/realHeight)
+					//.translate(realWidth/2, realHeight/2);
+			
+			var board = new WB.Board({
+				commitPane: new WB.Pane({canvas: document.getElementById('canvas'), 
+											defaultTransform: defaultTransform}),
+				animationPane: new WB.Pane({canvas: document.getElementById('animCanvas'), 
+											defaultTransform: defaultTransform}),
+				baseVelocity: 1000
+				});
+
+			var player = new WB.Player({board: board});
+			player.postFrame(function(time) {
+				var p = board.animationPane.getCurrentPoint();
+				status('Time: ' + (time) + ' milliseconds' 
+						+ '; Position: ' + Math.round(p.x) + ',' + Math.round(p.y));
+			});
+
+			player.playShape(shape);
+		}
+		
+		function cloud1() {
+			$.ajax({url: 'cloud.json', contentType: 'application/json'})
+				.done(function(json) {
+					console.log('got data');
+					if (json) {
+						if (json.constructor == String) {
+							json = JSON.parse(json);
+						}
+						console.log(json);
+						
+						var parser = new WB.Parser();
+						var shape = parser.parse(json);
+						console.log(shape);
+						
+						playShape(shape);
+					}
+				});
+		}
+		
+		function text1() {
+			$.ajax({url: 'mvboli.json', contentType: 'application/json'})
+				.done(function(json) {
+					console.log('got data');
+					if (json) {
+						if (json.constructor == String) {
+							json = JSON.parse(json);
+						}
+						console.log(json);
+						
+						var parser = new WB.Parser();
+						var font = parser.parse(json);
+						console.log(font);
+						
+						var text = new WB.TextShape({
+							text: 'Hello World!',
+							font: font,
+							fontHeight: 60,
+							startPoint: {x: 10, y: 10}
+						});
+						
+						text.draw(new WB.Pane({canvas: document.getElementById('canvas')}));
+					}
+				});
+		}
+
+		function text1anim() {
+			$.ajax({url: 'mvboli.json', contentType: 'application/json'})
+				.done(function(json) {
+					console.log('got data');
+					if (json) {
+						if (json.constructor == String) {
+							json = JSON.parse(json);
+						}
+						console.log(json);
+						
+						var parser = new WB.Parser();
+						var font = parser.parse(json);
+						console.log(font);
+						
+						var text = new WB.TextShape({
+							text: 'Hello World!',
+							font: font,
+							fontHeight: 60,
+							startPoint: {x: 10, y: 10}
+						});
+						
+						// text.draw(new WB.Pane({canvas: document.getElementById('canvas')}));
+						
+						playShape(text);
+					}
+				});
+		}
+		
+	</script>
+
+
+  </body>
+</html>

@@ -1,0 +1,38 @@
+[ /*script*/
+	
+	{ /*episode*/
+		type: 'Shape',
+		pos: {x, y},
+		size: {w, h},
+		shape: {
+			type: 'Grid',
+			border: false,
+			columns: 3,
+			rows: 3
+		}
+	},
+	
+	{
+		type: 'Text',
+		pos: {x, y},
+		size: {w, h},
+		text: 'x'
+	},
+	
+	{
+		type: 'Text',
+		pos: {x, y},
+		size: {w, h},
+		text: 'o'
+	},
+	
+	{
+		type: 'Shape',
+		pos: {x, y},
+		size: {w, h},
+		shape: {
+			type: 'Line'
+		}
+	}
+	
+]

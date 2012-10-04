@@ -1,0 +1,47 @@
+<html>
+<head>
+    <script src="kinetic-v3.10.5.js"></script>
+</head>
+<body>
+
+<svg style="margin-top: 10px; border: 1px solid red;" width="800" height="320">
+<g>
+<path d="M10,300 l 50,-25 
+           a25,25 -30 0,1 50,-25 l 50,-25 
+           a25,50 -30 0,1 50,-25 l 50,-25 
+           a25,75 -30 0,1 50,-25 l 50,-25 
+           a25,100 -30 0,1 50,-25 l 50,-25"
+        fill="none" stroke="red" stroke-width="5"  />
+</g>
+</svg>
+
+<div id="container" style="margin-top: 10px; border: 1px solid green; width: 800px; height: 320px;"></div>
+
+<script>
+
+        var stage = new Kinetic.Stage({
+          container: "container",
+          width: 800,
+          height: 320
+        });
+
+        var layer = new Kinetic.Layer();
+
+	var path = new Kinetic.Path({
+			x: 0,
+			y: 0,
+			data: "M10,300 l 50,-25 a25,25 -30 0,1 50,-25 l 50,-25 a25,50 -30 0,1 50,-25 l 50,-25 a25,75 -30 0,1 50,-25 l 50,-25 a25,100 -30 0,1 50,-25 l 50,-25",
+			fill: "none",
+			stroke: "red",
+			scale: 1
+        	});
+        layer.add(path);
+
+	stage.add(layer);
+        // layer.draw();
+
+        stage.start();
+</script>
+
+</body>
+</html>

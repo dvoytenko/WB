@@ -1,0 +1,42 @@
+
+Line{start=(x1,y1), end=(x2,y2)}
+	- Alternative form: Line{start=(x,y), angle=a, length=l}
+	- points can be in any direction
+	- Distance: sqrt(dx^2 + dy^2)
+	- Moving points:
+		dx = end.x - start.x
+		dy = end.y - start.y
+		a = dy/dx
+		x1 = dx * prevDistance
+		y1 = a * x1
+		x2 = dx * distance
+		y2 = a * x2
+		line = (start.x + x1, start.y + y1) -> (start.x + x2, start.y + y2)
+	- Segments: 1 linear segment
+	- Subsegments: 1/N
+	- Pointer: 4 quadrants: (+x, +y), (+x, -y), etc + tag=x/y
+
+Circle{center=(x,y), radius=r}
+	- Arc includes start/end angles
+	- Distance: 2*pi*r (arc: a*r; where a = |end-start|)
+	- Moving points:
+		xs = x + r * cos(startAngle)
+		ys = y + r * sin(startAngle)
+		xe = x + r * cos(endAngle)
+		ye = y + r * sin(endAngle)
+		rect = {x=min(xs, xe), y=min(ys, ye), w=|xe-xs|, h=|ye-ys|}
+	- Segments: 1 circular segment
+	- Sub-segments: N near-linear:
+		Arc length = a * r
+		Chord length = 2 * r * sin(a/2)
+		Step = pi/4 or pi/8
+
+3Curve{start=(x,y), cp1=(x,y), cp2=(x,y), end=(x,y)}
+	- http://www.w3schools.com/html5/canvas_beziercurveto.asp
+
+4Curve{start=(x,y), cp=(x,y), end=(x,y)}
+	- http://www.w3schools.com/html5/canvas_quadraticcurveto.asp
+	- Length: http://algorithmist.wordpress.com/2009/01/05/quadratic-bezier-arc-length/
+		http://math.stackexchange.com/questions/12186/arc-length-of-bezier-curves
+	- Max: 
+

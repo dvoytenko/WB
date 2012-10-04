@@ -1,0 +1,1977 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+      canvas {
+        border: 1px solid #9C9898;
+      }
+    </style>
+
+    <script src="wb-all.js"></script>
+
+  </head>
+
+  <body>
+	<div id="toolbar">
+		<a href="javascript:void(0);" onclick="lineSimple()">Line Simple</a>
+		<a href="javascript:void(0);" onclick="lineDraw()">Line Draw</a>
+		<a href="javascript:void(0);" onclick="lineDrawStep()">Line Draw Step</a>
+		<a href="javascript:void(0);" onclick="lineAnim()">Line Anim</a>
+		<a href="javascript:void(0);" onclick="lineClip()">Line Clip</a>
+		<a href="javascript:void(0);" onclick="lineClipPiece()">Line Clip Piece</a>
+		<a href="javascript:void(0);" onclick="lineCopy()">Line Copy</a>
+		<BR/>
+		<a href="javascript:void(0);" onclick="circleSimple()">Circle Simple</a>
+		<a href="javascript:void(0);" onclick="circleDraw()">Circle Draw</a>
+		<a href="javascript:void(0);" onclick="circleDrawStep()">Circle Draw Step</a>
+		<a href="javascript:void(0);" onclick="circleClip()">Circle Clip (Piece)</a>
+
+		<BR/>
+		<a href="javascript:void(0);" onclick="infSimple()">Inf Simple</a>
+
+		<BR/>
+		<a href="javascript:void(0);" onclick="cloudSimple()">Cloud Simple</a>
+		<a href="javascript:void(0);" onclick="cloudPatches()">Cloud Patches</a>
+		<a href="javascript:void(0);" onclick="cloudAnimPatchesCrude()">Cloud Anim Patches Crude</a>
+		<a href="javascript:void(0);" onclick="cloudAnimPatches()">Cloud Anim Patches</a>
+
+		<BR/>
+		<a href="javascript:void(0);" onclick="cubeSimple()">Cube Simple</a>
+		<a href="javascript:void(0);" onclick="cubeLines()">Cube Lines</a>
+		<a href="javascript:void(0);" onclick="loopSimple()">Loop Simple</a>
+		<a href="javascript:void(0);" onclick="loopLines()">Loop Lines</a>
+		<a href="javascript:void(0);" onclick="cuspSimple()">Cusp Simple</a>
+		<a href="javascript:void(0);" onclick="cuspLines()">Cusp Lines</a>
+
+		<BR/>
+		<a href="javascript:void(0);" onclick="quadSimple()">Quad Simple</a>
+		<a href="javascript:void(0);" onclick="quadLines()">Quad Lines</a>
+
+		<BR/>
+		<a href="javascript:void(0);" onclick="spriteSimple(1)">Sprite(1)</a>
+		<a href="javascript:void(0);" onclick="spriteSimple(2)">Sprite(2)</a>
+		<a href="javascript:void(0);" onclick="spriteAnim()">Sprite Anim</a>
+
+		<BR/>
+		<a href="javascript:void(0);" onclick="textSimple()">Text Simple</a>
+		<a href="javascript:void(0);" onclick="textAnimPatches()">Text Anim Patches</a>
+
+		<BR/>
+		<a href="javascript:void(0);" onclick="markerSimple()">Marker</a>
+		<a href="javascript:void(0);" onclick="markerShadowOn()">Marker Shadow On</a>
+		<a href="javascript:void(0);" onclick="markerShadowOff()">Marker Shadow Off</a>
+
+		<BR/>
+		<a href="javascript:void(0);" onclick="xo()">XO</a>
+		<a href="javascript:void(0);" onclick="eraser()">Eraser</a>
+
+		<BR/>
+		<a href="javascript:void(0);" onclick="audioSimple()">Audio</a>
+	</div>
+	
+	<div id="container">
+		<canvas id="canvas" width="578" height="350"></canvas>
+		<canvas id="bufferCanvas" width="578" height="350" style="border: 1px solid red;"></canvas>
+	</div>
+
+<script>
+	var canvas = document.getElementById('canvas');
+	var bufferCanvas = document.getElementById('bufferCanvas');
+
+	window.requestAnimFrame = (function(callback) {
+	        return window.requestAnimationFrame || 
+		        window.webkitRequestAnimationFrame || 
+		        window.mozRequestAnimationFrame || 
+		        window.oRequestAnimationFrame || 
+		        window.msRequestAnimationFrame ||
+		        function(callback) {
+		          window.setTimeout(callback, 1000 / 60);
+		        };
+	      })();
+
+	function draw(callback, opts) {
+		var context = canvas.getContext('2d');
+		if (!(opts && opts.keepCanvas)) {
+			context.clearRect(0, 0, canvas.width, canvas.height);
+		}
+		callback(context);
+	}
+
+	function drawBuffer(callback, opts) {
+		var context = bufferCanvas.getContext('2d');
+		if (!(opts && opts.keepCanvas)) {
+			context.clearRect(0, 0, canvas.width, canvas.height);
+		}
+		callback(context);
+	}
+
+	function drawAnim(callback, opts) {
+		var context = canvas.getContext('2d');
+		if (!(opts && opts.keepCanvas)) {
+			context.clearRect(0, 0, canvas.width, canvas.height);
+		}
+
+		// whatever I need to animate, I should do within 5 seconds
+		var startTime = new Date().getTime();
+		var duration = opts && opts.dur ? opts.dur : 2000;
+		function drawFrame(prevDistance) {
+			var frameTime = new Date().getTime() - startTime;
+			var distance = frameTime/duration;
+			if (distance > 1) {
+				distance = 1;
+			}
+			if (distance > 0) {
+				callback(context, distance, prevDistance);
+			}
+			if (distance < 1) {
+				requestAnimFrame(function() {
+					drawFrame(distance);
+			        });
+			}
+		}
+		drawFrame(0);
+	}
+
+	function drawAnimUntilStop(callback, opts) {
+		var context = canvas.getContext('2d');
+		if (!(opts && opts.keepCanvas)) {
+			context.clearRect(0, 0, canvas.width, canvas.height);
+		}
+
+		// whatever I need to animate, I should do within 5 seconds
+		var startTime = new Date().getTime();
+		function drawFrame(prevTime) {
+			var frameTime = new Date().getTime() - startTime;
+			var cont = true;
+			if (frameTime > 0) {
+				cont = callback(context, frameTime, prevTime);
+			}
+			if (cont) {
+				requestAnimFrame(function() {
+					drawFrame(frameTime);
+			        });
+			} else {
+				console.log('animation stopped');
+			}
+		}
+		drawFrame(0);
+	}
+	
+	function lineSimple() {
+	        var x1 = 100;
+	        var y1 = 150;
+	        var x2 = 450;
+	        var y2 = 50;
+
+		draw(function(context) {
+			context.beginPath();
+		        context.moveTo(x1, y1);
+		        context.lineTo(x2, y2);
+			context.lineWidth = 4;
+			//context.closePath();
+		        context.stroke();
+			
+			console.log(context.isPointInPath(0,0));
+			console.log(context.isPointInPath(x1,y1));
+			console.log(context.isPointInPath(x1+1,y1+1));
+			console.log(context.isPointInPath(x2,y2));
+			
+			console.log(context.path);
+			
+
+		});
+	}
+
+	function lineDraw() {
+	        var x1 = 100;
+	        var y1 = 150;
+	        var x2 = 450;
+	        var y2 = 50;
+
+	        var x2p = x2 - x1;
+	        var y2p = y2 - y1;
+	        var a = y2p/x2p;
+
+		drawAnim(function(context, distance) {
+			context.clearRect(0, 0, canvas.width, canvas.height);
+
+			var x3p = x2p * distance;
+			var y3p = a * x3p;
+
+			context.beginPath();
+		        context.moveTo(x1, y1);
+		        context.lineTo(x1 + x3p, y1 + y3p);
+			context.lineWidth = 4;
+		        context.stroke();
+		});
+	}
+
+	function lineDrawStep() {
+	        var x1 = 100;
+	        var y1 = 150;
+	        var x2 = 450;
+	        var y2 = 50;
+
+	        var x2p = x2 - x1;
+	        var y2p = y2 - y1;
+	        var a = y2p/x2p;
+
+		drawAnim(function(context, distance, prevDistance) {
+			// context.clearRect(0, 0, canvas.width, canvas.height);
+
+			var x3p0 = x2p * prevDistance;
+			var y3p0 = a * x3p0;
+
+			var x3p = x2p * distance;
+			var y3p = a * x3p;
+
+			context.beginPath();
+		    context.moveTo(x1 + x3p0, y1 + y3p0);
+		    context.lineTo(x1 + x3p, y1 + y3p);
+			context.lineWidth = 4;
+		    context.stroke();
+		});
+	}
+
+	function lineAnim() {
+		
+        var x1 = 100;
+        var y1 = 150;
+        var x2 = 450;
+        var y2 = 50;
+        
+		var segm = new WB.LineSegment({point: {x: x2, y: y2}});
+		
+		var velocity = 120.0;
+		
+		segm.startAnim({x: x1, y: y1});
+			
+		drawAnimUntilStop(function(context, time) {
+			context.clearRect(0, 0, canvas.width, canvas.height);
+	
+			context.beginPath();
+		    context.moveTo(x1, y1);
+		    
+		    segm.stepAnim(canvas, context, time * velocity / 1000.0);
+		    
+			context.lineWidth = 4;
+		    context.stroke();
+		    
+		    return !segm.isAnimDone();
+		});
+	}
+
+	function lineClip() {
+	        var x1 = 100;
+	        var y1 = 150;
+	        var x2 = 450;
+	        var y2 = 50;
+
+	        var x2p = x2 - x1;
+	        var y2p = y2 - y1;
+	        var a = y2p/x2p;
+
+		drawAnim(function(context, distance, prevDistance) {
+			context.clearRect(0, 0, canvas.width, canvas.height);
+
+			var x3p = x2p * distance;
+			var y3p = a * x3p;
+			var x3pp = x2p * prevDistance;
+			var y3pp = a * x3pp;
+
+			context.save();
+			context.beginPath();
+			/*
+		        context.moveTo(x1 + x3pp - 4, y1 + y3pp - 4);
+		        context.lineTo(x1 + x3pp - 4, y1 + y3p + 4);
+			context.lineTo(x1 + x3p + 4, y1 + y3p + 4);
+			context.lineTo(x1 + x3p + 4, y1 + y3pp - 4);
+			*/
+		        context.moveTo(x1-10, y1+10);
+		        context.lineTo(x1-10, y1 + y3p-10);
+			context.lineTo(x1 + x3p+10, y1 + y3p-10);
+			context.lineTo(x1 + x3p+10, y1+10);
+			context.closePath();
+			context.clip();
+
+			context.beginPath();
+		        context.moveTo(x1, y1);
+		        context.lineTo(x2, y2);
+			context.lineWidth = 4;
+			context.strokeStyle = 'black';
+		        context.stroke();
+
+			context.restore();
+		});
+	}
+
+	function lineClipPiece() {
+	        var x1 = 100;
+	        var y1 = 150;
+	        var x2 = 450;
+	        var y2 = 50;
+
+	        var x2p = x2 - x1;
+	        var y2p = y2 - y1;
+	        var a = y2p/x2p;
+
+		drawAnim(function(context, distance, prevDistance) {
+			//context.clearRect(0, 0, canvas.width, canvas.height);
+
+			var x3p0 = x2p * prevDistance;
+			var y3p0 = a * x3p0;
+
+			var x3p = x2p * distance;
+			var y3p = a * x3p;
+			
+			context.save();
+			context.beginPath();
+			var d = 10;
+			context.rect(x1 + x3p0 - d, y1 + y3p - d, x3p - x3p0 + d*2, y3p - y3p0 + d*2);
+			context.clip();
+
+			context.beginPath();
+		        context.moveTo(x1, y1);
+		        context.lineTo(x2, y2);
+			context.lineWidth = 4;
+			context.strokeStyle = 'black';
+		        context.stroke();
+
+			context.restore();
+		});
+	}
+
+	function lineCopy() {
+	        var x1 = 100;
+	        var y1 = 150;
+	        var x2 = 450;
+	        var y2 = 50;
+
+		drawBuffer(function(bufferContext) {
+			bufferContext.clearRect(0, 0, canvas.width, canvas.height);
+			bufferContext.beginPath();
+		        bufferContext.moveTo(x1, y1);
+		        bufferContext.lineTo(x2, y2);
+			bufferContext.lineWidth = 4;
+		        bufferContext.stroke();
+
+			// fake drawing
+			draw(function(context) {
+				context.beginPath();
+			        context.arc(200, 200, 100, 1 * Math.PI, 1 * Math.PI + 2 * Math.PI);
+				context.lineWidth = 4;
+				context.strokeStyle = 'black';
+			        context.stroke();
+			});
+
+			/*
+			draw(function(context) {
+				context.drawImage(bufferCanvas, 0, 0);
+			});
+			*/
+
+		        var x2p = x2 - x1;
+		        var y2p = y2 - y1;
+	        	var a = y2p/x2p;
+
+			drawAnim(function(context, distance, prevDistance) { // 
+				//console.log('here!');
+				//prevDistance = 0; distance = 0.5; 
+
+				var x3p0 = prevDistance ? x2p * prevDistance : 0;
+				var y3p0 = a * x3p0;
+
+				var x3p = x2p * distance;
+				var y3p = a * x3p;
+
+				var sx = Math.round(x1 + x3p0 - 4);
+				var sy = Math.round(y1 + y3p - 4);
+				var swidth = Math.round(Math.abs(x3p - x3p0) + 8);
+				var sheight = Math.round(Math.abs(y3p - y3p0) + 8);
+				console.log(x3p0 + ' -> ' + sx + ', ' + sy + ', ' + swidth + ', ' + sheight);
+
+				// bufferContext.rect(sx, sy, swidth, sheight);
+				// bufferContext.stroke();
+				
+				//var data = bufferContext.getImageData(sx, sy, swidth, sheight);
+				//context.drawImage(data, sx, sy);
+				context.drawImage(bufferCanvas, 
+					sx, sy, swidth, sheight, 
+					sx, sy, swidth, sheight);
+				//
+				//context.putImageData(data, sx, sy);
+			}, 
+			{keepCanvas: true});
+		});
+	}
+
+
+	function circleSimple() {
+	        var x = 200;
+	        var y = 200;
+	        var r = 100;
+	        var sa = 0;
+		var ea = 2 * Math.PI;
+
+		draw(function(context) {
+			context.beginPath();
+		        context.arc(x, y, r, sa, ea);
+			context.lineWidth = 4;
+			context.strokeStyle = 'black';
+		        context.stroke();
+		});
+	}
+
+	function circleDraw() {
+	        var x = 200;
+	        var y = 200;
+	        var r = 100;
+	        var sa = 1 * Math.PI;
+		var ea = sa + 2 * Math.PI;
+
+		drawAnim(function(context, distance) {
+			context.clearRect(0, 0, canvas.width, canvas.height);
+
+			var eap = sa + 2 * Math.PI * distance;
+
+			context.beginPath();
+		        context.arc(x, y, r, sa, eap);
+			context.lineWidth = 4;
+			context.strokeStyle = 'black';
+		        context.stroke();
+		});
+	}
+
+	function circleDrawStep() {
+	        var x = 200;
+	        var y = 200;
+	        var r = 100;
+	        var sa = 1 * Math.PI;
+		var ea = sa + 2 * Math.PI;
+
+		drawAnim(function(context, distance, prevDistance) {
+			// context.clearRect(0, 0, canvas.width, canvas.height);
+
+			var sap = prevDistance ? sa + 2 * Math.PI * prevDistance - Math.PI*0.1 : sa;
+			var eap = sa + 2 * Math.PI * distance;
+
+			context.beginPath();
+		        context.arc(x, y, r, sap, eap);
+			context.lineWidth = 4;
+			context.strokeStyle = 'black';
+		        context.stroke();
+		});
+	}
+
+	function circleClip() {
+	        var x = 200;
+	        var y = 200;
+	        var r = 100;
+	        var sa = 1 * Math.PI;
+		var ea = sa + 2 * Math.PI;
+
+		drawAnim(function(context, distance, prevDistance) {
+			// context.clearRect(0, 0, canvas.width, canvas.height);
+
+			var sap = prevDistance ? sa + 2 * Math.PI * prevDistance : sa;
+			var eap = sa + 2 * Math.PI * distance;
+
+			var x0 = x + r * Math.cos(sap);
+			var y0 = y + r * Math.sin(sap);
+			var x1 = x + r * Math.cos(eap);
+			var y1 = y + r * Math.sin(eap);
+
+			var rx = Math.min(x0, x1);
+			var ry = Math.min(y0, y1);
+			var rw = Math.abs(x0 - x1);
+			var rh = Math.abs(y0 - y1);
+
+			context.save();
+			context.beginPath();
+			var d = 2;
+			context.rect(rx - d, ry - d, rw + 2*d, rh + 2*d);
+			context.clip();
+
+			context.beginPath();
+		        context.arc(x, y, r, sa, ea);
+			context.lineWidth = 4;
+			context.strokeStyle = 'black';
+		        context.stroke();
+
+			context.restore();
+		});
+	}
+
+
+	function loopSimple() {
+		draw(function(context) {
+			context.beginPath();
+
+			context.moveTo(126,214);
+			new WB.CubicLineSegment({cp1: {x: 158, y: 27}, cp2: {x: 33, y: 225}, 
+				point: {x: 211, y: 77}}).render(canvas, context);
+			// context.bezierCurveTo(158,27, 33,225, 211,77);
+
+			context.lineWidth = 4;
+			context.lineCap = 'butt';
+			context.lineJoin = 'miter';
+			context.strokeStyle = 'black';
+		        context.stroke();
+		});
+	}
+
+	function loopLines() {
+		draw(function(context) {
+			context.beginPath();
+
+			console.log('lines!');
+
+			context.moveTo(126,214);
+			new WB.CubicLinePatchesSegment({
+				start: {x: 126, y: 214}, 
+				cp1: {x: 158, y: 27}, 
+				cp2: {x: 33, y: 225}, 
+				point: {x: 211, y: 77}
+				}).render(canvas, context);
+			
+			/*
+			context.lineTo(127.42333984375, 205.42236328125);
+			context.lineTo(129.5455322265625, 190.08004760742188);
+			context.lineTo(130.8741455078125, 176.79281616210938);
+			context.lineTo(131.493408203125, 165.42681884765625);
+			context.lineTo(131.487548828125, 155.84820556640625);
+			context.lineTo(130.9407958984375, 147.92312622070312);
+			context.lineTo(129.9373779296875, 141.51773071289062);
+			context.lineTo(128.5615234375, 136.4981689453125);
+			context.lineTo(126.8974609375, 132.7305908203125);
+			context.lineTo(125.0294189453125, 130.08114624023438);
+			context.lineTo(123.0416259765625, 128.41598510742188);
+			context.lineTo(121.018310546875, 127.60125732421875);
+			context.lineTo(119.043701171875, 127.50311279296875);
+			context.lineTo(117.2020263671875, 127.98770141601562);
+			context.lineTo(115.5775146484375, 128.92117309570312);
+			context.lineTo(114.25439453125, 130.169677734375);
+			context.lineTo(113.31689453125, 131.599365234375);
+			context.lineTo(112.8492431640625, 133.07638549804688);
+			context.lineTo(112.9356689453125, 134.46688842773438);
+			context.lineTo(113.660400390625, 135.63702392578125);
+			context.lineTo(115.107666015625, 136.45294189453125);
+			context.lineTo(117.3616943359375, 136.78079223632812);
+			context.lineTo(120.5067138671875, 136.48672485351562);
+			context.lineTo(124.626953125, 135.4368896484375);
+			context.lineTo(129.806640625, 133.4974365234375);
+			context.lineTo(136.1300048828125, 130.53451538085938);
+			context.lineTo(143.6812744140625, 126.41427612304688);
+			context.lineTo(152.544677734375, 121.00286865234375);
+			context.lineTo(162.804443359375, 114.16644287109375);
+			context.lineTo(174.5447998046875, 105.77114868164062);
+			context.lineTo(187.8499755859375, 95.68313598632812);
+			context.lineTo(202.80419921875, 83.7685546875);
+			context.lineTo(211.0, 77.0);
+			*/
+
+			context.lineWidth = 4;
+			context.lineCap = 'butt';
+			context.lineJoin = 'miter';
+			context.strokeStyle = 'black';
+		        context.stroke();
+		});
+	}
+
+
+	function cuspSimple() {
+		draw(function(context) {
+			context.beginPath();
+
+			context.moveTo(100,100);
+			new WB.CubicLineSegment({cp1: {x: 300, y: 200}, cp2: {x: 200, y: 200}, 
+				point: {x: 200, y: 100}}).render(canvas, context);
+			// context.bezierCurveTo(300,200, 200,200, 200,100);
+
+			context.lineWidth = 4;
+			context.lineCap = 'butt';
+			context.lineJoin = 'miter';
+			context.strokeStyle = 'black';
+	        context.stroke();
+		});
+	}
+
+	function cuspLines() {
+		draw(function(context) {
+			context.beginPath();
+
+			console.log('lines!');
+
+			context.moveTo(100,100);
+			context.lineTo(118.1640625, 109.1796875);
+			context.lineTo(148.92578125, 125.5859375);
+			context.lineTo(173.53515625, 139.6484375);
+			context.lineTo(192.578125, 151.3671875);
+			context.lineTo(206.640625, 160.7421875);
+			context.lineTo(216.30859375, 167.7734375);
+			context.lineTo(224.21875, 174.21875);
+			context.lineTo(224.21875, 174.21875);
+			context.lineTo(219.23828125, 167.7734375);
+			context.lineTo(214.84375, 160.7421875);
+			context.lineTo(210.15625, 151.3671875);
+			context.lineTo(206.82373046875, 142.724609375);
+			context.lineTo(204.8095703125, 136.279296875);
+			context.lineTo(203.0517578125, 129.248046875);
+			context.lineTo(201.62353515625, 121.630859375);
+			context.lineTo(200.59814453125, 113.427734375);
+			context.lineTo(200.048828125, 104.638671875);
+			context.lineTo(200.0, 100.0);
+
+			context.lineWidth = 4;
+			context.lineCap = 'butt';
+			context.lineJoin = 'miter';
+			context.strokeStyle = 'black';
+		        context.stroke();
+		});
+	}
+
+
+	function infSimple() {
+		draw(function(context) {
+			context.beginPath();
+
+			context.moveTo(100.16623,51.415329);
+			context.bezierCurveTo(106.74946,45.082085, 113.08279,39.707091, 119.16623,35.290329);
+			context.bezierCurveTo(125.24945,30.790433, 130.37444,27.790436, 134.54123,26.290329);
+			context.bezierCurveTo(138.70777,24.790439, 143.24943,24.04044, 148.16623,24.040329);
+			context.bezierCurveTo(158.49941,24.04044, 166.83274,27.498769, 173.16623,34.415329);
+			context.bezierCurveTo(179.58273,41.248756, 182.79106,49.540414, 182.79123,59.290329);
+			context.bezierCurveTo(182.79106,65.957064, 181.37439,72.123725, 178.54123,77.790329);
+			context.bezierCurveTo(175.70773,83.457047, 171.66607,87.748709, 166.41623,90.665329);
+			context.bezierCurveTo(161.24941,93.582037, 155.29108,95.040369, 148.54123,95.040329);
+			context.bezierCurveTo(139.7911,95.040369, 132.12444,93.16537, 125.54123,89.415329);
+			context.bezierCurveTo(119.04112,85.665378, 110.58279,78.582052, 100.16623,68.165329);
+			context.bezierCurveTo(89.332815,78.915385, 80.707824,86.082044, 74.291229,89.665329);
+			context.bezierCurveTo(67.874504,93.248704, 60.416178,95.040369, 51.916229,95.040329);
+			context.bezierCurveTo(41.082864,95.040369, 32.624539,91.665372, 26.541229,84.915329);
+			context.bezierCurveTo(20.541218,78.165385, 17.541221,69.623727, 17.541229,59.290329);
+			context.bezierCurveTo(17.541221,49.623747, 20.707884,41.332089, 27.041229,34.415329);
+			context.bezierCurveTo(33.457871,27.498769, 41.832863,24.04044, 52.166229,24.040329);
+			context.bezierCurveTo(57.166181,24.04044, 61.74951,24.790439, 65.916229,26.290329);
+			context.bezierCurveTo(70.082835,27.790436, 75.166163,30.790433, 81.166229,35.290329);
+			context.bezierCurveTo(87.249484,39.707091, 93.582811,45.082085, 100.16623,51.415329);
+
+			context.lineWidth = 4;
+			context.lineCap = 'butt';
+			context.lineJoin = 'miter';
+			context.strokeStyle = 'black';
+		        context.stroke();
+		});
+	}
+
+
+		/*
+			context.moveTo(48.996171,37.251271);
+			context.bezierCurveTo(47.958668,32.143973, 39.185631,24.658486, 33.930828,26.057885);
+			context.bezierCurveTo(27.350244,27.875054, 24.319102,33.750906, 29.022229,38.180278);
+			context.bezierCurveTo(24.861109,35.364180, 14.478948,32.941167, 8.8516150,42.752305);
+			context.bezierCurveTo(5.3584330,50.061076, 15.250525,54.633620, 18.276730,54.093064);
+			context.bezierCurveTo(12.486132,53.396616, -1.7806601,65.306814, 4.5717298,71.373662);
+			context.bezierCurveTo(12.398859,77.540434, 30.328023,70.871946, 31.115271,65.721140);
+			context.bezierCurveTo(29.368597,73.253219, 49.289455,74.699245, 49.782264,64.230844);
+			context.bezierCurveTo(48.360488,69.138884, 62.574082,74.362572, 69.331408,72.364112);
+			context.bezierCurveTo(77.800433,70.297826, 76.782138,63.322187, 75.780037,61.195189);
+			context.bezierCurveTo(82.294178,61.939711, 92.493777,63.786015, 97.011836,57.091162);
+			context.bezierCurveTo(100.16106,50.764622, 98.288765,43.698338, 94.234782,41.475620);
+			context.bezierCurveTo(89.817633,39.373843, 84.991240,39.483372, 79.361925,43.043469);
+			context.bezierCurveTo(83.828729,40.136070, 81.073796,30.760619, 76.597083,28.701006);
+			context.bezierCurveTo(71.495048,26.361815, 65.365281,25.905286, 59.859869,27.042626);
+			context.bezierCurveTo(55.323516,27.769206, 48.144478,31.594752, 48.996171,37.251271);
+		*/
+		
+		var cloudSegments = [
+			new WB.MoveSegment({point: {x: 48.996171, y: 37.251271}})
+			, new WB.CubicLineSegment({
+				cp1: {x: 47.958668, y: 32.143973},
+				cp2: {x: 39.185631, y: 24.658486},
+				point: {x: 33.930828, y: 26.057885}})
+			, new WB.CubicLineSegment({
+				cp1: {x: 27.350244, y: 27.875054},
+				cp2: {x: 24.319102, y: 33.750906},
+				point: {x: 29.022229, y: 38.180278}})
+			, new WB.CubicLineSegment({
+				cp1: {x: 24.861109, y: 35.364180},
+				cp2: {x: 14.478948, y: 32.941167},
+				point: {x: 8.8516150, y: 42.752305}})
+			, new WB.CubicLineSegment({
+				cp1: {x: 5.3584330, y: 50.061076},
+				cp2: {x: 15.250525, y: 54.633620},
+				point: {x: 18.276730, y: 54.093064}})
+			, new WB.CubicLineSegment({
+				cp1: {x: 12.486132, y: 53.396616},
+				cp2: {x: -1.7806601, y: 65.306814},
+				point: {x: 4.5717298, y: 71.373662}})
+			, new WB.CubicLineSegment({
+				cp1: {x: 12.398859, y: 77.540434},
+				cp2: {x: 30.328023, y: 70.871946},
+				point: {x: 31.115271, y: 65.721140}})
+			, new WB.CubicLineSegment({
+				cp1: {x: 29.368597, y: 73.253219},
+				cp2: {x: 49.289455, y: 74.699245},
+				point: {x: 49.782264, y: 64.230844}})
+			, new WB.CubicLineSegment({
+				cp1: {x: 48.360488, y: 69.138884},
+				cp2: {x: 62.574082, y: 74.362572},
+				point: {x: 69.331408, y: 72.364112}})
+			, new WB.CubicLineSegment({
+				cp1: {x: 77.800433, y: 70.297826},
+				cp2: {x: 76.782138, y: 63.322187},
+				point: {x: 75.780037, y: 61.195189}})
+			, new WB.CubicLineSegment({
+				cp1: {x: 82.294178, y: 61.939711},
+				cp2: {x: 92.493777, y: 63.786015},
+				point: {x: 97.011836, y: 57.091162}})
+			, new WB.CubicLineSegment({
+				cp1: {x: 100.16106, y: 50.764622},
+				cp2: {x: 98.288765, y: 43.698338},
+				point: {x: 94.234782, y: 41.475620}})
+			, new WB.CubicLineSegment({
+				cp1: {x: 89.817633, y: 39.373843},
+				cp2: {x: 84.991240, y: 39.483372},
+				point: {x: 79.361925, y: 43.043469}})
+			, new WB.CubicLineSegment({
+				cp1: {x: 83.828729, y: 40.136070},
+				cp2: {x: 81.073796, y: 30.760619},
+				point: {x: 76.597083, y: 28.701006}})
+			, new WB.CubicLineSegment({
+				cp1: {x: 71.495048, y: 26.361815},
+				cp2: {x: 65.365281, y: 25.905286},
+				point: {x: 59.859869, y: 27.042626}})
+			, new WB.CubicLineSegment({
+				cp1: {x: 55.323516, y: 27.769206},
+				cp2: {x: 48.144478, y: 31.594752},
+				point: {x: 48.996171, y: 37.251271}})
+		];
+		
+		var cloudSegmentsPatches = [
+   			new WB.MoveSegment({point: {x: 48.996171, y: 37.251271}})
+   			, new WB.CubicLinePatchesSegment({
+   				start: {x: 48.996171, y: 37.251271},
+   				cp1: {x: 47.958668, y: 32.143973},
+   				cp2: {x: 39.185631, y: 24.658486},
+   				point: {x: 33.930828, y: 26.057885}})
+   			, new WB.CubicLinePatchesSegment({
+   				start: {x: 33.930828, y: 26.057885},
+   				cp1: {x: 27.350244, y: 27.875054},
+   				cp2: {x: 24.319102, y: 33.750906},
+   				point: {x: 29.022229, y: 38.180278}})
+   			, new WB.CubicLinePatchesSegment({
+   				start: {x: 29.022229, y: 38.180278},
+   				cp1: {x: 24.861109, y: 35.364180},
+   				cp2: {x: 14.478948, y: 32.941167},
+   				point: {x: 8.8516150, y: 42.752305}})
+   			, new WB.CubicLinePatchesSegment({
+   				start: {x: 8.8516150, y: 42.752305},
+   				cp1: {x: 5.3584330, y: 50.061076},
+   				cp2: {x: 15.250525, y: 54.633620},
+   				point: {x: 18.276730, y: 54.093064}})
+   			, new WB.CubicLinePatchesSegment({
+   				start: {x: 18.276730, y: 54.093064},
+   				cp1: {x: 12.486132, y: 53.396616},
+   				cp2: {x: -1.7806601, y: 65.306814},
+   				point: {x: 4.5717298, y: 71.373662}})
+   			, new WB.CubicLinePatchesSegment({
+   				start: {x: 4.5717298, y: 71.373662},
+   				cp1: {x: 12.398859, y: 77.540434},
+   				cp2: {x: 30.328023, y: 70.871946},
+   				point: {x: 31.115271, y: 65.721140}})
+   			, new WB.CubicLinePatchesSegment({
+   				start: {x: 31.115271, y: 65.721140},
+   				cp1: {x: 29.368597, y: 73.253219},
+   				cp2: {x: 49.289455, y: 74.699245},
+   				point: {x: 49.782264, y: 64.230844}})
+   			, new WB.CubicLinePatchesSegment({
+   				start: {x: 49.782264, y: 64.230844},
+   				cp1: {x: 48.360488, y: 69.138884},
+   				cp2: {x: 62.574082, y: 74.362572},
+   				point: {x: 69.331408, y: 72.364112}})
+   			, new WB.CubicLinePatchesSegment({
+   				start: {x: 69.331408, y: 72.364112},
+   				cp1: {x: 77.800433, y: 70.297826},
+   				cp2: {x: 76.782138, y: 63.322187},
+   				point: {x: 75.780037, y: 61.195189}})
+   			, new WB.CubicLinePatchesSegment({
+   				start: {x: 75.780037, y: 61.195189},
+   				cp1: {x: 82.294178, y: 61.939711},
+   				cp2: {x: 92.493777, y: 63.786015},
+   				point: {x: 97.011836, y: 57.091162}})
+   			, new WB.CubicLinePatchesSegment({
+   				start: {x: 97.011836, y: 57.091162},
+   				cp1: {x: 100.16106, y: 50.764622},
+   				cp2: {x: 98.288765, y: 43.698338},
+   				point: {x: 94.234782, y: 41.475620}})
+   			, new WB.CubicLinePatchesSegment({
+   				start: {x: 94.234782, y: 41.475620},
+   				cp1: {x: 89.817633, y: 39.373843},
+   				cp2: {x: 84.991240, y: 39.483372},
+   				point: {x: 79.361925, y: 43.043469}})
+   			, new WB.CubicLinePatchesSegment({
+   				start: {x: 79.361925, y: 43.043469},
+   				cp1: {x: 83.828729, y: 40.136070},
+   				cp2: {x: 81.073796, y: 30.760619},
+   				point: {x: 76.597083, y: 28.701006}})
+   			, new WB.CubicLinePatchesSegment({
+   				start: {x: 76.597083, y: 28.701006},
+   				cp1: {x: 71.495048, y: 26.361815},
+   				cp2: {x: 65.365281, y: 25.905286},
+   				point: {x: 59.859869, y: 27.042626}})
+   			, new WB.CubicLinePatchesSegment({
+   				start: {x: 59.859869, y: 27.042626},
+   				cp1: {x: 55.323516, y: 27.769206},
+   				cp2: {x: 48.144478, y: 31.594752},
+   				point: {x: 48.996171, y: 37.251271}})
+   		];
+
+	function cloudSimple() {
+		draw(function(context) {
+
+			context.save();
+
+			context.scale(4,4);
+
+			context.beginPath();
+			for (var i = 0; i < cloudSegments.length; i++) {
+				var seg = cloudSegments[i];
+				seg.render(canvas, context);
+			}
+			context.closePath();
+
+			context.lineWidth = 2;
+			context.lineCap = 'butt';
+			context.lineJoin = 'round';
+			context.strokeStyle = 'black';
+		        context.stroke();
+
+			context.restore();
+		});
+	}
+
+	function cloudPatches() {
+		draw(function(context) {
+
+			context.save();
+
+			context.scale(4,4);
+
+			context.beginPath();
+			for (var i = 0; i < cloudSegmentsPatches.length; i++) {
+				var seg = cloudSegments[i];
+				seg.render(canvas, context);
+			}
+			context.closePath();
+
+			context.lineWidth = 2;
+			context.lineCap = 'butt';
+			context.lineJoin = 'round';
+			context.strokeStyle = 'black';
+		        context.stroke();
+
+			context.restore();
+		});
+	}
+	
+	function cloudAnimPatchesCrude() {
+		var todo = []; // cloudSegmentsPatches.slice(0);
+		for (var i = 0; i < cloudSegmentsPatches.length; i++) {
+			var expanded = cloudSegmentsPatches[i].expand();
+			for (var j = 0; j < expanded.length; j++) {
+				todo.push(expanded[j]);
+			}
+		}
+		//var done = [];
+		//var wip = null;
+		//var wipStartTime = null;
+		drawAnim(function(context, distance) {
+			context.clearRect(0, 0, canvas.width, canvas.height);
+			
+			context.save();
+
+			context.scale(4,4);
+
+			context.beginPath();
+			
+			/*
+			for (var i = 0; i < done.length; i++) {
+				done[i].render(canvas, context);
+			}
+
+			if (!wip && todo.length) {
+				wip = todo[0];
+				todo.splice(0, 1);
+				var prevPoint = done.length? done[done.length - 1].getLastPoint() : null;
+				wip.startAnim(0, prevPoint);
+				wipStartTime = time;
+			}
+			*/
+			
+			var upto = Math.floor(distance* todo.length);
+			if (upto > todo.length) {
+				upto = todo.length;
+			}
+			
+			for (var i = 0; i < upto; i++) {
+				todo[i].render(canvas, context);
+			}
+			
+			if (upto >= todo.length) {
+				context.closePath();
+			}
+
+			context.lineWidth = 2;
+			context.lineCap = 'butt';
+			context.lineJoin = 'round';
+			context.strokeStyle = 'black';
+			context.stroke();
+
+			context.restore();
+			
+			// return (todo.length || wip);
+		}, {dur: 10000});
+	}
+
+	function cloudAnimPatches() {
+		
+		var todo = [];
+		for (var i = 0; i < cloudSegmentsPatches.length; i++) {
+			var expanded = cloudSegmentsPatches[i].expand();
+			for (var j = 0; j < expanded.length; j++) {
+				todo.push(expanded[j]);
+			}
+		}
+		var done = [];
+		var wip = null;
+		var wipStartTime = null;
+		var velocity = 120.0 * 2;
+		
+		var markerImage = new Image();
+		markerImage.src = "marker-up.png";
+		
+		drawAnimUntilStop(function(context, time) {
+			context.clearRect(0, 0, canvas.width, canvas.height);
+			
+			context.save();
+
+			context.scale(4,4);
+
+			context.beginPath();
+			
+			for (var i = 0; i < done.length; i++) {
+				done[i].render(canvas, context);
+			}
+			
+			if (!wip && todo.length) {
+				wip = todo[0];
+				todo.splice(0, 1);
+				var prevPoint = done.length? done[done.length - 1].getLastPoint() : null;
+				wip.startAnim(prevPoint);
+				wipStartTime = time;
+			}
+			
+			var markerPoint = null;
+			
+			if (wip) {
+				if (!wip.isAnimDone()) {
+			    	wip.stepAnim(canvas, context, (time - wipStartTime) * velocity / 1000.0);
+				}
+				markerPoint = wip.animPoint();
+			    
+			    if (wip.isAnimDone()) {
+			    	done.push(wip);
+			    	wip = null;
+			    }
+			}
+			
+			if (!(todo.length || wip)) {
+				context.closePath();
+			}
+			
+			context.lineWidth = 2;
+			context.lineCap = 'butt';
+			context.lineJoin = 'round';
+			context.strokeStyle = 'black';
+			context.stroke();
+			
+			context.restore();
+
+			if (markerPoint && markerImage && markerImage.complete) {
+				/*
+					original size: 300x300
+					anchor: 20,15
+				*/
+				var mx = markerPoint.x * 4 - 20*70/300;
+				var my = markerPoint.y * 4 - 15*70/300;
+				context.drawImage(markerImage, mx, my, 70, 70);
+			}
+			
+			return (todo.length || wip);
+		}, {dur: 10000});
+	}
+
+
+	function cubeSimple() {
+		draw(function(context) {
+			context.beginPath();
+
+			new WB.MoveSegment({point: {x: 48.996171, y: 37.251271}}).render(canvas, context);
+			new WB.CubicLineSegment({
+				cp1: {x: 47.958668, y: 32.143973},
+				cp2: {x: 39.185631, y: 24.658486},
+				point: {x: 33.930828, y: 26.057885}}).render(canvas, context);
+
+			context.lineWidth = 4;
+			context.lineCap = 'butt';
+			context.lineJoin = 'miter';
+			context.strokeStyle = 'black';
+		        context.stroke();
+		});
+	}
+
+	function cubeLines() {
+		draw(function(context) {
+			context.beginPath();
+
+			console.log('lines!');
+
+			context.moveTo(48.996171, 37.251271);
+			context.lineTo(48.741205328125005, 36.2750730234375);
+			context.lineTo(47.69287543750001, 34.20287563476562);
+			context.lineTo(45.2139398125, 31.067378109375);
+			context.lineTo(41.911089109375, 28.36441123828125);
+			context.lineTo(39.54449509375, 26.984262896484374);
+			context.lineTo(37.17803528125, 26.107099716796874);
+			context.lineTo(34.943589765625, 25.864910859374998);
+			context.lineTo(33.930828, 26.057885);
+
+			context.lineWidth = 4;
+			context.lineCap = 'butt';
+			context.lineJoin = 'miter';
+			context.strokeStyle = 'black';
+		        context.stroke();
+		});
+	}
+	
+
+	function quadSimple() {
+		draw(function(context) {
+			context.beginPath();
+			
+			context.moveTo(100, 100);
+
+			context.quadraticCurveTo(80, 20, 200, 200);
+			
+			context.lineWidth = 4;
+			context.lineCap = 'butt';
+			context.lineJoin = 'miter';
+			context.strokeStyle = 'black';
+			context.stroke();
+		});
+	}
+
+	function quadLines() {
+		draw(function(context) {
+			context.beginPath();
+
+			console.log('lines!');
+
+			context.moveTo(100.0, 100.0);
+			
+			/*
+			context.lineTo(98.88671875, 95.25390625);
+			context.lineTo(97.48046875, 87.28515625);
+			context.lineTo(97.16796875, 81.34765625);
+			context.lineTo(97.94921875, 77.44140625);
+			context.lineTo(99.2529296875, 75.8447265625);
+			context.lineTo(100.4638671875, 75.4150390625);
+			context.lineTo(102.79296875, 75.72265625);
+			context.lineTo(106.85546875, 77.91015625);
+			context.lineTo(112.01171875, 82.12890625);
+			context.lineTo(118.26171875, 88.37890625);
+			context.lineTo(125.60546875, 96.66015625);
+			context.lineTo(138.671875, 112.890625);
+			context.lineTo(159.921875, 141.640625);
+			context.lineTo(185.546875, 178.515625);
+			context.lineTo(200.0, 200.0);
+			*/
+
+			new WB.QuadLinePatchesSegment({
+				start: {x: 100, y: 100}, 
+				cp: {x: 80, y: 20}, 
+				point: {x: 200, y: 200}
+				}).render(canvas, context);
+			
+			context.lineWidth = 4;
+			context.lineCap = 'butt';
+			context.lineJoin = 'miter';
+			context.strokeStyle = 'black';
+			context.stroke();
+		});
+	}
+	
+	
+	var animations = {
+			idle : [ 
+				{
+					x : 2,
+					y : 2,
+					width : 70,
+					height : 119
+				}, 
+				{
+					x : 71,
+					y : 2,
+					width : 74,
+					height : 119
+				}, 
+				{
+					x : 146,
+					y : 2,
+					width : 81,
+					height : 119
+				}, 
+				{
+					x : 226,
+					y : 2,
+					width : 76,
+					height : 119
+				} 
+			],
+			punch : [ 
+				{
+					x : 2,
+					y : 138,
+					width : 74,
+					height : 122
+				}, 
+				{
+					x : 76,
+					y : 138,
+					width : 84,
+					height : 122
+				}, 
+				{
+					x : 346,
+					y : 138,
+					width : 120,
+					height : 122
+				} 
+			]
+		};
+	
+	function spriteSimple(index) {
+
+		var imageObj = new Image();
+		imageObj.onload = function() {
+			draw(function(context) {
+
+				var f = animations.idle[index];
+
+				context.beginPath();
+				context.rect(0, 0, f.width, f.height);
+				context.closePath();
+
+				//drawImage(context, imageObj, f.x, f.y, f.width, f.height, 0, 0, f.width, f.height);
+				context.drawImage(imageObj, f.x, f.y, f.width, f.height, 0, 0, f.width, f.height);
+			});
+		};
+		imageObj.src = "blob-sprite.png";
+	}
+
+	function spriteAnim() {
+
+		var imageObj = new Image();
+		imageObj.onload = function() {
+			
+			drawAnimUntilStop(function(context, frameTime, prevTime) {
+				context.clearRect(0, 0, canvas.width, canvas.height);
+				
+				// frames per second: 7
+				// milliseconds per frame: 1000/7
+				// index of frame: X/(1000/7)
+
+				var index = Math.floor(frameTime/(1000/7)) % animations.idle.length;
+				
+				var f = animations.idle[index];
+
+				context.beginPath();
+				context.rect(0, 0, f.width, f.height);
+				context.closePath();
+				
+	            var s = {alpha: 0.2, offset: {x: 5, y: 5}};
+				if (s) {
+					context.save();
+		            var aa = 1.0;
+		            // defaults
+		            var color = s.color ? s.color : 'black';
+		            var blur = s.blur ? s.blur : 5;
+		            var offset = s.offset ? s.offset : {
+		                x: 0,
+		                y: 0
+		            };
+
+		            if (s.alpha) {
+		                context.globalAlpha = s.alpha * aa;
+		            }
+		            context.shadowColor = color;
+		            context.shadowBlur = blur;
+		            context.shadowOffsetX = offset.x;
+		            context.shadowOffsetY = offset.y;
+		            
+		            context.drawImage(imageObj, f.x, f.y, f.width, f.height, 0, 0, f.width, f.height);
+					context.restore();
+				}
+
+				//drawImage(context, imageObj, f.x, f.y, f.width, f.height, 0, 0, f.width, f.height);
+				context.drawImage(imageObj, f.x, f.y, f.width, f.height, 0, 0, f.width, f.height);
+				
+				return frameTime < 10000;
+			});
+		};
+		imageObj.src = "blob-sprite.png";
+	}
+	
+
+	/*
+	*/
+	var textSegmentsPatches = [
+   			new WB.MoveSegment({point: {x: 956, y: 776}})
+   			, new WB.QuadLinePatchesSegment({
+   				start: {x: 956, y: 776},
+   				cp: {x: 959, y: 776},
+   				point: {x: 968, y: 779}})
+   			, new WB.QuadLinePatchesSegment({
+   				start: {x: 968, y: 779},
+   				cp: {x: 968, y: 779},
+   				point: {x: 988, y: 786}})
+   			, new WB.QuadLinePatchesSegment({
+   				start: {x: 988, y: 786},
+   				cp: {x: 988, y: 786},
+   				point: {x: 1010, y: 793}})
+   			, new WB.QuadLinePatchesSegment({
+   				start: {x: 1010, y: 793},
+   				cp: {x: 1010, y: 793},
+   				point: {x: 1028, y: 796}})
+   			, new WB.QuadLinePatchesSegment({
+   				start: {x: 1028, y: 796},
+   				cp: {x: 1046, y: 804},
+   				point: {x: 1084, y: 820}})
+   			, new WB.QuadLinePatchesSegment({
+   				start: {x: 1084, y: 820},
+   				cp: {x: 1084, y: 820},
+   				point: {x: 1167, y: 852}})
+   			, new WB.QuadLinePatchesSegment({
+   				start: {x: 1167, y: 852},
+   				cp: {x: 1167, y: 852},
+   				point: {x: 1256, y: 881}})
+   			, new WB.QuadLinePatchesSegment({
+   				start: {x: 1256, y: 881},
+   				cp: {x: 1256, y: 881},
+   				point: {x: 1333, y: 894}})
+   			, new WB.QuadLinePatchesSegment({
+   				start: {x: 1333, y: 894},
+   				cp: {x: 1369, y: 894},
+   				point: {x: 1397, y: 883}})
+   			, new WB.QuadLinePatchesSegment({
+   				start: {x: 1397, y: 883},
+   				cp: {x: 1397, y: 883},
+   				point: {x: 1445, y: 851}})
+   			, new WB.QuadLinePatchesSegment({
+   				start: {x: 1445, y: 851},
+   				cp: {x: 1445, y: 851},
+   				point: {x: 1475, y: 803}})
+   			, new WB.QuadLinePatchesSegment({
+   				start: {x: 1475, y: 803},
+   				cp: {x: 1475, y: 803},
+   				point: {x: 1486, y: 742}})
+   			, new WB.QuadLinePatchesSegment({
+   				start: {x: 1486, y: 742},
+   				cp: {x: 1486, y: 728},
+   				point: {x: 1484, y: 714}})
+   			, new WB.QuadLinePatchesSegment({
+   				start: {x: 1484, y: 714},
+   				cp: {x: 1484, y: 714},
+   				point: {x: 1477, y: 678}})
+   			, new WB.QuadLinePatchesSegment({
+   				start: {x: 1477, y: 678},
+   				cp: {x: 1447, y: 566},
+   				point: {x: 1386, y: 470}})
+   			, new WB.QuadLinePatchesSegment({
+   				start: {x: 1386, y: 470},
+   				cp: {x: 1386, y: 470},
+   				point: {x: 1241, y: 295}})
+   			, new WB.QuadLinePatchesSegment({
+   				start: {x: 1241, y: 295},
+   				cp: {x: 1241, y: 295},
+   				point: {x: 1058, y: 156}})
+   			, new WB.QuadLinePatchesSegment({
+   				start: {x: 1058, y: 156},
+   				cp: {x: 1058, y: 156},
+   				point: {x: 852, y: 57}})
+   			, new WB.LineSegment({point: {x: 853, y: 58}})
+   			, new WB.QuadLinePatchesSegment({
+   				start: {x: 853, y: 58},
+   				cp: {x: 836, y: 51},
+   				point: {x: 812, y: 44}})
+   			, new WB.QuadLinePatchesSegment({
+   				start: {x: 812, y: 44},
+   				cp: {x: 812, y: 44},
+   				point: {x: 761, y: 30}})
+   			, new WB.QuadLinePatchesSegment({
+   				start: {x: 761, y: 30},
+   				cp: {x: 761, y: 30},
+   				point: {x: 709, y: 19}})
+   			, new WB.QuadLinePatchesSegment({
+   				start: {x: 709, y: 19},
+   				cp: {x: 709, y: 19},
+   				point: {x: 664, y: 15}})
+   			, new WB.QuadLinePatchesSegment({
+   				start: {x: 664, y: 15},
+   				cp: {x: 625, y: 15},
+   				point: {x: 598, y: 17}})
+   			, new WB.QuadLinePatchesSegment({
+   				start: {x: 598, y: 17},
+   				cp: {x: 598, y: 17},
+   				point: {x: 553, y: 23}})
+   			, new WB.QuadLinePatchesSegment({
+   				start: {x: 553, y: 23},
+   				cp: {x: 553, y: 23},
+   				point: {x: 522, y: 32}})
+   			, new WB.QuadLinePatchesSegment({
+   				start: {x: 522, y: 32},
+   				cp: {x: 522, y: 32},
+   				point: {x: 499, y: 42}})
+   			, new WB.QuadLinePatchesSegment({
+   				start: {x: 499, y: 42},
+   				cp: {x: 442, y: 68},
+   				point: {x: 395, y: 104}})
+   			, new WB.QuadLinePatchesSegment({
+   				start: {x: 395, y: 104},
+   				cp: {x: 395, y: 104},
+   				point: {x: 313, y: 189}})
+   			, new WB.QuadLinePatchesSegment({
+   				start: {x: 313, y: 189},
+   				cp: {x: 313, y: 189},
+   				point: {x: 260, y: 295}})
+   			, new WB.QuadLinePatchesSegment({
+   				start: {x: 260, y: 295},
+   				cp: {x: 260, y: 295},
+   				point: {x: 241, y: 423}})
+   			, new WB.QuadLinePatchesSegment({
+   				start: {x: 241, y: 423},
+   				cp: {x: 241, y: 497},
+   				point: {x: 265, y: 577}})
+   			, new WB.QuadLinePatchesSegment({
+   				start: {x: 265, y: 577},
+   				cp: {x: 265, y: 577},
+   				point: {x: 331, y: 740}})
+   			, new WB.QuadLinePatchesSegment({
+   				start: {x: 331, y: 740},
+   				cp: {x: 331, y: 740},
+   				point: {x: 429, y: 902}})
+   			, new WB.QuadLinePatchesSegment({
+   				start: {x: 429, y: 902},
+   				cp: {x: 429, y: 902},
+   				point: {x: 552, y: 1055}})
+   			, new WB.QuadLinePatchesSegment({
+   				start: {x: 552, y: 1055},
+   				cp: {x: 552, y: 1055},
+   				point: {x: 689, y: 1192}})
+   			, new WB.QuadLinePatchesSegment({
+   				start: {x: 689, y: 1192},
+   				cp: {x: 689, y: 1192},
+   				point: {x: 832, y: 1303}})
+   			, new WB.QuadLinePatchesSegment({
+   				start: {x: 832, y: 1303},
+   				cp: {x: 875, y: 1332},
+   				point: {x: 924, y: 1362}})
+   			, new WB.QuadLinePatchesSegment({
+   				start: {x: 924, y: 1362},
+   				cp: {x: 924, y: 1362},
+   				point: {x: 1026, y: 1416}})
+   			, new WB.QuadLinePatchesSegment({
+   				start: {x: 1026, y: 1416},
+   				cp: {x: 1026, y: 1416},
+   				point: {x: 1131, y: 1455}})
+   			, new WB.QuadLinePatchesSegment({
+   				start: {x: 1131, y: 1455},
+   				cp: {x: 1131, y: 1455},
+   				point: {x: 1236, y: 1471}})
+   			, new WB.QuadLinePatchesSegment({
+   				start: {x: 1236, y: 1471},
+   				cp: {x: 1277, y: 1471},
+   				point: {x: 1317, y: 1459}})
+   			, new WB.QuadLinePatchesSegment({
+   				start: {x: 1317, y: 1459},
+   				cp: {x: 1317, y: 1459},
+   				point: {x: 1389, y: 1426}})
+   			, new WB.QuadLinePatchesSegment({
+   				start: {x: 1389, y: 1426},
+   				cp: {x: 1389, y: 1426},
+   				point: {x: 1441, y: 1373}})
+   			, new WB.QuadLinePatchesSegment({
+   				start: {x: 1441, y: 1373},
+   				cp: {x: 1441, y: 1373},
+   				point: {x: 1461, y: 1304}})
+   			, new WB.QuadLinePatchesSegment({
+   				start: {x: 1461, y: 1304},
+   				cp: {x: 1461, y: 1287},
+   				point: {x: 1456, y: 1267}})
+   		];
+
+	function textSimple() {
+		draw(function(context) {
+
+			context.save();
+			
+			context.translate(0,160);
+			context.scale(0.1,-0.1);
+
+			context.beginPath();
+			for (var i = 0; i < textSegmentsPatches.length; i++) {
+				var seg = textSegmentsPatches[i];
+				seg.render(canvas, context);
+			}
+
+			context.lineWidth = 120;
+			context.lineCap = 'round';
+			context.lineJoin = 'round';
+			context.strokeStyle = 'black';
+			context.stroke();
+			
+			context.restore();
+		});
+	}
+	
+	function textAnimPatches() {
+		var todo = [];
+		for (var i = 0; i < textSegmentsPatches.length; i++) {
+			var expanded = textSegmentsPatches[i].expand();
+			for (var j = 0; j < expanded.length; j++) {
+				todo.push(expanded[j]);
+			}
+		}
+		var done = [];
+		var wip = null;
+		var wipStartTime = null;
+		var velocity = 120.0 * 4;
+		drawAnimUntilStop(function(context, time) {
+			context.clearRect(0, 0, canvas.width, canvas.height);
+			
+			context.save();
+
+			context.translate(0,160);
+			context.scale(0.1,-0.1);
+
+			context.beginPath();
+			
+			for (var i = 0; i < done.length; i++) {
+				done[i].render(canvas, context);
+			}
+
+			if (!wip && todo.length) {
+				wip = todo[0];
+				todo.splice(0, 1);
+				var prevPoint = done.length? done[done.length - 1].getLastPoint() : null;
+				wip.startAnim(prevPoint);
+				wipStartTime = time;
+			}
+			
+			if (wip) {
+				if (!wip.isAnimDone()) {
+				    wip.stepAnim(canvas, context, (time - wipStartTime) * velocity / 1000.0);
+				}
+			    
+			    if (wip.isAnimDone()) {
+			    	done.push(wip);
+			    	wip = null;
+			    }
+			}
+			
+			if (!(todo.length || wip)) {
+				// context.closePath();
+			}
+			
+			context.lineWidth = 120;
+			context.lineCap = 'round';
+			context.lineJoin = 'round';
+			context.strokeStyle = 'black';
+			context.stroke();
+
+			context.restore();
+			
+			return (todo.length || wip);
+		}, {dur: 10000});
+	}
+	
+	
+	function markerSimple() {
+		/*
+			original size: 300x300
+			anchor: 20,15
+		*/
+		var imageObj = new Image();
+		imageObj.onload = function() {
+			draw(function(context) {
+
+				/*
+				context.beginPath();
+				context.rect(0, 0, f.width, f.height);
+				context.closePath();
+				*/
+
+				context.drawImage(imageObj, 0, 0, 60, 60);
+			});
+		};
+		imageObj.src = "marker-up.png";
+	}
+	
+	function markerShadowOn() {
+		/*
+			original size: 300x300
+			anchor: 20,15
+		*/
+		var imageObj = new Image();
+		imageObj.onload = function() {
+			draw(function(context) {
+
+				context.beginPath();
+	            context.arc(30, 30, 15, 0, Math.PI*2, true);
+	            context.lineWidth = 4;
+	            context.stroke();
+				
+				/* alpha: 1 - not transparent, 0 - completely transparent
+				*/
+	            var s = {alpha: 0.2, offset: {x: 0, y: 0}, color: 'rgb(0,0,0)', blur: 100};
+				if (s) {
+					context.save();
+		            var aa = 1.0;
+		            // defaults
+		            var color = s.color ? s.color : 'black';
+		            var blur = s.blur ? s.blur : 5;
+		            var offset = s.offset ? s.offset : {
+		                x: 0,
+		                y: 0
+		            };
+
+		            if (s.alpha) {
+		                //context.globalAlpha = s.alpha * aa;
+		            }
+		            context.shadowColor = color;
+		            context.shadowBlur = blur;
+		            context.shadowOffsetX = offset.x;
+		            context.shadowOffsetY = offset.y;
+		            
+		            context.rotate(0.1);
+		            context.globalAlpha = 0.2;
+		            
+		            context.drawImage(imageObj, 0, 0, 60, 60);
+					context.restore();
+				}
+
+				context.drawImage(imageObj, 0, 0, 60, 60);
+			});
+		};
+		imageObj.src = "marker-up.png";
+	}
+
+	function markerShadowOff() {
+		/*
+			original size: 300x300
+			anchor: 20,15
+		*/
+		var imageObj = new Image();
+		imageObj.onload = function() {
+			draw(function(context) {
+
+				context.beginPath();
+	            context.arc(30, 30, 15, 0, Math.PI*2, true);
+	            context.lineWidth = 4;
+	            context.stroke();
+				
+				/* alpha: 1 - not transparent, 0 - completely transparent
+				*/
+	            var s = {alpha: 0.2, offset: {x: 0, y: 0}, color: 'rgb(0,0,0)', blur: 100};
+				if (s) {
+					context.save();
+		            var aa = 1.0;
+		            // defaults
+		            var color = s.color ? s.color : 'black';
+		            var blur = s.blur ? s.blur : 5;
+		            var offset = s.offset ? s.offset : {
+		                x: 0,
+		                y: 0
+		            };
+
+		            if (s.alpha) {
+		                //context.globalAlpha = s.alpha * aa;
+		            }
+		            context.shadowColor = color;
+		            context.shadowBlur = blur;
+		            context.shadowOffsetX = offset.x;
+		            context.shadowOffsetY = offset.y;
+		            
+		            context.rotate(0.2);
+		            context.globalAlpha = 0.2;
+		            
+		            context.drawImage(imageObj, 5, 10, 60, 60);
+					context.restore();
+				}
+
+				context.drawImage(imageObj, 0, 0, 60, 60);
+			});
+		};
+		imageObj.src = "marker-up.png";
+	}
+
+	
+	var xoSegmentsPatches = [
+	                         
+	       	// grid v1
+  			new WB.MoveSegment({point: {x: 70, y: 0}})
+  			, new WB.LineSegment({
+  				start: {x: 70, y: 0},
+  				point: {x: 70, y: 210}})
+			
+	       	// grid v2
+  			, new WB.MoveSegment({point: {x: 140, y: 0}})
+  			, new WB.LineSegment({
+  				start: {x: 140, y: 0},
+  				point: {x: 140, y: 210}})
+	       	
+	       	// grid h1
+  			, new WB.MoveSegment({point: {x: 0, y: 70}})
+  			, new WB.LineSegment({
+  				start: {x: 0, y: 70},
+  				point: {x: 210, y: 70}})
+
+	       	// grid h2
+  			, new WB.MoveSegment({point: {x: 0, y: 140}})
+  			, new WB.LineSegment({
+  				start: {x: 0, y: 140},
+  				point: {x: 210, y: 140}})
+	       	
+	       	// x in cell (70, 70) (140, 140)
+  			, new WB.MoveSegment({point: {x: 90, y: 90}})
+  			, new WB.LineSegment({
+  				start: {x: 90, y: 90},
+  				point: {x: 120, y: 120}})
+  			, new WB.MoveSegment({point: {x: 120, y: 90}})
+  			, new WB.LineSegment({
+  				start: {x: 120, y: 90},
+  				point: {x: 90, y: 120}})
+
+	       	// x in cell (140, 0) (210, 70)
+  			, new WB.MoveSegment({point: {x: 160, y: 20}})
+  			, new WB.LineSegment({
+  				start: {x: 160, y: 20},
+  				point: {x: 190, y: 50}})
+  			, new WB.MoveSegment({point: {x: 190, y: 20}})
+  			, new WB.LineSegment({
+  				start: {x: 190, y: 20},
+  				point: {x: 160, y: 50}})
+	       	
+	       	// x in cell (0, 140) (70, 210)
+  			, new WB.MoveSegment({point: {x: 20, y: 160}})
+  			, new WB.LineSegment({
+  				start: {x: 20, y: 160},
+  				point: {x: 50, y: 190}})
+  			, new WB.MoveSegment({point: {x: 50, y: 160}})
+  			, new WB.LineSegment({
+  				start: {x: 50, y: 160},
+  				point: {x: 20, y: 190}})
+	       	
+	       	// cross it out
+  			, new WB.MoveSegment({point: {x: 180, y: 15}})
+  			, new WB.LineSegment({
+  				start: {x: 180, y: 15},
+  				point: {x: 30, y: 200}})
+	       	
+	       	];
+	
+	function xo() {
+		
+		var todo = [];
+		for (var i = 0; i < xoSegmentsPatches.length; i++) {
+			var expanded = xoSegmentsPatches[i].expand();
+			for (var j = 0; j < expanded.length; j++) {
+				todo.push(expanded[j]);
+			}
+		}
+		var done = [];
+		var wip = null;
+		var wipStartTime = null;
+		var velocity = 120.0 * 2;
+		
+		var markerImage = new Image();
+		markerImage.src = "marker-up.png";
+		
+		var predone = 0;
+		if (predone > 0) {
+			for (var i = 0; i < predone; i++) {
+				var s = todo[0];
+				todo.splice(0, 1);
+				done.push(s);
+			}
+		}
+		
+		function getAudioContext() {
+			if (!window.AudioContext) {
+				if (window.webkitAudioContext) {
+					window.AudioContext = window.webkitAudioContext;
+				} else if (window.Audio) {
+					window.AudioContext = window.Audio;
+				}
+			}		
+			console.log(window.AudioContext);
+			if (!window.AudioContext) {
+				alert('no audio context!');
+			}
+			
+			return new AudioContext();
+		}
+
+		var audioContext = getAudioContext();
+		
+		function playSpeech() {
+			var request = new XMLHttpRequest();
+			request.open('GET', 'speech-1.wav', true);
+			request.responseType = 'arraybuffer';
+
+			request.onload = function() {
+				audioContext.decodeAudioData(request.response, function(buffer) {
+			    	var source = audioContext.createBufferSource();
+			    	source.buffer = buffer;
+			    	source.connect(audioContext.destination);
+			    	source.noteOn(0);
+			    	// source.noteGrainOn(0, 10, 10);
+			    });
+			}
+			request.send();
+		}
+		playSpeech();
+		
+		var gistBuffer = null;
+		
+		function loadGist() {
+			var request = new XMLHttpRequest();
+			request.open('GET', 'wb-sounds-1.wav', true);
+			request.responseType = 'arraybuffer';
+
+			request.onload = function() {
+				audioContext.decodeAudioData(request.response, function(buffer) {
+					gistBuffer = buffer;
+			    });
+			}
+			request.send();
+		}
+		loadGist();
+		
+		var gistSource = null;
+		
+		function stopGist() {
+			if (gistSource != null) {
+				console.log('stop gist');
+				gistSource.noteOff(0);
+				gistSource = null;
+			}
+		}
+		
+		function playGist() {
+			stopGist();
+			if (gistBuffer != null) {
+				console.log('start play');
+		    	var source = audioContext.createBufferSource();
+		    	source.buffer = gistBuffer;
+		    	source.connect(audioContext.destination);
+		    	
+		    	gistSource = source;
+		    	gistSource.noteGrainOn(0, 13, 4);
+				console.log('noteGrainOn state: ' + gistSource.playbackState);
+			}
+		}
+
+		function playGistIfNotPlaying() {
+			if (gistBuffer != null) {
+				if (!(gistSource) 
+						|| (gistSource.playbackState != 1 && gistSource.playbackState != 2)) {
+					console.log('force play ' + (gistSource ? gistSource.playbackState : -1));
+					playGist();
+				}
+			}
+		}
+		
+		drawAnimUntilStop(function(context, time) {
+			context.clearRect(0, 0, canvas.width, canvas.height);
+			
+			context.save();
+
+			context.translate(80, 80);
+
+			context.beginPath();
+			
+			for (var i = 0; i < done.length; i++) {
+				done[i].render(canvas, context);
+			}
+			
+			if (!wip && todo.length) {
+				wip = todo[0];
+				todo.splice(0, 1);
+				var prevPoint = done.length? done[done.length - 1].getLastPoint() : null;
+				wip.startAnim(prevPoint);
+				wipStartTime = time;
+			}
+			
+			var markerPoint = null;
+			
+			if (wip) {
+				if (!wip.isAnimDone()) {
+				    wip.stepAnim(canvas, context, (time - wipStartTime) * velocity * 
+				    		wip.animVelocityAdj() / 1000.0);
+					playGistIfNotPlaying();
+				}
+				markerPoint = wip.animPoint();
+			    
+			    if (wip.isAnimDone()) {
+			    	done.push(wip);
+			    	wip = null;
+			    }
+			}
+			
+			if (!(todo.length || wip)) {
+				context.closePath();
+			}
+			
+			context.lineWidth = 2;
+			context.lineCap = 'butt';
+			context.lineJoin = 'round';
+			context.strokeStyle = 'black';
+			context.stroke();
+			
+			if (markerPoint && markerImage && markerImage.complete) {
+				/*
+					original size: 300x300
+					anchor: 20,15
+				*/
+				var mx = markerPoint.x - 20*70/300;
+				var my = markerPoint.y - 15*70/300;
+				context.drawImage(markerImage, mx, my, 70, 70);
+			}
+
+			context.restore();
+			
+			return (todo.length || wip);
+		});
+	}
+	
+	function eraser() {
+		draw(function(context) {
+
+			/*
+			//context.beginPath();
+			//context.rect(200, 90, 80, 80);
+			//context.closePath();
+	
+			var grad = context.createLinearGradient(0, 0, 80, 80);
+			grad.addColorStop(0, 'black'); // rgba(255,0,0,1)
+			grad.addColorStop(1, 'white'); // rgba(228,0,0,0)
+			
+			//context.globalAlpha = 0.95;
+			context.fillStyle = grad; // 'rgb(255, 255, 255)';
+			context.fillRect(200, 90, 80, 80);
+			*/
+			
+
+			/* alpha: 1 - not transparent, 0 - completely transparent
+			*/
+			var grad = context.createLinearGradient(200, 90, 200, 170);
+			grad.addColorStop(0, 'rgba(255,255,255,0.98)');
+			grad.addColorStop(0.7, 'rgba(255,255,255,0.85)');
+			grad.addColorStop(1, 'rgba(255,255,255,0.21)'); // white
+			context.fillStyle = grad;
+			context.fillRect(200, 90, 80, 80);
+			context.strokeRect(200, 90, 80, 80);
+			
+		}, {keepCanvas: true});
+	}
+	
+	
+	var audioSampleBuffer = null;
+	
+	function audioSimple() {
+		if (!window.AudioContext) {
+			if (window.webkitAudioContext) {
+				window.AudioContext = window.webkitAudioContext;
+			} else if (window.Audio) {
+				window.AudioContext = window.Audio;
+			}
+		}		
+		console.log(window.AudioContext);
+		if (!window.AudioContext) {
+			alert('no audio context!');
+		}
+		
+		var ctx = new AudioContext();
+		
+		/*
+		var buffer = ctx.createBuffer(1, 2048, 44100);
+
+		var buf = buffer.getChannelData(0);
+		
+		var PI_2 = Math.PI * 2;
+		var SAMPLE_RATE = 44100;
+
+		for (i = 0; i < 2048; ++i) {
+			buf[i] = Math.sin(440 * PI_2 * i / SAMPLE_RATE);
+		}		
+		
+		var node = ctx.createBufferSource(0);
+		node.buffer = buffer;
+		node.connect(ctx.destination);
+		node.noteOn(ctx.currentTime + 0.1);
+		
+		node = ctx.createBufferSource(0);
+		node.buffer = buffer;
+		node.connect(ctx.destination);
+		node.noteOn(ctx.currentTime + 0.3);
+		*/
+		
+		function playBuffer(buffer) {
+	    	var source = ctx.createBufferSource(); // creates a sound source
+	    	source.buffer = buffer;                    // tell the source which sound to play
+	    	source.connect(ctx.destination);       // connect the source to the context's destination (the speakers)
+	    	// source.noteOn(0);
+	    	source.noteGrainOn(0, 13, 5);
+		}
+		
+		if (audioSampleBuffer) {
+			playBuffer(audioSampleBuffer);
+		} else {
+			console.log('reload');
+			var request = new XMLHttpRequest();
+			  request.open('GET', 'wb-sounds-1.wav', true);
+			  request.responseType = 'arraybuffer';
+
+			  // Decode asynchronously
+			  request.onload = function() {
+			    ctx.decodeAudioData(request.response, function(buffer) {
+			    	audioSampleBuffer = buffer;
+			    	playBuffer(buffer);
+			    });
+			  }
+			  request.send();
+		}
+	}
+	
+</script>
+
+
+  </body>
+</html>
