@@ -53,6 +53,7 @@ WB.TextShape = WB.Shape.extend({
 	
 	fontHeight: null,
 	
+	// TODO remove
 	startPoint: null,
 	
 	init: function(opts) {

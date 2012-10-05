@@ -6,8 +6,6 @@ import java.util.List;
 
 public class PathSegment extends Segment {
 
-	public Point startPoint;
-	
 	public List<Segment> segments = new ArrayList<Segment>();
 	
 	public PathSegment() {
@@ -17,13 +15,6 @@ public class PathSegment extends Segment {
 		this.segments.addAll(segments);
 	}
 
-	public Point getStartPoint() {
-		if (this.startPoint != null) {
-			return this.startPoint;
-		}
-		return null;
-	}
-	
 	@Override
 	public Double getStartAngle(Pane pane) {
 		if (segments == null || segments.isEmpty()) {
@@ -34,9 +25,6 @@ public class PathSegment extends Segment {
 	
 	@Override
 	public void outline(Pane pane) {
-		if (this.startPoint != null) {
-			pane.moveTo(this.startPoint);
-		}
 		for (Segment segment : this.segments) {
 			segment.outline(pane);
 		}

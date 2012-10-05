@@ -2,10 +2,6 @@
 
 WB.Shape = WB.Class.extend({
 	
-	getStartPoint: function() {
-		return null;
-	},
-	
 	draw: function(pane) {
 	},
 	
@@ -62,10 +58,6 @@ WB.GroupShapeAnimation = WB.ListAnimation.extend({
 		if (group.shapes.length) {
 			for (var i = 0; i < group.shapes.length; i++) {
 				var shape = group.shapes[i];
-				var p = shape.getStartPoint();
-				if (p) {
-					this.items.push(new WB.MoveToSegment({point: p}));
-				}
 				this.items.push(shape);
 			}
 		}

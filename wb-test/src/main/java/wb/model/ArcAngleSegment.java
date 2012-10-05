@@ -46,9 +46,4 @@ public class ArcAngleSegment extends ArcSegment {
 				this.counterclockwise);
 	}
 
-	public Point getStartPoint() {
-		// return Geom.vector(this.center, this.radius, this.startAngle);
-		return null;
-	}
-
 }

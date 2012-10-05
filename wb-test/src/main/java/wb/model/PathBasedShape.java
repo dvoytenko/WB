@@ -25,9 +25,4 @@ public abstract class PathBasedShape extends Shape {
 		return this.path().createAnimation();
 	}
 	
-	@Override
-	public Point getStartPoint() {
-		return this.path().getStartPoint();
-	}
-
 }

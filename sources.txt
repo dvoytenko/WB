@@ -1,0 +1,13 @@
+
+1. partridge font
+	http://www.fontspace.com/sam-wang/partridge-thin
+2. fonts
+	http://www.fontspace.com/category/Thin
+
+3. more fonts
+	http://cleversomeday.wordpress.com/2011/10/05/more-free-gel-pen-fonts/
+
+4. LaTeX/SVG
+	http://www.codecogs.com/latex/eqneditor.php
+	http://svgkit.sourceforge.net/SVGLaTeX.html
+

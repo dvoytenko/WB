@@ -5,19 +5,22 @@ WB.DrawingSoundEngine = WB.Class.extend({
 	
 	playing: false,
 	
-	normalVelocity: 100,
+	baseVelocity: 100,
 	
     init: function(opts) {
     	
     	this.playing = false;
-    	this.normalVelocity = 100;
+    	
+    	if (opts && opts.baseVelocity) {
+    		this.baseVelocity = opts.baseVelocity;
+    	}
     	
     	if (!this.audio) {
         	this.audio = new Audio();
     	}
-    	console.log('Audio: ' + this.audio);
-    	console.log('Can play WAV: ' + this.audio.canPlayType('audio/wav'));
-    	console.log('Can play MP3: ' + this.audio.canPlayType('audio/mp3'));
+    	console.log('soundfx: audio: ' + this.audio);
+    	console.log('soundfx: can play WAV: ' + this.audio.canPlayType('audio/wav'));
+    	console.log('soundfx: can play MP3: ' + this.audio.canPlayType('audio/mp3'));
     	
     	var file;
     	if (!!this.audio.canPlayType 
@@ -27,54 +30,55 @@ WB.DrawingSoundEngine = WB.Class.extend({
     		file = 'wb-sounds-2.mp3';
     	}
     	this.audio.setAttribute("src", file);
-    	this.audio.setAttribute("loop", "loop");
+    	// this.audio.setAttribute("loop", "loop");
     	this.audio.load();
     	
     	var audio = this.audio;
     	var that = this;
     	
     	audio.addEventListener('canplay', function(e) {
-    		console.log('canplay: ' + e);
+    		console.log('soundfx: canplay: ' + e);
     	});
     	audio.addEventListener('canplaythrough', function(e) {
-    		console.log('canplaythrough: ' + e);
+    		console.log('soundfx: canplaythrough: ' + e);
     	});
     	audio.addEventListener('progress', function(e) {
-    		console.log('progress: ' + e);
+    		console.log('soundfx: progress: ' + e);
     	});
     	audio.addEventListener('ended', function(e) {
-    		console.log('ended: ' + e);
+    		console.log('soundfx: ended: ' + e);
     		// restart
     		if (that.playing) {
-    			console.log('restart');
+    			console.log('soundfx: restart');
         		audio.play();
     		}
     	});
     	audio.addEventListener('play', function(e) {
-    		console.log('play: ' + e);
+    		console.log('soundfx: play: ' + e);
     	});
     	audio.addEventListener('pause', function(e) {
-    		console.log('pause: ' + e);
+    		console.log('soundfx: pause: ' + e);
     	});
     },
     
-    update: function(height, velocity) {
-    	if (height > 0.0 || velocity == 0.0) {
-    		console.log('velocity = 0 -> stop');
+    update: function(state) {
+    	// console.log('soundfx: update: ' + JSON.stringify(state));
+    	if (state.height > 0.0 || !state.velocity) {
+    		console.log('soundfx: velocity = 0 -> stop');
     		this.playing = false;
     		this.audio.pause();
     	} else {
-    		if (this.prevVelocity != velocity) {
-    			var rate = velocity/this.normalVelocity;
+    		if (this.prevVelocity != state.velocity) {
+    			var rate = state.velocity/this.baseVelocity;
     			rate = Math.max(Math.min(rate, 3.8), 0.7);
-    			console.log('rate: ' + rate);
+    			console.log('soundfx: rate: ' + rate);
     			this.audio.playbackRate = rate;
     		}
     		this.audio.play();
     		this.playing = true;
     	}
     	
-    	this.prevVelocity = velocity;
+    	this.prevVelocity = state.velocity;
     },
     
     toString: function() {

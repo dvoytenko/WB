@@ -1,0 +1,85 @@
+{
+  "_type": "GroupShape",
+  "shapes": [{
+    "_type": "GroupShape",
+    "shapes": [
+      {
+        "_type": "PathShape",
+        "pathSegment": {
+          "_type": "PathSegment",
+          "segments": [
+            {
+              "_type": "MoveToSegment",
+              "point": {
+                "x": 92.166586,
+                "y": 790.62417
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 59.26198599999999,
+                "y": 1016.9573
+              }
+            }
+          ]
+        }
+      },
+      {
+        "_type": "PathShape",
+        "pathSegment": {
+          "_type": "PathSegment",
+          "segments": [
+            {
+              "_type": "MoveToSegment",
+              "point": {
+                "x": 221.51358,
+                "y": 790.8486
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 181.34357,
+                "y": 1021.0295000000001
+              }
+            }
+          ]
+        }
+      },
+      {
+        "_type": "PathShape",
+        "pathSegment": {
+          "_type": "PathSegment",
+          "segments": [
+            {
+              "_type": "MoveToSegment",
+              "point": {
+                "x": 71.142856,
+                "y": 918.07647
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 199.71429,
+                "y": 918.07647
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "transform": {
+      "_type": "Transform",
+      "m": [
+        1,
+        0,
+        0,
+        1,
+        0,
+        -752.36218
+      ]
+    }
+  }]
+}

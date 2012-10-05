@@ -24,6 +24,7 @@
     <script src="wb-text.js"></script>
     <script src="wb-parser.js"></script>
     <script src="wb-board.js"></script>
+    <script src="wb-pointer.js"></script>
     <script src="wb-player.js"></script>
 
   </head>
@@ -31,7 +32,7 @@
   <body>
   
 	<div id="toolbar" style="width: 720px;">
-		<a href="javascript:void(0);" onclick="sounfdx1()">SoundFX 1</a>
+		<a href="javascript:void(0);" onclick="soundfx1()">SoundFX 1</a>
 		<a href="javascript:void(0);" onclick="draw1()">Draw 1</a>
 		<a href="javascript:void(0);" onclick="segment1()">Segment 1</a>
 		<a href="javascript:void(0);" onclick="path1()">Path 1</a>
@@ -47,11 +48,15 @@
 		<a href="javascript:void(0);" onclick="cloud1()">Cloud 1</a>
 		<a href="javascript:void(0);" onclick="text1()">Text 1</a>
 		<a href="javascript:void(0);" onclick="text1anim()">Text 1 Anim</a>
+		<a href="javascript:void(0);" onclick="eq1()">EQ 1</a>
+		<a href="javascript:void(0);" onclick="eq1anim()">EQ 1 Anim</a>
+		<a href="javascript:void(0);" onclick="letterH1()">Letter H</a>
 	</div>
 	
 	<div id="container" style="position: relative; margin: 4px; padding: 0; width: 720px; height: 405px;">
 		<canvas id="canvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 1;"></canvas>
 		<canvas id="animCanvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 2;"></canvas>
+		<canvas id="pointerCanvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 3;"></canvas>
 	</div>
 
 	<div id="status" style="border: 1px solid gray; margin: 4px; width: 720px;">
@@ -64,14 +69,14 @@
 			$('#status').text(s);
 		}
 		
-		function sounfdx1() {
+		function soundfx1() {
 			status('Running DrawingSoundEngine...');
 			
 			var soundEngine = new WB.DrawingSoundEngine();
 			status('Engine: ' + soundEngine);
 			
 			status('normal');
-			soundEngine.update(0, 100);
+			soundEngine.update({height: 0, velocity: 100});
 			
 			for (var i = 0; i < 10; i++) {
 				setTimeout(function() {
@@ -80,13 +85,13 @@
 						speed = 0;
 					}
 					status('speed: ' + speed);
-					soundEngine.update(0, speed);
+					soundEngine.update({height: 0, velocity: speed});
 				}, 2000 * (i + 1));
 			}
 
 			setTimeout(function() {
 				status('speed: 0 - stop');
-				soundEngine.update(0, 0);
+				soundEngine.update({height: 0, velocity: 0});
 			}, 2000 * (10 + 1));
 		}
 		
@@ -569,18 +574,33 @@
 			var realWidth = 1440; // mm
 			var realHeight = 810; // mm
 			
+			var baseVelocity = 500;
+			
 			var defaultTransform = new WB.Transform();
 					//.scale(canvasWidth/realWidth, canvasHeight/realHeight)
 					//.translate(realWidth/2, realHeight/2);
 			
 			var board = new WB.Board({
-				commitPane: new WB.Pane({canvas: document.getElementById('canvas'), 
-											defaultTransform: defaultTransform}),
-				animationPane: new WB.Pane({canvas: document.getElementById('animCanvas'), 
-											defaultTransform: defaultTransform}),
-				baseVelocity: 1000
+				commitPane: new WB.Pane({
+					canvas: document.getElementById('canvas'), 
+					defaultTransform: defaultTransform
+					}),
+				animationPane: new WB.Pane({
+					canvas: document.getElementById('animCanvas'), 
+					defaultTransform: defaultTransform
+					}),
+				drawingSoundEngine: new WB.DrawingSoundEngine({
+					//baseVelocity: baseVelocity
+					}),
+				pointer: new WB.MarkerPoint({
+					pane: new WB.Pane({
+						canvas: document.getElementById('pointerCanvas'),
+						defaultTransform: defaultTransform
+						})
+					}),
+				baseVelocity: baseVelocity
 				});
-
+			
 			var player = new WB.Player({board: board});
 			player.postFrame(function(time) {
 				var p = board.animationPane.getCurrentPoint();
@@ -605,13 +625,47 @@
 						var shape = parser.parse(json);
 						console.log(shape);
 						
-						playShape(shape);
+						var group = new WB.GroupShape({
+							transform: new WB.Transform().scale(2, 2),
+							shapes: [shape]
+						});
+						
+						playShape(group);
 					}
 				});
 		}
 		
 		function text1() {
-			$.ajax({url: 'mvboli.json', contentType: 'application/json'})
+			/*
+				+nova_thin_extended.json: multiline but thin and good
+				+ArchitectsDaughter.json: multinline, not filled in. ok
+				+DK_EarlyMorningCoffee.json: multinline, not filled in. ok
+				+FatStore.json: multinline, thin. ok
+				+FollowYourDreams.json: multinline, thin. ok
+				+mvboli.json: multiline, not filled in. ok.
+				+PARTTH_I.json: multiline, thin. too long. ok.
+				-alwaysforever.json: multiline
+				-alphabetized_cassette_tapes.json: multiline
+				-angelina.json: multiline, wrong order
+				-Architex.json: multiline, wrong order
+				-attack_of_the_cucumbers.json: multiline, wrong order
+				-Blokletters-Balpen.json: multiline, wrong order
+				-Blokletters-Potlood.json: multiline, wrong order
+				-Blokletters-Viltstift.json: multiline, wrong order
+				-CamelotDeNada.json: multiline, wrong order
+				-daniel.json: multiline, wrong order
+				-danielbd.json: multiline, wrong order
+				-danielbk.json: multiline, wrong order
+				-KGWaystoSayGoodbye.json: multiline, wrong order
+				-krazynights.json: multiline, wrong order
+				-SingleMalta.json: multiline, wrong order
+				-TakeMeOut.json: multiline, wrong order
+				-TogetherAgain.json: multiline, wrong order
+				-MecSoft_Font-1.json: just wrong
+				-Znikomit.json
+				-Znikomit2.json
+			 */
+			$.ajax({url: 'fonts/nova_thin_extended.json', contentType: 'application/json'})
 				.done(function(json) {
 					console.log('got data');
 					if (json) {
@@ -637,7 +691,7 @@
 		}
 
 		function text1anim() {
-			$.ajax({url: 'mvboli.json', contentType: 'application/json'})
+			$.ajax({url: 'fonts/nova_thin_extended.json', contentType: 'application/json'})
 				.done(function(json) {
 					console.log('got data');
 					if (json) {
@@ -662,6 +716,78 @@
 						playShape(text);
 					}
 				});
+		}
+		
+		function eq1() {
+			$.ajax({url: 'svg/eq1.json', contentType: 'application/json'})
+			.done(function(json) {
+				console.log('got data');
+				if (json) {
+					if (json.constructor == String) {
+						json = JSON.parse(json);
+					}
+					console.log(json);
+					
+					var parser = new WB.Parser();
+					var shape = parser.parse(json);
+					console.log(shape);
+					
+					var group = new WB.GroupShape({
+						transform: new WB.Transform().scale(3, 3),
+						shapes: [shape]
+					});
+					
+					group.draw(new WB.Pane({canvas: document.getElementById('canvas')}));
+				}
+			});
+		}
+
+		function eq1anim() {
+			$.ajax({url: 'svg/eq1.json', contentType: 'application/json'})
+			.done(function(json) {
+				console.log('got data');
+				if (json) {
+					if (json.constructor == String) {
+						json = JSON.parse(json);
+					}
+					console.log(json);
+					
+					var parser = new WB.Parser();
+					var shape = parser.parse(json);
+					console.log(shape);
+
+					var group = new WB.GroupShape({
+						transform: new WB.Transform().scale(3, 3),
+						shapes: [shape]
+					});
+					
+					playShape(group);
+				}
+			});
+		}
+		
+		function letterH1() {
+			$.ajax({url: 'svg/letter-H.json', contentType: 'application/json'})
+			.done(function(json) {
+				console.log('got data');
+				if (json) {
+					if (json.constructor == String) {
+						json = JSON.parse(json);
+					}
+					console.log(json);
+					
+					var parser = new WB.Parser();
+					var shape = parser.parse(json);
+					console.log(shape);
+
+					var group = new WB.GroupShape({
+						transform: new WB.Transform().scale(0.25, 0.25),
+						shapes: [shape]
+					});
+					
+					playShape(group);
+				}
+			});
 		}
 		
 	</script>

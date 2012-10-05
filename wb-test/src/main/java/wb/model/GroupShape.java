@@ -10,21 +10,9 @@ public class GroupShape extends Shape {
 	public List<Shape> shapes = new ArrayList<Shape>();
 	
 	@Override
-	public Point getStartPoint() {
-		if (this.shapes == null || this.shapes.isEmpty()) {
-			return null;
-		}
-		return this.shapes.get(0).getStartPoint();
-	}
-	
-	@Override
 	public Animation createAnimation() {
 		List<Animable> animations = new ArrayList<Animable>();
 		for (Shape shape : this.shapes) {
-			Point point = shape.getStartPoint();
-			if (point != null) {
-				animations.add(new MoveToSegment(point));
-			}
 			animations.add(shape);
 		}
 		return new AnimationImpl(animations);

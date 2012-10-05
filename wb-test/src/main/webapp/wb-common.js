@@ -293,8 +293,9 @@ WB.Pane = WB.Class.extend({
 		return this.currentTransformInv.transformPoint(p.x, p.y);
 	},
 	
-	_update: function(p, global) {
+	_update: function(p, global, pathStart) {
 		// console.log('update to ' + JSON.stringify(p) + ' ' + global);
+		
 		if (!p) {
 			this._currentPoint = null;
 		} else {
@@ -304,6 +305,11 @@ WB.Pane = WB.Class.extend({
 				this._currentPoint = this.toGlobalPoint(p);
 			}
 		}
+		
+		if (pathStart) {
+			this.pathStartPoint = this._currentPoint;
+		}
+			
 		// console.log('-> ' + JSON.stringify(this._currentPoint));
 	},
 	
@@ -334,13 +340,20 @@ WB.Pane = WB.Class.extend({
 		return WB.Geom.distance(gp1, gp2);
 	},
 	
+	getPathStartPoint: function() {
+		if (!this.pathStartPoint) {
+			return null;
+		}
+		return this.toLocalPoint(this.pathStartPoint);
+	},
+	
     beginPath: function() {
 		if (this.trace) {
 			console.log('context.beginPath()');
 		}
     	this.context.beginPath();
     	// TODO can enable this once other cursor operations are supported
-		// this._update(null, false);
+		// this._update(null, false, false);
     },
 	
 	/**
@@ -351,7 +364,7 @@ WB.Pane = WB.Class.extend({
 			console.log('context.moveTo(' + p.x + ', ' + p.y + ')');
 		}
 		this.context.moveTo(p.x, p.y);
-		this._update(p, false);
+		this._update(p, false, true);
 	},
 	
 	/**
@@ -362,7 +375,7 @@ WB.Pane = WB.Class.extend({
 			console.log('context.lineTo(' + p.x + ', ' + p.y + ')');
 		}
 		this.context.lineTo(p.x, p.y);
-		this._update(p, false);
+		this._update(p, false, false);
 	},
 	
 	/**
@@ -381,7 +394,7 @@ WB.Pane = WB.Class.extend({
 		this.context.arc(c.x, c.y, r, sAngle, eAngle, counterclockwise);
 		// last point
 		var p = {x: Math.cos(eAngle) * r, y: Math.sin(eAngle) * r};
-		this._update(p, false);
+		this._update(p, false, false);
 	},
 	
 	stroke: function() {
@@ -391,6 +404,10 @@ WB.Pane = WB.Class.extend({
 		}
 		this.context.lineWidth = this.lineWidth;
 		this.context.stroke();
+	},
+	
+	drawImage: function(img, x, y, width, height) {
+		this.context.drawImage(img, x, y, width, height);
 	}
 	
 });

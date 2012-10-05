@@ -2,10 +2,6 @@
 
 WB.PathBasedShape = WB.Shape.extend({
 	
-	getStartPoint: function() {
-		return _path().getStartPoint();
-	},
-	
 	resolveSegments: function() {
 		return [];
 	},
@@ -42,16 +38,15 @@ WB.RectangleShape = WB.PathBasedShape.extend({
 		if (opts && opts.topleft) {
 			this.topleft = opts.topleft;
 		}
+		if (!this.topleft) {
+			this.topleft = {x: 0, y: 0};
+		}
 		if (opts && opts.width) {
 			this.width = opts.width;
 		}
 		if (opts && opts.height) {
 			this.height = opts.height;
 		}
-	},
-	
-	getStartPoint: function() {
-		return this.topleft;
 	},
 	
 	resolveSegments: function() {
@@ -75,8 +70,7 @@ WB.RectangleShape = WB.PathBasedShape.extend({
 				y: this.topleft.y + this.height
 				}
 		}));
-		// TODO close segment instead
-		segments.push(new WB.LineToSegment({point: this.topleft}));
+		segments.push(new WB.ClosePathSegment());
 		
 		return segments;
 	}

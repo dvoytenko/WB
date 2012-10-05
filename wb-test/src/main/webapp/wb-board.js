@@ -1,4 +1,13 @@
 
+
+/**
+ * State:
+ * - position
+ * - velocity
+ * - angle
+ * - height
+ * - pressure
+ */
 WB.Board = WB.Class.extend({
 	
 	commitPane: null,
@@ -6,6 +15,10 @@ WB.Board = WB.Class.extend({
 	animationPane: null,
 	
 	baseVelocity: null,
+	
+	drawingSoundEngine: null,
+	
+	pointer: null,
 	
 	init: function(opts) {
 		if (opts && opts.commitPane) {
@@ -15,6 +28,13 @@ WB.Board = WB.Class.extend({
 			this.animationPane = opts.animationPane;
 		}
 		
+		if (opts && opts.drawingSoundEngine) {
+			this.drawingSoundEngine = opts.drawingSoundEngine;
+		}
+		if (opts && opts.pointer) {
+			this.pointer = opts.pointer;
+		}
+		
 		if (opts && opts.baseVelocity) {
 			this.baseVelocity = opts.baseVelocity;
 		} else {
@@ -22,6 +42,7 @@ WB.Board = WB.Class.extend({
 		}
 		
 		this._shapes = [];
+		this._state = {};
 	},
 	
 	getBaseMoveVelocity: function() {
@@ -59,6 +80,23 @@ WB.Board = WB.Class.extend({
 			});
 		} else {
 			runnable();
+		}
+	},
+	
+	state: function(state) {
+		if (state) {
+			for (var k in state) {
+				this._state[k] = state[k];
+			}
+		}
+	},
+	
+	afterFrame: function() {
+		if (this.drawingSoundEngine) {
+			this.drawingSoundEngine.update(this._state);
+		}
+		if (this.pointer) {
+			this.pointer.update(this._state);
 		}
 	}
 	

@@ -183,7 +183,7 @@ public abstract class ArcSegment extends Segment {
 	            	tr.scale(this.arc.radiusX/r, this.arc.radiusY/r);
 	            }
 
-	            int TODO1; // arc length is not always the same!!!
+	            // TODO: arc length is not always the same!!!
 		        double globalRadius = this.pane.toGlobalPoint(new Point(this.arc.radiusX, 0)).x;
 		        double totalDistance = da * globalRadius;
 		        double distance = this.velocity * time;

@@ -12,11 +12,6 @@ public class RectangleShape extends PathBasedShape {
 	public Double height;
 	
 	@Override
-	public Point getStartPoint() {
-		return this.topleft;
-	}
-
-	@Override
 	protected List<Segment> resolveSegments() {
 		List<Segment> segments = new ArrayList<Segment>();
 		segments.add(new MoveToSegment(this.topleft));

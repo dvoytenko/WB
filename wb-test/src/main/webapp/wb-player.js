@@ -30,26 +30,26 @@ WB.Player = WB.Class.extend({
 	play: function(animation, shape, onDone) {
 		
 		var startTime = new Date().getTime();
+		var board = this.board;
+		var framer = this.framer;
+		var that = this;
 		
-		animation.start(this.board);
+		animation.start(board);
 
 		if (animation.isDone()) {
 			animation.end();
 			if (shape) {
-				// board.commitShape(shape, true);
 				board.animationPane._clearCanvas();
 			}
 			console.log('animation stopped');
 			if (onDone) {
 				onDone();
 			}
+			board.state({height: 1});
+			board.afterFrame();
 			return;
 		}
 		
-		var board = this.board;
-		var framer = this.framer;
-		var that = this;
-
 		function frame() {
 			if (!animation.isDone()) {
 				var frameTime = new Date().getTime() - startTime;
@@ -64,18 +64,20 @@ WB.Player = WB.Class.extend({
 			if (animation.isDone()) {
 				animation.end();
 				if (shape) {
-					//board.commitShape(shape, true);
 					board.animationPane._clearCanvas();
 				}
 				console.log('animation stopped');
 				if (onDone) {
 					onDone();
 				}
+				board.state({height: 1});
 			} else {
 				framer(function() {
 					frame();
 				});
 			}
+			
+			board.afterFrame();
 		}
 		
 		frame();

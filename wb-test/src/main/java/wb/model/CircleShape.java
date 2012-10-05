@@ -5,11 +5,6 @@ public class CircleShape extends Shape {
 	public ArcAngleSegment arcSegment;
 
 	@Override
-	public Point getStartPoint() {
-		return arcSegment.getStartPoint();
-	}
-	
-	@Override
 	public void draw(Pane canvas) {
 		canvas.beginPath();
 		

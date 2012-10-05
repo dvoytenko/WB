@@ -13,11 +13,6 @@ public class PathShape extends Shape {
 		this.pathSegment.segments.addAll(segments);
 	}
 
-	@Override
-	public Point getStartPoint() {
-		return this.pathSegment.getStartPoint();
-	}
-
 	public Double getStartAngle(Pane pane) {
 		return this.pathSegment.getStartAngle(pane);
 	}

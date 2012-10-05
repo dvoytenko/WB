@@ -57,6 +57,14 @@ WB.MoveToAnimation = WB.Animation.extend({
 		var pane = this.board.animationPane;
 		pane.moveTo(this.moveto.point);
 		this.done = true;
+		
+		this.board.state({
+			position: pane.toGlobalPoint(this.moveto.point),
+			velocity: 0,
+			angle: 0,
+			pressure: 0,
+			height: 0
+		});
 	},
 	
 	getTimeLeft: function() {
@@ -69,10 +77,56 @@ WB.MoveToAnimation = WB.Animation.extend({
 
 WB.ClosePathSegment = WB.Segment.extend({
 	
-	// FIXME
+	outline: function(pane) {
+		var p = pane.getPathStartPoint();
+		if (p) {
+			pane.lineTo(p);
+		}
+	},
 	
 	createAnimation: function() {
-		return new WB.Animation();
+		return new WB.ClosePathAnimation();
+	}
+	
+});
+
+
+WB.ClosePathAnimation = WB.Animation.extend({
+	
+	start: function(board) {
+		this.board = board;
+		this.pane = board.animationPane;
+		this.pathStart = this.pane.getPathStartPoint();
+		if (this.pathStart) {
+			this.animation = new WB.LineAnimation(null, this.pathStart);
+			this.animation.start(board);
+		}
+	},
+	
+	frame: function(time) {
+		if (this.animation) {
+			this.animation.frame(time);
+		}
+	},
+	
+	isDone: function() {
+		if (this.animation) {
+			return this.animation.isDone();
+		}
+		return true;
+	},
+	
+	end: function() {
+		if (this.animation) {
+			this.animation.end();
+		}
+	},
+	
+	getTimeLeft: function() {
+		if (this.animation) {
+			return this.animation.getTimeLeft();
+		}
+		return 0;
 	}
 	
 });
@@ -117,8 +171,9 @@ WB.LineAnimation = WB.Animation.extend({
 	
 	line: null,
 	
-	init: function(line) {
+	init: function(line, endPoint) {
 		this.line = line;
+		this.endPoint = endPoint;
 	},
 	
 	start: function(board) {
@@ -127,7 +182,9 @@ WB.LineAnimation = WB.Animation.extend({
 		
 		this.pane = board.animationPane;
 		this.startPoint = this.pane.getCurrentPoint();
-		this.endPoint = this.line.resolvePoint(this.pane);
+		if (!this.endPoint) {
+			this.endPoint = this.line.resolvePoint(this.pane);
+		}
 		
     	this.dx = this.endPoint.x - this.startPoint.x;
     	this.dy = this.endPoint.y - this.startPoint.y;
@@ -157,7 +214,7 @@ WB.LineAnimation = WB.Animation.extend({
 		var distance = time * this.velocity / 1000;
 		if (distance > this.totalDistance) {
 	        this.timeLeft = time - this.totalDistance / this.velocity * 1000;
-	        console.log('timeLeft: ' + this.timeLeft + ' from ' + time);
+	        // console.log('timeLeft: ' + this.timeLeft + ' from ' + time);
 			distance = this.totalDistance;
 		}
         
@@ -170,11 +227,13 @@ WB.LineAnimation = WB.Animation.extend({
 		this.pane.lineTo(newPoint);
 		
 	    this.done = Math.abs(this.totalDistance - distance) < 1.0;
-
-	    // this.board.updateCurrentPosition(newPoint, false);
-	    // this.board.updateCurrentVelocity(this.velocity);
-	    // this.board.updateCurrentAngle(Geom.angle(this.startPoint, newPoint));
-	    // this.board.updateCurrentHeight(0.0);
+	    
+	    this.board.state({
+	    	position: this.pane.toGlobalPoint(newPoint),
+	    	velocity: this.velocity,
+	    	angle: WB.Geom.angle(this.startPoint, newPoint),
+	    	height: 0.0
+	    });
 	}
 	
 });
@@ -355,6 +414,13 @@ WB.ArcSegmentAnimation = WB.Animation.extend({
 		var dist = WB.Geom.distance(this.lastPoint, this.endPoint);
 		// console.log('arc frame: ' + eap + ' vs ' + this.arc.endAngle + '; distance left: ' + dist);
 		this.done = dist < 1;
+		
+		this.board.state({
+			position: this.lastPoint,
+			velocity: this.velocity,
+			angle: this.da >= 0 ? WB.Geom.PI_HALF + eap : WB.Geom.PI_1_HALF + eap,
+			height: 0
+		});
 	}
 	
 });

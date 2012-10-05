@@ -155,10 +155,10 @@ public class Board {
 		withBaseVelocity(this.baseVelocity * rate, runnable);
 	}
 
-	public void beforeStep(long time) {
+	public void beforeFrame(long time) {
 	}
 
-	public void afterStep(long time) {
+	public void afterFrame(long time) {
 		this.update(time);
 		this.drawingSoundEngine.update(this);
 		this.cursor.update(this);
@@ -186,9 +186,9 @@ public class Board {
 
 		@Override
 		public void frame(long time) {
-			Board.this.beforeStep(time);
+			Board.this.beforeFrame(time);
 			this.animation.frame(time);
-			Board.this.afterStep(time);
+			Board.this.afterFrame(time);
 		}
 
 		@Override

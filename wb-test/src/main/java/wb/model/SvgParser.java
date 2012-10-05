@@ -20,7 +20,8 @@ public class SvgParser {
 	public static void main(String[] args) throws Exception {
 		
 		/*
-		File file = new File("src/main/webapp/cloud.svg");
+		*/
+		File file = new File("src/main/webapp/svg/letter-H.svg");
 		
 		InputSource source = new InputSource(new FileInputStream(file));
 		
@@ -31,9 +32,14 @@ public class SvgParser {
 		
 		JSONObject js = (JSONObject) new Serializer().toJson(shape);
 		System.out.println(js.toString(2));
-		*/
 
-		File file = new File("src/main/webapp/mvboli.svg");
+		File targetFile = new File("src/main/webapp/svg/" + file.getName().replace(".svg", ".json"));
+		Writer writer = new OutputStreamWriter(new FileOutputStream(targetFile), "UTF-8");
+		writer.write(js.toString(2));
+		writer.close();
+
+		/*
+		File file = new File("C:/Work/WB/fonts/2/Znikomit2.svg");
 		
 		InputSource source = new InputSource(new FileInputStream(file));
 		
@@ -46,10 +52,11 @@ public class SvgParser {
 		JSONObject js = (JSONObject) new Serializer().toJson(font);
 		System.out.println(js.toString(2));
 		
-		File targetFile = new File("target/" + file.getName().replace(".svg", ".json"));
+		File targetFile = new File("src/main/webapp/fonts/" + file.getName().replace(".svg", ".json"));
 		Writer writer = new OutputStreamWriter(new FileOutputStream(targetFile), "UTF-8");
 		writer.write(js.toString(2));
 		writer.close();
+		*/
 	}
 	
 	public Shape parse(Element root) {

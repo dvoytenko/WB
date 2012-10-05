@@ -14,13 +14,9 @@ public class TextShape extends Shape {
 	
 	public Font font;
 	
+	// TODO remove
 	public Point startPoint;
 	
-	@Override
-	public Point getStartPoint() {
-		return this.startPoint;
-	}
-
 	@Override
 	public void draw(final Pane pane) {
 		final double baseHeight = this.font.baseHeight;
@@ -148,11 +144,6 @@ public class TextShape extends Shape {
 		public GlyphShape(Glyph glyph, Transform tr) {
 			this.glyph = glyph;
 			this.tr = tr;
-		}
-
-		@Override
-		public Point getStartPoint() {
-			return null;
 		}
 
 		@Override
