@@ -1,6 +1,41 @@
 package wb.model;
 
+import java.io.File;
+
+import org.json.JSONObject;
+
+import wb.util.IoHelper;
+
 public class AAA {
+	
+	public static void main(String[] args) throws Exception {
+		
+		JSONObject js = new JSONObject(IoHelper.readText(AAA.class, 
+				"script2.json", "UTF-8"));
+		
+		Script script = (Script) new Parser().fromJson(js, Script.class);
+		
+		File root = new File("src/main/webapp");
+		
+		File scriptFolder = new File(root, "script2");
+		if (!scriptFolder.exists()) {
+			scriptFolder.mkdir();
+		}
+		
+		File shapesFolder = new File(root, "shapes");
+		File soundsFolder = new File(root, "sounds");
+		
+		PrepareScript prepareScript = new PrepareScript();
+		prepareScript.setOutputFolder(scriptFolder);
+		prepareScript.setShapesFolder(shapesFolder);
+		prepareScript.setSoundsFolder(soundsFolder);
+		
+		script.prepare(prepareScript);
+		
+		prepareScript.saveObject("script", script);
+	}
+	
+	
 	
 	public void playInBrowser(final Board board, final Script script) {
 		board.onReady(script, new Runnable() {

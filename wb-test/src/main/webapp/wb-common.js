@@ -340,6 +340,13 @@ WB.Pane = WB.Class.extend({
 		return WB.Geom.distance(gp1, gp2);
 	},
 	
+	globalLength: function(length) {
+		var x1 = this.toGlobalPoint({x:0,y:0}).x;
+		var x2 = this.toGlobalPoint({x:length,y:0}).x;
+		return Math.abs(x2 - x1);
+		
+	},
+	
 	getPathStartPoint: function() {
 		if (!this.pathStartPoint) {
 			return null;
@@ -452,6 +459,10 @@ WB.PauseAnimation = WB.Animation.extend({
 		return this;
 	},
 	
+	start: function(board) {
+		this.board = board;
+	},
+	
 	frame: function(time) {
 		if (!this.startTime) {
 			this.startTime = time;
@@ -465,6 +476,45 @@ WB.PauseAnimation = WB.Animation.extend({
 	
 	end: function() {
 		console.log('pause finished');
+	}
+	
+});
+
+
+WB.WaitForAnimation = WB.Animation.extend({
+	
+	happenedCheck: null,
+	
+	maxTime: null,
+	
+	init: function(happenedCheck, maxTime) {
+		this.happenedCheck = happenedCheck;
+		this.maxTime = maxTime ? maxTime: Number.MAX_VALUE;
+	},
+	
+	createAnimation: function() {
+		return this;
+	},
+	
+	start: function(board) {
+		this.board = board;
+		this.done = this.maxTime < 1 || this.happenedCheck();
+		console.log('waitFor started');
+	},
+	
+	frame: function(time) {
+		if (!this.startTime) {
+			this.startTime = time;
+		}
+		this.done = (time - this.startTime) > this.maxTime || this.happenedCheck();
+	},
+	
+	isDone: function() {
+		return this.done;
+	},
+	
+	end: function() {
+		console.log('waitFor finished');
 	}
 	
 });

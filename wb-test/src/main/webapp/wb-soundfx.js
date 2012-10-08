@@ -37,41 +37,43 @@ WB.DrawingSoundEngine = WB.Class.extend({
     	var that = this;
     	
     	audio.addEventListener('canplay', function(e) {
-    		console.log('soundfx: canplay: ' + e);
+//    		console.log('soundfx: canplay: ' + e);
     	});
     	audio.addEventListener('canplaythrough', function(e) {
-    		console.log('soundfx: canplaythrough: ' + e);
+//    		console.log('soundfx: canplaythrough: ' + e);
     	});
     	audio.addEventListener('progress', function(e) {
-    		console.log('soundfx: progress: ' + e);
+//    		console.log('soundfx: progress: ' + e);
     	});
     	audio.addEventListener('ended', function(e) {
-    		console.log('soundfx: ended: ' + e);
+//    		console.log('soundfx: ended: ' + e);
     		// restart
     		if (that.playing) {
-    			console.log('soundfx: restart');
+//    			console.log('soundfx: restart');
         		audio.play();
     		}
     	});
     	audio.addEventListener('play', function(e) {
-    		console.log('soundfx: play: ' + e);
+//    		console.log('soundfx: play: ' + e);
     	});
     	audio.addEventListener('pause', function(e) {
-    		console.log('soundfx: pause: ' + e);
+//    		console.log('soundfx: pause: ' + e);
     	});
     },
     
     update: function(state) {
     	// console.log('soundfx: update: ' + JSON.stringify(state));
     	if (state.height > 0.0 || !state.velocity) {
-    		console.log('soundfx: velocity = 0 -> stop');
     		this.playing = false;
-    		this.audio.pause();
+    		if (!this.audio.paused) {
+//        		console.log('soundfx: velocity = 0 -> stop');
+        		this.audio.pause();
+    		}
     	} else {
     		if (this.prevVelocity != state.velocity) {
     			var rate = state.velocity/this.baseVelocity;
     			rate = Math.max(Math.min(rate, 3.8), 0.7);
-    			console.log('soundfx: rate: ' + rate);
+//    			console.log('soundfx: rate: ' + rate);
     			this.audio.playbackRate = rate;
     		}
     		this.audio.play();

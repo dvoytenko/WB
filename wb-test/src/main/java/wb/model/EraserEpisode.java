@@ -1,10 +1,11 @@
 package wb.model;
 
 public class EraserEpisode extends Episode {
+	
+	public boolean eraseAll;
 
 	@Override
 	public Animation createAnimation() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

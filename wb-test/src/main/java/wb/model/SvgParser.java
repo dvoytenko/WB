@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -19,24 +20,30 @@ public class SvgParser {
 	
 	public static void main(String[] args) throws Exception {
 		
-		/*
-		*/
-		File file = new File("src/main/webapp/svg/letter-H.svg");
-		
-		InputSource source = new InputSource(new FileInputStream(file));
-		
-		SAXReader reader = new SAXReader();
-		Document doc = reader.read(source);
-		
-		Shape shape = new SvgParser().parse(doc.getRootElement());
-		
-		JSONObject js = (JSONObject) new Serializer().toJson(shape);
-		System.out.println(js.toString(2));
+		final String[] files = {
+				"cogs1.svg",
+				"cogs2.svg",
+				};
+		for (String fileName : files) {
+			System.out.println(fileName);
+			
+			File file = new File("src/main/webapp/shapes/" + fileName);
+			
+			InputSource source = new InputSource(new FileInputStream(file));
+			
+			SAXReader reader = new SAXReader();
+			Document doc = reader.read(source);
+			
+			Shape shape = new SvgParser().parse(doc.getRootElement());
+			
+			JSONObject js = (JSONObject) new Serializer().toJson(shape);
+			System.out.println(js.toString(2));
 
-		File targetFile = new File("src/main/webapp/svg/" + file.getName().replace(".svg", ".json"));
-		Writer writer = new OutputStreamWriter(new FileOutputStream(targetFile), "UTF-8");
-		writer.write(js.toString(2));
-		writer.close();
+			File targetFile = new File("src/main/webapp/shapes/" + file.getName().replace(".svg", ".json"));
+			Writer writer = new OutputStreamWriter(new FileOutputStream(targetFile), "UTF-8");
+			writer.write(js.toString(2));
+			writer.close();
+		}
 
 		/*
 		File file = new File("C:/Work/WB/fonts/2/Znikomit2.svg");
@@ -168,7 +175,13 @@ public class SvgParser {
 		PathConsumer consumer = new PathConsumer();
 		
 		for (PathAction a : actions) {
-			a.interpret(consumer);
+			try {
+				a.interpret(consumer);
+			} catch (Exception e) {
+				throw new RuntimeException("failed to interpret [" + d + "]" +
+						", action [" + a.code + ": " + Arrays.toString(a.values) + "]" +
+						": " + e, e);
+			}
 		}
 		
 		pathShape.pathSegment.segments.addAll(consumer.segments);
@@ -264,19 +277,27 @@ public class SvgParser {
 			char c = i < d.length() ? d.charAt(i) : 0;
 			
 			// end of number?
-			if (Character.isLetter(c) || Character.isWhitespace(c)
-					|| c == ',' || c == ';' || c == 0) {
+			if ((Character.isLetter(c) && Character.toLowerCase(c) != 'e')
+					|| Character.isWhitespace(c)
+					|| c == ',' || c == ';' || c == 0
+					|| (i > beg && c == '-' && 
+						Character.toLowerCase(d.charAt(i-1)) != 'e')) {
 				if (i > beg) {
 					String s = d.substring(beg, i).trim();
 					if (s.length() > 0) {
 						values.add(Double.parseDouble(s));
 					}
 				}
-				beg = i + 1;
+				if (c != '-') {
+					beg = i + 1;
+				} else {
+					beg = i;
+				}
 			}
 			
 			// end of segment/start of a new one
-			if (Character.isLetter(c) || c == 0) {
+			if ((Character.isLetter(c) && Character.toLowerCase(c) != 'e')
+					|| c == 0) {
 				
 				// end segment
 				if (action != 0) {
@@ -731,7 +752,7 @@ public class SvgParser {
 			 * calculations and help determine how the arc is drawn.
 			 */
 
-			for (int i = 0; i < values.length; i += 4) {
+			for (int i = 0; i < values.length; i += 7) {
 				double rx = values[i];
 				double ry = values[i + 1];
 				double xAxisRotation = values[i + 2];

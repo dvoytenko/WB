@@ -1,5 +1,94 @@
 
 
+WB.DrawShapeEpisode = WB.Class.extend({
+	
+	shape: null,
+	
+//	shapeId: null,
+	
+	position: null,
+	
+	width: null,
+	
+	height: null,
+	
+	realWidth: null,
+	
+	realHeight: null,
+	
+	rotationDegree: null,
+	
+	init: function(opts) {
+		if (opts) {
+			for (var k in opts) {
+				this[k] = opts[k];
+			}
+		}
+	},
+	
+	_shape: function() {
+		if (!this._shapeCache) {
+			
+			var tr = new WB.Transform();
+			tr.translate(this.position.x, this.position.y);
+			// TODO calculate real width/height if not given
+			tr.scale(this.width/this.realWidth, 
+					this.height/this.realHeight);
+			if (this.rotationDegree) {
+				tr.rotate(WB.Geom.rad(this.rotationDegree));
+			}
+			
+			this._shapeCache = new WB.GroupShape({
+				shapes: [this.shape],
+				transform: tr
+				});
+		}
+		return this._shapeCache;
+	},
+	
+	createAnimation: function() {
+		return new WB.DrawShapeEpisodeAnimation(this._shape().createAnimation());
+	}
+	
+});
+
+
+WB.DrawShapeEpisodeAnimation = WB.Animation.extend({
+	
+	animation: null,
+	
+	board: null,
+	
+	init: function(animation) {
+		this.animation = animation;
+	},
+	
+	start: function(board) {
+		this.board = board;
+		this.pane = board.animationPane;
+		this.animation.start(board);
+	},
+	
+	frame: function(time) {
+		this.animation.frame(time);
+	},
+	
+	isDone: function() {
+		return this.animation.isDone();
+	},
+	
+	end: function() {
+		this.animation.end();
+		this.board.state({velocity: 0, height: 1});
+	},
+	
+	getTimeLeft: function() {
+		return this.animation.getTimeLeft();
+	}
+	
+});
+
+
 WB.Shape = WB.Class.extend({
 	
 	draw: function(pane) {

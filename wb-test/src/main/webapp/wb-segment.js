@@ -335,7 +335,7 @@ WB.ArcSegmentAnimation = WB.Animation.extend({
 		var eap;
 		if (isCircle) {
 			// simple arc
-	        var globalRadius = this.pane.toGlobalPoint({x:this.arc.radiusX, y:0}).x;
+	        var globalRadius = this.pane.globalLength(this.arc.radiusX);
 	        var totalDistance = Math.abs(this.da) * globalRadius;
 	        var distance = this.velocity * time / 1000;
 		    if (distance > totalDistance) {
@@ -389,8 +389,8 @@ WB.ArcSegmentAnimation = WB.Animation.extend({
 
             // TODO wrong: arc length is not always the same!!!
             // can do it better using Rz = Rx*cos(a) + Ry*sin(a) and saving lastAngle
-	        var globalRadius = this.pane.toGlobalPoint({x:this.arc.radiusX, y:0}).x;
-	        var totalDistance = this.da * globalRadius;
+	        var globalRadius = this.pane.globalLength(this.arc.radiusX);
+	        var totalDistance = Math.abs(this.da) * globalRadius;
 	        var distance = this.velocity * time / 1000;
 		    if (distance > totalDistance) {
 		    	distance = totalDistance;

@@ -18,6 +18,14 @@ public class Transform {
 		set(other.m[0], other.m[1], other.m[2], other.m[3], other.m[4], other.m[5]);
 	}
 
+	public Transform(double[] m) {
+		set(m[0], m[1], m[2], m[3], m[4], m[5]);
+	}
+
+	public Transform(double a, double b, double c, double d, double e, double f) {
+		set(a, b, c, d, e, f);
+	}
+	
 	public Transform set(double m0, double m1, double m2, double m3, double m4, double m5) {
 		this.m[0] = m0;
 		this.m[1] = m1;

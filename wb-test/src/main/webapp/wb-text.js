@@ -45,6 +45,75 @@ WB.Glyph = WB.Class.extend({
 });
 
 
+WB.DrawTextEpisode = WB.Episode.extend({
+	
+	text: null,
+	
+	position: null,
+
+	fontHeight: null,
+
+	init: function(opts) {
+		if (opts) {
+			for (var k in opts) {
+				this[k] = opts[k];
+			}
+		}
+	},
+	
+	createAnimation: function() {
+		return new WB.TextEpisodeAnimation(this);
+	}
+	
+});
+
+
+WB.TextEpisodeAnimation = WB.Animation.extend({
+	
+	textEpisode: null,
+	
+	animation: null,
+	
+	board: null,
+	
+	init: function(textEpisode) {
+		this.textEpisode = textEpisode;
+	},
+	
+	start: function(board) {
+		this.board = board;
+		
+		var shape = new WB.TextShape({
+			text: this.textEpisode.text,
+			fontHeight: this.textEpisode.fontHeight,
+			startPoint: this.textEpisode.position,
+			font: board.font
+			});
+		
+		this.animation = shape.createAnimation();
+		this.animation.start(board);
+	},
+	
+	frame: function(time) {
+		this.animation.frame(time);
+	},
+	
+	isDone: function() {
+		return this.animation.isDone();
+	},
+	
+	end: function() {
+		this.animation.end();
+		this.board.state({velocity: 0, height: 1});
+	},
+	
+	getTimeLeft: function() {
+		return this.animation.getTimeLeft();
+	}
+	
+});
+
+
 WB.TextShape = WB.Shape.extend({
 	
 	text: null,

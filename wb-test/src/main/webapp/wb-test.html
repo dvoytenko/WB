@@ -13,18 +13,26 @@
     </style>
 
     <script src="jquery-1.7.1.js"></script>
+    
     <script src="wb-proto.js"></script>
+    
     <script src="wb-common.js"></script>
+    
+    <script src="wb-script.js"></script>
     <script src="wb-soundfx.js"></script>
-    <script src="wb-segment.js"></script>
+    <script src="wb-speech.js"></script>
+    <script src="wb-pointer.js"></script>
+    <script src="wb-board.js"></script>
+    
     <script src="wb-shape.js"></script>
+    <script src="wb-segment.js"></script>
     <script src="wb-path.js"></script>
     <script src="wb-curve.js"></script>
     <script src="wb-basicshapes.js"></script>
     <script src="wb-text.js"></script>
+    <script src="wb-eraser.js"></script>
+    
     <script src="wb-parser.js"></script>
-    <script src="wb-board.js"></script>
-    <script src="wb-pointer.js"></script>
     <script src="wb-player.js"></script>
 
   </head>
@@ -51,23 +59,60 @@
 		<a href="javascript:void(0);" onclick="eq1()">EQ 1</a>
 		<a href="javascript:void(0);" onclick="eq1anim()">EQ 1 Anim</a>
 		<a href="javascript:void(0);" onclick="letterH1()">Letter H</a>
+		<a href="javascript:void(0);" onclick="speech1()">Speech 1</a>
+		<a href="javascript:void(0);" onclick="script1()">Script 1</a>
+		<a href="javascript:void(0);" onclick="script2()">Script 2</a>
+		<a href="javascript:void(0);" onclick="eraser1()">Eraser 1</a>
 	</div>
 	
-	<div id="container" style="position: relative; margin: 4px; padding: 0; width: 720px; height: 405px;">
-		<canvas id="canvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 1;"></canvas>
-		<canvas id="animCanvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 2;"></canvas>
-		<canvas id="pointerCanvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 3;"></canvas>
-	</div>
-
 	<div id="status" style="border: 1px solid gray; margin: 4px; width: 720px;">
 		status
 	</div>
 	
+	<div id="container" style="position: relative; margin: 4px; padding: 0; width: 720px; height: 405px;">
+		<canvas id="gridCanvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 1;"></canvas>
+		<canvas id="canvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 2;"></canvas>
+		<canvas id="animCanvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 3;"></canvas>
+		<canvas id="pointerCanvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 4;"></canvas>
+	</div>
+
 	<script>
 	
 		function status(s) {
 			$('#status').text(s);
 		}
+
+		function grid() {
+			var canvas = document.getElementById('gridCanvas');
+			if (!canvas) {
+				return;
+			}
+			
+			var context = canvas.getContext('2d');
+			var width = canvas.width;
+			var height = canvas.height;
+			var delta = 50;
+			for (var x = delta; x < width; x += delta) {
+				context.beginPath();
+				context.moveTo(x, 0);
+				context.lineTo(x, height);
+				context.lineWidth = 0.7;
+				//context.strokeStyle = 'rgba(220,220,220,0.5)';
+				context.strokeStyle = 'rgba(0,255,0,1)';
+				context.stroke();
+				for (var y = delta; y < height; y += delta) {
+					context.beginPath();
+					context.moveTo(0, y);
+					context.lineTo(width, y);
+					context.lineWidth = 0.7;
+					//context.strokeStyle = 'rgba(220,220,220,0.1)';
+					context.strokeStyle = 'rgba(0,255,0,1)';
+					context.stroke();
+				}
+			}
+		}
+		
+		grid();
 		
 		function soundfx1() {
 			status('Running DrawingSoundEngine...');
@@ -285,8 +330,8 @@
 				shapes: [path]
 			});
 			
-			player.playShape(path, function() {
-				player.playShape(group);
+			player.playAny(path, function() {
+				player.playAny(group);
 			});
 		}
 		
@@ -327,8 +372,8 @@
 				shapes: [rect]
 			});
 			
-			player.playShape(rect, function() {
-				player.playShape(group);
+			player.playAny(rect, function() {
+				player.playAny(group);
 			});
 		}
 		
@@ -534,7 +579,7 @@
 						+ '; Position: ' + Math.round(p.x) + ',' + Math.round(p.y));
 			});
 
-			player.playShape(path);
+			player.playAny(path);
 		}
 		
 		function cubic1() {
@@ -550,7 +595,7 @@
 					]
 			});
 
-			playShape(path);
+			playAny(path);
 		}
 		
 		function quad1() {
@@ -563,10 +608,14 @@
 						})
 					]
 			});
-			playShape(path);
+			playAny(path);
 		}
 		
-		function playShape(shape) {
+		function playAny(animable, opts) {
+			
+			if (!opts) {
+				opts = {};
+			}
 			
 			// 720 x 405
 			var canvasWidth = 720;
@@ -598,6 +647,8 @@
 						defaultTransform: defaultTransform
 						})
 					}),
+				speechPlayer: new WB.SpeechPlayer({urlResolver: opts.urlResolver}),
+				urlResolver: opts.urlResolver,
 				baseVelocity: baseVelocity
 				});
 			
@@ -608,7 +659,52 @@
 						+ '; Position: ' + Math.round(p.x) + ',' + Math.round(p.y));
 			});
 
-			player.playShape(shape);
+			$.ajax({url: 'fonts/nova_thin_extended.json', contentType: 'application/json'})
+			.done(function(json) {
+				console.log('got data');
+				if (json) {
+					if (json.constructor == String) {
+						json = JSON.parse(json);
+					}
+					console.log(json);
+					
+					var parser = new WB.Parser();
+					var font = parser.parse(json);
+					console.log(font);
+					
+					board.font = font;
+					
+					player.playAny(animable);
+				}
+			});
+		}
+		
+		function playScript(scriptId) {
+			
+			var urlResolver = function(path) {
+				if (path.substr(0,1) != '/') {
+					path = '/' + path;
+				}
+				return '/wb-test/' + scriptId + path;
+			}
+
+			$.ajax({url: urlResolver('script.json'), contentType: 'application/json'})
+			.done(function(json) {
+				console.log('got data');
+				if (json) {
+					if (json.constructor == String) {
+						json = JSON.parse(json);
+					}
+					console.log(json);
+					
+					var parser = new WB.Parser();
+					var script = parser.parse(json);
+					console.log(script);
+					
+					playAny(new WB.EpisodeList({episodes: script.episodes, pause: 100}),
+							{urlResolver: urlResolver});
+				}
+			});
 		}
 		
 		function cloud1() {
@@ -630,7 +726,7 @@
 							shapes: [shape]
 						});
 						
-						playShape(group);
+						playAny(group);
 					}
 				});
 		}
@@ -713,13 +809,49 @@
 						
 						// text.draw(new WB.Pane({canvas: document.getElementById('canvas')}));
 						
-						playShape(text);
+						playAny(text);
 					}
 				});
 		}
 		
 		function eq1() {
-			$.ajax({url: 'svg/eq1.json', contentType: 'application/json'})
+			/*
+				eq1: new WB.Transform().scale(3, 3)
+				Astrologyisnotscience: new WB.Transform().scale(0.5, 0.5)
+				Face-drawing_nevit_098: new WB.Transform().scale(0.5, 0.5).translate(100,50);
+				TUX-G2-SVG: new WB.Transform().scale(0.3, 0.3).translate(100,50);
+				Woman_Silhouette_51: new WB.Transform().scale(2, 2).translate(100,50);
+				
+				FEN_bedroom_eyes: new WB.Transform().scale(1, 1)
+				FEN_Carl: new WB.Transform().scale(1, 1)
+				FEN_frank: new WB.Transform().scale(2, 2)
+				FEN_Young_man: new WB.Transform().scale(1, 1)
+				liftarn_A_raised_fist: new WB.Transform().scale(0.2, 0.2)
+				liftarn_Felix_the_cat: new WB.Transform().scale(1, 1)
+				liftarn_Karate_1: new WB.Transform().scale(1, 1)
+				molumen_plane_silhouet: new WB.Transform().scale(0.5, 0.5)
+				molumen_Tramway: new WB.Transform().scale(0.7, 0.7)
+				zeimusu_Swash_ornament: new WB.Transform().translate(100, 100).scale(1, 1)
+				liftarn_Adult_and_child: new WB.Transform().translate(100, 100).scale(0.25, 0.25)
+				
+				ryanlerch_umbrella_outline: new WB.Transform().translate(100, 100).scale(0.25, 0.25)
+				ryanlerch_thinkingboy_outline: new WB.Transform().translate(100, 50).scale(0.5, 0.5)
+				ryanlerch_boyface8_outline: new WB.Transform().translate(100, 50).scale(0.3, 0.3)
+				ryanlerch_boyface3_outline: new WB.Transform().translate(100, 50).scale(0.3, 0.3)
+				pitr_Coffee_cup_icon: new WB.Transform().translate(100, 50).scale(1, 1)
+				PeterM_Tree: new WB.Transform().translate(100, 50).scale(0.3, 0.3)
+				nicubunu_Dog_head_1: new WB.Transform().translate(100, 50).scale(1.5, 1.5)
+				molumen_car_outline_modified: new WB.Transform().translate(100, 50).scale(1, 1)
+				lalolalo_Smiling_pig: new WB.Transform().translate(100, 50).scale(0.3, 0.3)
+				Gioppino_slamdunk_outline: new WB.Transform().translate(100, 50).scale(0.5, 0.5)
+				
+				chart1: new WB.Transform().translate(100, 50).scale(1, 1);
+				cogs1: 
+				cogs2: 
+			*/
+			var name = 'cogs2';
+			var tr = new WB.Transform().translate(100, 50).scale(1, 1);
+			$.ajax({url: 'shapes/' + name + '.json', contentType: 'application/json'})
 			.done(function(json) {
 				console.log('got data');
 				if (json) {
@@ -733,7 +865,7 @@
 					console.log(shape);
 					
 					var group = new WB.GroupShape({
-						transform: new WB.Transform().scale(3, 3),
+						transform: tr,
 						shapes: [shape]
 					});
 					
@@ -743,7 +875,42 @@
 		}
 
 		function eq1anim() {
-			$.ajax({url: 'svg/eq1.json', contentType: 'application/json'})
+			/*
+				eq1: new WB.Transform().scale(3, 3)
+				Astrologyisnotscience: new WB.Transform().scale(0.5, 0.5)
+				Face-drawing_nevit_098: new WB.Transform().scale(0.5, 0.5).translate(100,50);
+				TUX-G2-SVG: new WB.Transform().scale(0.3, 0.3).translate(100,50);
+				Woman_Silhouette_51: new WB.Transform().scale(2, 2).translate(100,50);
+
+				+FEN_bedroom_eyes: new WB.Transform().scale(1, 1)
+				+FEN_Carl: new WB.Transform().scale(1, 1)
+				+FEN_frank: new WB.Transform().scale(2, 2)
+				+FEN_Young_man: new WB.Transform().scale(1, 1)
+				(low)liftarn_A_raised_fist: new WB.Transform().scale(0.2, 0.2)
+				++liftarn_Felix_the_cat: new WB.Transform().scale(1, 1)
+				(low)liftarn_Karate_1: new WB.Transform().scale(1, 1)
+				++molumen_plane_silhouet: new WB.Transform().scale(0.5, 0.5)
+				(too long) molumen_Tramway: new WB.Transform().scale(0.7, 0.7)
+				++liftarn_Adult_and_child: new WB.Transform().translate(100, 100).scale(0.25, 0.25)
+
+				++ryanlerch_umbrella_outline: new WB.Transform().translate(100, 100).scale(0.25, 0.25)
+				+ryanlerch_thinkingboy_outline: new WB.Transform().translate(100, 50).scale(0.5, 0.5)
+				+ryanlerch_boyface8_outline: new WB.Transform().translate(100, 50).scale(0.3, 0.3)
+				(too long)ryanlerch_boyface3_outline: new WB.Transform().translate(100, 50).scale(0.3, 0.3)
+				+pitr_Coffee_cup_icon: new WB.Transform().translate(100, 50).scale(1, 1)
+				++PeterM_Tree: new WB.Transform().translate(100, 50).scale(0.3, 0.3)
+				++nicubunu_Dog_head_1: new WB.Transform().translate(100, 50).scale(1.5, 1.5)
+				+molumen_car_outline_modified: new WB.Transform().translate(100, 50).scale(1, 1)
+				+lalolalo_Smiling_pig: new WB.Transform().translate(100, 50).scale(0.3, 0.3)
+				++Gioppino_slamdunk_outline: new WB.Transform().translate(100, 50).scale(0.5, 0.5)
+				
+				chart1: new WB.Transform().translate(100, 50).scale(1, 1);
+				cogs1: 
+				cogs2: 
+			*/
+			var name = 'cogs1';
+			var tr = new WB.Transform().translate(100, 50).scale(1, 1);
+			$.ajax({url: 'shapes/' + name + '.json', contentType: 'application/json'})
 			.done(function(json) {
 				console.log('got data');
 				if (json) {
@@ -757,11 +924,11 @@
 					console.log(shape);
 
 					var group = new WB.GroupShape({
-						transform: new WB.Transform().scale(3, 3),
+						transform: tr,
 						shapes: [shape]
 					});
 					
-					playShape(group);
+					playAny(group);
 				}
 			});
 		}
@@ -785,9 +952,48 @@
 						shapes: [shape]
 					});
 					
-					playShape(group);
+					playAny(group);
 				}
 			});
+		}
+		
+		function speech1() {
+			var step1 = new WB.SpeechEpisode({track: 'audio1'});
+			
+			var step2 = new WB.SpeechEpisode({track: 'speech-1'});
+			
+			var step3 = new WB.SpeechEndEpisode();
+			
+			var step4 = new WB.SpeechEpisode({track: 'audio1'});
+			
+			playAny(new WB.EpisodeList({episodes: [step1, step2, step3, step4]}));
+		}
+		
+		function script1() {
+			playScript('script1');
+		}
+		
+		function script2() {
+			playScript('script2');
+		}
+		
+		function eraser1() {
+			var pane = new WB.Pane({canvas: document.getElementById('canvas')});
+			
+			var eraser = new WB.EraserShape({
+				eraseAll: true,
+				pathSegment: new WB.PathSegment({
+					segments: [
+						new WB.MoveToSegment({point: {x: 100, y: 200}}),
+						new WB.LineToSegment({point: {x: 200, y: 200}}),
+						new WB.LineToSegment({point: {x: 250, y: 250}}),
+						new WB.LineToSegment({point: {x: 100, y: 300}}),
+						new WB.ClosePathSegment()
+						]
+				})
+			});
+			
+			eraser.draw(pane);
 		}
 		
 	</script>

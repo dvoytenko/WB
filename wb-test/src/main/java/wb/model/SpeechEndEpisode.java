@@ -1,10 +1,9 @@
 package wb.model;
 
-public class SpeachEpisode extends Episode {
+public class SpeechEndEpisode extends Episode {
 
 	@Override
 	public Animation createAnimation() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

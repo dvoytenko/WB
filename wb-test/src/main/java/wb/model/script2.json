@@ -1,0 +1,321 @@
+{
+	episodes: [
+		/*
+		{
+			_type: 'SpeechEpisode',
+			text: 'Let\'s build a whiteboard presentation! Let\'s see what we can do.'
+		},
+		{
+			_type: 'SpeechEpisode',
+			text: 'These presentations can be pretty neat as we can demonstrate almost any idea we want.'
+		},
+
+		{
+			_type: 'SpeechEpisode',
+			text: 'You can draw a plane'
+		},
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'molumen_plane_silhouet',
+			position: {x: 10, y: 10},
+			width: 1,
+			height: 1,
+			realWidth: 4,
+			realHeight: 4,
+			rotationDegree: 0
+		},
+
+		{
+			_type: 'SpeechEpisode',
+			text: 'Or a family'
+		},
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'liftarn_Adult_and_child',
+			position: {x: 10, y: 190},
+			width: 1,
+			height: 1,
+			realWidth: 6,
+			realHeight: 6,
+			rotationDegree: 0
+		},
+
+		{
+			_type: 'SpeechEpisode',
+			text: 'Or a dog'
+		},
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'nicubunu_Dog_head_1',
+			position: {x: 200, y: 240},
+			width: 0.8,
+			height: 0.8,
+			realWidth: 1,
+			realHeight: 1,
+			rotationDegree: 0
+		},
+		
+		{
+			_type: 'SpeechEpisode',
+			text: 'Or may be you are a professor.'
+		},
+		{
+			_type: 'SpeechEpisode',
+			text: 'And would like to explain a formula to a student'
+		},
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'ryanlerch_thinkingboy_outline',
+			position: {x: 400, y: 20},
+			width: 2,
+			height: 2,
+			realWidth: 4,
+			realHeight: 4,
+			rotationDegree: 0
+		},
+		*/
+		
+		/*
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'eq1',
+			position: {x: 550, y: 200},
+			width: 1.2,
+			height: 1.2,
+			realWidth: 1,
+			realHeight: 1,
+			rotationDegree: 5
+		},
+
+		{
+			_type: 'DrawTextEpisode',
+			text: 'Got it?',
+			position: {x: 400, y: 300},
+			fontHeight: 60
+		},
+		
+		
+		{
+			_type: 'EraserEpisode',
+			eraseAll: true
+		},
+		*/
+		
+		/*
+		{
+			_type: 'SpeechEpisode',
+			track: 'rudolph'
+		},
+		*/
+		
+		{
+			_type: 'DrawShapeEpisode',
+			position: {x: 20, y: 20},
+			width: 1,
+			height: 1,
+			realWidth: 1,
+			realHeight: 1,
+			rotationDegree: 0,
+			shape: {
+				_type: 'PathShape',
+				pathSegment: {
+					_type: 'PathSegment',
+					segments: [
+						{
+							_type: 'MoveToSegment',
+							point: {x: 0, y: 40}
+						},
+						{
+							_type: 'LineToSegment',
+							point: {x: 300, y: 40}
+						},
+						
+						{
+							_type: 'MoveToSegment',
+							point: {x: 150, y: 0}
+						},
+						{
+							_type: 'LineToSegment',
+							point: {x: 150, y: 200}
+						},
+						
+						{
+							_type: 'MoveToSegment',
+							point: {x: 225, y: 0}
+						},
+						{
+							_type: 'LineToSegment',
+							point: {x: 225, y: 200}
+						}
+					]
+				}
+			}
+		},
+		
+		{
+			_type: 'DrawTextEpisode',
+			text: '2011',
+			position: {x: 180, y: 25},
+			fontHeight: 30
+		},
+
+		{
+			_type: 'DrawTextEpisode',
+			text: '2012',
+			position: {x: 250, y: 25},
+			fontHeight: 30
+		},
+
+		{
+			_type: 'DrawTextEpisode',
+			text: 'Desktop',
+			position: {x: 30, y: 60},
+			fontHeight: 30
+		},
+
+		{
+			_type: 'DrawTextEpisode',
+			text: '30M',
+			position: {x: 180, y: 60},
+			fontHeight: 25
+		},
+
+		{
+			_type: 'DrawTextEpisode',
+			text: '25M',
+			position: {x: 260, y: 60},
+			fontHeight: 25
+		},
+
+		{
+			_type: 'DrawTextEpisode',
+			text: 'Mobile',
+			position: {x: 30, y: 100},
+			fontHeight: 30
+		},
+		
+		{
+			_type: 'DrawTextEpisode',
+			text: '15M',
+			position: {x: 180, y: 100},
+			fontHeight: 25
+		},
+
+		{
+			_type: 'DrawTextEpisode',
+			text: '45M',
+			position: {x: 260, y: 100},
+			fontHeight: 25
+		},
+
+
+		{
+			_type: 'DrawShapeEpisode',
+			_desc: 'Chart',
+			position: {x: 400, y: 40},
+			width: 1,
+			height: 1,
+			realWidth: 1,
+			realHeight: 1,
+			rotationDegree: 0,
+			shape: {
+				_type: 'PathShape',
+				pathSegment: {
+					_type: 'PathSegment',
+					segments: [
+						{
+							_type: 'MoveToSegment',
+							point: {x: 10, y: 0}
+						},
+						{
+							_type: 'LineToSegment',
+							point: {x: 10, y: 150}
+						},
+						
+						{
+							_type: 'MoveToSegment',
+							point: {x: 0, y: 140}
+						},
+						{
+							_type: 'LineToSegment',
+							point: {x: 220, y: 140}
+						},
+						
+						
+						{
+							_type: 'MoveToSegment',
+							point: {x: 5, y: 120}
+						},
+						{
+							_type: 'LineToSegment',
+							point: {x: 60, y: 110}
+						},
+						{
+							_type: 'LineToSegment',
+							point: {x: 110, y: 80}
+						},
+						{
+							_type: 'LineToSegment',
+							point: {x: 180, y: 70}
+						},
+
+						{
+							_type: 'MoveToSegment',
+							point: {x: 5, y: 40}
+						},
+						{
+							_type: 'LineToSegment',
+							point: {x: 80, y: 60}
+						},
+						{
+							_type: 'LineToSegment',
+							point: {x: 110, y: 120}
+						},
+					]
+				}
+			}
+		},
+
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'cogs1',
+			position: {x: 420, y: 260},
+			width: 1,
+			height: 1,
+			realWidth: 1,
+			realHeight: 1,
+			rotationDegree: 0
+		},
+
+		/*
+		{
+			_type: 'SpeechEpisode',
+			text: 'In case you were wondering about this voice... I can use some other voices too'
+		},
+		{
+			_type: 'SpeechEpisode',
+			text: 'May be some manly voice?',
+			voice: "cmu-rms-hsmm"
+		},
+		{
+			_type: 'SpeechEpisode',
+			text: 'Or perhaps some british?',
+			voice: "dfki-prudence-hsmm"
+		},
+		{
+			_type: 'SpeechEpisode',
+			text: 'Bloody brilliant!',
+			voice: "dfki-prudence-hsmm"
+		},
+		{
+			_type: 'SpeechEpisode',
+			track: 'myvoice1'
+		}
+		*/
+	]
+	
+	/*
+		1. Erase everything
+		2. Draw chart(s) and/or table(s)
+	*/
+}

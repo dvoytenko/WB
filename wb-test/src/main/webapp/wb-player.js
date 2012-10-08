@@ -27,7 +27,7 @@ WB.Player = WB.Class.extend({
 		}
 	},
 	
-	play: function(animation, shape, onDone) {
+	play: function(animation, onDone) {
 		
 		var startTime = new Date().getTime();
 		var board = this.board;
@@ -38,9 +38,7 @@ WB.Player = WB.Class.extend({
 
 		if (animation.isDone()) {
 			animation.end();
-			if (shape) {
-				board.animationPane._clearCanvas();
-			}
+			board.animationPane._clearCanvas();
 			console.log('animation stopped');
 			if (onDone) {
 				onDone();
@@ -54,18 +52,14 @@ WB.Player = WB.Class.extend({
 			if (!animation.isDone()) {
 				var frameTime = new Date().getTime() - startTime;
 				if (frameTime > 0) {
-					if (shape) {
-						board.animationPane._clearCanvas();
-					}
+					board.animationPane._clearCanvas();
 					animation.frame(frameTime);
 					that._notify(frameTime);
 				}
 			}
 			if (animation.isDone()) {
 				animation.end();
-				if (shape) {
-					board.animationPane._clearCanvas();
-				}
+				board.animationPane._clearCanvas();
 				console.log('animation stopped');
 				if (onDone) {
 					onDone();
@@ -84,7 +78,15 @@ WB.Player = WB.Class.extend({
 	},
 	
 	playShape: function(shape, onDone) {
-		this.play(shape.createAnimation(), shape, onDone);
+		this.play(shape.createAnimation(), onDone);
+	},
+	
+	playEpisode: function(episode, onDone) {
+		this.play(episode.createAnimation(), onDone);
+	},
+	
+	playAny: function(animable, onDone) {
+		this.play(animable.createAnimation(), onDone);
 	},
 	
 	postFrame: function(listener) {

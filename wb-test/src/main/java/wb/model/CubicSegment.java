@@ -7,6 +7,9 @@ public class CubicSegment extends CurveSegment {
 	public Point cp2;
 	
 	public Point endPoint;
+	
+	public CubicSegment() {
+	}
 
 	public CubicSegment(Point cp1, Point cp2, Point endPoint) {
 		this.cp1 = cp1;

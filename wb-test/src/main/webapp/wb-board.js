@@ -20,7 +20,20 @@ WB.Board = WB.Class.extend({
 	
 	pointer: null,
 	
+	speechPlayer: null,
+	
+	urlResolver: null,
+	
+	font: null,
+	
 	init: function(opts) {
+		
+		if (opts && opts.urlResolver) {
+			this.urlResolver = opts.urlResolver;
+		} else {
+			this.urlResolver = function(path) {return path;};
+		}
+		
 		if (opts && opts.commitPane) {
 			this.commitPane = opts.commitPane;
 		}
@@ -31,8 +44,15 @@ WB.Board = WB.Class.extend({
 		if (opts && opts.drawingSoundEngine) {
 			this.drawingSoundEngine = opts.drawingSoundEngine;
 		}
+		if (opts && opts.speechPlayer) {
+			this.speechPlayer = opts.speechPlayer;
+		}
 		if (opts && opts.pointer) {
 			this.pointer = opts.pointer;
+		}
+		
+		if (opts && opts.font) {
+			this.font = opts.font;
 		}
 		
 		if (opts && opts.baseVelocity) {
