@@ -1,10 +1,12 @@
 
 WB.Segment = WB.Class.extend({
 	
+	_type: 'Segment',
+	
 	// potentially consider prevSegment and nextSegment in this contract
 	outline: function(pane) {
 	},
-	
+
 	createAnimation: function() {
 		return null;
 	}
@@ -13,7 +15,9 @@ WB.Segment = WB.Class.extend({
 
 
 WB.MoveToSegment = WB.Segment.extend({
-	
+
+	_type: 'MoveToSegment',
+
 	point: null,
 	
 	init: function(opts) {
@@ -77,13 +81,15 @@ WB.MoveToAnimation = WB.Animation.extend({
 
 WB.ClosePathSegment = WB.Segment.extend({
 	
+	_type: 'ClosePathSegment',
+	
 	outline: function(pane) {
 		var p = pane.getPathStartPoint();
 		if (p) {
 			pane.lineTo(p);
 		}
 	},
-	
+
 	createAnimation: function() {
 		return new WB.ClosePathAnimation();
 	}
@@ -133,6 +139,8 @@ WB.ClosePathAnimation = WB.Animation.extend({
 
 
 WB.LineSegment = WB.Segment.extend({
+	
+	_type: 'LineSegment',
 	
 	resolvePoint: function(pane) {
 		return null;
@@ -245,6 +253,8 @@ WB.LineAnimation = WB.Animation.extend({
  */
 WB.ArcSegment = WB.Segment.extend({
 	
+	_type: 'ArcSegment',
+	
 	arc: null,
 	
 	init: function(opts) {
@@ -262,6 +272,8 @@ WB.ArcSegment = WB.Segment.extend({
 		
 		var isCircle = Math.abs(arc.radiusX - arc.radiusY) < 1e-2;
 		var isRotated = Math.abs(arc.xAxisRotation) >= 1e-2;
+		
+		// TODO connect current point with the first arc point with a straight line
 		
 		if (isCircle && !isRotated) {
 			// simple arc
@@ -304,6 +316,39 @@ WB.ArcSegment = WB.Segment.extend({
 });
 
 
+WB.ArcAngleSegment = WB.ArcSegment.extend({
+	
+	_type: 'ArcAngleSegment',
+	
+	center: null,
+	
+	radiusX: null,
+	
+	radiusY: null,
+	
+	xAxisRotation: null,
+	
+	startAngle: null,
+	
+	endAngle: null,
+	
+	counterclockwise: null,
+	
+	init: function(opts) {
+		if (opts) {
+			for (var k in opts) {
+				this[k] = opts[k];
+			}
+		}
+	},
+
+	resolveArc: function(pane) {
+		return this;
+	},
+	
+});
+
+
 WB.ArcSegmentAnimation = WB.Animation.extend({
 	
 	init: function(arcsegm) {
@@ -316,6 +361,7 @@ WB.ArcSegmentAnimation = WB.Animation.extend({
 		this.velocity = board.getBaseVelocity();
 		
 		this.arc = this.arcsegm.resolveArc(this.pane);
+		console.log('arc: ' + JSON.stringify(this.arc));
         this.da = this.arc.endAngle - this.arc.startAngle;
 		this.done = false;
 	},
@@ -343,14 +389,18 @@ WB.ArcSegmentAnimation = WB.Animation.extend({
 		    }
 			eap = this.arc.startAngle + this.da*distance/totalDistance;
 			if (!isRotated) {
+				console.log('!!! HERE !!!');
 				this.pane.arc(this.arc.center, this.arc.radiusX, this.arc.startAngle, 
 						eap, this.arc.counterclockwise);
-				this.lastPoint = pane.toGlobalPoint({x: Math.cos(eap) * this.arc.radiusX, 
-			    		y: Math.sin(eap) * this.arc.radiusX});
+				this.lastPoint = this.pane.toGlobalPoint({
+						x: this.arc.center.x + Math.cos(eap) * this.arc.radiusX, 
+			    		y: this.arc.center.y + Math.sin(eap) * this.arc.radiusX
+			    	});
 				if (!this.endPoint) {
 					this.endPoint = this.pane.toGlobalPoint({
-						x: Math.cos(this.arc.endAngle) * this.arc.radiusX, 
-			    		y: Math.sin(this.arc.endAngle) * this.arc.radiusX});
+						x: this.arc.center.x + Math.cos(this.arc.endAngle) * this.arc.radiusX, 
+			    		y: this.arc.center.y + Math.sin(this.arc.endAngle) * this.arc.radiusX
+			    	});
 				}
 			} else {
 	            var tr = new WB.Transform();

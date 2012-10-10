@@ -10,14 +10,18 @@ public class AAA {
 	
 	public static void main(String[] args) throws Exception {
 		
+		final String scr = "script1";
+		
+		System.out.println("Script: " + scr);
+		
 		JSONObject js = new JSONObject(IoHelper.readText(AAA.class, 
-				"script2.json", "UTF-8"));
+				scr + ".json", "UTF-8"));
 		
 		Script script = (Script) new Parser().fromJson(js, Script.class);
 		
 		File root = new File("src/main/webapp");
 		
-		File scriptFolder = new File(root, "script2");
+		File scriptFolder = new File(root, scr);
 		if (!scriptFolder.exists()) {
 			scriptFolder.mkdir();
 		}

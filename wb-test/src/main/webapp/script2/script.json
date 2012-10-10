@@ -5,7 +5,51 @@
       "_type": "DrawShapeEpisode",
       "height": 1,
       "position": {
-        "x": 20,
+        "x": 0,
+        "y": 0
+      },
+      "realHeight": 1,
+      "realWidth": 1,
+      "rotationDegree": 0,
+      "shape": {
+        "_type": "PathShape",
+        "pathSegment": {
+          "_type": "PathSegment",
+          "segments": [{
+            "_type": "ArcAngleSegment",
+            "center": {
+              "x": 100,
+              "y": 100
+            },
+            "counterclockwise": false,
+            "endAngle": 7,
+            "radiusX": 50,
+            "radiusY": 50,
+            "startAngle": 0,
+            "xAxisRotation": 0
+          }]
+        }
+      },
+      "width": 1
+    },
+    {
+      "_type": "PanEpisode",
+      "point": {
+        "x": -720,
+        "y": 0
+      }
+    },
+    {
+      "_type": "SpeechEpisode",
+      "engine": "cere",
+      "text": "In some more business use cases, one may want to show a table of products revenue",
+      "track": "cere-4a81dcaf-7041-3063-b485-4f117484c0b6"
+    },
+    {
+      "_type": "DrawShapeEpisode",
+      "height": 1,
+      "position": {
+        "x": 740,
         "y": 20
       },
       "realHeight": 1,
@@ -67,7 +111,7 @@
       "_type": "DrawTextEpisode",
       "fontHeight": 30,
       "position": {
-        "x": 180,
+        "x": 900,
         "y": 25
       },
       "text": "2011"
@@ -76,7 +120,7 @@
       "_type": "DrawTextEpisode",
       "fontHeight": 30,
       "position": {
-        "x": 250,
+        "x": 970,
         "y": 25
       },
       "text": "2012"
@@ -85,7 +129,7 @@
       "_type": "DrawTextEpisode",
       "fontHeight": 30,
       "position": {
-        "x": 30,
+        "x": 750,
         "y": 60
       },
       "text": "Desktop"
@@ -94,7 +138,7 @@
       "_type": "DrawTextEpisode",
       "fontHeight": 25,
       "position": {
-        "x": 180,
+        "x": 900,
         "y": 60
       },
       "text": "30M"
@@ -103,7 +147,7 @@
       "_type": "DrawTextEpisode",
       "fontHeight": 25,
       "position": {
-        "x": 260,
+        "x": 980,
         "y": 60
       },
       "text": "25M"
@@ -112,7 +156,7 @@
       "_type": "DrawTextEpisode",
       "fontHeight": 30,
       "position": {
-        "x": 30,
+        "x": 750,
         "y": 100
       },
       "text": "Mobile"
@@ -121,7 +165,7 @@
       "_type": "DrawTextEpisode",
       "fontHeight": 25,
       "position": {
-        "x": 180,
+        "x": 900,
         "y": 100
       },
       "text": "15M"
@@ -130,16 +174,22 @@
       "_type": "DrawTextEpisode",
       "fontHeight": 25,
       "position": {
-        "x": 260,
+        "x": 980,
         "y": 100
       },
       "text": "45M"
     },
     {
+      "_type": "SpeechEpisode",
+      "engine": "cere",
+      "text": "Or a chart",
+      "track": "cere-896454f5-8f06-3618-bbd2-c765022d544d"
+    },
+    {
       "_type": "DrawShapeEpisode",
       "height": 1,
       "position": {
-        "x": 400,
+        "x": 1120,
         "y": 40
       },
       "realHeight": 1,
@@ -233,10 +283,16 @@
       "width": 1
     },
     {
+      "_type": "SpeechEpisode",
+      "engine": "cere",
+      "text": "Or maybe a sales person would like to explain exactly how a product works.",
+      "track": "cere-2c929211-912e-375a-a5e7-9df77fca6354"
+    },
+    {
       "_type": "DrawShapeEpisode",
       "height": 1,
       "position": {
-        "x": 420,
+        "x": 1140,
         "y": 260
       },
       "realHeight": 1,
@@ -1145,6 +1201,13 @@
       },
       "shapeId": "cogs1",
       "width": 1
+    },
+    {
+      "_type": "PanEpisode",
+      "point": {
+        "x": -1440,
+        "y": 0
+      }
     }
   ]
 }

@@ -3173,6 +3173,27 @@
         }
       },
       {
+        "_type": "PolylineShape",
+        "points": [
+          {
+            "x": 294,
+            "y": 636
+          },
+          {
+            "x": 305.72,
+            "y": 636
+          },
+          {
+            "x": 305.72,
+            "y": 636.48
+          },
+          {
+            "x": 294,
+            "y": 636.48
+          }
+        ]
+      },
+      {
         "_type": "PathShape",
         "pathSegment": {
           "_type": "PathSegment",
@@ -5654,6 +5675,27 @@
             {"_type": "ClosePathSegment"}
           ]
         }
+      },
+      {
+        "_type": "PolylineShape",
+        "points": [
+          {
+            "x": 324,
+            "y": 636
+          },
+          {
+            "x": 335.81,
+            "y": 636
+          },
+          {
+            "x": 335.81,
+            "y": 636.48
+          },
+          {
+            "x": 324,
+            "y": 636.48
+          }
+        ]
       },
       {
         "_type": "PathShape",

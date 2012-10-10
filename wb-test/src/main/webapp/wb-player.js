@@ -5,6 +5,8 @@ WB.Player = WB.Class.extend({
 	
 	framer: null,
 	
+	state: null,
+	
 	init: function(opts) {
 		if (opts && opts.board) {
 			this.board = opts.board;
@@ -21,61 +23,102 @@ WB.Player = WB.Class.extend({
 			        window.oRequestAnimationFrame || 
 			        window.msRequestAnimationFrame ||
 			        function(callback) {
-			          window.setTimeout(callback, 1000 / 60);
+			        	window.setTimeout(callback, 1000 / 60);
 			        };
 		      })();
 		}
+		
+		this.state = 'none';
 	},
 	
 	play: function(animation, onDone) {
 		
-		var startTime = new Date().getTime();
-		var board = this.board;
+		if (this.state != 'none' && this.state != 'ended') {
+			throw "player is busy, state: " + this.state;
+		}
+
+		this.startTime = new Date().getTime();
+		this.animation = this.board.createAnimation(animation);
+		this.onDone = onDone;
+		this.state = 'playing';
+		if (this._listeners) {
+			this._notify('state', {state: this.state});
+		}
+		
+		this.animation.start(this.board);
+
+		if (this.animation.isDone()) {
+			this._end();
+		} else {
+			this._frame();
+		}
+	},
+	
+	suspend: function() {
+		console.log('suspend');
+		this.state = 'suspended';
+		this.suspendedTime = new Date().getTime();
+		if (this._listeners) {
+			this._notify('state', {state: this.state});
+		}
+	},
+
+	resume: function() {
+		console.log('resume');
+		
+		var resumeTime = new Date().getTime();
+		var newStartTime = this.startTime + (resumeTime - this.suspendedTime);
+		this.suspendedTime = null;
+		this.startTime = newStartTime;
+		
+		this.state = 'playing';
 		var framer = this.framer;
 		var that = this;
-		
-		animation.start(board);
+		framer(function() {
+			that._frame();
+		});
 
-		if (animation.isDone()) {
-			animation.end();
-			board.animationPane._clearCanvas();
-			console.log('animation stopped');
-			if (onDone) {
-				onDone();
+		if (this._listeners) {
+			this._notify('state', {state: this.state});
+		}
+	},
+	
+	_end: function() {
+		this.animation.end();
+		this.state = 'ended';
+		if (this._listeners) {
+			this._notify('state', {state: this.state});
+		}
+		if (this.onDone) {
+			this.onDone();
+		}
+	},
+	
+	_frame: function() {
+		
+		if (!this.animation.isDone()) {
+			var frameTime = new Date().getTime() - this.startTime;
+			if (frameTime > 0) {
+				this.animation.frame(frameTime);
+				if (this._listeners) {
+					this._notify('frame', {time: frameTime});
+				}
 			}
-			board.state({height: 1});
-			board.afterFrame();
-			return;
 		}
 		
-		function frame() {
-			if (!animation.isDone()) {
-				var frameTime = new Date().getTime() - startTime;
-				if (frameTime > 0) {
-					board.animationPane._clearCanvas();
-					animation.frame(frameTime);
-					that._notify(frameTime);
-				}
-			}
-			if (animation.isDone()) {
-				animation.end();
-				board.animationPane._clearCanvas();
-				console.log('animation stopped');
-				if (onDone) {
-					onDone();
-				}
-				board.state({height: 1});
-			} else {
+		if (this.animation.isDone()) {
+			this._end();
+		} else {
+			var that = this;
+			var framer = this.framer;
+			if (this.state == 'playing') {
 				framer(function() {
-					frame();
+					that._frame();
 				});
 			}
-			
-			board.afterFrame();
 		}
-		
-		frame();
 	},
+
 	
 	playShape: function(shape, onDone) {
 		this.play(shape.createAnimation(), onDone);
@@ -89,19 +132,20 @@ WB.Player = WB.Class.extend({
 		this.play(animable.createAnimation(), onDone);
 	},
 	
-	postFrame: function(listener) {
-		if (!this._postFrameListeners) {
-			this._postFrameListeners = [];
+	bind: function(listener) {
+		if (!this._listeners) {
+			this._listeners = [];
 		}
-		this._postFrameListeners.push(listener);
+		this._listeners.push(listener);
 	},
 	
-	_notify: function(time) {
-		if (this._postFrameListeners) {
-			for (var i = 0; i < this._postFrameListeners.length; i++) {
-				this._postFrameListeners[i](time);
+	_notify: function(type, payload) {
+		if (this._listeners) {
+			for (var i = 0; i < this._listeners.length; i++) {
+				this._listeners[i](type, payload);
 			}
 		}
 	}
 	
 });
+

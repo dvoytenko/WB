@@ -2,6 +2,8 @@
 
 WB.CurveSegment = WB.Segment.extend({
 
+	_type: 'CurveSegment',
+	
 	expand: function(pane) {
 		return [];
 	},

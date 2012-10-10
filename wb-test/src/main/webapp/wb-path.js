@@ -30,6 +30,8 @@ WB.PathShape = WB.Shape.extend({
 });
 
 WB.PathSegment = WB.Segment.extend({
+
+	_type: 'PathSegment',
 	
 	segments: null,
 	

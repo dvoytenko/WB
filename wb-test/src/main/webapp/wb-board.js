@@ -26,6 +26,8 @@ WB.Board = WB.Class.extend({
 	
 	font: null,
 	
+	showBounds: false,
+	
 	init: function(opts) {
 		
 		if (opts && opts.urlResolver) {
@@ -61,6 +63,10 @@ WB.Board = WB.Class.extend({
 			this.baseVelocity = 100;
 		}
 		
+		if (opts && opts.showBounds) {
+			this.showBounds = opts.showBounds;
+		}
+		
 		this._shapes = [];
 		this._state = {};
 	},
@@ -78,11 +84,37 @@ WB.Board = WB.Class.extend({
 	},
 	
 	commitShape: function(shape, render) {
-		// TODO: get the current transform
-		this._shapes.push(shape);
-		if (render) {
-			shape.draw(this.commitPane);
+		
+		// render and bounds
+		this.commitPane.captureBounds(render);
+		shape.draw(this.commitPane);
+		var bounds = this.commitPane.endCaptureBounds();
+		// console.log('got bounds! ' + JSON.stringify(bounds));
+		
+		if (bounds) {
+			var d = 4;
+			bounds = WB.Geom.growBounds(bounds, d);
+			// console.log('new bounds: ' + JSON.stringify(bounds));
 		}
+		
+		if (this.showBounds && bounds) {
+			var loc = this.commitPane.toLocalBounds(bounds);
+			console.log('local: ' + JSON.stringify(loc));
+			var ctx = this.commitPane.context;
+			ctx.save();
+			ctx.lineWidth = 1;
+			ctx.strokeStyle = 'blue';
+			ctx.strokeRect(loc.topleft.x, loc.topleft.y, 
+					loc.bottomright.x - loc.topleft.x,
+					loc.bottomright.y - loc.topleft.y);
+			ctx.restore();
+		}
+
+		this._shapes.push({
+			shape: shape,
+			tr: this.commitPane.currentTransform,
+			bounds: bounds
+		});
 	},
 	
 	withTr: function(transform, runnable) {
@@ -118,6 +150,107 @@ WB.Board = WB.Class.extend({
 		if (this.pointer) {
 			this.pointer.update(this._state);
 		}
+	},
+	
+	getAnchorPoint: function() {
+		var tr = this.commitPane.defaultTransform;
+		return tr.transformPoint(0, 0);
+	},
+	
+	updateAnchorPoint: function(newPoint) {
+		console.log('updateAnchorPoint: ' + newPoint.x + ', ' + newPoint.y);
+		
+		var tr = new WB.Transform(this.commitPane.defaultTransform);
+		var oldPoint = tr.transformPoint(0, 0);
+		var dx = newPoint.x - oldPoint.x;
+		var dy = newPoint.y - oldPoint.y;
+		tr.translate(dx, dy);
+		
+		this.commitPane.updateDefaultTransform(tr);
+		this.animationPane.updateDefaultTransform(tr);
+		if (this.pointer && this.pointer.pane) {
+			// TODO put pointer's pane under board and have pointer access it from heres
+			this.pointer.pane.updateDefaultTransform(tr);
+		}
+
+		// redraw main pane
+		var that = this;
+		var pane = this.commitPane;
+		pane._clearCanvas();
+		var screenBounds = pane.globalBounds();
+		console.log('screenBounds: ' + JSON.stringify(screenBounds));
+		for (var i = 0; i < this._shapes.length; i++) {
+			var c = this._shapes[i];
+			console.log('shape bounds: ' + JSON.stringify(c.bounds));
+			var incl = !c.bounds || WB.Geom.boundsOverlap(screenBounds, c.bounds);
+			if (incl) {
+				console.log('shape overlaps');
+				
+				var tr = c.tr ? c.tr : new WB.Transform();
+				pane.withTr(tr, function() {
+					if (that.showBounds && c.bounds) {
+						var loc = pane.toLocalBounds(c.bounds);
+						console.log('local: ' + JSON.stringify(loc));
+						var ctx = pane.context;
+						ctx.save();
+						ctx.lineWidth = 1;
+						ctx.strokeStyle = 'blue';
+						ctx.strokeRect(loc.topleft.x, loc.topleft.y, 
+								loc.bottomright.x - loc.topleft.x,
+								loc.bottomright.y - loc.topleft.y);
+						ctx.restore();
+					}
+					c.shape.draw(pane);
+				});
+			} else {
+				console.log('shape doesn\'t overlaps');
+			}
+		}
+	},
+	
+	createAnimation: function(animation) {
+		return new WB.BoardAnimation(animation, this);
+	}
+	
+});
+
+
+WB.BoardAnimation = WB.Class.extend({
+	
+	init: function(animation, board) {
+		this.animation = animation;
+		this.board = board;
+	},
+	
+	start: function(board) {
+		console.log('animation started');
+		this.animation.start(board);
+	},
+	
+	frame: function(time) {
+		this.board.animationPane._clearCanvas();
+		this.animation.frame(time);
+		this.board.afterFrame();
+	},
+	
+	isDone: function() {
+		return this.animation.isDone();
+	},
+	
+	end: function() {
+		this.animation.end();
+		this.board.animationPane._clearCanvas();
+		this.board.state({height: 1});
+		
+		// TODO smoothly move
+		this.board.state({position: {x: 10, y: 390}});
+		
+		this.board.afterFrame();
+		console.log('animation stopped');
+	},
+	
+	getTimeLeft: function() {
+		return this.animation.getTimeLeft();
 	}
 	
 });

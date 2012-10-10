@@ -1,8 +1,6 @@
 package wb.model;
 
-// TODO segment that movers cursor automatically is not a very good idea
-
-public abstract class ArcSegment extends Segment {
+public class ArcSegment extends Segment {
 	
 	public static class Arc {
 		
@@ -75,8 +73,18 @@ public abstract class ArcSegment extends Segment {
 		radius
 	*/
 	
+	public Arc arc;
 	
-	protected abstract Arc resolveArc(Pane pane);
+	public ArcSegment() {
+	}
+
+	public ArcSegment(Arc arc) {
+		this.arc = arc;
+	}
+	
+	protected Arc resolveArc(Pane pane) {
+		return arc;
+	}
 	
 	@Override
 	public Double getStartAngle(Pane canvas) {

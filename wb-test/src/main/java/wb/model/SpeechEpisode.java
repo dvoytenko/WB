@@ -8,11 +8,13 @@ public class SpeechEpisode extends Episode {
 	
 	public String voice;
 	
+	public String engine;
+	
 	@Override
 	public void prepare(PrepareScript preparator) {
 		super.prepare(preparator);
 		if (this.track == null && this.text != null) {
-			String name = preparator.createAudio(this.text, this.voice);
+			String name = preparator.createAudio(this.text, this.engine, this.voice);
 			this.track = name;
 		}
 	}

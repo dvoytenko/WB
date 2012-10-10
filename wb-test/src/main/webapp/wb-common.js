@@ -47,6 +47,35 @@ WB.GeomProto = WB.Class.extend({
 	
 	rad: function(degree) {
 		return this.PI_2 * degree / 360; 
+	},
+	
+	boundsOverlap: function(b1, b2) {
+		// topleft/bottomright
+		return (b1.topleft.x <= b2.bottomright.x && b2.topleft.x <= b1.bottomright.x)
+			&& (b1.topleft.y <= b2.bottomright.y && b2.topleft.y <= b1.bottomright.y);
+	},
+	
+	includeBounds: function(b1, b2) {
+		// topleft/bottomright
+		return {
+			topleft: {x: Math.min(b1.topleft.x, b2.topleft.x), y: Math.min(b1.topleft.y, b2.topleft.y)},
+			bottomright: {x: Math.max(b1.bottomright.x, b2.bottomright.x), y: Math.max(b1.bottomright.y, b2.bottomright.y)},
+		};
+	},
+	
+	moveBounds: function(b, dx, dy) {
+		// topleft/bottomright
+		return {
+			topleft: {x: b.topleft.x + dx, y: b.topleft.y + dy},
+			bottomright: {x: b.bottomright.x + dx, y: b.bottomright.y + dy},
+		};
+	},
+	
+	growBounds: function(b, d) {
+		return {
+			topleft: {x: b.topleft.x - d, y: b.topleft.y - d},
+			bottomright: {x: b.bottomright.x + d, y: b.bottomright.y + d}
+		};
 	}
 	
 });
@@ -209,6 +238,20 @@ WB.Pane = WB.Class.extend({
     	this.defaultTransform = tr;
     	this.defaultTransformInv = new WB.Transform(tr).invert();
 		this._setCanvasTransform(null);
+		
+		this.rendering = true;
+    },
+    
+    updateDefaultTransform: function(defaultTransform) {
+    	this.defaultTransform = defaultTransform;
+    	this.defaultTransformInv = new WB.Transform(defaultTransform).invert();
+    	
+		if (this._trStack.length == 0) {
+			this._setCanvasTransform(null);
+		} else {
+			var tr = this._trStack[this._trStack.length - 1];
+			this._setCanvasTransform(tr);
+		}
     },
     
 	withTr: function(transform, runnable) {
@@ -278,19 +321,119 @@ WB.Pane = WB.Class.extend({
 					+ this.canvas.width + ', ' 
 					+ this.canvas.height + ')');
 		}
-		this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+		this.context.save();
+		this.context.setTransform(1, 0, 0, 1, 0, 0);
+		if (this.rendering) {
+			this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+		}
+		this.context.restore();
+	},
+	
+	captureBounds: function(allowRendering) {
+		this.rendering = allowRendering;
+		this.capturer = {};
+	},
+	
+	endCaptureBounds: function() {
+		this.rendering = true;
+		var bounds = this.capturer;
+		// console.log('captured end: ' + JSON.stringify(bounds));
+		if (bounds && !bounds.topleft) {
+			bounds = null;
+		}
+		this.capturer = null;
+		return bounds;
+	},
+	
+	_capture: function(ax1, ay1, ax2, ay2) {
+		if (!this.capturer) {
+			return;
+		}
+		
+//		console.log('capture: ' + JSON.stringify([ax1, ay1, ax2, ay2]));
+		
+		var p1 = this.toGlobalPointXY(ax1, ay1);
+		var p2 = this.toGlobalPointXY(ax2, ay2);
+
+		var x1 = Math.min(p1.x, p2.x);
+		var x2 = Math.max(p1.x, p2.x);
+		var y1 = Math.min(p1.y, p2.y);
+		var y2 = Math.max(p1.y, p2.y);
+		
+		if (!this.capturer.topleft) {
+			this.capturer.topleft = {x: x1, y: y1};
+		} else {
+			this.capturer.topleft.x = Math.min(this.capturer.topleft.x, x1);
+			this.capturer.topleft.y = Math.min(this.capturer.topleft.y, y1);
+		}
+
+		if (!this.capturer.bottomright) {
+			this.capturer.bottomright = {x: x2, y: y2};
+		} else {
+			this.capturer.bottomright.x = Math.max(this.capturer.bottomright.x, x2);
+			this.capturer.bottomright.y = Math.max(this.capturer.bottomright.y, y2);
+		}
+
+//		console.log('-> captured: ' + JSON.stringify([
+//		    this.capturer.topleft.x, 
+//		    this.capturer.topleft.y, 
+//		    this.capturer.bottomright.x, 
+//		    this.capturer.bottomright.y]));
+	},
+	
+	globalBounds: function() {
+		return {
+			topleft: this.defaultTransformInv.transformPoint(0, 0),
+			bottomright: this.defaultTransformInv.transformPoint(this.canvas.width, this.canvas.height)
+		};
 	},
 	
 	setCursorPositionGlobal: function(p) {
 		this.cursorPosition = p;
 	},
 	
+	toGlobalPointXY: function(x, y) {
+		return this.currentTransform.transformPoint(x, y);
+	},
+	
 	toGlobalPoint: function(p) {
 		return this.currentTransform.transformPoint(p.x, p.y);
 	},
 	
+	toGlobalBounds: function(b) {
+		if (!b) {
+			return null;
+		}
+		var p1 = this.toGlobalPoint(b.topleft);
+		var p2 = this.toGlobalPoint(b.bottomright);
+		var x1 = Math.min(p1.x, p2.x);
+		var x2 = Math.max(p1.x, p2.x);
+		var y1 = Math.min(p1.y, p2.y);
+		var y2 = Math.max(p1.y, p2.y);
+		return {
+			topleft: {x: x1, y: y1},
+			bottomright: {x: x2, y: y2}
+		};
+	},
+	
 	toLocalPoint: function(p) {
 		return this.currentTransformInv.transformPoint(p.x, p.y);
+	},
+
+	toLocalBounds: function(b) {
+		if (!b) {
+			return null;
+		}
+		var p1 = this.toLocalPoint(b.topleft);
+		var p2 = this.toLocalPoint(b.bottomright);
+		var x1 = Math.min(p1.x, p2.x);
+		var x2 = Math.max(p1.x, p2.x);
+		var y1 = Math.min(p1.y, p2.y);
+		var y2 = Math.max(p1.y, p2.y);
+		return {
+			topleft: {x: x1, y: y1},
+			bottomright: {x: x2, y: y2}
+		};
 	},
 	
 	_update: function(p, global, pathStart) {
@@ -383,6 +526,14 @@ WB.Pane = WB.Class.extend({
 		}
 		this.context.lineTo(p.x, p.y);
 		this._update(p, false, false);
+		if (this.capturer) {
+			var sp = this.getPathStartPoint();
+			if (sp) {
+				this._capture(sp.x, sp.y, p.x, p.y);
+			} else {
+				this._capture(p.x, p.y, p.x, p.y);
+			}
+		}
 	},
 	
 	/**
@@ -402,6 +553,10 @@ WB.Pane = WB.Class.extend({
 		// last point
 		var p = {x: Math.cos(eAngle) * r, y: Math.sin(eAngle) * r};
 		this._update(p, false, false);
+		if (this.capturer) {
+			// TRICK: r is always maximum of (rx,ry) thus this should be correct
+			this._capture(c.x - r, c.y - r, c.x + r, c.y + r);
+		}
 	},
 	
 	stroke: function() {
@@ -409,12 +564,19 @@ WB.Pane = WB.Class.extend({
 			console.log('context.lineWidth = ' + this.lineWidth);
 			console.log('context.stroke()');
 		}
-		this.context.lineWidth = this.lineWidth;
-		this.context.stroke();
+		if (this.rendering) {
+			this.context.lineWidth = this.lineWidth;
+			this.context.stroke();
+		}
 	},
 	
 	drawImage: function(img, x, y, width, height) {
-		this.context.drawImage(img, x, y, width, height);
+		if (this.rendering) {
+			this.context.drawImage(img, x, y, width, height);
+		}
+		if (this.capturer) {
+			this._capture(x, y, x + width, y + height);
+		}
 	}
 	
 });

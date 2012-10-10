@@ -1,0 +1,304 @@
+{
+	episodes: [
+
+		{
+			_type: 'DrawShapeEpisode',
+			_desc: 'remove',
+			position: {x: 0, y: 0},
+			width: 1,
+			height: 1,
+			realWidth: 1,
+			realHeight: 1,
+			rotationDegree: 0,
+			shape: {
+				_type: 'PathShape',
+				pathSegment: {
+					_type: 'PathSegment',
+					segments: [
+						{
+							_type: 'ArcAngleSegment',
+							center: {x: 100, y: 100},
+							radiusX: 50,
+							radiusY: 50,
+							startAngle: 0,
+							endAngle: 7
+						},
+					]
+				}
+			}
+		},
+
+		{
+			_type: 'PanEpisode',
+			point: {x: -1440, y: 0}
+		},
+
+
+
+		/*
+			Part 3
+		*/		
+
+		{
+			_type: 'SpeechEpisode',
+			text: 'So how does it all work? In the core of everything is a script. A script contains steps.',
+			engine: 'cere'
+		},
+
+		{
+			_type: 'DrawShapeEpisode',
+			_desc: 'script table',
+			position: {x: 1460, y: 20},
+			width: 1,
+			height: 1,
+			realWidth: 1,
+			realHeight: 1,
+			rotationDegree: 0,
+			shape: {
+				_type: 'PathShape',
+				pathSegment: {
+					_type: 'PathSegment',
+					segments: [
+						{
+							_type: 'MoveToSegment',
+							point: {x: 0, y: 10}
+						},
+						{
+							_type: 'LineToSegment',
+							point: {x: 220, y: 10}
+						},
+						{
+							_type: 'LineToSegment',
+							point: {x: 220, y: 300}
+						},
+						{
+							_type: 'LineToSegment',
+							point: {x: 0, y: 300}
+						},
+						{
+							_type: 'ClosePathSegment'
+						},
+
+						{
+							_type: 'MoveToSegment',
+							point: {x: 0, y: 110}
+						},
+						{
+							_type: 'LineToSegment',
+							point: {x: 220, y: 110}
+						},
+
+						{
+							_type: 'MoveToSegment',
+							point: {x: 0, y: 210}
+						},
+						{
+							_type: 'LineToSegment',
+							point: {x: 220, y: 210}
+						},
+					]
+				}
+			}
+		},
+
+		{
+			_type: 'SpeechEpisode',
+			text: 'Some steps draw shapes, others draw text.',
+			engine: 'cere'
+		},
+		
+		{
+			_type: 'DrawTextEpisode',
+			_desc: 'episode 1',
+			text: '(1)',
+			position: {x: 1470, y: 30},
+			fontHeight: 30
+		},
+
+		{
+			_type: 'DrawShapeEpisode',
+			_desc: 'episode 1 - square',
+			position: {x: 1540, y: 50},
+			width: 1,
+			height: 1,
+			realWidth: 1,
+			realHeight: 1,
+			rotationDegree: 0,
+			shape: {
+				_type: 'PathShape',
+				pathSegment: {
+					_type: 'PathSegment',
+					segments: [
+						{
+							_type: 'MoveToSegment',
+							point: {x: 0, y: 0}
+						},
+						{
+							_type: 'LineToSegment',
+							point: {x: 50, y: 0}
+						},
+						{
+							_type: 'LineToSegment',
+							point: {x: 50, y: 50}
+						},
+						{
+							_type: 'LineToSegment',
+							point: {x: 0, y: 50}
+						},
+						{
+							_type: 'ClosePathSegment'
+						},
+					]
+				}
+			}
+		},
+
+		{
+			_type: 'DrawShapeEpisode',
+			_desc: 'episode 1 - circle',
+			position: {x: 1540, y: 50},
+			width: 1,
+			height: 1,
+			realWidth: 1,
+			realHeight: 1,
+			rotationDegree: 0,
+			shape: {
+				_type: 'PathShape',
+				pathSegment: {
+					_type: 'PathSegment',
+					segments: [
+						{
+							_type: 'ArcAngleSegment',
+							center: {x: 60, y: 50},
+							radiusX: 25,
+							radiusY: 25,
+							startAngle: 0,
+							endAngle: 7
+						},
+					]
+				}
+			}
+		},
+
+		{
+			_type: 'DrawTextEpisode',
+			_desc: 'episode 2',
+			text: '(2)',
+			position: {x: 1470, y: 130},
+			fontHeight: 30
+		},
+
+		{
+			_type: 'DrawTextEpisode',
+			_desc: 'episode 2 - text',
+			text: 'Text!',
+			position: {x: 1510, y: 170},
+			fontHeight: 40
+		},
+
+		
+		{
+			_type: 'SpeechEpisode',
+			text: 'And yet others play speech recordings.',
+			engine: 'cere'
+		},
+		
+		{
+			_type: 'DrawTextEpisode',
+			_desc: 'episode 3',
+			text: '(3)',
+			position: {x: 1470, y: 230},
+			fontHeight: 30
+		},
+
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'audio10',
+			position: {x: 1540, y: 240},
+			width: 1,
+			height: 1,
+			realWidth: 3,
+			realHeight: 3,
+			rotationDegree: 0
+		},
+
+
+		{
+			_type: 'SpeechEpisode',
+			text: 'How can we charge for something like this? One approach: we would charge 1 dollar per a minute of a produced video. We will keep our logo in a corner of this video.',
+			engine: 'cere'
+		},
+
+		{
+			_type: 'DrawTextEpisode',
+			text: '1 minute = $1',
+			position: {x: 1760, y: 100},
+			fontHeight: 60
+		},
+
+		{
+			_type: 'DrawTextEpisode',
+			text: 'with our logo in a corner',
+			position: {x: 1760, y: 180},
+			fontHeight: 30
+		},
+
+		{
+			_type: 'SpeechEpisode',
+			text: 'A user can also get rid of our logo for a little extra.',
+			engine: 'cere'
+		},
+		
+		{
+			_type: 'DrawShapeEpisode',
+			_desc: 'cross out',
+			position: {x: 1760, y: 100},
+			width: 1,
+			height: 1,
+			realWidth: 1,
+			realHeight: 1,
+			rotationDegree: 0,
+			shape: {
+				_type: 'PathShape',
+				pathSegment: {
+					_type: 'PathSegment',
+					segments: [
+						{
+							_type: 'MoveToSegment',
+							point: {x: 0, y: 80}
+						},
+						{
+							_type: 'LineToSegment',
+							point: {x: 360, y: 110}
+						},
+						
+						{
+							_type: 'MoveToSegment',
+							point: {x: 310, y: 0}
+						},
+						{
+							_type: 'LineToSegment',
+							point: {x: 360, y: 60}
+						}
+					]
+				}
+			}
+		},
+
+		{
+			_type: 'DrawTextEpisode',
+			text: '$2',
+			position: {x: 2070, y: 40},
+			fontHeight: 60
+		},
+		
+
+
+		{
+			_type: 'PanEpisode',
+			point: {x: -2160, y: 0}
+		},
+		
+	]
+	
+}

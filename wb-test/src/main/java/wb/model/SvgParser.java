@@ -21,8 +21,10 @@ public class SvgParser {
 	public static void main(String[] args) throws Exception {
 		
 		final String[] files = {
-				"cogs1.svg",
-				"cogs2.svg",
+				"valessiobrito_Coloured_Pencils.svg",
+				"klsgfx_Pencils_5.svg",
+				"CoD_fsfe_Pencils.svg",
+				"1330550291.svg",
 				};
 		for (String fileName : files) {
 			System.out.println(fileName);
@@ -76,6 +78,9 @@ public class SvgParser {
 		}
 		if (root.getName().equals("path")) {
 			return parsePath(root);
+		}
+		if (root.getName().equals("polyline")) {
+			return parsePolyline(root);
 		}
 		
 		return null;
@@ -158,6 +163,37 @@ public class SvgParser {
 		GroupShape top = new GroupShape();
 		top.transform = parseTransform(root);
 		parseChildren(root, top);
+		return top;
+	}
+
+	/**
+	 * http://www.w3.org/TR/SVG/shapes.html#PolylineElement
+	 */
+	private Shape parsePolyline(Element root) {
+		
+		String pointsAttr = root.attributeValue("points");
+		if (pointsAttr == null || pointsAttr.isEmpty()) {
+			return null;
+		}
+		
+		// points
+		PolylineShape shape = new PolylineShape();
+		/*
+		 * The points that make up the polyline. 
+		 * All coordinate values are in the user coordinate system
+		 */
+		shape.points.addAll(parseListOfPoints(pointsAttr));
+		
+		Shape top;
+		Transform tr = parseTransform(root);
+		if (tr != null) {
+			GroupShape group = new GroupShape();
+			group.transform = tr;
+			group.shapes.add(shape);
+			top = group;
+		} else {
+			top = shape;
+		}
 		return top;
 	}
 
@@ -266,6 +302,53 @@ public class SvgParser {
 			action.apply(tr);
 		}
 		return tr;
+	}
+
+	/**
+	 * http://www.w3.org/TR/SVG/shapes.html#PointsBNF
+	 */
+	private List<Point> parseListOfPoints(String ps) {
+
+		// read all numbers
+		int beg = 0;
+		List<Double> values = new ArrayList<Double>();
+		for (int i = 0; i <= ps.length(); i++) {
+			char c = i < ps.length() ? ps.charAt(i) : 0;
+			
+			// end of number?
+			if ((Character.isLetter(c) && Character.toLowerCase(c) != 'e')
+					|| Character.isWhitespace(c)
+					|| c == ',' || c == ';' || c == 0
+					|| (i > beg && c == '-' && 
+						Character.toLowerCase(ps.charAt(i-1)) != 'e')) {
+				if (i > beg) {
+					String s = ps.substring(beg, i).trim();
+					if (s.length() > 0) {
+						values.add(Double.parseDouble(s));
+					}
+				}
+				if (c != '-') {
+					beg = i + 1;
+				} else {
+					beg = i;
+				}
+			}
+		}
+		
+		/*
+		 * If an odd number of coordinates is provided, then the element 
+		 * is in error, with the same user agent behavior as occurs with 
+		 * an incorrectly specified ‘path’ element.
+		 */
+		if (values.size() % 2 == 1) {
+			throw new IllegalArgumentException("odd number of coordinates!");
+		}
+		
+		List<Point> list = new ArrayList<Point>();
+		for (int i = 0; i < values.size(); i += 2) {
+			list.add(new Point(values.get(i), values.get(i + 1)));
+		}
+		return list;
 	}
 
 	private List<PathAction> parsePathActions(String d) {

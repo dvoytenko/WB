@@ -1,0 +1,46 @@
+{
+  "_type": "GroupShape",
+  "shapes": [{
+    "_type": "GroupShape",
+    "shapes": [{
+      "_type": "GroupShape",
+      "shapes": [{
+        "_type": "GroupShape",
+        "shapes": [],
+        "transform": {
+          "_type": "Transform",
+          "m": [
+            1,
+            0,
+            0,
+            0.7643548,
+            0.7869748,
+            68.514008
+          ]
+        }
+      }],
+      "transform": {
+        "_type": "Transform",
+        "m": [
+          4.4798736,
+          0,
+          0,
+          2.9865824,
+          -22.373489,
+          -404.56074
+        ]
+      }
+    }],
+    "transform": {
+      "_type": "Transform",
+      "m": [
+        1,
+        0,
+        0,
+        1,
+        -330.8657,
+        -462.96595
+      ]
+    }
+  }]
+}

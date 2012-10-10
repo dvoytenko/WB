@@ -31,6 +31,7 @@
     <script src="wb-basicshapes.js"></script>
     <script src="wb-text.js"></script>
     <script src="wb-eraser.js"></script>
+    <script src="wb-pan.js"></script>
     
     <script src="wb-parser.js"></script>
     <script src="wb-player.js"></script>
@@ -60,17 +61,30 @@
 		<a href="javascript:void(0);" onclick="eq1anim()">EQ 1 Anim</a>
 		<a href="javascript:void(0);" onclick="letterH1()">Letter H</a>
 		<a href="javascript:void(0);" onclick="speech1()">Speech 1</a>
-		<a href="javascript:void(0);" onclick="script1()">Script 1</a>
-		<a href="javascript:void(0);" onclick="script2()">Script 2</a>
 		<a href="javascript:void(0);" onclick="eraser1()">Eraser 1</a>
+		<a href="javascript:void(0);" onclick="pan1()">Pan 1</a>
+		<a href="javascript:void(0);" onclick="pan2()">Pan 2</a>
+
+		<a href="javascript:void(0);" onclick="script1()">Script 1</a>
+		<!--
+		<a href="javascript:void(0);" onclick="script2()">Script 2</a>
+		<a href="javascript:void(0);" onclick="script3()">Script 3</a>
+		<a href="javascript:void(0);" onclick="script4()">Script 4</a>
+		<a href="javascript:void(0);" onclick="script5()">Script 5</a>
+		-->
 	</div>
 	
 	<div id="status" style="border: 1px solid gray; margin: 4px; width: 720px;">
 		status
 	</div>
 	
+	<div id="bottombar" style="border: 1px solid gray; margin: 4px; width: 720px;">
+	</div>
+	
 	<div id="container" style="position: relative; margin: 4px; padding: 0; width: 720px; height: 405px;">
+		<!--
 		<canvas id="gridCanvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 1;"></canvas>
+		-->
 		<canvas id="canvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 2;"></canvas>
 		<canvas id="animCanvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 3;"></canvas>
 		<canvas id="pointerCanvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 4;"></canvas>
@@ -259,6 +273,135 @@
 			var pane = new WB.Pane({canvas: document.getElementById('canvas')});
 			shape.draw(pane);
 		}
+
+		
+		function bindPlayer(player) {
+			
+			$('#bottombar').html('<a href="javascript:void(0);"></a>');
+			var a = $('#bottombar a');
+			a.click(function() {
+				if (player.state == 'playing') {
+					player.suspend();
+				} else {
+					player.resume();
+				}
+			});
+
+			player.bind(function(event, opts) {
+				if (event == 'frame') {
+					var p = player.board.animationPane.getCurrentPoint();
+					status('Time: ' + (opts.time) + ' milliseconds' 
+							+ '; Position: ' + Math.round(p.x) + ',' + Math.round(p.y));
+				} else if (event == 'state') {
+					if (opts.state == 'playing') {
+						a.text('Suspend');
+					} else if (opts.state == 'suspended') {
+						a.text('Resume');
+					} else if (opts.state == 'ended') {
+						$('#bottombar').html('Finished');
+					}
+				}
+			});
+		}
+		
+		function playAny(animable, opts) {
+			
+			if (!opts) {
+				opts = {};
+			}
+			
+			// 720 x 405
+			var canvasWidth = 720;
+			var canvasHeight = 405;
+			var realWidth = 1440; // mm
+			var realHeight = 810; // mm
+			
+			var baseVelocity = 500;
+			
+			var defaultTransform = new WB.Transform();
+					//.scale(canvasWidth/realWidth, canvasHeight/realHeight)
+					//.translate(realWidth/2, realHeight/2);
+			
+			var board = new WB.Board({
+				commitPane: new WB.Pane({
+					canvas: document.getElementById('canvas'), 
+					defaultTransform: defaultTransform
+					}),
+				animationPane: new WB.Pane({
+					canvas: document.getElementById('animCanvas'), 
+					defaultTransform: defaultTransform
+					}),
+				drawingSoundEngine: new WB.DrawingSoundEngine({
+					//baseVelocity: baseVelocity
+					}),
+				pointer: new WB.HandPoint({
+					pane: new WB.Pane({
+						canvas: document.getElementById('pointerCanvas'),
+						defaultTransform: defaultTransform
+						})
+					}),
+				speechPlayer: new WB.SpeechPlayer({urlResolver: opts.urlResolver}),
+				urlResolver: opts.urlResolver,
+				baseVelocity: baseVelocity,
+				showBounds: false
+				});
+			
+			board.commitPane._clearCanvas();
+			board.animationPane._clearCanvas();
+			board.pointer.pane._clearCanvas();
+			
+			var player = new WB.Player({board: board});
+			bindPlayer(player);
+
+			$.ajax({url: 'fonts/nova_thin_extended.json', contentType: 'application/json'})
+			.done(function(json) {
+				console.log('got data');
+				if (json) {
+					if (json.constructor == String) {
+						json = JSON.parse(json);
+					}
+					console.log(json);
+					
+					var parser = new WB.Parser();
+					var font = parser.parse(json);
+					console.log(font);
+					
+					board.font = font;
+					
+					player.playAny(animable);
+				}
+			});
+		}
+		
+		function playScript(scriptId) {
+			
+			var urlResolver = function(path) {
+				if (path.substr(0,1) != '/') {
+					path = '/' + path;
+				}
+				return '/wb-test/' + scriptId + path;
+			}
+
+			$.ajax({url: urlResolver('script.json'), contentType: 'application/json'})
+			.done(function(json) {
+				console.log('got data');
+				if (json) {
+					if (json.constructor == String) {
+						json = JSON.parse(json);
+					}
+					console.log(json);
+					
+					var parser = new WB.Parser();
+					var script = parser.parse(json);
+					console.log(script);
+					
+					playAny(new WB.EpisodeList({episodes: script.episodes, pause: 100}),
+							{urlResolver: urlResolver});
+				}
+			});
+		}
+		
+		
 		
 		function anim1() {
 			
@@ -319,11 +462,6 @@
 			});
 
 			var player = new WB.Player({board: board});
-			player.postFrame(function(time) {
-				var p = board.animationPane.getCurrentPoint();
-				status('Time: ' + (time) + ' milliseconds' 
-						+ '; Position: ' + Math.round(p.x) + ',' + Math.round(p.y));
-			});
 			
 			var group = new WB.GroupShape({
 				transform: new WB.Transform().scale(2, 2),
@@ -361,11 +499,6 @@
 				});
 
 			var player = new WB.Player({board: board});
-			player.postFrame(function(time) {
-				var p = board.animationPane.getCurrentPoint();
-				status('Time: ' + (time) + ' milliseconds' 
-						+ '; Position: ' + Math.round(p.x) + ',' + Math.round(p.y));
-			});
 
 			var group = new WB.GroupShape({
 				transform: new WB.Transform().rotate(WB.Geom.rad(45)),
@@ -526,7 +659,8 @@
 											defaultTransform: defaultTransform}),
 				animationPane: new WB.Pane({canvas: document.getElementById('animCanvas'), 
 											defaultTransform: defaultTransform}),
-				baseVelocity: 100
+				baseVelocity: 100,
+				showBounds: false
 				});
 			
 			var path = new WB.PathShape({
@@ -573,11 +707,6 @@
 				});
 
 			var player = new WB.Player({board: board});
-			player.postFrame(function(time) {
-				var p = board.animationPane.getCurrentPoint();
-				status('Time: ' + (time) + ' milliseconds' 
-						+ '; Position: ' + Math.round(p.x) + ',' + Math.round(p.y));
-			});
 
 			player.playAny(path);
 		}
@@ -609,102 +738,6 @@
 					]
 			});
 			playAny(path);
-		}
-		
-		function playAny(animable, opts) {
-			
-			if (!opts) {
-				opts = {};
-			}
-			
-			// 720 x 405
-			var canvasWidth = 720;
-			var canvasHeight = 405;
-			var realWidth = 1440; // mm
-			var realHeight = 810; // mm
-			
-			var baseVelocity = 500;
-			
-			var defaultTransform = new WB.Transform();
-					//.scale(canvasWidth/realWidth, canvasHeight/realHeight)
-					//.translate(realWidth/2, realHeight/2);
-			
-			var board = new WB.Board({
-				commitPane: new WB.Pane({
-					canvas: document.getElementById('canvas'), 
-					defaultTransform: defaultTransform
-					}),
-				animationPane: new WB.Pane({
-					canvas: document.getElementById('animCanvas'), 
-					defaultTransform: defaultTransform
-					}),
-				drawingSoundEngine: new WB.DrawingSoundEngine({
-					//baseVelocity: baseVelocity
-					}),
-				pointer: new WB.MarkerPoint({
-					pane: new WB.Pane({
-						canvas: document.getElementById('pointerCanvas'),
-						defaultTransform: defaultTransform
-						})
-					}),
-				speechPlayer: new WB.SpeechPlayer({urlResolver: opts.urlResolver}),
-				urlResolver: opts.urlResolver,
-				baseVelocity: baseVelocity
-				});
-			
-			var player = new WB.Player({board: board});
-			player.postFrame(function(time) {
-				var p = board.animationPane.getCurrentPoint();
-				status('Time: ' + (time) + ' milliseconds' 
-						+ '; Position: ' + Math.round(p.x) + ',' + Math.round(p.y));
-			});
-
-			$.ajax({url: 'fonts/nova_thin_extended.json', contentType: 'application/json'})
-			.done(function(json) {
-				console.log('got data');
-				if (json) {
-					if (json.constructor == String) {
-						json = JSON.parse(json);
-					}
-					console.log(json);
-					
-					var parser = new WB.Parser();
-					var font = parser.parse(json);
-					console.log(font);
-					
-					board.font = font;
-					
-					player.playAny(animable);
-				}
-			});
-		}
-		
-		function playScript(scriptId) {
-			
-			var urlResolver = function(path) {
-				if (path.substr(0,1) != '/') {
-					path = '/' + path;
-				}
-				return '/wb-test/' + scriptId + path;
-			}
-
-			$.ajax({url: urlResolver('script.json'), contentType: 'application/json'})
-			.done(function(json) {
-				console.log('got data');
-				if (json) {
-					if (json.constructor == String) {
-						json = JSON.parse(json);
-					}
-					console.log(json);
-					
-					var parser = new WB.Parser();
-					var script = parser.parse(json);
-					console.log(script);
-					
-					playAny(new WB.EpisodeList({episodes: script.episodes, pause: 100}),
-							{urlResolver: urlResolver});
-				}
-			});
 		}
 		
 		function cloud1() {
@@ -847,10 +880,23 @@
 				
 				chart1: new WB.Transform().translate(100, 50).scale(1, 1);
 				cogs1: 
-				cogs2: 
+				cogs2:
+				ruler2: new WB.Transform().translate(10, 10).scale(0.4, 0.4);
+				laurent_amerique_du_sud_politique: new WB.Transform().translate(10, 10).scale(2, 2);
+				
+				ftjuk_volume: new WB.Transform().translate(10, 10).scale(2, 2)
+				eighth_note-down: new WB.Transform().translate(10, 70).scale(0.1, 0.1)
+				+qubodup_Public_Domain_Audio_Symbol: new WB.Transform().translate(10, 70).scale(0.1, 0.1)
+				+BigRedSmile_Listen..._Ok_: new WB.Transform().translate(10, 70).scale(0.3, 0.3)
+				+tom_trumpet
+				+Anonymous_Audio_File_Icon: new WB.Transform().translate(10, 70).scale(0.5, 0.5)
+				molumen_elephant_silhouet: new WB.Transform().translate(10, 70).scale(0.5, 0.5)
+				
+				(low) valessiobrito_Coloured_Pencils
+				(low) klsgfx_Pencils_5
 			*/
-			var name = 'cogs2';
-			var tr = new WB.Transform().translate(100, 50).scale(1, 1);
+			var name = '1330550291';
+			var tr = new WB.Transform().translate(10, 70).scale(0.2, 0.2);
 			$.ajax({url: 'shapes/' + name + '.json', contentType: 'application/json'})
 			.done(function(json) {
 				console.log('got data');
@@ -907,9 +953,11 @@
 				chart1: new WB.Transform().translate(100, 50).scale(1, 1);
 				cogs1: 
 				cogs2: 
+				laurent_amerique_du_sud_politique: new WB.Transform().translate(10, 10).scale(2, 2);
+				win7_mute: 
 			*/
-			var name = 'cogs1';
-			var tr = new WB.Transform().translate(100, 50).scale(1, 1);
+			var name = 'laurent_amerique_du_sud_politique';
+			var tr = new WB.Transform().translate(10, 10).scale(2, 2);
 			$.ajax({url: 'shapes/' + name + '.json', contentType: 'application/json'})
 			.done(function(json) {
 				console.log('got data');
@@ -976,7 +1024,19 @@
 		function script2() {
 			playScript('script2');
 		}
-		
+
+		function script3() {
+			playScript('script3');
+		}
+
+		function script4() {
+			playScript('script4');
+		}
+
+		function script5() {
+			playScript('script5');
+		}
+
 		function eraser1() {
 			var pane = new WB.Pane({canvas: document.getElementById('canvas')});
 			
@@ -994,6 +1054,126 @@
 			});
 			
 			eraser.draw(pane);
+		}
+		
+		function pan1() {
+
+			// 720 x 405
+			var canvasWidth = 720;
+			var canvasHeight = 405;
+			var realWidth = 1440; // mm
+			var realHeight = 810; // mm
+			
+			var baseVelocity = 500;
+			
+			var defaultTransform = new WB.Transform();
+					//.scale(canvasWidth/realWidth, canvasHeight/realHeight)
+					//.translate(realWidth/2, realHeight/2);
+			
+			var board = new WB.Board({
+				commitPane: new WB.Pane({
+					canvas: document.getElementById('canvas'), 
+					defaultTransform: defaultTransform
+					}),
+				animationPane: new WB.Pane({
+					canvas: document.getElementById('animCanvas'), 
+					defaultTransform: defaultTransform
+					}),
+				baseVelocity: baseVelocity,
+				showBounds: false
+				});
+			
+			var player = new WB.Player({board: board});
+			bindPlayer(player);
+
+			var name = 'cogs2';
+			var tr = new WB.Transform().translate(100, 50).scale(1, 1);
+			$.ajax({url: 'shapes/' + name + '.json', contentType: 'application/json'})
+			.done(function(json) {
+				console.log('got data');
+				if (json) {
+					if (json.constructor == String) {
+						json = JSON.parse(json);
+					}
+					console.log(json);
+					
+					var parser = new WB.Parser();
+					var shape = parser.parse(json);
+					console.log(shape);
+					
+					var group = new WB.GroupShape({
+						transform: tr,
+						shapes: [shape]
+					});
+					
+					board.commitShape(group, true);
+					
+					player.playAny(new WB.EpisodeList({
+						episodes: [
+							new WB.PanEpisode({point: {x: -200, y: -100}}),
+							new WB.PanEpisode({point: {x: 200, y: 100}})
+						    ], 
+						pause: 100})
+					);
+				}
+			});
+		}
+		
+		function pan2() {
+
+			// 720 x 405
+			var canvasWidth = 720;
+			var canvasHeight = 405;
+			var realWidth = 1440; // mm
+			var realHeight = 810; // mm
+			
+			var baseVelocity = 500;
+			
+			var defaultTransform = new WB.Transform();
+					//.scale(canvasWidth/realWidth, canvasHeight/realHeight)
+					//.translate(realWidth/2, realHeight/2);
+			
+			var board = new WB.Board({
+				commitPane: new WB.Pane({
+					canvas: document.getElementById('canvas'), 
+					defaultTransform: defaultTransform
+					}),
+				animationPane: new WB.Pane({
+					canvas: document.getElementById('animCanvas'), 
+					defaultTransform: defaultTransform
+					}),
+				baseVelocity: baseVelocity,
+				showBounds: false
+				});
+			
+			var player = new WB.Player({board: board});
+			bindPlayer(player);
+
+			$.ajax({url: 'fonts/nova_thin_extended.json', contentType: 'application/json'})
+			.done(function(json) {
+				console.log('got data');
+				if (json) {
+					if (json.constructor == String) {
+						json = JSON.parse(json);
+					}
+					console.log(json);
+					
+					var parser = new WB.Parser();
+					var font = parser.parse(json);
+					console.log(font);
+					
+					var text = new WB.TextShape({
+						text: 'H',
+						font: font,
+						fontHeight: 60,
+						startPoint: {x: 10, y: 10}
+					});
+					
+					player.playAny(text, function() {
+						player.playAny(new WB.PanEpisode({point: {x: 200, y: 100}}));
+					});
+				}
+			});
 		}
 		
 	</script>
