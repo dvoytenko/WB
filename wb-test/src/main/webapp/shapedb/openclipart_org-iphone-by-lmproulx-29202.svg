@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="133"
+   height="205.03899"
+   id="svg3379"
+   sodipodi:version="0.32"
+   inkscape:version="0.46"
+   version="1.0"
+   sodipodi:docname="iphone.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+  <defs
+     id="defs3381">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 526.18109 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="744.09448 : 526.18109 : 1"
+       inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
+       id="perspective3387" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="168.88266"
+     inkscape:cy="75.53288"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:showpageshadow="false"
+     inkscape:window-width="1130"
+     inkscape:window-height="713"
+     inkscape:window-x="503"
+     inkscape:window-y="138" />
+  <metadata
+     id="metadata3384">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license
+           rdf:resource="http://creativecommons.org/licenses/publicdomain/" />
+        <dc:title>Iphone</dc:title>
+        <dc:date>2010-02-07</dc:date>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Louis-Martin Proulx</dc:title>
+          </cc:Agent>
+        </dc:creator>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/publicdomain/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-299.21429,-109.84269)">
+    <g
+       id="g3372"
+       transform="translate(-170.30541,-251.68158)">
+      <path
+         sodipodi:nodetypes="ccccccccc"
+         id="path2436"
+         d="M 470.5197,378.1226 L 478.0197,552.08398 C 477.81245,557.06144 477.86202,564.76013 489.53267,565.56325 L 591.0197,562.09994 C 593.28456,560.54352 598.13661,559.79007 597.80746,550.02896 L 601.5197,373.90535 C 601.15089,365.80556 596.24668,363.68293 590.61101,362.52427 L 480.6772,368.71706 C 473.00647,370.0452 471.66484,374.04247 470.5197,378.1226 z"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+      <path
+         sodipodi:nodetypes="ccccccccc"
+         id="path2438"
+         d="M 475.01972,382.11695 L 481.97581,547.65526 C 481.78361,552.3917 481.82958,559.71764 492.65388,560.48187 L 586.78116,557.18624 C 588.88178,555.70519 593.38197,554.98822 593.07669,545.69973 L 596.51972,378.1039 C 596.17765,370.3963 591.62909,368.37643 586.40211,367.27389 L 484.44061,373.16683 C 477.32614,374.43065 476.08181,378.23438 475.01972,382.11695 z"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+      <path
+         sodipodi:nodetypes="ccccc"
+         id="path3210"
+         d="M 485.01972,395.35943 L 489.66098,532.05204 L 587.12735,528.96875 L 588.51973,389.19285 L 485.01972,395.35943 z"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+      <path
+         transform="matrix(1,0,0,1.0543114,-88.9803,-50.836837)"
+         d="M 639,564.61218 A 10.25,10.25 0 1 1 618.5,564.61218 A 10.25,10.25 0 1 1 639,564.61218 z"
+         sodipodi:ry="10.25"
+         sodipodi:rx="10.25"
+         sodipodi:cy="564.61218"
+         sodipodi:cx="628.75"
+         id="path3212"
+         style="fill:#ffffff;fill-opacity:0.9921875;stroke:#000000;stroke-width:0.97390264;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         sodipodi:type="arc" />
+      <path
+         sodipodi:nodetypes="ccccc"
+         id="path3214"
+         d="M 535.0197,539.79869 L 535.0197,549.79869 L 545.0197,549.29869 L 544.5197,539.29869 L 535.0197,539.79869 z"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+    </g>
+  </g>
+</svg>

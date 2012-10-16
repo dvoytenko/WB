@@ -5,57 +5,43 @@ import java.util.List;
 
 public class GroupShape extends Shape {
 	
+	public String id;
+	
+	public String title;
+	
+	public String source;
+	
+	public String url;
+	
+	public String author;
+	
+	public Bounds localBounds;
+	
 	public Transform transform;
 	
+	public List<String> tags;
+	
 	public List<Shape> shapes = new ArrayList<Shape>();
-	
-	@Override
-	public Animation createAnimation() {
-		List<Animable> animations = new ArrayList<Animable>();
-		for (Shape shape : this.shapes) {
-			animations.add(shape);
-		}
-		return new AnimationImpl(animations);
-	}
-	
+
 	@Override
 	public void draw(final Pane pane) {
 		pane.withTr(this.transform, new Runnable() {
 			@Override
 			public void run() {
-				for (Shape shape : GroupShape.this.shapes) {
-					shape.draw(pane);
-				}
+				_draw(pane);
 			}
 		});
 	}
 	
-	private class AnimationImpl extends ListAnimation {
-
-		public AnimationImpl(List<? extends Animable> animableList) {
-			super(animableList);
+	private void _draw(Pane pane) {
+		for (Shape shape : this.shapes) {
+			shape.draw(pane);
 		}
-		
-		@Override
-		public void start(final Board board) {
-			board.withTr(GroupShape.this.transform, new Runnable() {
-				@Override
-				public void run() {
-					AnimationImpl.super.start(board);
-				}
-			});
-		}
-		
-		@Override
-		public void frame(final long time) {
-			getBoard().withTr(GroupShape.this.transform, new Runnable() {
-				@Override
-				public void run() {
-					AnimationImpl.super.frame(time);
-				}
-			});
-		}
-
+	}
+	
+	@Override
+	public Animation createAnimation() {
+		return null;
 	}
 
 }

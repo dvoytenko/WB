@@ -18,8 +18,7 @@ public class RectangleShape extends PathBasedShape {
 		segments.add(new LineToSegment(new Point(this.topleft.x + this.width, this.topleft.y)));
 		segments.add(new LineToSegment(new Point(this.topleft.x + this.width, this.topleft.y + this.height))); 
 		segments.add(new LineToSegment(new Point(this.topleft.x, this.topleft.y + this.height)));
-		// TODO close segment instead
-		segments.add(new LineToSegment(this.topleft));
+		segments.add(new ClosePathSegment());
 		return segments;
 	}
 

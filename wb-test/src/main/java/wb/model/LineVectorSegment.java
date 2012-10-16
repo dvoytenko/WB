@@ -1,5 +1,6 @@
 package wb.model;
 
+// NOT USED YET
 public class LineVectorSegment extends LineSegment {
 	
 	public Double distance;

@@ -152,6 +152,12 @@ WB.Board = WB.Class.extend({
 		}
 	},
 	
+	cancel: function() {
+		console.log('cancelled!');
+		this.commitPane._clearCanvas();
+		this.animationPane._clearCanvas();
+	},
+	
 	getAnchorPoint: function() {
 		var tr = this.commitPane.defaultTransform;
 		return tr.transformPoint(0, 0);

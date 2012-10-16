@@ -1,0 +1,651 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+	
+	<title>Bookmarklet</title>
+  
+<style>
+	body {
+		padding: 0;
+		margin: 0;
+		font-size: 14px;
+		line-height: 18px;
+		color: #333;	
+	}
+
+	body, label, input, textarea, select, button {
+		font-family: "Helvetica Neue",Arial,sans-serif;
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		margin: 0;
+		color: #333;
+		text-rendering: optimizeLegibility;
+	}
+	
+	h2 {
+		font-size: 18px;
+		font-weight: bold;
+		line-height: 20px;
+	}
+	
+	h3 {
+		font-size: 14px;
+		font-weight: normal;
+		line-height: 1;
+	}
+	
+	img {
+		border: 0;
+	}
+
+	ul {
+		list-style: none;
+	}
+	
+	ul, ol {
+		padding: 0;
+		margin: 0;
+	}
+	
+	ol ul, ul ol, ul ul, ol ol {
+		-webkit-margin-before: 0px;
+		-webkit-margin-after: 0px;
+	}
+	
+	ul ul, ol ul {
+		list-style-type: circle;
+	}
+	
+	li {
+		display: list-item;
+		text-align: -webkit-match-parent;
+		margin: 0;
+		padding: 0;
+	}
+	
+	a {
+		/*
+		color: #0084B4;
+		*/
+		color: #878869;
+		text-decoration: none;
+		outline: 0;
+	}
+	
+	a:hover {
+		text-decoration: underline;
+	}
+	
+	small {
+		font-size: 12px;
+	}
+	
+	i, cite, em, var, address, dfn {
+		font-style: italic;
+	}
+	
+	p {
+		margin: 0;
+	}
+	
+	form {
+		display: block;
+		font-size: 12px;
+		margin-bottom: 0;
+		margin-top: 0;
+	}
+	
+	button {
+		border: 0;
+		margin: 0;
+		-webkit-appearance: button;
+	}
+
+	input[type="button"], input[type="submit"], input[type="reset"],
+			input[type="checkbox"], 
+			input[type="file"]::-webkit-file-upload-button, button {
+		padding: 1px 6px;
+		width: auto;
+	}
+	
+	input, textarea, select {
+		display: inline-block;
+		width: 210px;
+		padding: 4px;
+		margin: 0;
+		outline: none;
+		background-color: white;
+		border: 1px solid #CCC;
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+		border-radius: 3px;
+	}
+	
+	label, input, textarea, select {
+		margin: 0;
+		font-size: 13px;
+		line-height: 20px;
+	}
+	
+	canvas {
+		border: 1px solid #9C9898;
+	}
+
+
+	header {
+		position: fixed;
+		top: 0;
+		right: 0;
+		left: 0;
+		z-index: 1000;
+		border-bottom: 2px solid rgba(0, 0, 0, .25);
+		width: 710px;
+		margin: 0 auto;
+		background-color: white;
+		height: 40px;
+		width: 1000px;
+	}
+	
+	#Logo {
+		float: left;
+		margin: 10px 5px;
+		padding: 0;
+		color: #24a624;
+		width: 90px;
+	}
+	
+	#Logo a {
+		color: inherit;
+		text-decoration: none;
+		text-transform: lowercase;
+	}
+	
+	.progress {
+		display: none;
+	}
+	
+	#ImageViewer.loading .progress {
+		display: block;
+	}
+
+	#ImageViewer.loading #ImageListPane,
+		#ImageViewer.loading #ImagePane {
+		display: none;
+	}
+
+	#ImageViewer.nocontent #ImageListPane,
+		#ImageViewer.nocontent #ImagePane {
+		display: none;
+	}
+
+	.notfound {
+		display: none;
+	}
+	
+	#ImageViewer.nocontent .notfound {
+		display: block;
+	}
+	
+	#ShapeDescListView {
+		overflow-x: scroll;
+		white-space: nowrap;
+	}
+
+	#ShapeDescListView .ShapeDesc {
+		border: 1px solid gray;
+		margin-right: 8px;
+		display: inline-block;
+	}
+	
+	.ShapeDesc {
+		cursor: pointer;
+	}
+
+	.ShapeDesc .Title {
+		max-width: 50px;
+		white-space: nowrap;
+		overflow-x: hidden;
+		text-overflow: ellipsis;
+		font-size: smaller;
+	}
+	
+	.ShapeDesc .Source {
+		display: none;
+	}
+	
+	.ShapeDesc .Thumb img {
+		width: 50px;
+		height: 50px;
+	}
+	
+	.Toolbar a {
+		margin-left: 8px;
+	}
+	
+	.Toolbar a.Save {
+		visibility: hidden;
+	}
+	
+	#SaveDialog {
+		display: none;
+	}
+	
+</style>
+
+    <script src="jquery-1.7.1.js"></script>
+    <script src="underscore-1.3.1.js"></script>
+    <script src="backbone-0.9.2-164.js"></script>
+    
+    <script src="wb-proto.js"></script>
+    
+    <script src="wb-common.js"></script>
+    
+    <script src="wb-script.js"></script>
+    <script src="wb-soundfx.js"></script>
+    <script src="wb-speech.js"></script>
+    <script src="wb-pointer.js"></script>
+    <script src="wb-board.js"></script>
+    
+    <script src="wb-shape.js"></script>
+    <script src="wb-segment.js"></script>
+    <script src="wb-path.js"></script>
+    <script src="wb-curve.js"></script>
+    <script src="wb-basicshapes.js"></script>
+    <script src="wb-text.js"></script>
+    <script src="wb-eraser.js"></script>
+    <script src="wb-pan.js"></script>
+    
+    <script src="wb-parser.js"></script>
+    <script src="wb-player.js"></script>
+    
+	<script type="text/javascript">
+	    $(document).ready(function() {
+	    	
+	    });
+	</script>
+    
+</head>
+
+<body>
+	
+	<div id="ImageViewer" class="loading">
+		<div class="notfound">No shapes found!</div>
+		<div class="progress"><img src="loading.gif"/></div>
+	
+		<div id="ImageListPane">
+			<div id="ShapeDescListView"></div>
+		</div>
+		
+		<div id="ImagePane">
+			
+			<div id="SaveDialog">
+				<div>Title: 
+					<input id="titleInput"/>
+				</div>
+				<div>Author: 
+					<input id="authorInput"/>
+				</div>
+				<div>
+					<input id="saveButton" type="button" value="Save"/>
+				</div>
+			</div>
+		
+			<div id="ShapeDetailView">
+
+				<div class="Toolbar">
+					<span>Actions: </span>
+					<a class="PlayToggle" href="javascript:void(0);">Play</a>
+					<a class="Save" href="javascript:void(0);">Save</a>
+				</div>
+				
+				<div id="container" style="position: relative; margin: 4px; padding: 0; width: 470px; height: 280px;">
+					<!--
+					<canvas id="gridCanvas" width="490" height="280" style="position: absolute; margin: 0; width: 490px; height: 280px; z-index: 1;"></canvas>
+					-->
+					<canvas id="canvas" width="470" height="280" style="position: absolute; margin: 0; width: 470px; height: 280px; z-index: 2;"></canvas>
+					<canvas id="animCanvas" width="470" height="280" style="position: absolute; margin: 0; width: 470px; height: 280px; z-index: 3;"></canvas>
+					<canvas id="pointerCanvas" width="470" height="280" style="position: absolute; margin: 0; width: 470px; height: 280px; z-index: 4;"></canvas>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+
+	<div id="templates" style="display: none;">
+		<div id="ShapeDescView" class="ShapeDesc">
+			<div class="Title"></div>
+			<div class="Source"></div>
+			<div class="Thumb"><img/></div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		var ShapeDesc = Backbone.Model.extend({
+			remove: function() {
+				this.destroy();
+			}
+		});
+		
+	
+		var ShapeDetailView = Backbone.View.extend({
+			
+			el: $('#ShapeDetailView'),
+			
+			events: {
+				'click a.PlayToggle': 'playToggle'
+			},
+			
+			initialize: function() {
+				
+				var baseVelocity = 1000;
+				var defaultTransform = new WB.Transform();
+				
+				this.pane = new WB.Pane({canvas: document.getElementById('canvas'),
+					defaultTransform: defaultTransform});
+				this.animationPane = new WB.Pane({canvas: document.getElementById('animCanvas'), 
+					defaultTransform: defaultTransform});
+				this.pointerPane = new WB.Pane({canvas: document.getElementById('pointerCanvas'),
+					defaultTransform: defaultTransform});
+				
+				// drawingSoundEngine: new WB.DrawingSoundEngine({})
+				// pointer: new WB.HandPoint({pane: this.pointerPane})
+				// speechPlayer: new WB.SpeechPlayer({urlResolver: opts.urlResolver})
+				// urlResolver: opts.urlResolver
+				this.board = new WB.Board({
+					commitPane: this.pane,
+					animationPane: this.animationPane,
+					baseVelocity: baseVelocity,
+					showBounds: false
+					});
+
+				this.player = new WB.Player({board: this.board});
+				
+				var that = this;
+				that.player.bind(function(event, opts) {
+					if (event == 'frame') {
+						var p = that.player.board.animationPane.getCurrentPoint();
+						//status('Time: ' + (opts.time) + ' milliseconds' 
+						//		+ '; Position: ' + Math.round(p.x) + ',' + Math.round(p.y));
+					} else if (event == 'state') {
+						that.updatePlayerState(opts.state);
+					}
+				});
+				
+				$('a.Save').click(function() {
+					that.showSaveDialog();
+				});
+				
+				$('#saveButton').click(function() {
+					that.saveShape();
+				});
+			},			
+
+			render: function() {
+			},
+			
+			setShape: function(descModel) {
+				this.model = descModel;
+				var model = this.model.toJSON();
+				// console.log('render: ' + JSON.stringify(model));
+
+				this.player.cancel();
+				this.board.cancel();
+
+				var parser = new WB.Parser();
+				var shape = parser.parse(model.shape);
+				console.log(shape);
+				
+				this.shapeLoaded(shape, true);
+				
+				if (window.location.host === 'localhost:8080') {
+					$('a.Save').css('visibility', 'visible');
+				}
+				
+				return this;
+			},
+			
+			shapeLoaded: function(shape, doRender) {
+				
+				this.shape = shape;
+
+				var tr = new WB.Transform();
+				console.log(shape.localBounds);
+				if (shape.localBounds) {
+					
+					var dWidth = this.pane.canvas.width;
+					var dHeight = this.pane.canvas.height;
+					var lWidth = Math.abs(shape.localBounds.bottomright.x - shape.localBounds.topleft.x);
+					var lHeight = Math.abs(shape.localBounds.bottomright.y - shape.localBounds.topleft.y);
+					console.log('w/h: ' + dWidth + ' vs ' + lWidth + '; ' + dHeight + ' vs ' + lHeight);
+					var scaleX = 1.0;
+					var scaleY = 1.0;
+					if (Math.abs(dWidth - lWidth) > 1e-2) {
+						scaleX = dWidth / lWidth;
+					}
+					if (Math.abs(dHeight - lHeight) > 1e-2) {
+						scaleY = dHeight / lHeight;
+					}
+					var scale = Math.min(scaleX, scaleY) * 0.9;
+					console.log('scale: ' + scale);
+					tr.scale(scale, scale);
+
+					// compensate
+					tr.translate(-shape.localBounds.topleft.x, 
+							-shape.localBounds.topleft.y);
+
+					// center
+					var dx = (dWidth - lWidth * scale) / 2;
+					var dy = (dHeight - lHeight * scale) / 2;
+					console.log('translate: ' + (-shape.localBounds.topleft.x + dx) + 
+							', ' + (-shape.localBounds.topleft.y + dy));
+					tr.translate(dx/scale, dy/scale);
+				}
+
+				var group = new WB.GroupShape({transform: tr, shapes: [shape]});
+				this.preparedShape = group;
+				
+				if (doRender) {
+					this.renderShape();
+				}
+				
+				this.updatePlayerState('none');
+			},
+			
+			renderShape: function() {
+				if (this.preparedShape) {
+					this.board.cancel();
+					this.preparedShape.draw(this.pane);
+				}
+			},
+			
+			updatePlayerState: function(state) {
+				var a = this.$el.find('a.PlayToggle');
+				if (!state || state == 'none' || state == 'ended' || state == 'cancelled') {
+					a.text('Play');
+				} else if (state == 'playing') {
+					a.text('Suspend');
+				} else if (state == 'suspended') {
+					a.text('Resume');
+				}
+			},
+			
+			playToggle: function() {
+				
+				var player = this.player;
+				var state = player.state;
+				console.log('play toggle at ' + state);
+
+				if (!state || state == 'none' || state == 'ended' || state == 'cancelled') {
+					if (this.preparedShape) {
+						this.pane._clearCanvas();
+						this.animationPane._clearCanvas();
+						player.playAny(this.preparedShape);
+					}
+				} else if (state == 'playing') {
+					player.suspend();
+				} else if (state == 'suspended') {
+					player.resume();
+				}
+			},
+			
+			showSaveDialog: function() {
+				var model = this.model.toJSON();
+				$('#titleInput').val(model.title);
+				$('#authorInput').val(model.author);
+				$('#SaveDialog').show();
+			},
+			
+			saveShape: function() {
+				
+				var model = this.model.toJSON();
+				
+				var meta = {
+					url: model.url,
+					source: model.source,
+					title: $('#titleInput').val(),
+					author: $('#authorInput').val(),
+					svgUrl: model.svgUrl,
+					shape: model.shape,
+					tags: model.tags
+				};
+				console.log(meta);
+				
+				$.ajax({
+					type: 'POST',
+					url: '/wb/service/shapedb/save',
+					contentType: 'application/json',
+					processData: false,
+					data: JSON.stringify(meta)
+				}).done(function() {
+					$('#SaveDialog').hide();
+				});
+			}
+			
+		});
+
+		shapeDetailApp = new ShapeDetailView();
+
+
+		var ShapeDescList = Backbone.Collection.extend({
+			
+			model: ShapeDesc
+			
+		});
+		
+		shapeDescListModel = new ShapeDescList();
+		
+		
+		var ShapeDescView = Backbone.View.extend({
+			
+			tagName: "div",
+			className: "ShapeDesc",
+			
+			skeleton: $('#ShapeDescView').html(),
+
+			events: {
+				'click': 'select'
+			},
+
+			initialize: function() {
+				this.model.bind('destroy', this.remove, this);
+			},			
+			
+			render: function() {
+				var model = this.model.toJSON();
+				// console.log('render: ' + JSON.stringify(model));
+				
+				this.$el.html(this.skeleton);
+				
+				this.$el.find('div.Title').text(model.title);
+				if (model.source) {
+					this.$el.find('div.Source').text(model.source);
+				}
+				this.$el.find('div.Thumb img').attr('src', model.thumbUrl);
+				
+				return this;
+			},
+			
+			select: function(e) {
+				console.log('select');
+				e.stopPropagation();
+				shapeDetailApp.setShape(this.model);
+			}
+			
+		});
+		
+		
+		var ShapeDescListView = Backbone.View.extend({
+			el: $('#ShapeDescListView'),
+			
+			model: shapeDescListModel,
+			
+			initialize: function() {
+				this.model.bind('add', this.addOne, this);
+				this.model.bind('reset', this.reAddAll, this);
+			},
+
+			render: function() {
+				return this;
+			},
+			
+			reAddAll: function() {
+				this.$el.html('');
+				this.model.each(this.addOne, this);
+			},			
+			
+			addOne: function(shapeDescModel) {
+				var view = new ShapeDescView({model: shapeDescModel});
+				this.$el.append(view.render().el);
+			},
+			
+		});
+
+		shapeDescListApp = new ShapeDescListView();
+		shapeDescListApp.render();
+	</script>
+
+	<!--
+		Load 
+	-->
+	<script type="text/javascript">
+	
+		function pullJson(url, success) {
+			console.log('pull data for ' + url);
+	    	var res = $.getJSON(
+	    		url,
+	    		function(data) {
+	    			console.log('got data for ' + url);
+	    			console.log(data);
+	    			success(data);
+	    		}
+	    	);
+	    	res.error(function(a, b, c) {
+	    		console.log('error in data for ' + url);
+	    		console.log(a);
+	    		console.log(b);
+	    		console.log(c);
+	    	});
+		}
+		
+	    $(document).ready(function() {
+	    	console.log('href: ' + location.href);
+	    	console.log('search: ' + location.search);
+
+	    	console.log('loading...');
+	    	$('#ImageViewer').toggleClass('loading', true);
+	    	pullJson(
+		    		'/wb/service/shapedb/extract' + location.search,
+		    		function(data) {
+		    	    	$('#ImageViewer').toggleClass('loading', false);
+		    	    	$('#ImageViewer').toggleClass('nocontent', data.length == 0);
+	    				shapeDescListModel.reset(data);
+		    		}
+		    	);
+	    });
+	</script>
+
+</body>
+</html>

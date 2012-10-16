@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+						http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd" >
+
+	<!-- 
+	<bean id="app.properties" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="ignoreUnresolvablePlaceholders" value="true"/>
+		<property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_NEVER"/>
+		<property name="localOverride" value="false"/>
+		<property name="placeholderPrefix" value="${app."/>
+		<property name="location" value="file:${soapp.admcfg}"/>
+		<property name="properties">
+			<map>
+				<entry key="mail.enabled" value="false"/>
+				<entry key="mail.mockEnabled" value="false"/>
+				<entry key="mail.bcc" value=""/>
+				<entry key="mxsync.enabled" value="false"/>
+				<entry key="mxsync.purge" value="false"/>
+				<entry key="mxsync.pullIntervalSeconds" value="120"/>
+			</map>
+		</property>
+	</bean>
+	-->
+	
+	<bean id="shapeDb" class="wb.web.app.ShapeDb">
+	</bean>
+
+	<!--
+	<bean id="scheduledExecutorFactory" class="org.springframework.scheduling.concurrent.ScheduledExecutorFactoryBean">
+		<property name="scheduledExecutorTasks">
+			<list>
+				<bean class="org.springframework.scheduling.concurrent.ScheduledExecutorTask">
+					<property name="timeUnit" value="MINUTES"/>
+				    <property name="delay" value="20"/>
+					<property name="period" value="60"/>
+					<property name="fixedRate" value="false"/>
+					<property name="runnable" ref="sync"/>
+				</bean>
+			</list>
+		</property>
+	</bean>
+	--> 
+	
+	<!--
+		Monitoring 
+	<bean id="jmx.exporter" class="org.springframework.jmx.export.MBeanExporter" lazy-init="false">
+		<property name="beans">
+			<map>
+				<entry key="esoapp.mon:name=AresServerMonitor">
+					<bean class="soapp.gwt.server.mon.AresServerMonitor">
+						<property name="aresServer" ref="aresServer"/>
+					</bean>
+				</entry>
+				<entry key="esoapp.mon:name=SignatureValidatorMonitor">
+					<bean class="soapp.gwt.server.mon.SignatureValidatorMonitor">
+						<property name="certificateValidator" ref="certificateValidator"/>
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	-->
+	
+</beans>

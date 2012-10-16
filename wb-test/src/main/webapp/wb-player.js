@@ -33,7 +33,9 @@ WB.Player = WB.Class.extend({
 	
 	play: function(animation, onDone) {
 		
-		if (this.state != 'none' && this.state != 'ended') {
+		if (this.state != 'none' 
+				&& this.state != 'ended'
+				&& this.state != 'cancelled') {
 			throw "player is busy, state: " + this.state;
 		}
 
@@ -54,6 +56,14 @@ WB.Player = WB.Class.extend({
 		}
 	},
 	
+	cancel: function() {
+		console.log('cancel');
+		this.state = 'cancelled';
+		if (this._listeners) {
+			this._notify('state', {state: this.state});
+		}
+	},
+
 	suspend: function() {
 		console.log('suspend');
 		this.state = 'suspended';
@@ -96,6 +106,8 @@ WB.Player = WB.Class.extend({
 	
 	_frame: function() {
 		
+//		debugger;
+		
 		if (!this.animation.isDone()) {
 			var frameTime = new Date().getTime() - this.startTime;
 			if (frameTime > 0) {
@@ -106,16 +118,17 @@ WB.Player = WB.Class.extend({
 			}
 		}
 		
-		if (this.animation.isDone()) {
+		if (this.state == 'cancelled') {
+			this.board.cancel();
+			this.state = 'ended';
+		} else if (this.animation.isDone()) {
 			this._end();
-		} else {
+		} else if (this.state == 'playing') {
 			var that = this;
 			var framer = this.framer;
-			if (this.state == 'playing') {
-				framer(function() {
-					that._frame();
-				});
-			}
+			framer(function() {
+				that._frame();
+			});
 		}
 	},
 

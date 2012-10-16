@@ -3,6 +3,8 @@ package wb.model;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.ArrayList;
@@ -11,6 +13,7 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 import org.dom4j.Document;
+import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 import org.json.JSONObject;
@@ -21,22 +24,20 @@ public class SvgParser {
 	public static void main(String[] args) throws Exception {
 		
 		final String[] files = {
-				"valessiobrito_Coloured_Pencils.svg",
-				"klsgfx_Pencils_5.svg",
-				"CoD_fsfe_Pencils.svg",
-				"1330550291.svg",
+				"karderio_computer_screen.svg",
+				"fortran_minimalist_monitor_and_computer.svg",
+				"pc.svg",
+				"server.svg",
+				"lmproulx_Iphone.svg",
+				"BenBois_iPhone_SVG.svg",
+				"hand_phone.svg",
 				};
 		for (String fileName : files) {
 			System.out.println(fileName);
 			
 			File file = new File("src/main/webapp/shapes/" + fileName);
 			
-			InputSource source = new InputSource(new FileInputStream(file));
-			
-			SAXReader reader = new SAXReader();
-			Document doc = reader.read(source);
-			
-			Shape shape = new SvgParser().parse(doc.getRootElement());
+			Shape shape = new SvgParser().parse(file);
 			
 			JSONObject js = (JSONObject) new Serializer().toJson(shape);
 			System.out.println(js.toString(2));
@@ -68,25 +69,52 @@ public class SvgParser {
 		*/
 	}
 	
+	public Shape parse(File file) throws IOException, DocumentException {
+		InputStream in = new FileInputStream(file);
+		try {
+			return parse(new InputSource(in));
+		} finally {
+			in.close();
+		}
+	}
+	
+	public Shape parse(InputStream stream) throws IOException, DocumentException {
+		return parse(new InputSource(stream));
+	}
+	
+	public Shape parse(InputSource source) throws DocumentException {
+		SAXReader reader = new SAXReader();
+		Document doc = reader.read(source);
+		return parse(doc.getRootElement());
+	}
+
 	public Shape parse(Element root) {
 		
-		if (root.getName().equals("svg")) {
+		if (root.getName().equalsIgnoreCase("svg")) {
 			return parseSvg(root);
 		}
-		if (root.getName().equals("g")) {
+		if (root.getName().equalsIgnoreCase("g")) {
 			return parseGroup(root);
 		}
-		if (root.getName().equals("path")) {
+		if (root.getName().equalsIgnoreCase("path")) {
 			return parsePath(root);
 		}
-		if (root.getName().equals("polyline")) {
+		if (root.getName().equalsIgnoreCase("polyline")) {
 			return parsePolyline(root);
 		}
+		if (root.getName().equalsIgnoreCase("polygon")) {
+			return parsePolygon(root);
+		}
+		if (root.getName().equalsIgnoreCase("rect")) {
+			return parseRect(root);
+		}
+//		if (root.getName().equalsIgnoreCase("xxx")) {
+//			return parseXXX(root);
+//		}
 		
 		return null;
 	}
 
-	@SuppressWarnings("unchecked")
 	public Font parseFont(Element root) {
 		Font font = new Font();
 		
@@ -95,7 +123,7 @@ public class SvgParser {
 			font.baseAdvX = Double.parseDouble(horizAdvX);
 		}
 		
-		Element fontFaceElem = root.element("font-face");
+		Element fontFaceElem = element(root, "font-face");
 		if (fontFaceElem != null) {
 			String unitsPerEm = fontFaceElem.attributeValue("units-per-em");
 			if (unitsPerEm != null) {
@@ -103,12 +131,12 @@ public class SvgParser {
 			}
 		}
 		
-		Element missingGlyphElem = root.element("missing-glyph");
+		Element missingGlyphElem = element(root, "missing-glyph");
 		if (missingGlyphElem != null) {
 			font.missingGlyph = parseGlyph(missingGlyphElem);
 		}
 		
-		List<Element> glyphElems = root.elements("glyph");
+		List<Element> glyphElems = elements(root, "glyph");
 		for (Element glyphElem : glyphElems) {
 			String unicode = glyphElem.attributeValue("unicode");
 			if (unicode != null && unicode.length() == 1) {
@@ -119,6 +147,24 @@ public class SvgParser {
 		return font;
 	}
 	
+	private Element element(Element parent, String name) {
+		Element elem = parent.element(name);
+		if (elem == null) {
+			elem = parent.element(name.toUpperCase());
+		}
+		return elem;
+	}
+
+	@SuppressWarnings("unchecked")
+	private List<Element> elements(Element parent, String name) {
+		List<Element> list = new ArrayList<Element>();
+		list.addAll(parent.elements(name));
+		if (list.isEmpty()) {
+			list.addAll(parent.elements(name.toUpperCase()));
+		}
+		return list;
+	}
+
 	public Glyph parseGlyph(Element elem) {
 		
 		Glyph glyph = new Glyph();
@@ -197,7 +243,111 @@ public class SvgParser {
 		return top;
 	}
 
+	/**
+	 * http://www.w3.org/TR/SVG/shapes.html#PolygonElement
+	 */
+	private Shape parsePolygon(Element root) {
+		
+		String pointsAttr = root.attributeValue("points");
+		if (pointsAttr == null || pointsAttr.isEmpty()) {
+			return null;
+		}
+		
+		// points
+		PolygonShape shape = new PolygonShape();
+		/*
+		 * The points that make up the polyline. 
+		 * All coordinate values are in the user coordinate system
+		 */
+		shape.points.addAll(parseListOfPoints(pointsAttr));
+		
+		Shape top;
+		Transform tr = parseTransform(root);
+		if (tr != null) {
+			GroupShape group = new GroupShape();
+			group.transform = tr;
+			group.shapes.add(shape);
+			top = group;
+		} else {
+			top = shape;
+		}
+		return top;
+	}
+
+	/**
+	 * http://www.w3.org/TR/SVG/shapes.html#RectElement
+	 */
+	private Shape parseRect(Element root) {
+		
+		/*
+			‘width’
+			‘height’
+			‘rx’
+			‘ry’
+		 */
+		
+		/* x:
+		 * The x-axis coordinate of the side of the rectangle which has the smaller x-axis 
+		 * coordinate value in the current user coordinate system. If the attribute is not 
+		 * specified, the effect is as if a value of "0" were specified. 
+		 */
+		double x;
+		try {
+			x = Double.parseDouble(root.attributeValue("x").trim());
+		} catch (Exception e) {
+			x = 0.0;
+		}
+		
+		/* y:
+		 * The y-axis coordinate of the side of the rectangle which has the smaller y-axis 
+		 * coordinate value in the current user coordinate system. If the attribute is not 
+		 * specified, the effect is as if a value of "0" were specified.
+		 */
+		double y;
+		try {
+			y = Double.parseDouble(root.attributeValue("y").trim());
+		} catch (Exception e) {
+			y = 0.0;
+		}
+		
+		/* width:
+		 * The width of the rectangle.
+		 * A negative value is an error (see Error processing). 
+		 * A value of zero disables rendering of the element.
+		 */
+		double width = Double.parseDouble(root.attributeValue("width").trim());
+		
+		/* height:
+		 * The height of the rectangle.
+		 * A negative value is an error (see Error processing). 
+		 * A value of zero disables rendering of the element.
+		 */
+		double height = Double.parseDouble(root.attributeValue("height").trim());
+		
+		/* rx, ry
+		 * ignore for now
+		 */
+		
+		RectangleShape shape = new RectangleShape();
+		shape.topleft = new Point(x, y);
+		shape.width = width;
+		shape.height = height;
+		
+		Shape top;
+		Transform tr = parseTransform(root);
+		if (tr != null) {
+			GroupShape group = new GroupShape();
+			group.transform = tr;
+			group.shapes.add(shape);
+			top = group;
+		} else {
+			top = shape;
+		}
+		return top;
+	}
+
 	private Shape parsePath(Element root) {
+		
 		String d = root.attributeValue("d");
 		if (d == null || d.isEmpty()) {
 			return null;
@@ -906,5 +1056,5 @@ public class SvgParser {
 		}
 
 	}
-	
+
 }

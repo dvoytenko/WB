@@ -551,9 +551,10 @@ WB.Pane = WB.Class.extend({
 		}
 		this.context.arc(c.x, c.y, r, sAngle, eAngle, counterclockwise);
 		// last point
-		var p = {x: Math.cos(eAngle) * r, y: Math.sin(eAngle) * r};
+		var p = {x: c.x + Math.cos(eAngle) * r, y: c.y + Math.sin(eAngle) * r};
 		this._update(p, false, false);
 		if (this.capturer) {
+			// TODO: doesn't always work!
 			// TRICK: r is always maximum of (rx,ry) thus this should be correct
 			this._capture(c.x - r, c.y - r, c.x + r, c.y + r);
 		}

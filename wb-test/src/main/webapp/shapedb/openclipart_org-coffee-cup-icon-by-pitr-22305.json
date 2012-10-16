@@ -1,0 +1,329 @@
+{
+  "_type": "GroupShape",
+  "author": "pitr",
+  "id": "openclipart_org-coffee-cup-icon-by-pitr-22305",
+  "localBounds": {
+    "bottomright": {
+      "x": 122,
+      "y": 112
+    },
+    "topleft": {
+      "x": 8,
+      "y": 7
+    }
+  },
+  "shapes": [{
+    "_type": "GroupShape",
+    "shapes": [
+      {
+        "_type": "PathShape",
+        "pathSegment": {
+          "_type": "PathSegment",
+          "segments": [
+            {
+              "_type": "MoveToSegment",
+              "point": {
+                "x": 82.38047,
+                "y": 439.3222
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 162.38047,
+                "y": 439.3222
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 162.38047,
+                "y": 463.3222
+              },
+              "cp2": {
+                "x": 159.21947,
+                "y": 479.3222
+              },
+              "endPoint": {
+                "x": 138.38047,
+                "y": 495.3222
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 106.38047,
+                "y": 495.3222
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 86.689427,
+                "y": 481.24844
+              },
+              "cp2": {
+                "x": 82.38047,
+                "y": 463.3222
+              },
+              "endPoint": {
+                "x": 82.38047,
+                "y": 439.3222
+              }
+            },
+            {"_type": "ClosePathSegment"}
+          ]
+        }
+      },
+      {
+        "_type": "PathShape",
+        "pathSegment": {
+          "_type": "PathSegment",
+          "segments": [
+            {
+              "_type": "MoveToSegment",
+              "point": {
+                "x": 74.38047,
+                "y": 487.3222
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 170.71515,
+                "y": 487.3222
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 162.38047,
+                "y": 495.3222
+              },
+              "cp2": {
+                "x": 162.38047,
+                "y": 499.98426
+              },
+              "endPoint": {
+                "x": 141.81475,
+                "y": 502.96537
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 103.28088,
+                "y": 502.96537
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 82.38047,
+                "y": 500.52235
+              },
+              "cp2": {
+                "x": 82.38047,
+                "y": 495.3222
+              },
+              "endPoint": {
+                "x": 74.38047,
+                "y": 487.3222
+              }
+            },
+            {"_type": "ClosePathSegment"}
+          ]
+        }
+      },
+      {
+        "_type": "GroupShape",
+        "shapes": [{
+          "_type": "PathShape",
+          "pathSegment": {
+            "_type": "PathSegment",
+            "segments": [
+              {
+                "_type": "MoveToSegment",
+                "point": {
+                  "x": 116.09303,
+                  "y": 67.720932
+                }
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 88.806212,
+                  "y": 67.720932
+                },
+                "largeArcFlag": 1,
+                "radiusX": 13.643411,
+                "radiusY": 18.108526,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 116.09303,
+                  "y": 67.720932
+                },
+                "largeArcFlag": 1,
+                "radiusX": 13.643411,
+                "radiusY": 18.108526,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {"_type": "ClosePathSegment"}
+            ]
+          }
+        }],
+        "transform": {
+          "_type": "Transform",
+          "m": [
+            0.946512,
+            0.3226686,
+            -0.3226686,
+            0.946512,
+            100.16132,
+            363.37555
+          ]
+        }
+      },
+      {
+        "_type": "GroupShape",
+        "shapes": [{
+          "_type": "PathShape",
+          "pathSegment": {
+            "_type": "PathSegment",
+            "segments": [
+              {
+                "_type": "MoveToSegment",
+                "point": {
+                  "x": 47.627907,
+                  "y": 7.4418605
+                }
+              },
+              {
+                "_type": "CubicSegment",
+                "cp1": {
+                  "x": 62.884586,
+                  "y": 23.359346
+                },
+                "cp2": {
+                  "x": 33.534232,
+                  "y": 24.401937
+                },
+                "endPoint": {
+                  "x": 47.627907,
+                  "y": 40.682171
+                }
+              }
+            ]
+          }
+        }],
+        "transform": {
+          "_type": "Transform",
+          "m": [
+            1,
+            0,
+            0,
+            1,
+            66.38047,
+            391.3222
+          ]
+        }
+      },
+      {
+        "_type": "PathShape",
+        "pathSegment": {
+          "_type": "PathSegment",
+          "segments": [
+            {
+              "_type": "MoveToSegment",
+              "point": {
+                "x": 123.93086,
+                "y": 399.26018
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 139.18754,
+                "y": 415.17767
+              },
+              "cp2": {
+                "x": 109.83718,
+                "y": 416.22026
+              },
+              "endPoint": {
+                "x": 123.93086,
+                "y": 432.5005
+              }
+            }
+          ]
+        }
+      },
+      {
+        "_type": "PathShape",
+        "pathSegment": {
+          "_type": "PathSegment",
+          "segments": [
+            {
+              "_type": "MoveToSegment",
+              "point": {
+                "x": 134.84559,
+                "y": 399.26018
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 150.10227,
+                "y": 415.17767
+              },
+              "cp2": {
+                "x": 120.75191,
+                "y": 416.22026
+              },
+              "endPoint": {
+                "x": 134.84559,
+                "y": 432.5005
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "transform": {
+      "_type": "Transform",
+      "m": [
+        1,
+        0,
+        0,
+        1,
+        -66.38047,
+        -391.3222
+      ]
+    }
+  }],
+  "source": "openclipart.org",
+  "tags": [
+    "cup",
+    "icon",
+    "svg",
+    "household",
+    "coffee",
+    "image",
+    "tea",
+    "minimalistic",
+    "public domain",
+    "beverage",
+    "png",
+    "food",
+    "clip art",
+    "drink",
+    "media"
+  ],
+  "title": "Coffee cup icon",
+  "url": "http://openclipart.org/detail/22305/coffee-cup-icon-by-pitr-22305"
+}

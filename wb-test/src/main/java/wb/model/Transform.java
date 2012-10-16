@@ -126,8 +126,12 @@ public class Transform {
 	}
 
 	public Point transformPoint(Point p) {
-		double tx = p.x * this.m[0] + p.y * this.m[2] + this.m[4];
-		double ty = p.x * this.m[1] + p.y * this.m[3] + this.m[5];
+		return transformPoint(p.x, p.y);
+	}
+
+	public Point transformPoint(double px, double py) {
+		double tx = px * this.m[0] + py * this.m[2] + this.m[4];
+		double ty = px * this.m[1] + py * this.m[3] + this.m[5];
 		return new Point(tx, ty);
 	}
 

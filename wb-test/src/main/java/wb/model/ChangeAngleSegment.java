@@ -1,5 +1,6 @@
 package wb.model;
 
+// NOT USED YET
 public class ChangeAngleSegment extends Segment {
 
 	private Segment nextSegment;
@@ -34,7 +35,7 @@ public class ChangeAngleSegment extends Segment {
 
 		private Pane canvas;
 
-		private Board board;
+//		private Board board;
 
 		private double threshold;
 
@@ -42,11 +43,12 @@ public class ChangeAngleSegment extends Segment {
 
 		@Override
 		public void start(Board board) {
-			this.board = board;
-			this.velocity = board.getBaseChangeAngleVelocity();
+//			this.board = board;
+//			this.velocity = board.getBaseChangeAngleVelocity();
 			this.canvas = board.getAnimationPane();
 			
-			this.startAngle = this.canvas.getCurrentAngle();
+			// FIXME
+//			this.startAngle = this.canvas.getCurrentAngle();
 			this.endAngle = nextSegment.getStartAngle(canvas);
 			
 			double da = Math.abs(this.endAngle - this.startAngle);
@@ -75,8 +77,8 @@ public class ChangeAngleSegment extends Segment {
 			double totalTimeNeeded = Math.abs(this.da)/velocity;
 			double angleComplete = this.da * Math.min(time, totalTimeNeeded) / totalTimeNeeded;
 			
-			this.board.updateCurrentAngle(this.startAngle + angleComplete);
-			this.board.updateCurrentVelocity(0.0);
+//			this.board.updateCurrentAngle(this.startAngle + angleComplete);
+//			this.board.updateCurrentVelocity(0.0);
 			
 			this.done = Math.abs(this.da - angleComplete) < this.threshold;
 		}

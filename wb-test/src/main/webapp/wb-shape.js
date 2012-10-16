@@ -18,6 +18,8 @@ WB.DrawShapeEpisode = WB.Class.extend({
 	
 	rotationDegree: null,
 	
+	rate: 1,
+	
 	init: function(opts) {
 		if (opts) {
 			for (var k in opts) {
@@ -47,7 +49,8 @@ WB.DrawShapeEpisode = WB.Class.extend({
 	},
 	
 	createAnimation: function() {
-		return new WB.DrawShapeEpisodeAnimation(this._shape().createAnimation());
+		return new WB.DrawShapeEpisodeAnimation(this._shape().createAnimation(),
+				this.rate);
 	}
 	
 });
@@ -59,14 +62,18 @@ WB.DrawShapeEpisodeAnimation = WB.Animation.extend({
 	
 	board: null,
 	
-	init: function(animation) {
+	init: function(animation, rate) {
 		this.animation = animation;
+		this.rate = rate;
 	},
 	
 	start: function(board) {
 		this.board = board;
 		this.pane = board.animationPane;
 		this.animation.start(board);
+		this.oldVelocity = this.board.baseVelocity;
+		this.board.baseVelocity = this.oldVelocity * this.rate;
+		console.log('rate: ' + this.rate);
 	},
 	
 	frame: function(time) {
@@ -80,6 +87,7 @@ WB.DrawShapeEpisodeAnimation = WB.Animation.extend({
 	end: function() {
 		this.animation.end();
 		this.board.state({velocity: 0, height: 1});
+		this.board.baseVelocity = this.oldVelocity;
 	},
 	
 	getTimeLeft: function() {
@@ -116,6 +124,9 @@ WB.GroupShape = WB.Shape.extend({
 		}
 		if (opts && opts.shapes) {
 			this.shapes = opts.shapes;
+		}
+		if (opts && opts.localBounds) {
+			this.localBounds = opts.localBounds;
 		}
 	},
 	

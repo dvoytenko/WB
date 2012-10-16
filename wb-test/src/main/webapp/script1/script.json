@@ -4,14 +4,8 @@
     {
       "_type": "SpeechEpisode",
       "engine": "cere",
-      "text": "Let's build a whiteboard presentation! Let's see what we can do.",
-      "track": "cere-756370a2-7808-33d3-97fe-d0e95d04e504"
-    },
-    {
-      "_type": "SpeechEpisode",
-      "engine": "cere",
-      "text": "These presentations can be pretty neat as we can demonstrate almost any idea we want.",
-      "track": "cere-48026a58-c65c-3e46-8166-1583e01b33cd"
+      "text": "Would you like to be able in a short time to create a whiteboard presentation like this?",
+      "track": "cere-345550b5-f98f-36db-9934-c82625b1c615"
     },
     {
       "_type": "SpeechEpisode",
@@ -6470,6 +6464,7 @@
         "x": 400,
         "y": 20
       },
+      "rate": 2,
       "realHeight": 4,
       "realWidth": 4,
       "rotationDegree": 0,

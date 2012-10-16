@@ -1,0 +1,3441 @@
+{
+  "_type": "GroupShape",
+  "shapes": [{
+    "_type": "GroupShape",
+    "shapes": [
+      {
+        "_type": "PathShape",
+        "pathSegment": {
+          "_type": "PathSegment",
+          "segments": [
+            {
+              "_type": "MoveToSegment",
+              "point": {
+                "x": 98.473432,
+                "y": 954.40228
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 625.84722,
+                "y": 952.88705
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 625.84722,
+                "y": 1007.0878
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 597.13264,
+                "y": 1007.0878
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 579.72193,
+                "y": 1031.5851
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 568.44691,
+                "y": 1031.5851
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 561.41636,
+                "y": 1018.0042
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 535.6358100000001,
+                "y": 1018.0042
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 528.0695500000002,
+                "y": 1031.5851
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 510.06473000000017,
+                "y": 1031.5851
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 499.1056100000002,
+                "y": 1018.0042
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 474.75363000000016,
+                "y": 1018.0042
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 469.68737000000016,
+                "y": 1031.5851
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 100.74477000000013,
+                "y": 1031.5851
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 85.34145200000013,
+                "y": 1035.1786
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 72.20947000000012,
+                "y": 1035.1786
+              }
+            },
+            {"_type": "ClosePathSegment"}
+          ]
+        }
+      },
+      {
+        "_type": "PathShape",
+        "pathSegment": {
+          "_type": "PathSegment",
+          "segments": [
+            {
+              "_type": "MoveToSegment",
+              "point": {
+                "x": 271.05589,
+                "y": 912.19518
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 336.05589,
+                "y": 912.19518
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 343.35425999999995,
+                "y": 913.03543
+              },
+              "cp2": {
+                "x": 355.63912999999997,
+                "y": 915.40949
+              },
+              "endPoint": {
+                "x": 370.46056,
+                "y": 920.05235
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 370.46056,
+                "y": 941.5702
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 281.71056,
+                "y": 941.5702
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 281.71056,
+                "y": 919.78449
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 281.71056,
+                "y": 916.34294
+              },
+              "cp2": {
+                "x": 289.84743,
+                "y": 911.96794
+              },
+              "endPoint": {
+                "x": 298.77599999999995,
+                "y": 907.59294
+              }
+            },
+            {"_type": "ClosePathSegment"}
+          ]
+        }
+      },
+      {
+        "_type": "PathShape",
+        "pathSegment": {
+          "_type": "PathSegment",
+          "segments": [
+            {
+              "_type": "MoveToSegment",
+              "point": {
+                "x": 457.01741,
+                "y": 927.12816
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 457.01741,
+                "y": 914.7780799999999
+              },
+              "cp2": {
+                "x": 464.16528999999997,
+                "y": 900.88848
+              },
+              "endPoint": {
+                "x": 480.38791,
+                "y": 886.99888
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 565.47672,
+                "y": 886.99888
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 565.47672,
+                "y": 910.79071
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 464.16529,
+                "y": 910.79071
+              }
+            },
+            {"_type": "ClosePathSegment"}
+          ]
+        }
+      },
+      {
+        "_type": "PathShape",
+        "pathSegment": {
+          "_type": "PathSegment",
+          "segments": [
+            {
+              "_type": "MoveToSegment",
+              "point": {
+                "x": 123.41715,
+                "y": 921.96579
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 601.84833,
+                "y": 921.96579
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 601.84833,
+                "y": 989.1479999999999
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 90.61398200000002,
+                "y": 989.1479999999999
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 97.81132200000002,
+                "y": 978.7721999999999
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 114.42128000000002,
+                "y": 926.5034399999998
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 114.42128000000002,
+                "y": 922.7620199999999
+              },
+              "cp2": {
+                "x": 121.37943000000003,
+                "y": 918.2243699999999
+              },
+              "endPoint": {
+                "x": 130.37530000000004,
+                "y": 913.6867199999999
+              }
+            },
+            {"_type": "ClosePathSegment"}
+          ]
+        }
+      },
+      {
+        "_type": "PathShape",
+        "pathSegment": {
+          "_type": "PathSegment",
+          "segments": [
+            {
+              "_type": "MoveToSegment",
+              "point": {
+                "x": 109.44875,
+                "y": 923.71303
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 246.05588999999998,
+                "y": 923.71303
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 246.05588999999998,
+                "y": 971.23401
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 124.81714999999997,
+                "y": 971.23401
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 89.82534199999998,
+                "y": 971.23401
+              },
+              "cp2": {
+                "x": 54.60513399999998,
+                "y": 1015.3202
+              },
+              "endPoint": {
+                "x": -0.6792160000000251,
+                "y": 1059.40639
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": -0.6792160000000251,
+                "y": 991.3810000000001
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": -0.6792160000000251,
+                "y": 981.62953
+              },
+              "cp2": {
+                "x": 3.7795439999999747,
+                "y": 958.0477500000001
+              },
+              "endPoint": {
+                "x": 43.695493999999975,
+                "y": 934.4659700000001
+              }
+            },
+            {"_type": "ClosePathSegment"}
+          ]
+        }
+      },
+      {
+        "_type": "PathShape",
+        "pathSegment": {
+          "_type": "PathSegment",
+          "segments": [
+            {
+              "_type": "MoveToSegment",
+              "point": {
+                "x": 626.90215,
+                "y": 969.16137
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 626.90215,
+                "y": 984.26742
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 586.50923,
+                "y": 998.15142
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 586.50923,
+                "y": 969.16137
+              }
+            },
+            {"_type": "ClosePathSegment"}
+          ]
+        }
+      },
+      {
+        "_type": "PathShape",
+        "pathSegment": {
+          "_type": "PathSegment",
+          "segments": [
+            {
+              "_type": "MoveToSegment",
+              "point": {
+                "x": 440.66261,
+                "y": 969.64274
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 570.46721,
+                "y": 969.64274
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 570.46721,
+                "y": 995.5898
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 456.57251,
+                "y": 1002.6609
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 444.80027,
+                "y": 1003.0399
+              },
+              "cp2": {
+                "x": 432.19294,
+                "y": 994.88582
+              },
+              "endPoint": {
+                "x": 416.28304,
+                "y": 974.40639
+              }
+            },
+            {"_type": "ClosePathSegment"}
+          ]
+        }
+      },
+      {
+        "_type": "PathShape",
+        "pathSegment": {
+          "_type": "PathSegment",
+          "segments": [
+            {
+              "_type": "MoveToSegment",
+              "point": {
+                "x": 541.53737,
+                "y": 913.07268
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 541.53737,
+                "y": 923.93182
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 548.97224,
+                "y": 935.18001
+              },
+              "cp2": {
+                "x": 561.9082400000001,
+                "y": 975.27471
+              },
+              "endPoint": {
+                "x": 576.5554400000001,
+                "y": 1030.20175
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 584.3841300000001,
+                "y": 1030.20175
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 584.3841300000001,
+                "y": 964.4155699999999
+              }
+            },
+            {"_type": "ClosePathSegment"}
+          ]
+        }
+      },
+      {
+        "_type": "GroupShape",
+        "shapes": [{
+          "_type": "PathShape",
+          "pathSegment": {
+            "_type": "PathSegment",
+            "segments": [
+              {
+                "_type": "MoveToSegment",
+                "point": {
+                  "x": 151.07143,
+                  "y": 317.71933
+                }
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 121.42857,
+                  "y": 317.71933
+                },
+                "largeArcFlag": 1,
+                "radiusX": 14.821428,
+                "radiusY": 14.821428,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 151.07143,
+                  "y": 317.71933
+                },
+                "largeArcFlag": 1,
+                "radiusX": 14.821428,
+                "radiusY": 14.821428,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {"_type": "ClosePathSegment"}
+            ]
+          }
+        }],
+        "transform": {
+          "_type": "Transform",
+          "m": [
+            0.90489776,
+            0,
+            0,
+            0.90489776,
+            -4.73643,
+            741.74523
+          ]
+        }
+      },
+      {
+        "_type": "GroupShape",
+        "shapes": [{
+          "_type": "PathShape",
+          "pathSegment": {
+            "_type": "PathSegment",
+            "segments": [
+              {
+                "_type": "MoveToSegment",
+                "point": {
+                  "x": 151.07143,
+                  "y": 317.71933
+                }
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 121.42857,
+                  "y": 317.71933
+                },
+                "largeArcFlag": 1,
+                "radiusX": 14.821428,
+                "radiusY": 14.821428,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 151.07143,
+                  "y": 317.71933
+                },
+                "largeArcFlag": 1,
+                "radiusX": 14.821428,
+                "radiusY": 14.821428,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {"_type": "ClosePathSegment"}
+            ]
+          }
+        }],
+        "transform": {
+          "_type": "Transform",
+          "m": [
+            0.77479282,
+            0,
+            0,
+            0.77479282,
+            12.99037,
+            783.08209
+          ]
+        }
+      },
+      {
+        "_type": "GroupShape",
+        "shapes": [{
+          "_type": "PathShape",
+          "pathSegment": {
+            "_type": "PathSegment",
+            "segments": [
+              {
+                "_type": "MoveToSegment",
+                "point": {
+                  "x": 151.07143,
+                  "y": 317.71933
+                }
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 121.42857,
+                  "y": 317.71933
+                },
+                "largeArcFlag": 1,
+                "radiusX": 14.821428,
+                "radiusY": 14.821428,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 151.07143,
+                  "y": 317.71933
+                },
+                "largeArcFlag": 1,
+                "radiusX": 14.821428,
+                "radiusY": 14.821428,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {"_type": "ClosePathSegment"}
+            ]
+          }
+        }],
+        "transform": {
+          "_type": "Transform",
+          "m": [
+            0.33329455,
+            0,
+            0,
+            0.33329455,
+            73.14451,
+            923.35462
+          ]
+        }
+      },
+      {
+        "_type": "PathShape",
+        "pathSegment": {
+          "_type": "PathSegment",
+          "segments": [
+            {
+              "_type": "MoveToSegment",
+              "point": {
+                "x": 540.29339,
+                "y": 911.77465
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 632.67728,
+                "y": 911.77465
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 642.98206,
+                "y": 916.40954
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 629.56402,
+                "y": 916.40954
+              },
+              "cp2": {
+                "x": 612.26307,
+                "y": 921.69348
+              },
+              "endPoint": {
+                "x": 589.04878,
+                "y": 935.76879
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 522.0744,
+                "y": 935.76879
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 517.3175,
+                "y": 926.58088
+              },
+              "cp2": {
+                "x": 508.63561,
+                "y": 912.36463
+              },
+              "endPoint": {
+                "x": 496.13561,
+                "y": 893.65443
+              }
+            },
+            {"_type": "ClosePathSegment"}
+          ]
+        }
+      },
+      {
+        "_type": "GroupShape",
+        "shapes": [{
+          "_type": "PathShape",
+          "pathSegment": {
+            "_type": "PathSegment",
+            "segments": [
+              {
+                "_type": "MoveToSegment",
+                "point": {
+                  "x": 151.07143,
+                  "y": 317.71933
+                }
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 121.42857,
+                  "y": 317.71933
+                },
+                "largeArcFlag": 1,
+                "radiusX": 14.821428,
+                "radiusY": 14.821428,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 151.07143,
+                  "y": 317.71933
+                },
+                "largeArcFlag": 1,
+                "radiusX": 14.821428,
+                "radiusY": 14.821428,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {"_type": "ClosePathSegment"}
+            ]
+          }
+        }],
+        "transform": {
+          "_type": "Transform",
+          "m": [
+            0.3727309,
+            0,
+            0,
+            0.3727309,
+            363.48781,
+            896.71388
+          ]
+        }
+      },
+      {
+        "_type": "GroupShape",
+        "shapes": [{
+          "_type": "PathShape",
+          "pathSegment": {
+            "_type": "PathSegment",
+            "segments": [
+              {
+                "_type": "MoveToSegment",
+                "point": {
+                  "x": 151.07143,
+                  "y": 317.71933
+                }
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 121.42857,
+                  "y": 317.71933
+                },
+                "largeArcFlag": 1,
+                "radiusX": 14.821428,
+                "radiusY": 14.821428,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 151.07143,
+                  "y": 317.71933
+                },
+                "largeArcFlag": 1,
+                "radiusX": 14.821428,
+                "radiusY": 14.821428,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {"_type": "ClosePathSegment"}
+            ]
+          }
+        }],
+        "transform": {
+          "_type": "Transform",
+          "m": [
+            0.3727309,
+            0,
+            0,
+            0.3727309,
+            301.70014,
+            896.71388
+          ]
+        }
+      },
+      {
+        "_type": "PathShape",
+        "pathSegment": {
+          "_type": "PathSegment",
+          "segments": [
+            {
+              "_type": "MoveToSegment",
+              "point": {
+                "x": 232.27499,
+                "y": 962.8555
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 342.12411,
+                "y": 962.8555
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 361.10420999999997,
+                "y": 983.82425
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 361.67382,
+                "y": 984.45555
+              },
+              "cp2": {
+                "x": 363.04503,
+                "y": 985.45488
+              },
+              "endPoint": {
+                "x": 365.22308,
+                "y": 986.45488
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 530.64128,
+                "y": 986.45488
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 556.3818100000001,
+                "y": 994.85667
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 556.8425700000001,
+                "y": 995.15585
+              },
+              "cp2": {
+                "x": 557.8356000000001,
+                "y": 995.61837
+              },
+              "endPoint": {
+                "x": 559.3630600000001,
+                "y": 996.08712
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 566.2737400000001,
+                "y": 996.08712
+              }
+            },
+            {
+              "_type": "MoveToSegment",
+              "point": {
+                "x": 235.66960000000012,
+                "y": 958.52908
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 346.7916100000001,
+                "y": 958.52908
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 347.5766700000001,
+                "y": 958.5296500000001
+              },
+              "cp2": {
+                "x": 349.1418200000001,
+                "y": 958.8864400000001
+              },
+              "endPoint": {
+                "x": 351.2632900000001,
+                "y": 959.8551900000001
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 370.2716700000001,
+                "y": 980.8551900000001
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 535.2373000000001,
+                "y": 980.8551900000001
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 535.7600600000001,
+                "y": 980.8541900000001
+              },
+              "cp2": {
+                "x": 536.8052600000001,
+                "y": 981.0053300000002
+              },
+              "endPoint": {
+                "x": 538.3044300000001,
+                "y": 981.4428300000002
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 564.1015300000001,
+                "y": 989.8758700000002
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 570.1919100000001,
+                "y": 989.8758700000002
+              }
+            },
+            {
+              "_type": "MoveToSegment",
+              "point": {
+                "x": 570.1919100000001,
+                "y": 993.1859400000002
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 563.2836900000001,
+                "y": 993.1859400000002
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 536.79132,
+                "y": 984.3236900000002
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 370.60805000000005,
+                "y": 984.3236900000002
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 350.72092000000004,
+                "y": 962.3528700000002
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 239.58777000000003,
+                "y": 962.3528700000002
+              }
+            }
+          ]
+        }
+      },
+      {
+        "_type": "PathShape",
+        "pathSegment": {
+          "_type": "PathSegment",
+          "segments": [
+            {
+              "_type": "MoveToSegment",
+              "point": {
+                "x": 414.28802,
+                "y": 987.62207
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 399.09611,
+                "y": 987.62207
+              },
+              "cp2": {
+                "x": 371.56486,
+                "y": 999.93016
+              },
+              "endPoint": {
+                "x": 344.03361,
+                "y": 1027.43019
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 344.03361,
+                "y": 1042.62209
+              },
+              "cp2": {
+                "x": 356.37295,
+                "y": 1070.15329
+              },
+              "endPoint": {
+                "x": 383.9042,
+                "y": 1097.6844899999999
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 399.09611,
+                "y": 1097.6844899999999
+              },
+              "cp2": {
+                "x": 426.59611,
+                "y": 1085.3451899999998
+              },
+              "endPoint": {
+                "x": 454.09611,
+                "y": 1057.8139899999999
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 454.09611,
+                "y": 1042.62205
+              },
+              "cp2": {
+                "x": 441.78802,
+                "y": 1015.1220199999999
+              },
+              "endPoint": {
+                "x": 414.28802,
+                "y": 987.6219899999999
+              }
+            },
+            {"_type": "ClosePathSegment"},
+            {
+              "_type": "MoveToSegment",
+              "point": {
+                "x": 414.28802,
+                "y": 989.99707
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 428.17258000000004,
+                "y": 989.99707
+              },
+              "cp2": {
+                "x": 453.29758000000004,
+                "y": 1001.2375
+              },
+              "endPoint": {
+                "x": 478.42258000000004,
+                "y": 1026.3625299999999
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 478.42258000000004,
+                "y": 1040.2470299999998
+              },
+              "cp2": {
+                "x": 467.18214000000006,
+                "y": 1065.4032299999997
+              },
+              "endPoint": {
+                "x": 442.05714000000006,
+                "y": 1090.5594299999996
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 428.17258000000004,
+                "y": 1090.5594299999996
+              },
+              "cp2": {
+                "x": 403.01633000000004,
+                "y": 1079.2877299999996
+              },
+              "endPoint": {
+                "x": 377.86008000000004,
+                "y": 1054.1315299999997
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 377.86008000000004,
+                "y": 1040.2469299999996
+              },
+              "cp2": {
+                "x": 389.13177,
+                "y": 1015.1218999999995
+              },
+              "endPoint": {
+                "x": 414.28802,
+                "y": 989.9968699999995
+              }
+            },
+            {"_type": "ClosePathSegment"}
+          ]
+        }
+      },
+      {
+        "_type": "PathShape",
+        "pathSegment": {
+          "_type": "PathSegment",
+          "segments": [
+            {
+              "_type": "MoveToSegment",
+              "point": {
+                "x": 352.50035,
+                "y": 987.62207
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 337.30844,
+                "y": 987.62207
+              },
+              "cp2": {
+                "x": 309.77719,
+                "y": 999.93016
+              },
+              "endPoint": {
+                "x": 282.24594,
+                "y": 1027.43019
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 282.24594,
+                "y": 1042.62209
+              },
+              "cp2": {
+                "x": 294.58528,
+                "y": 1070.15329
+              },
+              "endPoint": {
+                "x": 322.11653,
+                "y": 1097.6844899999999
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 337.30844,
+                "y": 1097.6844899999999
+              },
+              "cp2": {
+                "x": 364.80844,
+                "y": 1085.3451899999998
+              },
+              "endPoint": {
+                "x": 392.30844,
+                "y": 1057.8139899999999
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 392.30844,
+                "y": 1042.62205
+              },
+              "cp2": {
+                "x": 380.00035,
+                "y": 1015.1220199999999
+              },
+              "endPoint": {
+                "x": 352.50035,
+                "y": 987.6219899999999
+              }
+            },
+            {"_type": "ClosePathSegment"},
+            {
+              "_type": "MoveToSegment",
+              "point": {
+                "x": 352.50035,
+                "y": 989.99707
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 366.38491000000005,
+                "y": 989.99707
+              },
+              "cp2": {
+                "x": 391.50991000000005,
+                "y": 1001.2375
+              },
+              "endPoint": {
+                "x": 416.63491000000005,
+                "y": 1026.3625299999999
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 416.63491000000005,
+                "y": 1040.2470299999998
+              },
+              "cp2": {
+                "x": 405.39447000000007,
+                "y": 1065.4032299999997
+              },
+              "endPoint": {
+                "x": 380.26947000000007,
+                "y": 1090.5594299999996
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 366.38491000000005,
+                "y": 1090.5594299999996
+              },
+              "cp2": {
+                "x": 341.22866000000005,
+                "y": 1079.2877299999996
+              },
+              "endPoint": {
+                "x": 316.07241000000005,
+                "y": 1054.1315299999997
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 316.07241000000005,
+                "y": 1040.2469299999996
+              },
+              "cp2": {
+                "x": 327.3441,
+                "y": 1015.1218999999995
+              },
+              "endPoint": {
+                "x": 352.50035,
+                "y": 989.9968699999995
+              }
+            },
+            {"_type": "ClosePathSegment"}
+          ]
+        }
+      },
+      {
+        "_type": "GroupShape",
+        "shapes": [{
+          "_type": "PathShape",
+          "pathSegment": {
+            "_type": "PathSegment",
+            "segments": [
+              {
+                "_type": "MoveToSegment",
+                "point": {
+                  "x": 151.07143,
+                  "y": 317.71933
+                }
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 121.42857,
+                  "y": 317.71933
+                },
+                "largeArcFlag": 1,
+                "radiusX": 14.821428,
+                "radiusY": 14.821428,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 151.07143,
+                  "y": 317.71933
+                },
+                "largeArcFlag": 1,
+                "radiusX": 14.821428,
+                "radiusY": 14.821428,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {"_type": "ClosePathSegment"}
+            ]
+          }
+        }],
+        "transform": {
+          "_type": "Transform",
+          "m": [
+            0.3727309,
+            0,
+            0,
+            0.3727309,
+            239.91248,
+            896.71388
+          ]
+        }
+      },
+      {
+        "_type": "PathShape",
+        "pathSegment": {
+          "_type": "PathSegment",
+          "segments": [
+            {
+              "_type": "MoveToSegment",
+              "point": {
+                "x": 290.71269,
+                "y": 987.62207
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 275.52078,
+                "y": 987.62207
+              },
+              "cp2": {
+                "x": 247.98953,
+                "y": 999.93016
+              },
+              "endPoint": {
+                "x": 220.45828,
+                "y": 1027.43019
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 220.45828,
+                "y": 1042.62209
+              },
+              "cp2": {
+                "x": 232.79762,
+                "y": 1070.15329
+              },
+              "endPoint": {
+                "x": 260.32887,
+                "y": 1097.6844899999999
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 275.52078,
+                "y": 1097.6844899999999
+              },
+              "cp2": {
+                "x": 303.02078,
+                "y": 1085.3451899999998
+              },
+              "endPoint": {
+                "x": 330.52078,
+                "y": 1057.8139899999999
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 330.52078,
+                "y": 1042.62205
+              },
+              "cp2": {
+                "x": 318.21269,
+                "y": 1015.1220199999999
+              },
+              "endPoint": {
+                "x": 290.71269,
+                "y": 987.6219899999999
+              }
+            },
+            {"_type": "ClosePathSegment"},
+            {
+              "_type": "MoveToSegment",
+              "point": {
+                "x": 290.71269,
+                "y": 989.99707
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 304.59725000000003,
+                "y": 989.99707
+              },
+              "cp2": {
+                "x": 329.72225000000003,
+                "y": 1001.2375
+              },
+              "endPoint": {
+                "x": 354.84725000000003,
+                "y": 1026.3625299999999
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 354.84725000000003,
+                "y": 1040.2470299999998
+              },
+              "cp2": {
+                "x": 343.60681000000005,
+                "y": 1065.4032299999997
+              },
+              "endPoint": {
+                "x": 318.48181000000005,
+                "y": 1090.5594299999996
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 304.59725000000003,
+                "y": 1090.5594299999996
+              },
+              "cp2": {
+                "x": 279.44100000000003,
+                "y": 1079.2877299999996
+              },
+              "endPoint": {
+                "x": 254.28475000000003,
+                "y": 1054.1315299999997
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 254.28475000000003,
+                "y": 1040.2469299999996
+              },
+              "cp2": {
+                "x": 265.55644,
+                "y": 1015.1218999999995
+              },
+              "endPoint": {
+                "x": 290.71269,
+                "y": 989.9968699999995
+              }
+            },
+            {"_type": "ClosePathSegment"}
+          ]
+        }
+      },
+      {
+        "_type": "PathShape",
+        "pathSegment": {
+          "_type": "PathSegment",
+          "segments": [
+            {
+              "_type": "MoveToSegment",
+              "point": {
+                "x": 144.44875,
+                "y": 912.39008
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 174.44875,
+                "y": 912.39008
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 181.74712,
+                "y": 913.23033
+              },
+              "cp2": {
+                "x": 194.03199,
+                "y": 915.60439
+              },
+              "endPoint": {
+                "x": 208.85342,
+                "y": 920.24725
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 208.85342,
+                "y": 940.60439
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 160.63913,
+                "y": 940.60439
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 160.63913,
+                "y": 918.81868
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 160.63913,
+                "y": 917.16284
+              },
+              "cp2": {
+                "x": 163.24029,
+                "y": 913.94855
+              },
+              "endPoint": {
+                "x": 166.63315,
+                "y": 910.73426
+              }
+            },
+            {"_type": "ClosePathSegment"}
+          ]
+        }
+      },
+      {
+        "_type": "GroupShape",
+        "shapes": [{
+          "_type": "PathShape",
+          "pathSegment": {
+            "_type": "PathSegment",
+            "segments": [
+              {
+                "_type": "MoveToSegment",
+                "point": {
+                  "x": 151.07143,
+                  "y": 317.71933
+                }
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 121.42857,
+                  "y": 317.71933
+                },
+                "largeArcFlag": 1,
+                "radiusX": 14.821428,
+                "radiusY": 14.821428,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 151.07143,
+                  "y": 317.71933
+                },
+                "largeArcFlag": 1,
+                "radiusX": 14.821428,
+                "radiusY": 14.821428,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {"_type": "ClosePathSegment"}
+            ]
+          }
+        }],
+        "transform": {
+          "_type": "Transform",
+          "m": [
+            0.3727309,
+            0,
+            0,
+            0.3727309,
+            178.12482,
+            896.71388
+          ]
+        }
+      },
+      {
+        "_type": "PathShape",
+        "pathSegment": {
+          "_type": "PathSegment",
+          "segments": [
+            {
+              "_type": "MoveToSegment",
+              "point": {
+                "x": 228.92503,
+                "y": 987.62207
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 213.73311999999999,
+                "y": 987.62207
+              },
+              "cp2": {
+                "x": 186.20186999999999,
+                "y": 999.93016
+              },
+              "endPoint": {
+                "x": 158.67061999999999,
+                "y": 1027.43019
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 158.67061999999999,
+                "y": 1042.62209
+              },
+              "cp2": {
+                "x": 171.00995999999998,
+                "y": 1070.15329
+              },
+              "endPoint": {
+                "x": 198.54120999999998,
+                "y": 1097.6844899999999
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 213.73311999999999,
+                "y": 1097.6844899999999
+              },
+              "cp2": {
+                "x": 241.23311999999999,
+                "y": 1085.3451899999998
+              },
+              "endPoint": {
+                "x": 268.73312,
+                "y": 1057.8139899999999
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 268.73312,
+                "y": 1042.62205
+              },
+              "cp2": {
+                "x": 256.42503,
+                "y": 1015.1220199999999
+              },
+              "endPoint": {
+                "x": 228.92503,
+                "y": 987.6219899999999
+              }
+            },
+            {"_type": "ClosePathSegment"},
+            {
+              "_type": "MoveToSegment",
+              "point": {
+                "x": 228.92503,
+                "y": 989.99707
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 242.80959,
+                "y": 989.99707
+              },
+              "cp2": {
+                "x": 267.93458999999996,
+                "y": 1001.2375
+              },
+              "endPoint": {
+                "x": 293.05958999999996,
+                "y": 1026.3625299999999
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 293.05958999999996,
+                "y": 1040.2470299999998
+              },
+              "cp2": {
+                "x": 281.81915,
+                "y": 1065.4032299999997
+              },
+              "endPoint": {
+                "x": 256.69415,
+                "y": 1090.5594299999996
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 242.80959,
+                "y": 1090.5594299999996
+              },
+              "cp2": {
+                "x": 217.65334,
+                "y": 1079.2877299999996
+              },
+              "endPoint": {
+                "x": 192.49709,
+                "y": 1054.1315299999997
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 192.49709,
+                "y": 1040.2469299999996
+              },
+              "cp2": {
+                "x": 203.76878,
+                "y": 1015.1218999999995
+              },
+              "endPoint": {
+                "x": 228.92503,
+                "y": 989.9968699999995
+              }
+            },
+            {"_type": "ClosePathSegment"}
+          ]
+        }
+      },
+      {
+        "_type": "PathShape",
+        "pathSegment": {
+          "_type": "PathSegment",
+          "segments": [
+            {
+              "_type": "MoveToSegment",
+              "point": {
+                "x": 245.46214,
+                "y": 967.61334
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 245.46214,
+                "y": 970.45709
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 566.96214,
+                "y": 970.45709
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 566.96214,
+                "y": 967.61334
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 245.46213999999998,
+                "y": 967.61334
+              }
+            },
+            {"_type": "ClosePathSegment"}
+          ]
+        }
+      },
+      {
+        "_type": "PathShape",
+        "pathSegment": {
+          "_type": "PathSegment",
+          "segments": [
+            {
+              "_type": "MoveToSegment",
+              "point": {
+                "x": 545.22491,
+                "y": 977.7324
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 545.22491,
+                "y": 980.57615
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 628.15034,
+                "y": 980.57615
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 628.15034,
+                "y": 977.7324
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 545.22491,
+                "y": 977.7324
+              }
+            },
+            {"_type": "ClosePathSegment"}
+          ]
+        }
+      },
+      {
+        "_type": "GroupShape",
+        "shapes": [{
+          "_type": "PathShape",
+          "pathSegment": {
+            "_type": "PathSegment",
+            "segments": [
+              {
+                "_type": "MoveToSegment",
+                "point": {
+                  "x": 151.07143,
+                  "y": 317.71933
+                }
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 121.42857,
+                  "y": 317.71933
+                },
+                "largeArcFlag": 1,
+                "radiusX": 14.821428,
+                "radiusY": 14.821428,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 151.07143,
+                  "y": 317.71933
+                },
+                "largeArcFlag": 1,
+                "radiusX": 14.821428,
+                "radiusY": 14.821428,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {"_type": "ClosePathSegment"}
+            ]
+          }
+        }],
+        "transform": {
+          "_type": "Transform",
+          "m": [
+            0.95533334,
+            0,
+            0,
+            0.95533334,
+            359.74586,
+            724.96326
+          ]
+        }
+      },
+      {
+        "_type": "GroupShape",
+        "shapes": [{
+          "_type": "PathShape",
+          "pathSegment": {
+            "_type": "PathSegment",
+            "segments": [
+              {
+                "_type": "MoveToSegment",
+                "point": {
+                  "x": 151.07143,
+                  "y": 317.71933
+                }
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 121.42857,
+                  "y": 317.71933
+                },
+                "largeArcFlag": 1,
+                "radiusX": 14.821428,
+                "radiusY": 14.821428,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 151.07143,
+                  "y": 317.71933
+                },
+                "largeArcFlag": 1,
+                "radiusX": 14.821428,
+                "radiusY": 14.821428,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {"_type": "ClosePathSegment"}
+            ]
+          }
+        }],
+        "transform": {
+          "_type": "Transform",
+          "m": [
+            0.48460128,
+            0,
+            0,
+            0.48460128,
+            423.8831,
+            874.52393
+          ]
+        }
+      },
+      {
+        "_type": "GroupShape",
+        "shapes": [{
+          "_type": "PathShape",
+          "pathSegment": {
+            "_type": "PathSegment",
+            "segments": [
+              {
+                "_type": "MoveToSegment",
+                "point": {
+                  "x": 151.07143,
+                  "y": 317.71933
+                }
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 121.42857,
+                  "y": 317.71933
+                },
+                "largeArcFlag": 1,
+                "radiusX": 14.821428,
+                "radiusY": 14.821428,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 151.07143,
+                  "y": 317.71933
+                },
+                "largeArcFlag": 1,
+                "radiusX": 14.821428,
+                "radiusY": 14.821428,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {"_type": "ClosePathSegment"}
+            ]
+          }
+        }],
+        "transform": {
+          "_type": "Transform",
+          "m": [
+            -0.95533334,
+            0,
+            0,
+            0.95533334,
+            679.49502,
+            724.96326
+          ]
+        }
+      },
+      {
+        "_type": "GroupShape",
+        "shapes": [{
+          "_type": "PathShape",
+          "pathSegment": {
+            "_type": "PathSegment",
+            "segments": [
+              {
+                "_type": "MoveToSegment",
+                "point": {
+                  "x": 151.07143,
+                  "y": 317.71933
+                }
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 121.42857,
+                  "y": 317.71933
+                },
+                "largeArcFlag": 1,
+                "radiusX": 14.821428,
+                "radiusY": 14.821428,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 151.07143,
+                  "y": 317.71933
+                },
+                "largeArcFlag": 1,
+                "radiusX": 14.821428,
+                "radiusY": 14.821428,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {"_type": "ClosePathSegment"}
+            ]
+          }
+        }],
+        "transform": {
+          "_type": "Transform",
+          "m": [
+            -0.48460128,
+            0,
+            0,
+            0.48460128,
+            615.35778,
+            874.52393
+          ]
+        }
+      },
+      {
+        "_type": "PathShape",
+        "pathSegment": {
+          "_type": "PathSegment",
+          "segments": [
+            {
+              "_type": "MoveToSegment",
+              "point": {
+                "x": 510.90393,
+                "y": 1021.4514
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 510.90393,
+                "y": 1032.4826
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 505.57498,
+                "y": 1036.5764000000001
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 505.57498,
+                "y": 1025.7853000000002
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 473.98913,
+                "y": 1025.7853000000002
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 473.98913,
+                "y": 1036.5296000000003
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 467.14682999999997,
+                "y": 1036.3960000000004
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 467.14682999999997,
+                "y": 1032.4826000000005
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 456.37267999999995,
+                "y": 1032.4826000000005
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 456.37267999999995,
+                "y": 1023.0764000000005
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 464.24737999999996,
+                "y": 1021.7025000000004
+              },
+              "cp2": {
+                "x": 480.73103999999995,
+                "y": 1015.5151000000004
+              },
+              "endPoint": {
+                "x": 504.13728999999995,
+                "y": 1001.7651000000004
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 527.1997899999999,
+                "y": 1001.7651000000004
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 535.2622899999999,
+                "y": 1005.6713000000004
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 552.6953099999998,
+                "y": 1005.6713000000004
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 560.7578099999998,
+                "y": 1001.7651000000004
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 583.8203099999998,
+                "y": 1001.7651000000004
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 590.7428999999998,
+                "y": 1009.3277000000004
+              },
+              "cp2": {
+                "x": 606.2744499999999,
+                "y": 1021.7038000000003
+              },
+              "endPoint": {
+                "x": 629.6806999999999,
+                "y": 1035.4538000000002
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 629.6806999999999,
+                "y": 1044.8600000000001
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 618.9065499999999,
+                "y": 1044.8600000000001
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 618.9065499999999,
+                "y": 1048.7734
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 612.0642499999999,
+                "y": 1048.907
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 612.0642499999999,
+                "y": 1038.1626999999999
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 580.4783999999999,
+                "y": 1038.1626999999999
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 580.4783999999999,
+                "y": 1048.9537999999998
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 575.1494499999999,
+                "y": 1044.8599999999997
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 575.1494499999999,
+                "y": 1033.8287999999998
+              }
+            },
+            {"_type": "ClosePathSegment"}
+          ]
+        }
+      },
+      {
+        "_type": "GroupShape",
+        "shapes": [{
+          "_type": "PathShape",
+          "pathSegment": {
+            "_type": "PathSegment",
+            "segments": [
+              {
+                "_type": "MoveToSegment",
+                "point": {
+                  "x": 151.07143,
+                  "y": 317.71933
+                }
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 121.42857,
+                  "y": 317.71933
+                },
+                "largeArcFlag": 1,
+                "radiusX": 14.821428,
+                "radiusY": 14.821428,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 151.07143,
+                  "y": 317.71933
+                },
+                "largeArcFlag": 1,
+                "radiusX": 14.821428,
+                "radiusY": 14.821428,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {"_type": "ClosePathSegment"}
+            ]
+          }
+        }],
+        "transform": {
+          "_type": "Transform",
+          "m": [
+            0.90489776,
+            0,
+            0,
+            0.90489776,
+            56.335,
+            741.74523
+          ]
+        }
+      },
+      {
+        "_type": "GroupShape",
+        "shapes": [{
+          "_type": "PathShape",
+          "pathSegment": {
+            "_type": "PathSegment",
+            "segments": [
+              {
+                "_type": "MoveToSegment",
+                "point": {
+                  "x": 151.07143,
+                  "y": 317.71933
+                }
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 121.42857,
+                  "y": 317.71933
+                },
+                "largeArcFlag": 1,
+                "radiusX": 14.821428,
+                "radiusY": 14.821428,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 151.07143,
+                  "y": 317.71933
+                },
+                "largeArcFlag": 1,
+                "radiusX": 14.821428,
+                "radiusY": 14.821428,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {"_type": "ClosePathSegment"}
+            ]
+          }
+        }],
+        "transform": {
+          "_type": "Transform",
+          "m": [
+            0.77479282,
+            0,
+            0,
+            0.77479282,
+            74.0618,
+            783.08209
+          ]
+        }
+      },
+      {
+        "_type": "GroupShape",
+        "shapes": [{
+          "_type": "PathShape",
+          "pathSegment": {
+            "_type": "PathSegment",
+            "segments": [
+              {
+                "_type": "MoveToSegment",
+                "point": {
+                  "x": 151.07143,
+                  "y": 317.71933
+                }
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 121.42857,
+                  "y": 317.71933
+                },
+                "largeArcFlag": 1,
+                "radiusX": 14.821428,
+                "radiusY": 14.821428,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 151.07143,
+                  "y": 317.71933
+                },
+                "largeArcFlag": 1,
+                "radiusX": 14.821428,
+                "radiusY": 14.821428,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {"_type": "ClosePathSegment"}
+            ]
+          }
+        }],
+        "transform": {
+          "_type": "Transform",
+          "m": [
+            0.33329455,
+            0,
+            0,
+            0.33329455,
+            134.21594,
+            923.35462
+          ]
+        }
+      },
+      {
+        "_type": "PathShape",
+        "pathSegment": {
+          "_type": "PathSegment",
+          "segments": [
+            {
+              "_type": "MoveToSegment",
+              "point": {
+                "x": 552.13053,
+                "y": 935.16206
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 558.9182500000001,
+                "y": 933.62351
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 558.9182500000001,
+                "y": 948.58917
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 552.13053,
+                "y": 947.85511
+              }
+            },
+            {"_type": "ClosePathSegment"}
+          ]
+        }
+      },
+      {
+        "_type": "GroupShape",
+        "shapes": [{
+          "_type": "PathShape",
+          "pathSegment": {
+            "_type": "PathSegment",
+            "segments": [
+              {
+                "_type": "MoveToSegment",
+                "point": {
+                  "x": 428.32611,
+                  "y": 634.67999
+                }
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 419.07691000000005,
+                  "y": 634.67999
+                },
+                "largeArcFlag": 1,
+                "radiusX": 4.6246004,
+                "radiusY": 4.6246004,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 428.32611,
+                  "y": 634.67999
+                },
+                "largeArcFlag": 1,
+                "radiusX": 4.6246004,
+                "radiusY": 4.6246004,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {"_type": "ClosePathSegment"}
+            ]
+          }
+        }],
+        "transform": {
+          "_type": "Transform",
+          "m": [
+            1.2857143,
+            0,
+            0,
+            1.2857143,
+            -191.9152,
+            216.2659
+          ]
+        }
+      },
+      {
+        "_type": "GroupShape",
+        "shapes": [{
+          "_type": "PathShape",
+          "pathSegment": {
+            "_type": "PathSegment",
+            "segments": [
+              {
+                "_type": "MoveToSegment",
+                "point": {
+                  "x": 428.32611,
+                  "y": 634.67999
+                }
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 419.07691000000005,
+                  "y": 634.67999
+                },
+                "largeArcFlag": 1,
+                "radiusX": 4.6246004,
+                "radiusY": 4.6246004,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 428.32611,
+                  "y": 634.67999
+                },
+                "largeArcFlag": 1,
+                "radiusX": 4.6246004,
+                "radiusY": 4.6246004,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {"_type": "ClosePathSegment"}
+            ]
+          }
+        }],
+        "transform": {
+          "_type": "Transform",
+          "m": [
+            1,
+            0,
+            0,
+            1,
+            -18.89762,
+            397.60306
+          ]
+        }
+      },
+      {
+        "_type": "GroupShape",
+        "shapes": [{
+          "_type": "PathShape",
+          "pathSegment": {
+            "_type": "PathSegment",
+            "segments": [
+              {
+                "_type": "MoveToSegment",
+                "point": {
+                  "x": 428.32611,
+                  "y": 634.67999
+                }
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 419.07691000000005,
+                  "y": 634.67999
+                },
+                "largeArcFlag": 1,
+                "radiusX": 4.6246004,
+                "radiusY": 4.6246004,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 428.32611,
+                  "y": 634.67999
+                },
+                "largeArcFlag": 1,
+                "radiusX": 4.6246004,
+                "radiusY": 4.6246004,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {"_type": "ClosePathSegment"}
+            ]
+          }
+        }],
+        "transform": {
+          "_type": "Transform",
+          "m": [
+            1.6666667,
+            0,
+            0,
+            1.6666667,
+            -428.03571,
+            -25.51696
+          ]
+        }
+      },
+      {
+        "_type": "GroupShape",
+        "shapes": [{
+          "_type": "PathShape",
+          "pathSegment": {
+            "_type": "PathSegment",
+            "segments": [
+              {
+                "_type": "MoveToSegment",
+                "point": {
+                  "x": 428.32611,
+                  "y": 634.67999
+                }
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 419.07691000000005,
+                  "y": 634.67999
+                },
+                "largeArcFlag": 1,
+                "radiusX": 4.6246004,
+                "radiusY": 4.6246004,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 428.32611,
+                  "y": 634.67999
+                },
+                "largeArcFlag": 1,
+                "radiusX": 4.6246004,
+                "radiusY": 4.6246004,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {"_type": "ClosePathSegment"}
+            ]
+          }
+        }],
+        "transform": {
+          "_type": "Transform",
+          "m": [
+            1,
+            0,
+            0,
+            1,
+            -199.51579,
+            397.60306
+          ]
+        }
+      },
+      {
+        "_type": "GroupShape",
+        "shapes": [{
+          "_type": "PathShape",
+          "pathSegment": {
+            "_type": "PathSegment",
+            "segments": [
+              {
+                "_type": "MoveToSegment",
+                "point": {
+                  "x": 428.32611,
+                  "y": 634.67999
+                }
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 419.07691000000005,
+                  "y": 634.67999
+                },
+                "largeArcFlag": 1,
+                "radiusX": 4.6246004,
+                "radiusY": 4.6246004,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 428.32611,
+                  "y": 634.67999
+                },
+                "largeArcFlag": 1,
+                "radiusX": 4.6246004,
+                "radiusY": 4.6246004,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {"_type": "ClosePathSegment"}
+            ]
+          }
+        }],
+        "transform": {
+          "_type": "Transform",
+          "m": [
+            0.68253967,
+            0,
+            0,
+            0.68253967,
+            115.61079,
+            599.08878
+          ]
+        }
+      },
+      {
+        "_type": "GroupShape",
+        "shapes": [{
+          "_type": "PathShape",
+          "pathSegment": {
+            "_type": "PathSegment",
+            "segments": [
+              {
+                "_type": "MoveToSegment",
+                "point": {
+                  "x": 428.32611,
+                  "y": 634.67999
+                }
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 419.07691000000005,
+                  "y": 634.67999
+                },
+                "largeArcFlag": 1,
+                "radiusX": 4.6246004,
+                "radiusY": 4.6246004,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 428.32611,
+                  "y": 634.67999
+                },
+                "largeArcFlag": 1,
+                "radiusX": 4.6246004,
+                "radiusY": 4.6246004,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {"_type": "ClosePathSegment"}
+            ]
+          }
+        }],
+        "transform": {
+          "_type": "Transform",
+          "m": [
+            0.87755101,
+            0,
+            0,
+            0.87755101,
+            -18.97579,
+            475.31898
+          ]
+        }
+      },
+      {
+        "_type": "GroupShape",
+        "shapes": [{
+          "_type": "PathShape",
+          "pathSegment": {
+            "_type": "PathSegment",
+            "segments": [
+              {
+                "_type": "MoveToSegment",
+                "point": {
+                  "x": 428.32611,
+                  "y": 634.67999
+                }
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 419.07691000000005,
+                  "y": 634.67999
+                },
+                "largeArcFlag": 1,
+                "radiusX": 4.6246004,
+                "radiusY": 4.6246004,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 428.32611,
+                  "y": 634.67999
+                },
+                "largeArcFlag": 1,
+                "radiusX": 4.6246004,
+                "radiusY": 4.6246004,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {"_type": "ClosePathSegment"}
+            ]
+          }
+        }],
+        "transform": {
+          "_type": "Transform",
+          "m": [
+            0.68253967,
+            0,
+            0,
+            0.68253967,
+            -65.00738,
+            599.08878
+          ]
+        }
+      },
+      {
+        "_type": "GroupShape",
+        "shapes": [{
+          "_type": "PathShape",
+          "pathSegment": {
+            "_type": "PathSegment",
+            "segments": [
+              {
+                "_type": "MoveToSegment",
+                "point": {
+                  "x": 428.32611,
+                  "y": 634.67999
+                }
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 419.07691000000005,
+                  "y": 634.67999
+                },
+                "largeArcFlag": 1,
+                "radiusX": 4.6246004,
+                "radiusY": 4.6246004,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 428.32611,
+                  "y": 634.67999
+                },
+                "largeArcFlag": 1,
+                "radiusX": 4.6246004,
+                "radiusY": 4.6246004,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {"_type": "ClosePathSegment"}
+            ]
+          }
+        }],
+        "transform": {
+          "_type": "Transform",
+          "m": [
+            0.56765801,
+            0,
+            0,
+            0.56765801,
+            37.61596,
+            672.00186
+          ]
+        }
+      },
+      {
+        "_type": "PathShape",
+        "pathSegment": {
+          "_type": "PathSegment",
+          "segments": [
+            {
+              "_type": "MoveToSegment",
+              "point": {
+                "x": 123.47471,
+                "y": 986.97971
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 154.91572,
+                "y": 986.97971
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 149.00853999999998,
+                "y": 1000.2801
+              },
+              "cp2": {
+                "x": 143.81356,
+                "y": 1026.88079
+              },
+              "endPoint": {
+                "x": 143.81356,
+                "y": 1066.78178
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 113.3827,
+                "y": 1066.78178
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 109.76133,
+                "y": 1066.78178
+              },
+              "cp2": {
+                "x": 104.83685,
+                "y": 1062.32008
+              },
+              "endPoint": {
+                "x": 99.91237,
+                "y": 1054.74398
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 99.91237,
+                "y": 1026.58595
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 99.7725,
+                "y": 1024.41521
+              },
+              "cp2": {
+                "x": 100.76599999999999,
+                "y": 1020.2483499999998
+              },
+              "endPoint": {
+                "x": 104.68033,
+                "y": 1016.0814899999998
+              }
+            },
+            {"_type": "ClosePathSegment"}
+          ]
+        }
+      },
+      {
+        "_type": "GroupShape",
+        "shapes": [{
+          "_type": "PathShape",
+          "pathSegment": {
+            "_type": "PathSegment",
+            "segments": [
+              {
+                "_type": "MoveToSegment",
+                "point": {
+                  "x": 428.32611,
+                  "y": 634.67999
+                }
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 419.07691000000005,
+                  "y": 634.67999
+                },
+                "largeArcFlag": 1,
+                "radiusX": 4.6246004,
+                "radiusY": 4.6246004,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 428.32611,
+                  "y": 634.67999
+                },
+                "largeArcFlag": 1,
+                "radiusX": 4.6246004,
+                "radiusY": 4.6246004,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {"_type": "ClosePathSegment"}
+            ]
+          }
+        }],
+        "transform": {
+          "_type": "Transform",
+          "m": [
+            0.56765801,
+            0,
+            0,
+            0.56765801,
+            37.61596,
+            658.02043
+          ]
+        }
+      },
+      {
+        "_type": "PathShape",
+        "pathSegment": {
+          "_type": "PathSegment",
+          "segments": [
+            {
+              "_type": "MoveToSegment",
+              "point": {
+                "x": 180.62071,
+                "y": 991.36222
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 208.06607,
+                "y": 996.51325
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 262.26036999999997,
+                "y": 996.51325
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 262.26036999999997,
+                "y": 1004.2398
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 180.62070999999997,
+                "y": 1004.2398
+              }
+            },
+            {"_type": "ClosePathSegment"}
+          ]
+        }
+      },
+      {
+        "_type": "PathShape",
+        "pathSegment": {
+          "_type": "PathSegment",
+          "segments": [
+            {
+              "_type": "MoveToSegment",
+              "point": {
+                "x": 279.45183,
+                "y": 991.35496
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 315.95939,
+                "y": 1009.1848
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 313.38295999999997,
+                "y": 1002.1111
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 308.04679999999996,
+                "y": 995.5087599999999
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 301.38899,
+                "y": 991.14605
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 301.03184,
+                "y": 991.1791499999999
+              },
+              "cp2": {
+                "x": 294.60585,
+                "y": 989.21363
+              },
+              "endPoint": {
+                "x": 287.99096999999995,
+                "y": 987.21906
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 287.8318699999999,
+                "y": 987.19456
+              },
+              "cp2": {
+                "x": 287.51366999999993,
+                "y": 987.14556
+              },
+              "endPoint": {
+                "x": 287.0363699999999,
+                "y": 987.07216
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 279.8647299999999,
+                "y": 987.1091600000001
+              }
+            },
+            {"_type": "ClosePathSegment"}
+          ]
+        }
+      },
+      {
+        "_type": "PathShape",
+        "pathSegment": {
+          "_type": "PathSegment",
+          "segments": [
+            {
+              "_type": "MoveToSegment",
+              "point": {
+                "x": 345.7714,
+                "y": 989.66478
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 376.64501,
+                "y": 1005.6433999999999
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 375.35634,
+                "y": 1001.7891999999999
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 370.02018,
+                "y": 995.1868199999999
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 363.36237,
+                "y": 990.8241099999999
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 363.00522,
+                "y": 990.8572099999999
+              },
+              "cp2": {
+                "x": 356.57923,
+                "y": 988.8916899999999
+              },
+              "endPoint": {
+                "x": 349.96434999999997,
+                "y": 986.89712
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 349.80524999999994,
+                "y": 986.87262
+              },
+              "cp2": {
+                "x": 349.48704999999995,
+                "y": 986.82362
+              },
+              "endPoint": {
+                "x": 349.00974999999994,
+                "y": 986.75022
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 341.8381099999999,
+                "y": 986.78722
+              }
+            },
+            {"_type": "ClosePathSegment"}
+          ]
+        }
+      },
+      {
+        "_type": "PathShape",
+        "pathSegment": {
+          "_type": "PathSegment",
+          "segments": [
+            {
+              "_type": "MoveToSegment",
+              "point": {
+                "x": 437.16875,
+                "y": 1002.0306
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 431.83259,
+                "y": 995.42827
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 425.17478,
+                "y": 991.06556
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 424.81763,
+                "y": 991.09866
+              },
+              "cp2": {
+                "x": 418.39164,
+                "y": 989.13314
+              },
+              "endPoint": {
+                "x": 411.77675999999997,
+                "y": 987.1385700000001
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 411.61765999999994,
+                "y": 987.1140700000001
+              },
+              "cp2": {
+                "x": 411.29945999999995,
+                "y": 987.0650700000001
+              },
+              "endPoint": {
+                "x": 410.82215999999994,
+                "y": 986.9916700000001
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 403.6505199999999,
+                "y": 987.0286700000001
+              }
+            },
+            {"_type": "ClosePathSegment"}
+          ]
+        }
+      },
+      {
+        "_type": "GroupShape",
+        "shapes": [{
+          "_type": "PathShape",
+          "pathSegment": {
+            "_type": "PathSegment",
+            "segments": [
+              {
+                "_type": "MoveToSegment",
+                "point": {
+                  "x": 428.32611,
+                  "y": 634.67999
+                }
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 419.07691000000005,
+                  "y": 634.67999
+                },
+                "largeArcFlag": 1,
+                "radiusX": 4.6246004,
+                "radiusY": 4.6246004,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {
+                "_type": "ArcToSvgSegment",
+                "endPoint": {
+                  "x": 428.32611,
+                  "y": 634.67999
+                },
+                "largeArcFlag": 1,
+                "radiusX": 4.6246004,
+                "radiusY": 4.6246004,
+                "sweepFlag": 1,
+                "xAxisRotation": 0
+              },
+              {"_type": "ClosePathSegment"}
+            ]
+          }
+        }],
+        "transform": {
+          "_type": "Transform",
+          "m": [
+            0.56765801,
+            0,
+            0,
+            0.56765801,
+            -72.67839,
+            654.92843
+          ]
+        }
+      }
+    ],
+    "transform": {
+      "_type": "Transform",
+      "m": [
+        1,
+        0,
+        0,
+        1,
+        0,
+        -902.36218
+      ]
+    }
+  }]
+}

@@ -2,6 +2,7 @@ package wb.model;
 
 public class Point {
 
+	// can't make x and y final b/c of parsers
 	public double x;
 
 	public double y;

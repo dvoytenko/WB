@@ -1,5 +1,6 @@
 package wb.model;
 
+// NOT USED YET
 public class ArcToSegment extends ArcSegment {
 	
 	/* Form4: (canvas arcTo: http://www.w3schools.com/tags/canvas_arcto.asp)

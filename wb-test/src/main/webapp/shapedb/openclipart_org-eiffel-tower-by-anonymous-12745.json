@@ -1,0 +1,407 @@
+{
+  "_type": "GroupShape",
+  "author": "Anonymous",
+  "id": "openclipart_org-eiffel-tower-by-anonymous-12745",
+  "localBounds": {
+    "bottomright": {
+      "x": 228,
+      "y": 428
+    },
+    "topleft": {
+      "x": 1,
+      "y": 3
+    }
+  },
+  "shapes": [{
+    "_type": "GroupShape",
+    "shapes": [
+      {
+        "_type": "GroupShape",
+        "shapes": [{
+          "_type": "PathShape",
+          "pathSegment": {
+            "_type": "PathSegment",
+            "segments": [
+              {
+                "_type": "MoveToSegment",
+                "point": {
+                  "x": 194.125,
+                  "y": 56.5625
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 185.65625,
+                  "y": 58.375
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 184.4932,
+                  "y": 77.884822
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 188.0163,
+                  "y": 77.884822
+                }
+              },
+              {
+                "_type": "CubicSegment",
+                "cp1": {
+                  "x": 186.37421,
+                  "y": 141.54964
+                },
+                "cp2": {
+                  "x": 184.51709,
+                  "y": 209.7861
+                },
+                "endPoint": {
+                  "x": 182.875,
+                  "y": 269.375
+                }
+              },
+              {
+                "_type": "CubicSegment",
+                "cp1": {
+                  "x": 178.67676,
+                  "y": 305.68932
+                },
+                "cp2": {
+                  "x": 169.25506,
+                  "y": 315.7941
+                },
+                "endPoint": {
+                  "x": 150.5,
+                  "y": 354.4375
+                }
+              },
+              {
+                "_type": "CubicSegment",
+                "cp1": {
+                  "x": 129.53273,
+                  "y": 401.05471
+                },
+                "cp2": {
+                  "x": 108.24161,
+                  "y": 436.86047
+                },
+                "endPoint": {
+                  "x": 72.135241,
+                  "y": 480.56633
+                }
+              },
+              {
+                "_type": "CubicSegment",
+                "cp1": {
+                  "x": 78.182852,
+                  "y": 480.56633
+                },
+                "cp2": {
+                  "x": 96.444051,
+                  "y": 480.56633
+                },
+                "endPoint": {
+                  "x": 102.09388,
+                  "y": 480.56633
+                }
+              },
+              {
+                "_type": "CubicSegment",
+                "cp1": {
+                  "x": 127.40537,
+                  "y": 435.53812
+                },
+                "cp2": {
+                  "x": 151.57998,
+                  "y": 425.48032
+                },
+                "endPoint": {
+                  "x": 195.625,
+                  "y": 424.28125
+                }
+              },
+              {
+                "_type": "CubicSegment",
+                "cp1": {
+                  "x": 239.13314,
+                  "y": 424.9259
+                },
+                "cp2": {
+                  "x": 248.63673,
+                  "y": 437.11792
+                },
+                "endPoint": {
+                  "x": 273.375,
+                  "y": 480.56633
+                }
+              },
+              {
+                "_type": "CubicSegment",
+                "cp1": {
+                  "x": 280.99055,
+                  "y": 480.56633
+                },
+                "cp2": {
+                  "x": 290.88114,
+                  "y": 480.56633
+                },
+                "endPoint": {
+                  "x": 298.45825,
+                  "y": 480.56633
+                }
+              },
+              {
+                "_type": "CubicSegment",
+                "cp1": {
+                  "x": 270.18727,
+                  "y": 438.96178
+                },
+                "cp2": {
+                  "x": 249.07131,
+                  "y": 398.08161
+                },
+                "endPoint": {
+                  "x": 231.28125,
+                  "y": 355.3125
+                }
+              },
+              {
+                "_type": "CubicSegment",
+                "cp1": {
+                  "x": 214.88689,
+                  "y": 312.8444
+                },
+                "cp2": {
+                  "x": 210.15514,
+                  "y": 305.89537
+                },
+                "endPoint": {
+                  "x": 205.40625,
+                  "y": 269.25
+                }
+              },
+              {
+                "_type": "CubicSegment",
+                "cp1": {
+                  "x": 201.36246,
+                  "y": 210.26665
+                },
+                "cp2": {
+                  "x": 205.55194,
+                  "y": 141.52636
+                },
+                "endPoint": {
+                  "x": 201.50815,
+                  "y": 77.884822
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 204.9307,
+                  "y": 77.884822
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 202.78125,
+                  "y": 57.59375
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 194.125,
+                  "y": 56.5625
+                }
+              },
+              {"_type": "ClosePathSegment"},
+              {
+                "_type": "MoveToSegment",
+                "point": {
+                  "x": 178.75,
+                  "y": 321.59375
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 207.5,
+                  "y": 321.59375
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 228.25,
+                  "y": 387.15625
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 156.21875,
+                  "y": 387.15625
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 178.75,
+                  "y": 321.59375
+                }
+              },
+              {"_type": "ClosePathSegment"}
+            ]
+          }
+        }],
+        "transform": {
+          "_type": "Transform",
+          "m": [
+            1.000027,
+            0,
+            0,
+            1,
+            40.07307,
+            -31.31966
+          ]
+        }
+      },
+      {
+        "_type": "RectangleShape",
+        "height": 228.02527,
+        "topleft": {
+          "x": 231.97571,
+          "y": 46.565163
+        },
+        "width": 5.7606382
+      },
+      {
+        "_type": "GroupShape",
+        "shapes": [{
+          "_type": "RectangleShape",
+          "height": 11.645475,
+          "topleft": {
+            "x": 168.07179,
+            "y": 306.56796
+          },
+          "width": 49.903732
+        }],
+        "transform": {
+          "_type": "Transform",
+          "m": [
+            1.000027,
+            0,
+            0,
+            1,
+            40.07307,
+            -31.31966
+          ]
+        }
+      },
+      {
+        "_type": "GroupShape",
+        "shapes": [{
+          "_type": "RectangleShape",
+          "height": 0,
+          "topleft": {
+            "x": 183.99841,
+            "y": 209.91057
+          },
+          "width": 9.8986521
+        }],
+        "transform": {
+          "_type": "Transform",
+          "m": [
+            1.000027,
+            0,
+            0,
+            1,
+            40.07307,
+            -31.31966
+          ]
+        }
+      },
+      {
+        "_type": "GroupShape",
+        "shapes": [{
+          "_type": "RectangleShape",
+          "height": 6.4050107,
+          "topleft": {
+            "x": 183.99841,
+            "y": 202.88057
+          },
+          "width": 20.37957
+        }],
+        "transform": {
+          "_type": "Transform",
+          "m": [
+            1.000027,
+            0,
+            0,
+            1,
+            40.07307,
+            -31.31966
+          ]
+        }
+      },
+      {
+        "_type": "GroupShape",
+        "shapes": [{
+          "_type": "RectangleShape",
+          "height": 13.392289,
+          "topleft": {
+            "x": 125.74918,
+            "y": 389.83307
+          },
+          "width": 127.56167
+        }],
+        "transform": {
+          "_type": "Transform",
+          "m": [
+            1.000027,
+            0,
+            0,
+            1,
+            40.07307,
+            -31.31966
+          ]
+        }
+      }
+    ],
+    "transform": {
+      "_type": "Transform",
+      "m": [
+        1,
+        0,
+        0,
+        1,
+        -111.0017,
+        -22.13362
+      ]
+    }
+  }],
+  "source": "openclipart.org",
+  "tags": [
+    "landmark",
+    "paris",
+    "building",
+    "tower",
+    "europe",
+    "svg",
+    "png",
+    "clip art",
+    "eiffel",
+    "image",
+    "public domain",
+    "media"
+  ],
+  "title": "Eiffel tower",
+  "url": "http://openclipart.org/detail/12745/eiffel-tower-by-anonymous-12745"
+}

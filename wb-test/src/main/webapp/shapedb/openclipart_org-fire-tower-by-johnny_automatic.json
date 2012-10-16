@@ -1,0 +1,284 @@
+{
+  "_type": "GroupShape",
+  "author": "johnny_automatic",
+  "id": "openclipart_org-fire-tower-by-johnny_automatic",
+  "localBounds": {
+    "bottomright": {
+      "x": 63,
+      "y": 104
+    },
+    "topleft": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  "shapes": [{
+    "_type": "PathShape",
+    "pathSegment": {
+      "_type": "PathSegment",
+      "segments": [
+        {
+          "_type": "MoveToSegment",
+          "point": {
+            "x": 15.758,
+            "y": 14.711
+          }
+        },
+        {
+          "_type": "LineToSegment",
+          "point": {
+            "x": 15.758,
+            "y": 27.086
+          }
+        },
+        {
+          "_type": "LineToSegment",
+          "point": {
+            "x": 47.196,
+            "y": 27.086
+          }
+        },
+        {
+          "_type": "LineToSegment",
+          "point": {
+            "x": 47.196,
+            "y": 14.711
+          }
+        },
+        {
+          "_type": "LineToSegment",
+          "point": {
+            "x": 15.758,
+            "y": 14.711
+          }
+        },
+        {"_type": "ClosePathSegment"},
+        {
+          "_type": "MoveToSegment",
+          "point": {
+            "x": 43.805,
+            "y": 56.039
+          }
+        },
+        {
+          "_type": "LineToSegment",
+          "point": {
+            "x": 36.21,
+            "y": 65.258
+          }
+        },
+        {
+          "_type": "LineToSegment",
+          "point": {
+            "x": 49.398,
+            "y": 81.31299999999999
+          }
+        },
+        {
+          "_type": "LineToSegment",
+          "point": {
+            "x": 43.805,
+            "y": 56.039
+          }
+        },
+        {"_type": "ClosePathSegment"},
+        {
+          "_type": "MoveToSegment",
+          "point": {
+            "x": 41.781,
+            "y": 46.898
+          }
+        },
+        {
+          "_type": "LineToSegment",
+          "point": {
+            "x": 39.359,
+            "y": 35.851
+          }
+        },
+        {
+          "_type": "LineToSegment",
+          "point": {
+            "x": 23.609,
+            "y": 35.851
+          }
+        },
+        {
+          "_type": "LineToSegment",
+          "point": {
+            "x": 21.195,
+            "y": 46.873999999999995
+          }
+        },
+        {
+          "_type": "LineToSegment",
+          "point": {
+            "x": 31.477,
+            "y": 59.5
+          }
+        },
+        {
+          "_type": "LineToSegment",
+          "point": {
+            "x": 41.781,
+            "y": 46.898
+          }
+        },
+        {"_type": "ClosePathSegment"},
+        {
+          "_type": "MoveToSegment",
+          "point": {
+            "x": 13.562,
+            "y": 81.312
+          }
+        },
+        {
+          "_type": "LineToSegment",
+          "point": {
+            "x": 26.75,
+            "y": 65.258
+          }
+        },
+        {
+          "_type": "LineToSegment",
+          "point": {
+            "x": 19.142,
+            "y": 56.038999999999994
+          }
+        },
+        {
+          "_type": "LineToSegment",
+          "point": {
+            "x": 13.562,
+            "y": 81.312
+          }
+        },
+        {"_type": "ClosePathSegment"},
+        {
+          "_type": "MoveToSegment",
+          "point": {
+            "x": 10.062,
+            "y": 97.164
+          }
+        },
+        {
+          "_type": "LineToSegment",
+          "point": {
+            "x": 8.716999999999999,
+            "y": 103.258
+          }
+        },
+        {
+          "_type": "LineToSegment",
+          "point": {
+            "x": 0,
+            "y": 103.219
+          }
+        },
+        {
+          "_type": "LineToSegment",
+          "point": {
+            "x": 14.93,
+            "y": 35.875
+          }
+        },
+        {
+          "_type": "LineToSegment",
+          "point": {
+            "x": 6.312999999999999,
+            "y": 35.789
+          }
+        },
+        {
+          "_type": "LineToSegment",
+          "point": {
+            "x": 6.312999999999999,
+            "y": 11.281
+          }
+        },
+        {
+          "_type": "LineToSegment",
+          "point": {
+            "x": 31.477,
+            "y": 0
+          }
+        },
+        {
+          "_type": "LineToSegment",
+          "point": {
+            "x": 56.649,
+            "y": 11.281
+          }
+        },
+        {
+          "_type": "LineToSegment",
+          "point": {
+            "x": 56.649,
+            "y": 35.789
+          }
+        },
+        {
+          "_type": "LineToSegment",
+          "point": {
+            "x": 48.055,
+            "y": 35.875
+          }
+        },
+        {
+          "_type": "LineToSegment",
+          "point": {
+            "x": 62.946,
+            "y": 103.219
+          }
+        },
+        {
+          "_type": "LineToSegment",
+          "point": {
+            "x": 54.257999999999996,
+            "y": 103.258
+          }
+        },
+        {
+          "_type": "LineToSegment",
+          "point": {
+            "x": 52.913999999999994,
+            "y": 97.18799999999999
+          }
+        },
+        {
+          "_type": "LineToSegment",
+          "point": {
+            "x": 31.477,
+            "y": 71.07
+          }
+        },
+        {
+          "_type": "LineToSegment",
+          "point": {
+            "x": 10.062,
+            "y": 97.164
+          }
+        },
+        {"_type": "ClosePathSegment"}
+      ]
+    }
+  }],
+  "source": "openclipart.org",
+  "tags": [
+    "svg",
+    "park",
+    "symbol",
+    "cartography",
+    "pictograph",
+    "image",
+    "public domain",
+    "externalsource",
+    "tower",
+    "png",
+    "clip art",
+    "map",
+    "media"
+  ],
+  "title": "fire tower",
+  "url": "http://openclipart.org/detail/11580/fire-tower-by-johnny_automatic"
+}

@@ -7,12 +7,7 @@
 
 		{
 			_type: 'SpeechEpisode',
-			text: 'Let\'s build a whiteboard presentation! Let\'s see what we can do.',
-			engine: 'cere'
-		},
-		{
-			_type: 'SpeechEpisode',
-			text: 'These presentations can be pretty neat as we can demonstrate almost any idea we want.',
+			text: 'Would you like to be able in a short time to create a whiteboard presentation like this?',
 			engine: 'cere'
 		},
 
@@ -82,7 +77,8 @@
 			height: 2,
 			realWidth: 4,
 			realHeight: 4,
-			rotationDegree: 0
+			rotationDegree: 0,
+			rate: 2
 		},
 
 

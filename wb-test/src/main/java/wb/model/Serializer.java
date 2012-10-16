@@ -58,11 +58,11 @@ public class Serializer {
 		}
 		
 		if (obj instanceof Point) {
-			JSONObject js = new JSONObject();
-			Point p = (Point) obj;
-			js.put("x", p.x);
-			js.put("y", p.y);
-			return js;
+			return pointToJson((Point) obj);
+		}
+
+		if (obj instanceof Bounds) {
+			return boundsToJson((Bounds) obj);
 		}
 		
 		if (obj.getClass().getPackage().getName().equals("wb.model")) {
@@ -87,6 +87,21 @@ public class Serializer {
 		}
 		
 		throw new IllegalArgumentException("cannot convert [" + obj + "] to JSON");
+	}
+
+	private JSONObject boundsToJson(Bounds obj) throws JSONException {
+		JSONObject js = new JSONObject();
+		Bounds b = (Bounds) obj;
+		js.put("topleft", pointToJson(b.topleft));
+		js.put("bottomright", pointToJson(b.bottomright));
+		return js;
+	}
+
+	private JSONObject pointToJson(Point p) throws JSONException {
+		JSONObject js = new JSONObject();
+		js.put("x", p.x);
+		js.put("y", p.y);
+		return js;
 	}
 
 	private String isoDateFormat(Date date) {

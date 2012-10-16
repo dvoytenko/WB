@@ -12,7 +12,6 @@ import javax.sound.sampled.LineEvent;
 import javax.sound.sampled.LineListener;
 
 import marytts.MaryInterface;
-import marytts.datatypes.MaryDataType;
 import marytts.util.data.audio.AudioPlayer;
 import marytts.client.RemoteMaryInterface;
 
@@ -46,7 +45,7 @@ public class MaryTTSRemote {
 				System.out.println("Voice: " + voice);
 				marytts.setVoice(voice);
 //				marytts.setStyle(newStyle);
-				marytts.setOutputType(MaryDataType.AUDIO.toString());
+				marytts.setOutputType("AUDIO"); // MaryDataType.AUDIO
 //				marytts.setOutputTypeParams(params);
 				
 				/*

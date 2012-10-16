@@ -3,12 +3,14 @@ package com.antigrain.adaptivebezier.agg;
 import java.util.ArrayList;
 import java.util.List;
 
+import wb.model.Point;
+
 public class Curve4Div {
 
 	public static void main(String[] args) {
 		Curve4Div curve = new Curve4Div();
 
-		curve.init(48.996171, 37.251271, 47.958668, 32.143973, 39.185631,
+		curve.exec(48.996171, 37.251271, 47.958668, 32.143973, 39.185631,
 				24.658486, 33.930828, 26.057885);
 
 		System.out.println("Points: " + curve.points.size() + ": ");
@@ -32,13 +34,14 @@ public class Curve4Div {
 	private double distanceToleranceSquare;
 
 	private List<Point> points = new ArrayList<Point>();
-
-	public void init(double x1, double y1, double x2, double y2, double x3,
+	
+	public List<Point> exec(double x1, double y1, double x2, double y2, double x3,
 			double y3, double x4, double y4) {
 		this.points.clear();
 		this.distanceToleranceSquare = 0.5 / this.approximationScale;
 		this.distanceToleranceSquare *= this.distanceToleranceSquare;
 		bezier(x1, y1, x2, y2, x3, y3, x4, y4);
+		return this.points;
 	}
 
 	public void bezier(double x1, double y1, double x2, double y2, double x3,

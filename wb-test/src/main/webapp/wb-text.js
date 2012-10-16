@@ -145,8 +145,6 @@ WB.TextShape = WB.Shape.extend({
 	},
 	
 	draw: function(pane) {
-		var baseHeight = this.font.baseHeight;
-		console.log('baseHeight = ' + baseHeight);
 		// final boolean isUpsideDown = this.font.isUpsideDown();
 		var that = this;
 		pane.withTr(this.createTransform(), function() {

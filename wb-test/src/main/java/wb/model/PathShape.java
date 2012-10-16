@@ -22,32 +22,15 @@ public class PathShape extends Shape {
 	}
 
 	@Override
-	public void draw(Pane canvas) {
-		
-		canvas.beginPath();
-		
-		outline(canvas);
-		
-		canvas.stroke();
+	public void draw(Pane pane) {
+		pane.beginPath();
+		outline(pane);
+		pane.stroke();
 	}
 
 	@Override
 	public Animation createAnimation() {
-		return new AnimationImpl();
+		return null;
 	}
 	
-	private class AnimationImpl extends AnimationDelegate {
-
-		public AnimationImpl() {
-			super(pathSegment.createAnimation());
-		}
-		
-		@Override
-		public void frame(long time) {
-			super.frame(time);
-			getBoard().getAnimationPane().stroke();
-		}
-
-	}
-
 }

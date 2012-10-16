@@ -20,7 +20,6 @@ import javax.sound.sampled.AudioSystem;
 
 import marytts.MaryInterface;
 import marytts.client.RemoteMaryInterface;
-import marytts.datatypes.MaryDataType;
 
 import org.dom4j.Document;
 import org.dom4j.dom.DOMDocument;
@@ -143,7 +142,7 @@ public class PrepareScript {
 			try {
 				MaryInterface marytts = new RemoteMaryInterface();
 				marytts.setVoice(voice);
-				marytts.setOutputType(MaryDataType.AUDIO.toString());
+				marytts.setOutputType("AUDIO");
 				
 				AudioInputStream audio = marytts.generateAudio(text);
 				

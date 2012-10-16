@@ -318,7 +318,7 @@ WB.CubicSegment = WB.CurveSegment.extend({
 
 WB.QuadSegment = WB.CurveSegment.extend({
 
-	cp1: null,
+	cp: null,
 	
 	endPoint: null,
 	

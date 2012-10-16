@@ -47,6 +47,8 @@ WB.MoveToAnimation = WB.Animation.extend({
 	
 	start: function(board) {
 		this.board = board;
+		this.timeLeft = 0;
+		this.done = false;
 	},
 	
 	isDone: function() {
@@ -61,6 +63,7 @@ WB.MoveToAnimation = WB.Animation.extend({
 		var pane = this.board.animationPane;
 		pane.moveTo(this.moveto.point);
 		this.done = true;
+		this.timeLeft = time;
 		
 		this.board.state({
 			position: pane.toGlobalPoint(this.moveto.point),
@@ -72,8 +75,7 @@ WB.MoveToAnimation = WB.Animation.extend({
 	},
 	
 	getTimeLeft: function() {
-		// TODO
-		return 0;
+		return this.timeLeft;
 	}
 	
 });
@@ -361,7 +363,7 @@ WB.ArcSegmentAnimation = WB.Animation.extend({
 		this.velocity = board.getBaseVelocity();
 		
 		this.arc = this.arcsegm.resolveArc(this.pane);
-		console.log('arc: ' + JSON.stringify(this.arc));
+//		console.log('arc: ' + JSON.stringify(this.arc));
         this.da = this.arc.endAngle - this.arc.startAngle;
 		this.done = false;
 	},
@@ -389,7 +391,6 @@ WB.ArcSegmentAnimation = WB.Animation.extend({
 		    }
 			eap = this.arc.startAngle + this.da*distance/totalDistance;
 			if (!isRotated) {
-				console.log('!!! HERE !!!');
 				this.pane.arc(this.arc.center, this.arc.radiusX, this.arc.startAngle, 
 						eap, this.arc.counterclockwise);
 				this.lastPoint = this.pane.toGlobalPoint({
@@ -498,6 +499,81 @@ WB.ArcToSvgSegment = WB.ArcSegment.extend({
 	
 	resolveArc: function(pane) {
 		
+		// from canvg.js:
+		var curr = pane.getCurrentPoint();
+		var cp = this.endPoint;
+		var rx = this.radiusX;
+		var ry = this.radiusY;
+		var xAxisRotation = this.xAxisRotation;
+		var largeArcFlag = this.largeArcFlag;
+		var sweepFlag = this.sweepFlag;
+
+		// Conversion from endpoint to center parameterization
+		// http://www.w3.org/TR/SVG11/implnote.html#ArcImplementationNotes
+		// x1', y1'
+		var currp = {
+		        x: Math.cos(xAxisRotation) * (curr.x - cp.x) / 2.0 + Math.sin(xAxisRotation) * (curr.y - cp.y) / 2.0,
+		        y: -Math.sin(xAxisRotation) * (curr.x - cp.x) / 2.0 + Math.cos(xAxisRotation) * (curr.y - cp.y) / 2.0
+		};
+
+		// adjust radii
+		var l = Math.pow(currp.x,2)/Math.pow(rx,2) + Math.pow(currp.y,2)/Math.pow(ry,2);
+		if (l > 1) {
+	        rx *= Math.sqrt(l);
+	        ry *= Math.sqrt(l);
+		}
+
+		// cx', cy'
+		var s = (largeArcFlag == sweepFlag ? -1 : 1) * Math.sqrt(
+		        ((Math.pow(rx,2)*Math.pow(ry,2))-(Math.pow(rx,2)*Math.pow(currp.y,2))-(Math.pow(ry,2)*Math.pow(currp.x,2))) /
+		        (Math.pow(rx,2)*Math.pow(currp.y,2)+Math.pow(ry,2)*Math.pow(currp.x,2))
+			);
+		if (isNaN(s)) s = 0;
+
+		var cpp = {x: s * rx * currp.y / ry, y: s * -ry * currp.x / rx};
+
+		// cx, cy
+		var centp = {
+		        x: (curr.x + cp.x) / 2.0 + Math.cos(xAxisRotation) * cpp.x - Math.sin(xAxisRotation) * cpp.y,
+		        y: (curr.y + cp.y) / 2.0 + Math.sin(xAxisRotation) * cpp.x + Math.cos(xAxisRotation) * cpp.y
+		};
+
+		// vector magnitude
+		var m = function(v) { return Math.sqrt(Math.pow(v[0],2) + Math.pow(v[1],2)); }
+
+		// ratio between two vectors
+		var r = function(u, v) { return (u[0]*v[0]+u[1]*v[1]) / (m(u)*m(v)) }
+
+		// angle between two vectors
+		var a = function(u, v) { return (u[0]*v[1] < u[1]*v[0] ? -1 : 1) * Math.acos(r(u,v)); }
+
+		// initial angle
+		var a1 = a([1,0], [(currp.x-cpp.x)/rx,(currp.y-cpp.y)/ry]);
+
+		// angle delta
+		var u = [(currp.x-cpp.x)/rx,(currp.y-cpp.y)/ry];
+		var v = [(-currp.x-cpp.x)/rx,(-currp.y-cpp.y)/ry];
+		var ad = a(u, v);
+		if (r(u,v) <= -1) ad = Math.PI;
+		if (r(u,v) >= 1) ad = 0;
+
+		// for markers
+		var dir = 1 - sweepFlag ? 1.0 : -1.0;
+		var ah = a1 + dir * (ad / 2.0);
+		var halfWay = {
+		        x: centp.x + rx * Math.cos(ah),
+		        y: centp.y + ry * Math.sin(ah)
+		};
+		
+		// Arc{Point center, double radiusX, double radiusY, double xAxisRotation, 
+		//		double startAngle, double endAngle, boolean counterclockwise}
+		var arc = {center: {x:centp.x, y:centp.y}, radiusX: rx, radiusY: ry, 
+			xAxisRotation: xAxisRotation, startAngle: a1, endAngle: a1 + ad, 
+			counterclockwise: sweepFlag === 0.0};
+//		console.log('arc: ' + JSON.stringify(arc));
+		return arc;
+        
+	/* kinetic
 		var angle = function(u, v) {
 			return (u.x * v.y < u.y * v.x ? -1 : 1) * Math.acos(ratio(u, v));
 		};
@@ -518,11 +594,12 @@ WB.ArcToSvgSegment = WB.ArcSegment.extend({
 		var ry = this.radiusY;
 		var fa = this.largeArcFlag;
 		var fs = this.sweepFlag;
-
+		
 		var xp = Math.cos(psi) * (x1 - x2) / 2.0 + Math.sin(psi) * (y1 - y2) / 2.0;
 		var yp = -1 * Math.sin(psi) * (x1 - x2) / 2.0 + Math.cos(psi) * (y1 - y2) / 2.0;
 		
 		var lambda = (xp * xp) / (rx * rx) + (yp * yp) / (ry * ry);
+		console.log('lambda = ' + lambda);
 		if (lambda > 1) {
 			rx *= Math.sqrt(lambda);
 			ry *= Math.sqrt(lambda);
@@ -560,12 +637,14 @@ WB.ArcToSvgSegment = WB.ArcSegment.extend({
 			dTheta = dTheta + 2 * Math.PI;
 		}
 
-		/* Arc{Point center, double radiusX, double radiusY, double xAxisRotation, 
-		 * 		double startAngle, double endAngle, boolean counterclockwise}
-		 */
-		return {center: {x:cx, y:cy}, radiusX: rx, radiusY: ry, 
+		// Arc{Point center, double radiusX, double radiusY, double xAxisRotation, 
+		//		double startAngle, double endAngle, boolean counterclockwise}
+		var arc = {center: {x:cx, y:cy}, radiusX: rx, radiusY: ry, 
 			xAxisRotation: psi, startAngle: theta, endAngle: theta + dTheta, 
 			counterclockwise: fs === 0.0};
+		console.log('arc: ' + JSON.stringify(arc));
+		return arc;
+	 	*/
 	}
 
 });

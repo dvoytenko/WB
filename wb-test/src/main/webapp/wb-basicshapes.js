@@ -108,3 +108,32 @@ WB.PolylineShape = WB.PathBasedShape.extend({
 	
 });
 
+
+/**
+ * http://www.w3.org/TR/SVG/shapes.html#PolygonElement
+ */
+WB.PolygonShape = WB.PathBasedShape.extend({
+	
+	/**
+	 * array of points
+	 */
+	points: null,
+	
+	init: function(opts) {
+		if (opts && opts.points) {
+			this.points = opts.points;
+		}
+	},
+	
+	resolveSegments: function() {
+		var segments = [];
+		segments.push(new WB.MoveToSegment({point: this.points[0]}));
+		for (var i = 1; i < this.points.length; i++) {
+			segments.push(new WB.LineToSegment({point: this.points[i]}));
+		}
+		segments.push(new WB.ClosePathSegment());
+		return segments;
+	}
+	
+});
+

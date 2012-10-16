@@ -16,6 +16,7 @@ import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.StringReader;
 import java.io.Writer;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.security.PrivilegedAction;
@@ -277,6 +278,31 @@ public final class IoHelper {
 			out.close();
 		}
 		in.close();
+	}
+
+	public static void copy(File sourceFile, File targetFile) throws IOException {
+		InputStream in = new BufferedInputStream(new FileInputStream(sourceFile));
+		try {
+			OutputStream out = new BufferedOutputStream(new FileOutputStream(targetFile));
+			try {
+				copy(in, out);
+			} finally {
+				out.close();
+			}
+		} finally {
+			in.close();
+		}
+	}
+
+	public static Reader reader(HttpURLConnection con) throws IOException {
+		String encoding = extractCharset(con.getContentType());
+		Reader reader;
+		if (encoding != null) {
+			reader = new InputStreamReader(con.getInputStream(), encoding);
+		} else {
+			reader = new InputStreamReader(con.getInputStream());
+		}
+		return new BufferedReader(reader);
 	}
 
 }

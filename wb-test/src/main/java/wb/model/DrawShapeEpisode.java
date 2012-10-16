@@ -18,6 +18,8 @@ public class DrawShapeEpisode extends Episode {
 	
 	public Double rotationDegree;
 	
+	public Double rate;
+	
 	@Override
 	public void prepare(PrepareScript preparator) {
 		super.prepare(preparator);
@@ -28,28 +30,7 @@ public class DrawShapeEpisode extends Episode {
 
 	@Override
 	public Animation createAnimation() {
-		return new AnimationImpl();
+		return null;
 	}
 	
-	private class AnimationImpl extends AnimationDelegate {
-
-		public AnimationImpl() {
-			super(shape.createAnimation());
-		}
-		
-		@Override
-		public void end() {
-			super.end();
-			getBoard().commit(shape, true);
-			getBoard().getAnimationPane().canvas().clear();
-		}
-		
-		@Override
-		public void frame(long time) {
-			getBoard().getAnimationPane().canvas().clear();
-			super.frame(time);
-		}
-		
-	}
-
 }

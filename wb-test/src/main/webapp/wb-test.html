@@ -317,6 +317,9 @@
 			var realHeight = 810; // mm
 			
 			var baseVelocity = 500;
+			if (opts.baseVelocity) {
+				baseVelocity = opts.baseVelocity;
+			}
 			
 			var defaultTransform = new WB.Transform();
 					//.scale(canvasWidth/realWidth, canvasHeight/realHeight)
@@ -350,7 +353,7 @@
 			board.animationPane._clearCanvas();
 			board.pointer.pane._clearCanvas();
 			
-			var player = new WB.Player({board: board});
+			var player = new WB.Player({board: board, framer: opts.framer});
 			bindPlayer(player);
 
 			$.ajax({url: 'fonts/nova_thin_extended.json', contentType: 'application/json'})
@@ -379,7 +382,7 @@
 				if (path.substr(0,1) != '/') {
 					path = '/' + path;
 				}
-				return '/wb-test/' + scriptId + path;
+				return '/wb/' + scriptId + path;
 			}
 
 			$.ajax({url: urlResolver('script.json'), contentType: 'application/json'})
@@ -894,9 +897,29 @@
 				
 				(low) valessiobrito_Coloured_Pencils
 				(low) klsgfx_Pencils_5
+				
+				mbs_ICE-Train: new WB.Transform().translate(10, 70).scale(1, 1)
+				yamanotelinetrain: new WB.Transform().translate(10, 10).scale(1, 1)
+				train_icon: ??? missed the coord for a line!
+
+				liftarn_Wolf: new WB.Transform().translate(10, 10).scale(0.2, 0.2)
+				Peileppe_Wolf: throw away a circle behind or switch it to arc
+				choochus_Wolf_Head_Howl_2: new WB.Transform().translate(10, 10).scale(1, 1)
+
+				karderio_computer_screen: new WB.Transform().translate(10, 10).scale(1, 1)
+				fortran_minimalist_monitor_and_computer: new WB.Transform().translate(10, 10).scale(1, 1)
+				lmproulx_Iphone: new WB.Transform().translate(10, 10).scale(1, 1)
+				audio10: new WB.Transform().translate(10, 10).scale(1, 1)
+				+audio5
+				lemmling_2D_cartoon_elephant: new WB.Transform().translate(10, 10).scale(1, 1)
+				pitr_Toy_train_icon: new WB.Transform().translate(10, 10).scale(1, 1)
+				
+				audio: ??? problem with circles, etc
+				audio3: ??? some minor issues
+				server: ??? missing rect?
 			*/
-			var name = '1330550291';
-			var tr = new WB.Transform().translate(10, 70).scale(0.2, 0.2);
+			var name = 'molumen_car_outline_modified';
+			var tr = new WB.Transform().translate(10, 10).scale(1, 1);
 			$.ajax({url: 'shapes/' + name + '.json', contentType: 'application/json'})
 			.done(function(json) {
 				console.log('got data');
@@ -954,10 +977,23 @@
 				cogs1: 
 				cogs2: 
 				laurent_amerique_du_sud_politique: new WB.Transform().translate(10, 10).scale(2, 2);
-				win7_mute: 
+				win7_mute:
+					
+				+++mbs_ICE-Train: new WB.Transform().translate(10, 70).scale(1, 1)
+				yamanotelinetrain: new WB.Transform().translate(10, 10).scale(1, 1)
+				train_icon: ??? missed the coord for a line!
+
+				+liftarn_Wolf: new WB.Transform().translate(10, 10).scale(0.2, 0.2)
+				Peileppe_Wolf: throw away a circle behind or switch it to arc
+				choochus_Wolf_Head_Howl_2: new WB.Transform().translate(10, 10).scale(1, 1)
+
+				karderio_computer_screen: new WB.Transform().translate(10, 10).scale(1, 1)
+				++fortran_minimalist_monitor_and_computer: new WB.Transform().translate(10, 10).scale(1, 1)
+				lmproulx_Iphone: remove extra arc
+					
 			*/
-			var name = 'laurent_amerique_du_sud_politique';
-			var tr = new WB.Transform().translate(10, 10).scale(2, 2);
+			var name = 'lmproulx_Iphone';
+			var tr = new WB.Transform().translate(10, 10).scale(1, 1);
 			$.ajax({url: 'shapes/' + name + '.json', contentType: 'application/json'})
 			.done(function(json) {
 				console.log('got data');
@@ -976,7 +1012,14 @@
 						shapes: [shape]
 					});
 					
-					playAny(group);
+					playAny(group, {
+						baseVelocity: 500
+						});
+					/*
+						framer: function(callback) {
+					        	window.setTimeout(callback, 1000);
+					        }
+					*/
 				}
 			});
 		}

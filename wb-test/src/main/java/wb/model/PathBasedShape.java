@@ -22,7 +22,7 @@ public abstract class PathBasedShape extends Shape {
 	
 	@Override
 	public Animation createAnimation() {
-		return this.path().createAnimation();
+		return null;
 	}
 	
 }

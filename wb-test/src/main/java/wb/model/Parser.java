@@ -2,6 +2,8 @@ package wb.model;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -67,8 +69,10 @@ public class Parser {
 			}
 			if (theType != null) {
 				
-				if (theType == Point.class || theType == Transform.class) {
-					obj = compatibleType(opts, theType);
+				if (theType == Point.class 
+						|| theType == Transform.class
+						|| theType == Bounds.class) {
+					obj = compatibleType(opts, theType, null);
 				} else {
 					try {
 						obj = theType.newInstance();
@@ -85,7 +89,7 @@ public class Parser {
 						if (value == null) {
 							continue;
 						}
-						value = compatibleType(value, field.getType());
+						value = compatibleType(value, field.getType(), field.getGenericType());
 						try {
 							field.set(obj, value);
 						} catch (Exception e) {
@@ -99,14 +103,14 @@ public class Parser {
 			}
 			
 		} else {
-			obj = compatibleType(js, type);
+			obj = compatibleType(js, type, null);
 		}
 		
 		return obj;
 	}
 
-	@SuppressWarnings("rawtypes")
-	private Object compatibleType(Object value, Class<?> type) {
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	private Object compatibleType(Object value, Type type, Type genericType) {
 		
 		if (value == null || type == null || 
 				value instanceof String || value instanceof Boolean) {
@@ -114,37 +118,62 @@ public class Parser {
 		}
 		
 		if (value instanceof Number) {
-			if (Integer.class.isAssignableFrom(type)) {
+			if (type == Integer.class) {
 				return ((Number) value).intValue();
 			} else {
 				return ((Number) value).doubleValue();
 			}
 		}
 		
-		if (Date.class.isAssignableFrom(type)) {
+		if (type == Date.class) {
 			if (value instanceof Number) {
 				return new Date(((Number) value).longValue());
 			}
 			return isoDateParse(value.toString());
 		}
 		
-		if (type.isArray()) {
+		if (type instanceof Class && ((Class) type).isArray()) {
 			List list = (List) value;
-			Object arr = Array.newInstance(type.getComponentType(), list.size());
+			Class elemType = ((Class) type).getComponentType();
+			Object arr = Array.newInstance(elemType, list.size());
 			for (int i = 0; i < list.size(); i++) {
-				Array.set(arr, i, list.get(i));
+				Array.set(arr, i, compatibleType(list.get(i), elemType, null));
 			}
 			return arr;
+		}
+		
+		if (value instanceof List) {
+			List list = (List) value;
+			List result = new ArrayList(list);
+			if (genericType != null &&
+					genericType instanceof ParameterizedType) {
+				Type[] args = ((ParameterizedType) genericType).getActualTypeArguments();
+				if (args != null && args.length == 1) {
+					Type elementType = args[0];
+					result.clear();
+					for (Object o : list) {
+						result.add(compatibleType(o, elementType, null));
+					}
+				}
+			}
+			return result;
 		}
 		
 		if (type == Point.class) {
 			if (value instanceof Point) {
 				return value;
 			}
+			return toPoint((Map) value);
+		}
+		
+		if (type == Bounds.class) {
+			if (value instanceof Bounds) {
+				return value;
+			}
 			Map map = (Map) value;
-			return new Point(
-					((Number) map.get("x")).doubleValue(), 
-					((Number) map.get("y")).doubleValue());
+			return new Bounds(
+					toPoint((Map) map.get("topleft")),
+					toPoint((Map) map.get("bottomright")));
 		}
 		
 		if (type == Transform.class) {
@@ -163,6 +192,13 @@ public class Parser {
 		}
 		
 		return value;
+	}
+
+	@SuppressWarnings("rawtypes")
+	private Point toPoint(Map map) {
+		return new Point(
+				((Number) map.get("x")).doubleValue(), 
+				((Number) map.get("y")).doubleValue());	
 	}
 
 	private Date isoDateParse(String s) {
