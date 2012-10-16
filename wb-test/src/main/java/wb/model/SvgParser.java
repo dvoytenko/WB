@@ -1,7 +1,6 @@
 package wb.model;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,12 +11,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.StringTokenizer;
 
-import org.dom4j.Document;
-import org.dom4j.DocumentException;
-import org.dom4j.Element;
-import org.dom4j.io.SAXReader;
 import org.json.JSONObject;
+import org.w3c.dom.Element;
 import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+
+import wb.util.XmlHelper;
 
 public class SvgParser {
 	
@@ -68,77 +67,96 @@ public class SvgParser {
 		writer.close();
 		*/
 	}
+
+	private boolean skipFirstWhiteGroup;
 	
-	public Shape parse(File file) throws IOException, DocumentException {
-		InputStream in = new FileInputStream(file);
-		try {
-			return parse(new InputSource(in));
-		} finally {
-			in.close();
-		}
+	private int groupCount = 0;
+	
+	public void setSkipFirstWhiteGroup(boolean skipFirstWhiteGroup) {
+		this.skipFirstWhiteGroup = skipFirstWhiteGroup;
+	}
+
+	public Shape parse(File file) throws IOException, SAXException {
+		return parse(XmlHelper.parse(file).getDocumentElement());
 	}
 	
-	public Shape parse(InputStream stream) throws IOException, DocumentException {
+	public Shape parse(InputStream stream) throws IOException, SAXException {
 		return parse(new InputSource(stream));
 	}
 	
-	public Shape parse(InputSource source) throws DocumentException {
-		SAXReader reader = new SAXReader();
-		Document doc = reader.read(source);
-		return parse(doc.getRootElement());
+	public Shape parse(InputSource source) throws SAXException, IOException {
+		return parse(XmlHelper.parse(source).getDocumentElement());
 	}
 
 	public Shape parse(Element root) {
 		
-		if (root.getName().equalsIgnoreCase("svg")) {
+		if (root.getTagName().equalsIgnoreCase("svg")) {
 			return parseSvg(root);
 		}
-		if (root.getName().equalsIgnoreCase("g")) {
+		if (root.getTagName().equalsIgnoreCase("g")) {
+			// <g fill="white" stroke="white">
+			if (groupCount == 0 
+					&& skipFirstWhiteGroup
+					&& "white".equals(root.getAttribute("fill"))
+					&& "white".equals(root.getAttribute("stroke"))) {
+				groupCount++;
+				return null;
+			}
 			return parseGroup(root);
 		}
-		if (root.getName().equalsIgnoreCase("path")) {
+		if (root.getTagName().equalsIgnoreCase("path")
+				&& !noStroke(root)) {
 			return parsePath(root);
 		}
-		if (root.getName().equalsIgnoreCase("polyline")) {
+		if (root.getTagName().equalsIgnoreCase("polyline")
+				&& !noStroke(root)) {
 			return parsePolyline(root);
 		}
-		if (root.getName().equalsIgnoreCase("polygon")) {
+		if (root.getTagName().equalsIgnoreCase("polygon")
+				&& !noStroke(root)) {
 			return parsePolygon(root);
 		}
-		if (root.getName().equalsIgnoreCase("rect")) {
+		if (root.getTagName().equalsIgnoreCase("rect")
+				&& !noStroke(root)) {
 			return parseRect(root);
 		}
-//		if (root.getName().equalsIgnoreCase("xxx")) {
+//		if (root.getName().equalsIgnoreCase("xxx") 
+//				&& !noStroke(root)) {
 //			return parseXXX(root);
 //		}
 		
 		return null;
 	}
 
+	private boolean noStroke(Element root) {
+		// return "none".equalsIgnoreCase(root.attributeValue("stroke"));
+		return false;
+	}
+
 	public Font parseFont(Element root) {
 		Font font = new Font();
 		
-		String horizAdvX = root.attributeValue("horiz-adv-x");
+		String horizAdvX = root.getAttribute("horiz-adv-x");
 		if (horizAdvX != null && !horizAdvX.isEmpty()) {
 			font.baseAdvX = Double.parseDouble(horizAdvX);
 		}
 		
-		Element fontFaceElem = element(root, "font-face");
+		Element fontFaceElem = XmlHelper.element(root, "font-face", false);
 		if (fontFaceElem != null) {
-			String unitsPerEm = fontFaceElem.attributeValue("units-per-em");
+			String unitsPerEm = fontFaceElem.getAttribute("units-per-em");
 			if (unitsPerEm != null) {
 				font.baseHeight = Double.parseDouble(unitsPerEm);
 			}
 		}
 		
-		Element missingGlyphElem = element(root, "missing-glyph");
+		Element missingGlyphElem = XmlHelper.element(root, "missing-glyph", false);
 		if (missingGlyphElem != null) {
 			font.missingGlyph = parseGlyph(missingGlyphElem);
 		}
 		
-		List<Element> glyphElems = elements(root, "glyph");
+		List<Element> glyphElems = XmlHelper.elements(root, "glyph", false);
 		for (Element glyphElem : glyphElems) {
-			String unicode = glyphElem.attributeValue("unicode");
+			String unicode = glyphElem.getAttribute("unicode");
 			if (unicode != null && unicode.length() == 1) {
 				font.glyphMap.put(unicode.charAt(0), parseGlyph(glyphElem));
 			}
@@ -147,34 +165,16 @@ public class SvgParser {
 		return font;
 	}
 	
-	private Element element(Element parent, String name) {
-		Element elem = parent.element(name);
-		if (elem == null) {
-			elem = parent.element(name.toUpperCase());
-		}
-		return elem;
-	}
-
-	@SuppressWarnings("unchecked")
-	private List<Element> elements(Element parent, String name) {
-		List<Element> list = new ArrayList<Element>();
-		list.addAll(parent.elements(name));
-		if (list.isEmpty()) {
-			list.addAll(parent.elements(name.toUpperCase()));
-		}
-		return list;
-	}
-
 	public Glyph parseGlyph(Element elem) {
 		
 		Glyph glyph = new Glyph();
 		
-		String horizAdvX = elem.attributeValue("horiz-adv-x");
+		String horizAdvX = elem.getAttribute("horiz-adv-x");
 		if (horizAdvX != null && !horizAdvX.isEmpty()) {
 			glyph.advX = Double.parseDouble(horizAdvX);
 		}
 		
-		String d = elem.attributeValue("d");
+		String d = elem.getAttribute("d");
 		if (d != null) {
 			List<PathAction> actions = parsePathActions(d);
 			PathConsumer consumer = new PathConsumer();
@@ -187,9 +187,8 @@ public class SvgParser {
 		return glyph;
 	}
 
-	@SuppressWarnings("unchecked")
 	private void parseChildren(Element parentElem, GroupShape parentGroup) {
-		List<Element> children = parentElem.elements();
+		List<Element> children = XmlHelper.elements(parentElem);
 		for (Element child : children) {
 			Shape shape = parse(child);
 			if (shape != null) {
@@ -217,7 +216,7 @@ public class SvgParser {
 	 */
 	private Shape parsePolyline(Element root) {
 		
-		String pointsAttr = root.attributeValue("points");
+		String pointsAttr = root.getAttribute("points");
 		if (pointsAttr == null || pointsAttr.isEmpty()) {
 			return null;
 		}
@@ -248,7 +247,7 @@ public class SvgParser {
 	 */
 	private Shape parsePolygon(Element root) {
 		
-		String pointsAttr = root.attributeValue("points");
+		String pointsAttr = root.getAttribute("points");
 		if (pointsAttr == null || pointsAttr.isEmpty()) {
 			return null;
 		}
@@ -293,7 +292,7 @@ public class SvgParser {
 		 */
 		double x;
 		try {
-			x = Double.parseDouble(root.attributeValue("x").trim());
+			x = Double.parseDouble(root.getAttribute("x").trim());
 		} catch (Exception e) {
 			x = 0.0;
 		}
@@ -305,7 +304,7 @@ public class SvgParser {
 		 */
 		double y;
 		try {
-			y = Double.parseDouble(root.attributeValue("y").trim());
+			y = Double.parseDouble(root.getAttribute("y").trim());
 		} catch (Exception e) {
 			y = 0.0;
 		}
@@ -315,14 +314,14 @@ public class SvgParser {
 		 * A negative value is an error (see Error processing). 
 		 * A value of zero disables rendering of the element.
 		 */
-		double width = Double.parseDouble(root.attributeValue("width").trim());
+		double width = Double.parseDouble(root.getAttribute("width").trim());
 		
 		/* height:
 		 * The height of the rectangle.
 		 * A negative value is an error (see Error processing). 
 		 * A value of zero disables rendering of the element.
 		 */
-		double height = Double.parseDouble(root.attributeValue("height").trim());
+		double height = Double.parseDouble(root.getAttribute("height").trim());
 		
 		/* rx, ry
 		 * ignore for now
@@ -348,7 +347,7 @@ public class SvgParser {
 
 	private Shape parsePath(Element root) {
 		
-		String d = root.attributeValue("d");
+		String d = root.getAttribute("d");
 		if (d == null || d.isEmpty()) {
 			return null;
 		}
@@ -386,7 +385,7 @@ public class SvgParser {
 	}
 
 	private Transform parseTransform(Element elem) {
-		return parseTransform(elem.attributeValue("transform"));
+		return parseTransform(elem.getAttribute("transform"));
 	}
 
 	public Transform parseTransform(String s) {

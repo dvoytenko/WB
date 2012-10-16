@@ -6,8 +6,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.io.StringReader;
-import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.net.HttpURLConnection;
@@ -21,16 +19,13 @@ import javax.sound.sampled.AudioSystem;
 import marytts.MaryInterface;
 import marytts.client.RemoteMaryInterface;
 
-import org.dom4j.Document;
-import org.dom4j.dom.DOMDocument;
-import org.dom4j.dom.DOMElement;
-import org.dom4j.io.SAXReader;
-import org.dom4j.io.XMLWriter;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.xml.sax.InputSource;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 import wb.util.IoHelper;
+import wb.util.XmlHelper;
 
 public class PrepareScript {
 
@@ -166,45 +161,41 @@ public class PrepareScript {
 		public void generateAudio(String text, String voice, File file) {
 			try {
 				
-				DOMDocument request = new DOMDocument();
+				Document request = XmlHelper.newDocument();
 				{
-					DOMElement root = new DOMElement("speakExtended");
-					request.add(root);
+					Element root = request.createElement("speakExtended");
+					request.appendChild(root);
 					{
 						// accountID
-						DOMElement accountId = new DOMElement("accountID");
-						root.add(accountId);
-						accountId.setText("50727aae31c52");
-						
+						Element accountId = request.createElement("accountID");
+						root.appendChild(accountId);
+						accountId.appendChild(request.createTextNode("50727aae31c52"));
+
 						// password
-						DOMElement pass = new DOMElement("password");
-						root.add(pass);
-						pass.setText("S56HyCi3mw");
+						Element pass = request.createElement("password");
+						root.appendChild(pass);
+						pass.appendChild(request.createTextNode("S56HyCi3mw"));
 						
 						// voice
 						if (voice != null) {
-							DOMElement voiceEl = new DOMElement("voice");
-							root.add(voiceEl);
-							voiceEl.setText(voice);
+							Element voiceEl = request.createElement("voice");
+							root.appendChild(voiceEl);
+							voiceEl.appendChild(request.createTextNode(voice));
 						}
 						
 						// audioFormat
-						DOMElement formatEl = new DOMElement("audioFormat");
-						root.add(formatEl);
-						formatEl.setText("wav");
+						Element formatEl = request.createElement("audioFormat");
+						root.appendChild(formatEl);
+						formatEl.appendChild(request.createTextNode("wav"));
 						
 						// text
-						DOMElement textEl = new DOMElement("text");
-						root.add(textEl);
-						textEl.setText(text);
+						Element textEl = request.createElement("text");
+						root.appendChild(textEl);
+						textEl.appendChild(request.createTextNode(text));
 					}
 				}
 				
-				StringWriter stringWriter = new StringWriter();
-				XMLWriter xmlWriter = new XMLWriter(stringWriter);
-				xmlWriter.write(request);
-				
-				String requestXml = stringWriter.toString();
+				String requestXml = XmlHelper.toXml(request);
 				System.out.println(requestXml);
 				
 				URL u = new URL("https://cerevoice.com/rest/rest_1_1.php");
@@ -223,10 +214,10 @@ public class PrepareScript {
 				String resp = IoHelper.readText(in, "UTF-8");
 				System.out.println(resp);
 				
-				InputSource source = new InputSource(new StringReader(resp));
-				SAXReader reader = new SAXReader();
-				Document doc = reader.read(source);
-				String fileUrl = doc.getRootElement().element("fileUrl").getText();
+				Document doc = XmlHelper.parseString(resp);
+				Element fileUrlElem = XmlHelper.element(doc.getDocumentElement(), 
+						"fileUrl", true);
+				String fileUrl = fileUrlElem != null ? XmlHelper.text(fileUrlElem, true) : null;
 				System.out.println(fileUrl);
 				
 				IoHelper.readFile(new URL(fileUrl), file);

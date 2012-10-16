@@ -16,12 +16,8 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.cyberneko.html.parsers.SAXParser;
-import org.dom4j.Document;
-import org.dom4j.DocumentException;
-import org.dom4j.DocumentHelper;
-import org.dom4j.Element;
-import org.dom4j.io.SAXContentHandler;
+import org.apache.xpath.XPathAPI;
+import org.cyberneko.html.parsers.DOMParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,6 +26,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
 import wb.model.GroupShape;
@@ -52,7 +51,6 @@ public class ShapeDbController {
 		return shapeDb.getTopShapeMeta();
 	}
 	
-	@SuppressWarnings("unchecked")
 	@RequestMapping(method = RequestMethod.GET, value={"/extract"})
 	@ResponseBody
 	public List<ShapeMeta> extract(@RequestParam("u") String url) {
@@ -68,7 +66,7 @@ public class ShapeDbController {
 				System.out.println("loading: " + meta.svgUrl);
 				meta.shape = new SvgParser().parse(new InputSource(meta.svgUrl));
 				shapes.add(meta);
-			} catch (DocumentException e) {
+			} catch (Exception e) {
 				System.out.println("failed to parse svg: " + meta.svgUrl + ": " + e);
 			}
 		} else {
@@ -85,16 +83,15 @@ public class ShapeDbController {
 				} else {
 
 					// HTML
-					SAXParser parser = new SAXParser();
+					DOMParser parser = new DOMParser();
 					parser.setFeature("http://xml.org/sax/features/namespaces", false);
-					SAXContentHandler saxContentHandler = new SAXContentHandler();
-					parser.setContentHandler(saxContentHandler);
 					parser.parse(new InputSource(IoHelper.reader(con)));
-					Document doc = saxContentHandler.getDocument();
+					Document doc = parser.getDocument();
 
 					// 1) look for embedded SVG
-					List<Element> svgNodes = DocumentHelper.createXPath("//SVG").selectNodes(doc);
-					for (Element svgNode : svgNodes) {
+					NodeList svgNodes = XPathAPI.selectNodeList(doc, "//SVG");
+					for (int i = 0; i < svgNodes.getLength(); i++) {
+						Element svgNode = (Element) svgNodes.item(i);
 						ShapeMeta meta = new ShapeMeta();
 						System.out.println("loading embedded");
 						meta.svgUrl = theUrl.toString() + "#1";
@@ -105,9 +102,10 @@ public class ShapeDbController {
 					}
 					
 					// 2) look for a link with SVG
-					List<Element> aNodes = DocumentHelper.createXPath("//A[@href]").selectNodes(doc);
-					for (Element aNode : aNodes) {
-						String href = aNode.attributeValue("href");
+					NodeList aNodes = XPathAPI.selectNodeList(doc, "//A[@href]");
+					for (int i = 0; i < aNodes.getLength(); i++) {
+						Element aNode = (Element) aNodes.item(i);
+						String href = aNode.getAttribute("href");
 						if (href != null && href.endsWith(".svg")) {
 							ShapeMeta meta = new ShapeMeta();
 							URL subUrl = new URL(theUrl, href);

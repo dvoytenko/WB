@@ -1,8 +1,607 @@
 <html>
 
 <body>
+
+<style>
+	body {
+		margin: 0px;
+		padding: 0px;
+	}
+	canvas {
+		border: 1px solid #9C9898;
+	}
+	.progress {
+		display: none;
+	}
 	
-	Working on it...
+	#Editor {
+		width: 1000px;
+	}
+	
+	#BoardPane {
+		float: left; 
+		width: 600px;
+		border: 1px solid red;
+	}
+	
+	#EpisodesPane {
+		float: right; 
+		width: 390px;
+		border: 1px solid blue;
+	}
+	
+	#AddNewEpisodePane {
+		padding: 10px;
+	}
+	
+	a.action img {
+		vertical-align: bottom;
+	}
+	
+	.EpisodeType {
+		border: 1px solid #eee;
+		margin: 4px;
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+		border-radius: 3px;
+		cursor: pointer;
+	}
+
+	.EpisodeType:hover {
+		background-color: whiteSmoke;
+	}
+
+	.EpisodeType .Icon {
+		float: left;
+		margin: 2px;
+	}
+
+	.EpisodeType .Icon img {
+		max-width: 50px;
+		max-height: 50px;
+	}
+
+	.EpisodeType .Desc {
+		margin-left: 55px;
+		margin-top: 10px;
+	}
+
+</style>
+
+    <script src="kinetic-v3.10.5.js"></script>
+
+	<div id="Editor">
+	
+		<div id="BoardPane">
+			<div id="Board">
+			</div>
+		</div>
+		
+		<div id="EpisodesPane">
+			<div id="Episodes">
+			</div>
+			<div id="AddNewEpisodePane">
+				<a class="AddNewEpisodeAction action">
+					<img src="images/add.png"/>
+					Add New Episode
+				</a>
+			</div>
+		</div>
+		
+		<div style="clear: both;"></div>
+	</div>
+	
+	<div id="dialogs" style="display: block;">
+	
+		<div id="NewEpisodeDialog" title="Episode" style="border: 1px solid gray; width: 360px;">
+			<div id="NewEpisodeDialog-SelectType">
+			    <div>Select a type of episode:</div>
+			    
+			    <div class="EpisodeType BasicShape" data-type="BasicShape">
+			    	<div class="Icon">
+				    	<img src="images/shapes.png"/>
+			    	</div>
+			    	<div class="Desc">
+			    		A simple shape such as a rectangle or an oval 
+			    	</div>
+			    	<div style="clear: both;"></div>
+			    </div>
+
+			    <div class="EpisodeType Line" data-type="Line">
+			    	<div class="Icon">
+				    	<img src="images/arrow_right.png"/>
+			    	</div>
+			    	<div class="Desc">
+			    		A line or an arrow 
+			    	</div>
+			    	<div style="clear: both;"></div>
+			    </div>
+
+			    <div class="EpisodeType Shape" data-type="Shape">
+			    	<div class="Icon">
+				    	<img src="images/image.png"/>
+			    	</div>
+			    	<div class="Desc">
+			    		A drawing from the gallery
+			    	</div>
+			    	<div style="clear: both;"></div>
+			    </div>
+			    
+			    <div class="EpisodeType Math" data-type="Math">
+			    	<div class="Icon" style="margin-left: 10px;">
+				    	<img src="images/formula32.png"/>
+			    	</div>
+			    	<div class="Desc">
+			    		A formula
+			    	</div>
+			    	<div style="clear: both;"></div>
+			    </div>
+			    
+			    <div class="EpisodeType Text" data-type="Text">
+			    	<div class="Icon">
+				    	<img src="images/quill.png"/>
+			    	</div>
+			    	<div class="Desc">
+			    		Text 
+			    	</div>
+			    	<div style="clear: both;"></div>
+			    </div>
+			    
+			    <div class="EpisodeType Speech" data-type="Speech">
+			    	<div class="Icon">
+				    	<img src="images/microphone.png"/>
+			    	</div>
+			    	<div class="Desc">
+			    		Speak
+			    	</div>
+			    	<div style="clear: both;"></div>
+			    </div>
+			    
+			    <div class="EpisodeType Pan" data-type="Pan">
+			    	<div class="Icon">
+				    	<img src="images/compass.png"/>
+			    	</div>
+			    	<div class="Desc">
+			    		Pan board
+			    	</div>
+			    	<div style="clear: both;"></div>
+			    </div>
+			    
+			    <div class="EpisodeType Pause" data-type="Pause">
+			    	<div class="Icon">
+				    	<img src="images/pause.png"/>
+			    	</div>
+			    	<div class="Desc">
+			    		A pause
+			    	</div>
+			    	<div style="clear: both;"></div>
+			    </div>
+			</div>
+		</div>
+		
+	</div>
+	
+	<script type="text/javascript">
+
+	    var stage = new Kinetic.Stage({
+	        container: "Board",
+	        width: 592,
+	        height: 333
+	      });
+	
+	    var layer = new Kinetic.Layer();
+	    stage.add(layer);
+
+        stage.start();
+
+        var WBShapeAdapter = Kinetic.Shape.extend({
+        	
+            init: function(config) {
+                this.setDefaultAttrs({
+                    width: 0,
+                    height: 0,
+                    cornerRadius: 0
+                });
+                this.shapeType = "WB";
+                config.drawFunc = this.drawFunc;
+                // call super constructor
+                this._super(config);
+                
+                this.shape = config.shape;
+            },
+            
+            _draw: function(canvas) {
+                var stage = this.getStage();
+                var context = canvas.getContext();
+                var family = [];
+                var parent = this.parent;
+
+                family.unshift(this);
+                while(parent) {
+                    family.unshift(parent);
+                    parent = parent.parent;
+                }
+
+                context.save();
+                
+                var tr = new WB.Transform();
+                for(var n = 0; n < family.length; n++) {
+                    var node = family[n];
+                    var t = node.getTransform();
+                    var m = t.getMatrix();
+                    tr.multiply({m: m});
+                }
+
+                /*
+                 * pre styles include alpha, linejoin
+                 */
+                var absAlpha = this.getAbsoluteAlpha();
+                if(absAlpha !== 1) {
+                    context.globalAlpha = absAlpha;
+                }
+                this.applyLineJoin(context);
+
+                // draw the shape
+                this.appliedShadow = false;
+                this.doDraw(canvas, context, tr);
+                context.restore();
+            },
+            
+            doDraw: function(canvas, context, defaultTransform) {
+            	
+				var pane = new WB.Pane({canvas: canvas, defaultTransform: defaultTransform});
+				
+		        context.beginPath();
+        	    context.rect(0, 0, this.attrs.width, this.attrs.height);
+                context.closePath();
+	
+				//this.fill(context);
+				this.stroke(context);
+				
+				var shape = this.shape;
+
+				var tr = new WB.Transform();
+				//tr.translate(this.attrs.x, this.attrs.y);
+				if (shape.localBounds) {
+					var dWidth = this.attrs.width;
+					var dHeight = this.attrs.height;
+					var lWidth = Math.abs(shape.localBounds.bottomright.x - shape.localBounds.topleft.x);
+					var lHeight = Math.abs(shape.localBounds.bottomright.y - shape.localBounds.topleft.y);
+					var scaleX = 1.0;
+					var scaleY = 1.0;
+					if (Math.abs(dWidth - lWidth) > 1e-2) {
+						scaleX = dWidth / lWidth;
+					}
+					if (Math.abs(dHeight - lHeight) > 1e-2) {
+						scaleY = dHeight / lHeight;
+					}
+					tr.scale(scaleX, scaleY);
+
+					// compensate
+					tr.translate(-shape.localBounds.topleft.x, 
+							-shape.localBounds.topleft.y);
+
+					// center
+					var dx = (dWidth - lWidth * scaleX) / 2;
+					var dy = (dHeight - lHeight * scaleY) / 2;
+					tr.translate(dx/scaleX, dy/scaleY);
+				}
+
+				var group = new WB.GroupShape({transform: tr, shapes: [shape]});
+				group.draw(pane);
+			},
+			
+			// TODO: intersects to detect with the box? or provide a big box around?
+			
+		    setSize: function() {
+		        var size = Kinetic.Type._getSize(Array.prototype.slice.call(arguments));
+		        this.setAttrs(size);
+		    },
+		    
+		    getSize: function() {
+		        return {
+		            width: this.attrs.width,
+		            height: this.attrs.height
+		        };
+		    }
+		});
+        
+        
+		function update(group, activeAnchor) {
+			var topLeft = group.get(".topLeft")[0];
+			var topRight = group.get(".topRight")[0];
+			var bottomRight = group.get(".bottomRight")[0];
+			var bottomLeft = group.get(".bottomLeft")[0];
+			var image = group.get(".image")[0];
+			
+			// update anchor positions
+			switch (activeAnchor.getName()) {
+				case "topLeft":
+					topRight.attrs.y = activeAnchor.attrs.y;
+					bottomLeft.attrs.x = activeAnchor.attrs.x;
+					break;
+				case "topRight":
+					topLeft.attrs.y = activeAnchor.attrs.y;
+					bottomRight.attrs.x = activeAnchor.attrs.x;
+					break;
+				case "bottomRight":
+					bottomLeft.attrs.y = activeAnchor.attrs.y;
+					topRight.attrs.x = activeAnchor.attrs.x;
+					break;
+				case "bottomLeft":
+					bottomRight.attrs.y = activeAnchor.attrs.y;
+					topLeft.attrs.x = activeAnchor.attrs.x;
+					break;
+			}
+			
+			image.setPosition(topLeft.attrs.x, topLeft.attrs.y);
+			
+			var width = topRight.attrs.x - topLeft.attrs.x;
+			var height = bottomLeft.attrs.y - topLeft.attrs.y;
+			if (width && height) {
+				image.setSize(width, height);
+			}
+		}
+
+		function addAnchor(group, x, y, name) {
+			var stage = group.getStage();
+			var layer = group.getLayer();
+			
+			var anchor = new Kinetic.Circle({
+				x: x,
+				y: y,
+				stroke: "#666",
+				fill: "#ddd",
+				strokeWidth: 2,
+				radius: 8,
+				name: name,
+				draggable: true
+			});
+			
+			anchor.on("dragmove", function() {
+				update(group, this);
+				layer.draw();
+			});
+			anchor.on("mousedown touchstart", function() {
+				group.setDraggable(false);
+				this.moveToTop();
+			});
+			anchor.on("dragend", function() {
+				group.setDraggable(true);
+				layer.draw();
+			});
+			// add hover styling
+			anchor.on("mouseover", function() {
+				var layer = this.getLayer();
+				document.body.style.cursor = "pointer";
+				this.setStrokeWidth(4);
+				layer.draw();
+			});
+			anchor.on("mouseout", function() {
+				var layer = this.getLayer();
+				document.body.style.cursor = "default";
+				this.setStrokeWidth(2);
+				layer.draw();
+			});
+			
+			group.add(anchor);
+		}
+	    
+		function showShape(shape) {
+			console.log('showShape:');
+			console.log(shape);
+			
+			var group = new Kinetic.Group({
+				x: 270,
+				y: 100,
+				draggable: true
+			});
+			layer.add(group);
+		
+			var img = new WBShapeAdapter({
+				x: 0,
+				y: 0,
+				width: 200,
+				height: 138,
+				fill: "#eeeeee",
+				stroke: "black",
+				strokeWidth: 2,
+				name: "image",
+				shape: shape
+			});
+			/*
+	        var img = new Kinetic.Rect({
+				x: 0,
+				y: 0,
+				width: 200,
+				height: 138,
+				fill: "#eeeeee",
+				name: "image"
+	        });
+			*/
+			group.add(img);
+
+	        group.on("mouseover", function() {
+				document.body.style.cursor = 'move';
+	        });
+	        group.on("mouseout", function() {
+				document.body.style.cursor = 'default';
+	        });       
+
+			addAnchor(group, 0, 0, "topLeft");
+	        addAnchor(group, 200, 0, "topRight");
+	        addAnchor(group, 200, 138, "bottomRight");
+	        addAnchor(group, 0, 138, "bottomLeft");
+			
+	        group.on("dragstart", function() {
+				//this.moveToTop();
+			});
+		
+			stage.draw();
+		}
+	
+		function downloadAndShowShape(path) {
+			console.log('downloadAndShowShape: ' + path);
+			$.ajax({url: path, contentType: 'application/json'})
+			.done(function(json) {
+				console.log('got data');
+				if (json) {
+					if (json.constructor == String) {
+						json = JSON.parse(json);
+					}
+					console.log(json);
+					
+					var parser = new WB.Parser();
+					var shape = parser.parse(json);
+					showShape(shape);
+				}
+			});
+		}
+	
+		downloadAndShowShape('shapedb/openclipart_org-car-outline-modified-by-molumen.json');
+        
+		/*
+        var rect = new Kinetic.Rect({
+			x: 4,
+			y: 4,
+			width: 100,
+			height: 100,
+			fill: "#eeeeee",
+			stroke: "black",
+			strokeWidth: 4,
+			draggable: true
+        });
+        rect.on("mouseover", function() {
+			document.body.style.cursor = 'move';
+        });
+        rect.on("mouseout", function() {
+			document.body.style.cursor = 'default';
+        });       
+        layer.add(rect);
+
+        //stage.setDraggable(true);
+        
+        layer.draw();
+        */
+        
+	</script>
+
+	<script type="text/javascript">
+	
+		var Episode = Backbone.Model.extend({
+			remove: function() {
+				this.destroy();
+			}
+		});
+	
+		var EpisodeList = Backbone.Collection.extend({
+			
+			model: Episode,
+			
+			comparator: function(episode) {
+				return episode.get('seq');
+			}
+			
+		});
+		
+		var BaseEpisodeView = Backbone.View.extend({
+			
+			tagName: "div",
+			className: "Episode",
+			
+			events: {
+				'click': 'select'
+			},
+
+			initialize: function() {
+				this.model.bind('destroy', this.remove, this);
+			},			
+			
+			render: function() {
+				var model = this.model.toJSON();
+				// console.log('render: ' + JSON.stringify(model));
+
+				/*
+				this.$el.html(this.skeleton);
+				
+				this.$el.find('div.Title').text(model.title);
+				if (model.source) {
+					this.$el.find('div.Source').text(model.source);
+				}
+				this.$el.find('div.Thumb img').attr('src', '/wb/episode/' + model.id + '.png');
+				*/
+				
+				return this;
+			},
+			
+			select: function(e) {
+				console.log('select');
+				e.stopPropagation();
+				/*
+				episodeDetailApp.setEpisode(this.model);
+				*/
+				$('.Episode.selected').toggleClass('selected', false);
+				this.$el.toggleClass('selected', true);
+			}
+			
+		});
+		
+		
+		var EpisodeListView = Backbone.View.extend({
+			el: $('#EpisodesPane'),
+			
+			initialize: function() {
+				this.model.bind('add', this.addOne, this);
+				this.model.bind('reset', this.reAddAll, this);
+				
+				this.$listEl = this.$el.find('#Episodes');
+				
+				var that = this;
+				
+				this.$el.find('a.AddNewEpisodeAction').button();
+				this.$el.find('a.AddNewEpisodeAction').click(function() {
+					that.newEpisodeAction();
+				});
+				
+				$('#NewEpisodeDialog').dialog({
+					autoOpen: false,
+					closeOnEscape: true
+				});
+				$('#NewEpisodeDialog div.EpisodeType').click(function() {
+					that.episodeTypeSelected($(this).data('type'));
+				});
+			},
+
+			render: function() {
+				return this;
+			},
+			
+			reAddAll: function() {
+				this.$listEl.html('');
+				this.model.each(this.addOne, this);
+			},			
+			
+			addOne: function(shapeDescModel) {
+				var view = new ShapeDescView({model: shapeDescModel});
+				this.$listEl.append(view.render().el);
+			},
+			
+			newEpisodeAction: function() {
+				console.log('new episode!');
+				$('#NewEpisodeDialog').dialog('open');
+			},
+			
+			episodeTypeSelected: function(type) {
+				console.log('selected type: ' + type);
+			}
+			
+		});
+		
+		
+		episodeListModel = new EpisodeList();
+		episodeListView = new EpisodeListView({model: episodeListModel});
+		
+	</script>
 	
 </body>
 </html>

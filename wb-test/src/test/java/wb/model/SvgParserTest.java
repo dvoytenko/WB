@@ -1,19 +1,15 @@
 package wb.model;
 
-import java.io.StringReader;
+import org.w3c.dom.Element;
 
-import org.dom4j.Element;
-import org.dom4j.io.SAXReader;
-import org.xml.sax.InputSource;
+import wb.util.XmlHelper;
 
 import junit.framework.TestCase;
 
 public class SvgParserTest extends TestCase {
 
 	private Element dom(String s) throws Exception {
-        SAXReader reader = new SAXReader();
-        InputSource source = new InputSource(new StringReader(s));
-		return reader.read(source).getRootElement();
+        return XmlHelper.parseString(s).getDocumentElement();
 	}
 	
 	public void testPath() throws Exception {

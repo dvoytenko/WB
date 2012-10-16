@@ -67,7 +67,8 @@
 			<artifactId>selenium-java</artifactId>
 			<version>2.25.0</version>
 		</dependency>
-
+		
+		<!--
 		<dependency>
 			<groupId>dom4j</groupId>
 			<artifactId>dom4j</artifactId>
@@ -84,7 +85,8 @@
 			<groupId>jaxen</groupId>
 			<artifactId>jaxen</artifactId>
 			<version>1.1.4</version>
-		</dependency>		
+		</dependency>
+		-->		
 		
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
@@ -156,6 +158,12 @@
 			<groupId>org.htmlparser</groupId> 
 			<artifactId>htmlparser</artifactId> 
 			<version>1.6</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.scilab.forge</groupId>
+			<artifactId>jlatexmath</artifactId>
+			<version>0.9.6</version>
 		</dependency>
             		
 	</dependencies>

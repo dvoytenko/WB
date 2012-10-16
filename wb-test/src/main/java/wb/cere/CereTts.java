@@ -4,16 +4,15 @@ import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.io.StringReader;
 import java.io.Writer;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import org.dom4j.Document;
-import org.dom4j.io.SAXReader;
-import org.xml.sax.InputSource;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 import wb.util.IoHelper;
+import wb.util.XmlHelper;
 
 /**
  * http://www.cereproc.com/en/products/cloud
@@ -49,10 +48,10 @@ public class CereTts {
 		String resp = IoHelper.readText(in, "UTF-8");
 		System.out.println(resp);
 		
-		InputSource source = new InputSource(new StringReader(resp));
-		SAXReader reader = new SAXReader();
-		Document doc = reader.read(source);
-		String fileUrl = doc.getRootElement().element("fileUrl").getText();
+		Document doc = XmlHelper.parseString(resp);
+		Element fileUrlElem = XmlHelper.element(doc.getDocumentElement(), 
+				"fileUrl", true);
+		String fileUrl = fileUrlElem != null ? XmlHelper.text(fileUrlElem, true) : null;
 		System.out.println(fileUrl);
 		
 		IoHelper.readFile(new URL(fileUrl), new File("target/cere1.wav"));

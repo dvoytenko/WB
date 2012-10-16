@@ -73,6 +73,7 @@
 		color: #878869;
 		text-decoration: none;
 		outline: 0;
+		cursor: pointer;
 	}
 	
 	a:hover {
@@ -200,7 +201,10 @@
 	
 </style>
 
+	<link rel="stylesheet" type="text/css" href="css/smoothness/jquery-ui-1.8.17.custom.css" />	
+
     <script src="jquery-1.7.1.js"></script>
+    <script src="jquery-ui-1.8.17.custom.min.js"></script>
     <script src="underscore-1.3.1.js"></script>
     <script src="backbone-0.9.2-164.js"></script>
     
@@ -239,6 +243,7 @@
 			});
 		}
 		
+		/*
 	    $(document).ready(function() {
 	    	$('#RootMenu li a').each(function() {
 	    		var a = $(this);
@@ -249,12 +254,35 @@
 	    		});
 	    	});
 	    	
-	    	$('#RootMenu li a').each(function(index) {
-	    		if (index == 0) {
-	    			console.log('activate ' + this);
-	    			$(this).click();
-	    		}
-	    	});
+	    });
+		*/
+
+		var WorkspaceRouter = Backbone.Router.extend({
+			
+			routes: {
+				'c/:page': 'content',  // #c/{page}
+			},
+			
+			content: function(page) {
+				console.log('content: ' + page);
+				openContent(page + '.html');
+			}
+			
+		});
+		var router = new WorkspaceRouter();
+
+	    $(document).ready(function() {
+	    	
+			Backbone.history.start({pushState: false, silent: false});
+			
+			if (window.location.href.indexOf('#c/') == -1) {
+		    	$('#RootMenu li a').each(function(index) {
+		    		if (index == 0) {
+		    			console.log('activate ' + this);
+		    			window.location.href = $(this).attr('href');
+		    		}
+		    	});
+			}
 	    });
 	</script>
     
@@ -266,10 +294,10 @@
 		<h1 id="Logo"><a>Whiteboard</a></h1>
 		
 		<ul id="RootMenu">
-			<li><a href="shapeview.html">Shape Viewer</a></li>
-			<li><a href="latex.html">Math (LaTeX)</a></li>
-			<li><a href="scriptedit.html">Script Editor</a></li>
-			<li><a href="getbookmarklet.html">Shapes Bookmarklet</a></li>
+			<li><a href="#c/shapeview">Shape Viewer</a></li>
+			<li><a href="#c/latex">Math (LaTeX)</a></li>
+			<li><a href="#c/scriptedit">Script Editor</a></li>
+			<li><a href="#c/getbookmarklet">Shapes Bookmarklet</a></li>
 		</ul>
 		
 		<div class="sep"></div>

@@ -3,13 +3,12 @@ package wb.openclipart;
 import org.apache.xpath.XPathAPI;
 import org.cyberneko.html.parsers.DOMParser;
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.w3c.dom.Text;
 
 import wb.model.ShapeMeta;
 import wb.model.ShapeSource;
+import wb.util.XmlHelper;
 
 public class OpenClipArtSource implements ShapeSource {
 	
@@ -80,25 +79,12 @@ public class OpenClipArtSource implements ShapeSource {
 	}
 
 	private static String text(Node node, boolean trim) {
-		String value = null;
+		String value;
 		if (node == null) {
 			System.out.println("no node!");
-		} else if (node instanceof Text) {
-			value = ((Text) node).getNodeValue();
-		} else if (node instanceof Element) {
-			Element elem = (Element) node;
-			StringBuilder sb = new StringBuilder();
-			Node n = elem.getFirstChild();
-			while (n != null) {
-				sb.append(text(n, false));
-				n = n.getNextSibling();
-			}
-			value = sb.toString();
+			value = null;
 		} else {
-			value = node.getNodeValue();
-		}
-		if (value != null && trim) {
-			value = value.trim();
+			value = XmlHelper.text(node, trim);
 		}
 		return value;
 	}
