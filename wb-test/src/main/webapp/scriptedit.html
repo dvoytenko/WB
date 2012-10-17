@@ -21,7 +21,6 @@
 	#BoardPane {
 		float: left; 
 		width: 600px;
-		border: 1px solid red;
 	}
 	
 	#EpisodesPane {
@@ -65,7 +64,54 @@
 		margin-left: 55px;
 		margin-top: 10px;
 	}
+	
+	.Episode {
+		border: 1px solid #eee;
+		margin: 4px;
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+		border-radius: 3px;
+		cursor: pointer;
+		min-height: 40px;
+		padding: 4px;
+	}
 
+	.Episode:hover {
+		background-color: whiteSmoke;
+	}
+
+	.Episode.selected {
+		background-color: whiteSmoke;
+		margin: 10px;
+	}
+
+	.Episode .Icon {
+		float: left;
+		margin: 2px;
+	}
+
+	.Episode .Icon img {
+		float: left;
+		margin: 2px;
+		max-width: 50px;
+		max-height: 50px;
+	}
+	
+	.Episode .Desc {
+		margin-left: 55px;
+		margin-top: 10px;
+	}
+	
+	#EpisodesPane {
+		max-height: 500px;
+		overflow-y: auto;
+	}
+	
+	#EpisodesPane::-webkit-scrollbar-track {
+		-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+		border-radius: 10px;
+	}
+	
 </style>
 
     <script src="kinetic-v3.10.5.js"></script>
@@ -78,9 +124,18 @@
 		</div>
 		
 		<div id="EpisodesPane">
-			<div id="Episodes">
+		
+			<div id="EpisodeList">
 			</div>
+			
 			<div id="AddNewEpisodePane">
+				
+				<div>Samples:</div>
+				<div>
+					<a class="AddACar">Add a car</a>
+				</div>
+				<div style="margin-bottom: 10px;"></div>
+			
 				<a class="AddNewEpisodeAction action">
 					<img src="images/add.png"/>
 					Add New Episode
@@ -180,6 +235,19 @@
 		</div>
 		
 	</div>
+
+	<div id="templates" style="display: none;">
+		<div id="ShapeEpisodeView" class="Episode Shape">
+			<!-- xxx -->
+			<div class="Icon">
+				<img/>
+			</div>
+			<div class="Desc">
+				still working on this...
+			</div>
+			<div style="clear: both;"></div>
+		</div>
+	</div>
 	
 	<script type="text/javascript">
 
@@ -244,6 +312,7 @@
                 // draw the shape
                 this.appliedShadow = false;
                 this.doDraw(canvas, context, tr);
+                
                 context.restore();
             },
             
@@ -251,12 +320,14 @@
             	
 				var pane = new WB.Pane({canvas: canvas, defaultTransform: defaultTransform});
 				
+				/*
 		        context.beginPath();
         	    context.rect(0, 0, this.attrs.width, this.attrs.height);
                 context.closePath();
 	
 				//this.fill(context);
 				this.stroke(context);
+				*/
 				
 				var shape = this.shape;
 
@@ -291,7 +362,39 @@
 				group.draw(pane);
 			},
 			
+			/*
 			// TODO: intersects to detect with the box? or provide a big box around?
+		    intersects: function() {
+		        var pos = Kinetic.Type._getXY(Array.prototype.slice.call(arguments));
+		        var stage = this.getStage();
+
+                var family = [];
+                var parent = this.parent;
+
+                family.unshift(this);
+                while(parent) {
+                    family.unshift(parent);
+                    parent = parent.parent;
+                }
+                
+                var tr = new WB.Transform();
+                for(var n = 0; n < family.length; n++) {
+                    var node = family[n];
+                    var t = node.getTransform();
+                    var m = t.getMatrix();
+                    tr.multiply({m: m});
+                }
+                
+                var xy = tr.transformPoint(0, 0);
+                var x = xy.x;
+                var y = xy.y;
+				var width = this.attrs.width;
+				var height = this.attrs.height;
+		        
+		        return pox.x >= x && pos.x <= x + width
+		        		&& pos.y >= y && pos.y <= y + height;
+		    },
+		    */
 			
 		    setSize: function() {
 		        var size = Kinetic.Type._getSize(Array.prototype.slice.call(arguments));
@@ -313,6 +416,7 @@
 			var bottomRight = group.get(".bottomRight")[0];
 			var bottomLeft = group.get(".bottomLeft")[0];
 			var image = group.get(".image")[0];
+			var frame = group.get(".frame")[0];
 			
 			// update anchor positions
 			switch (activeAnchor.getName()) {
@@ -335,11 +439,13 @@
 			}
 			
 			image.setPosition(topLeft.attrs.x, topLeft.attrs.y);
+			frame.setPosition(topLeft.attrs.x, topLeft.attrs.y);
 			
 			var width = topRight.attrs.x - topLeft.attrs.x;
 			var height = bottomLeft.attrs.y - topLeft.attrs.y;
 			if (width && height) {
 				image.setSize(width, height);
+				frame.setSize(width, height);
 			}
 		}
 
@@ -370,16 +476,27 @@
 				group.setDraggable(true);
 				layer.draw();
 			});
+			
 			// add hover styling
-			anchor.on("mouseover", function() {
+			anchor.on("mouseover", function(e) {
 				var layer = this.getLayer();
-				document.body.style.cursor = "pointer";
+				document.body.style.cursor = 'pointer';
+				e.cancelBubble = true;
 				this.setStrokeWidth(4);
 				layer.draw();
 			});
-			anchor.on("mouseout", function() {
+			anchor.on("mousemove", function(e) {
+				document.body.style.cursor = 'pointer';
+				e.cancelBubble = true;
+			});
+			anchor.on("mouseout", function(e, a, b, c) {
 				var layer = this.getLayer();
-				document.body.style.cursor = "default";
+				var inter = group.getIntersections({x: e.x, y: e.y});
+				if (inter && inter.length) {
+					document.body.style.cursor = 'move';
+				} else {
+					document.body.style.cursor = 'default';
+				}
 				this.setStrokeWidth(2);
 				layer.draw();
 			});
@@ -391,37 +508,65 @@
 			console.log('showShape:');
 			console.log(shape);
 			
+			// pick initial size
+			var dWidth = 200;
+			var dHeight = 200;
+			var width = dWidth;
+			var height = dHeight;
+			if (shape.localBounds) {
+				width = Math.abs(shape.localBounds.bottomright.x - shape.localBounds.topleft.x);
+				height = Math.abs(shape.localBounds.bottomright.y - shape.localBounds.topleft.y);
+				// w/h: 200 vs 295; 200 vs 132
+				console.log('w/h: ' + dWidth + ' vs ' + width + '; ' + dHeight + ' vs ' + height);
+				var scaleX = 1.0;
+				var scaleY = 1.0;
+				if (Math.abs(dWidth - width) > 1e-2) {
+					scaleX = dWidth / width;
+				}
+				if (Math.abs(dHeight - height) > 1e-2) {
+					scaleY = dHeight / height;
+				}
+				var scale = Math.min(scaleX, scaleY);
+				// scale: 0.6779661016949152
+				console.log('scale: ' + scale);
+				
+				width *= scale;
+				height *= scale;
+				console.log('w/h: ' + width + ' x ' + height);
+			}
+			
 			var group = new Kinetic.Group({
-				x: 270,
-				y: 100,
+				x: Math.max(Math.round(Math.random() * stage.attrs.width) - width, 10),
+				y: Math.max(Math.round(Math.random() * stage.attrs.height) - height, 10),
 				draggable: true
 			});
 			layer.add(group);
-		
-			var img = new WBShapeAdapter({
+
+	        var frame = new Kinetic.Rect({
 				x: 0,
 				y: 0,
-				width: 200,
-				height: 138,
-				fill: "#eeeeee",
+				width: width,
+				height: height,
+				stroke: "black",
+				strokeWidth: 2,
+				name: "frame"
+	        });
+			group.add(frame);
+
+			var image = new WBShapeAdapter({
+				x: 0,
+				y: 0,
+				width: width,
+				height: height,
 				stroke: "black",
 				strokeWidth: 2,
 				name: "image",
 				shape: shape
 			});
-			/*
-	        var img = new Kinetic.Rect({
-				x: 0,
-				y: 0,
-				width: 200,
-				height: 138,
-				fill: "#eeeeee",
-				name: "image"
-	        });
-			*/
-			group.add(img);
+			group.add(image);
 
-	        group.on("mouseover", function() {
+			// mouseover
+	        group.on("mousemove", function(e) {
 				document.body.style.cursor = 'move';
 	        });
 	        group.on("mouseout", function() {
@@ -429,9 +574,9 @@
 	        });       
 
 			addAnchor(group, 0, 0, "topLeft");
-	        addAnchor(group, 200, 0, "topRight");
-	        addAnchor(group, 200, 138, "bottomRight");
-	        addAnchor(group, 0, 138, "bottomLeft");
+	        addAnchor(group, width, 0, "topRight");
+	        addAnchor(group, width, height, "bottomRight");
+	        addAnchor(group, 0, height, "bottomLeft");
 			
 	        group.on("dragstart", function() {
 				//this.moveToTop();
@@ -457,32 +602,33 @@
 				}
 			});
 		}
-	
-		downloadAndShowShape('shapedb/openclipart_org-car-outline-modified-by-molumen.json');
-        
-		/*
-        var rect = new Kinetic.Rect({
-			x: 4,
-			y: 4,
-			width: 100,
-			height: 100,
-			fill: "#eeeeee",
-			stroke: "black",
-			strokeWidth: 4,
-			draggable: true
-        });
-        rect.on("mouseover", function() {
-			document.body.style.cursor = 'move';
-        });
-        rect.on("mouseout", function() {
-			document.body.style.cursor = 'default';
-        });       
-        layer.add(rect);
-
-        //stage.setDraggable(true);
-        
-        layer.draw();
-        */
+		
+		$('a.AddACar').click(function() {
+			// xxx
+			var model = new Episode({
+				_type: 'Shape',
+				id: 'openclipart_org-car-outline-modified-by-molumen-' + episodeListModel.length,
+				title: 'A car',
+				thumbUrl: '/wb/shapedb/openclipart_org-car-outline-modified-by-molumen.png' 
+			});
+			
+			episodeListModel.add(model);
+			episodeListView.select(model);
+			
+			downloadAndShowShape('shapedb/openclipart_org-car-outline-modified-by-molumen.json');
+			
+			//$('.Episode.selected').toggleClass('selected', false);
+			//this.$el.toggleClass('selected', true);
+			
+			var offset = $('a.AddNewEpisodeAction').offset();
+			offset.left -= 20;
+			offset.top -= 20;
+			
+			$('#EpisodesPane').animate({
+			    scrollTop: offset.top,
+			    scrollLeft: offset.left
+			});
+		});
         
 	</script>
 
@@ -536,7 +682,9 @@
 			
 			select: function(e) {
 				console.log('select');
-				e.stopPropagation();
+				if (e) {
+					e.stopPropagation();
+				}
 				/*
 				episodeDetailApp.setEpisode(this.model);
 				*/
@@ -545,7 +693,36 @@
 			}
 			
 		});
-		
+
+		var ShapeEpisodeView = BaseEpisodeView.extend({
+			
+			className: "Episode Shape",
+			
+			skeleton: $('#ShapeEpisodeView').html(),
+			
+			render: function() {
+				var model = this.model.toJSON();
+				// console.log('render: ' + JSON.stringify(model));
+				
+				this.$el.html(this.skeleton);
+				
+				this.$el.find('div.Icon img').attr('src', model.thumbUrl);
+
+				// xxx
+
+				/*
+				this.$el.find('div.Title').text(model.title);
+				if (model.source) {
+					this.$el.find('div.Source').text(model.source);
+				}
+				this.$el.find('div.Thumb img').attr('src', '/wb/episode/' + model.id + '.png');
+				*/
+				
+				return this;
+			},
+			
+		});
+
 		
 		var EpisodeListView = Backbone.View.extend({
 			el: $('#EpisodesPane'),
@@ -554,7 +731,7 @@
 				this.model.bind('add', this.addOne, this);
 				this.model.bind('reset', this.reAddAll, this);
 				
-				this.$listEl = this.$el.find('#Episodes');
+				this.$listEl = this.$el.find('#EpisodeList');
 				
 				var that = this;
 				
@@ -570,6 +747,8 @@
 				$('#NewEpisodeDialog div.EpisodeType').click(function() {
 					that.episodeTypeSelected($(this).data('type'));
 				});
+				
+				this.views = [];
 			},
 
 			render: function() {
@@ -577,13 +756,23 @@
 			},
 			
 			reAddAll: function() {
+				this.views = [];
 				this.$listEl.html('');
 				this.model.each(this.addOne, this);
 			},			
 			
-			addOne: function(shapeDescModel) {
-				var view = new ShapeDescView({model: shapeDescModel});
+			getViewClass: function(type) {
+				if (type == 'Shape') {
+					return ShapeEpisodeView;
+				}
+				return BaseEpisodeView;
+			},
+			
+			addOne: function(model) {
+				var viewClass = this.getViewClass(model.get('_type'));
+				var view = new viewClass({model: model});
 				this.$listEl.append(view.render().el);
+				this.views.push(view);
 			},
 			
 			newEpisodeAction: function() {
@@ -593,6 +782,15 @@
 			
 			episodeTypeSelected: function(type) {
 				console.log('selected type: ' + type);
+			},
+			
+			select: function(model) {
+				for (var i = 0; i < this.views.length; i++) {
+					var view = this.views[i];
+					if (view.model.id === model.id) {
+						view.select();
+					}
+				}
 			}
 			
 		});
