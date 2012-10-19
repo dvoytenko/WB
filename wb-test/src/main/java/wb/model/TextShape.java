@@ -1,5 +1,8 @@
 package wb.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TextShape extends Shape {
 	
 	public String text;
@@ -13,6 +16,37 @@ public class TextShape extends Shape {
 	
 	// TODO remove
 	public Point startPoint;
+
+	public List<Glyph> glyphs;
+	
+	public Double realHeight;
+	
+	public Double realWidth;
+	
+	public void prepare(Font font) {
+		
+		double realHeight = font.baseHeight;
+		double realWidth = 0;
+		
+		// glyphs
+		this.glyphs = new ArrayList<Glyph>();
+		for (int i = 0; i < this.text.length(); i++) {
+			char c = this.text.charAt(i);
+			Glyph glyph = font.getGlyph(c);
+			if (glyph != null) {
+				this.glyphs.add(glyph);
+				if (glyph.advX != null) {
+					realWidth += glyph.advX;
+				} else if (font.baseAdvX != null) {
+					realWidth += font.baseAdvX;
+				}
+			}
+		}
+		
+		// size
+		this.realHeight = realHeight;
+		this.realWidth = realWidth;
+	}
 	
 	public Transform createTransform() {
 		Transform tr = new Transform();
@@ -73,5 +107,5 @@ public class TextShape extends Shape {
 	public Animation createAnimation() {
 		return null;
 	}
-	
+
 }

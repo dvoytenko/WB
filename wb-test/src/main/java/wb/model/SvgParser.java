@@ -158,7 +158,7 @@ public class SvgParser {
 		for (Element glyphElem : glyphElems) {
 			String unicode = glyphElem.getAttribute("unicode");
 			if (unicode != null && unicode.length() == 1) {
-				font.glyphMap.put(unicode.charAt(0), parseGlyph(glyphElem));
+				font.glyphMap.put(unicode, parseGlyph(glyphElem));
 			}
 		}
 		

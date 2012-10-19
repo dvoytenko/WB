@@ -41,9 +41,74 @@
   <body>
   	
   	<h1>Script 1</h1>
-  
+  	
+  	<!--
+  	<script>
+		var audio = new Audio();
+    	audio.addEventListener('canplay', function(e) {
+    		statusAdd('speech: canplay: ' + e);
+    		//audio.play();
+    	});
+    	audio.addEventListener('canplaythrough', function(e) {
+    		statusAdd('speech: canplaythrough: ' + e);
+    	});
+    	audio.addEventListener('progress', function(e) {
+    		statusAdd('speech: progress: ' + e);
+    	});
+    	audio.addEventListener('ended', function(e) {
+    		statusAdd('speech: ended: ' + e);
+        	setTimeout(function() {
+            	audio.setAttribute("src", 'script1/cere-4ba32715-e16e-3f8c-b4a6-db2d1a7035e8.wav');
+            	audio.load();
+        		audio.play();
+        	}, 1000);
+    	});
+    	audio.addEventListener('play', function(e) {
+    		statusAdd('speech: play: ' + e);
+    	});
+    	audio.addEventListener('playing', function(e) {
+    		statusAdd('speech: playing: ' + e);
+    	});
+    	audio.addEventListener('pause', function(e) {
+    		statusAdd('speech: pause: ' + e);
+    	});
+    	audio.addEventListener('abort', function(e) {
+    		statusAdd('speech: abort: ' + e);
+    	});
+    	audio.addEventListener('error', function(e) {
+    		statusAdd('speech: error: ' + e);
+    	});
+    	audio.addEventListener('waiting', function(e) {
+    		statusAdd('speech: waiting: ' + e);
+    	});
+    	audio.addEventListener('loadedmetadata', function(e) {
+    		statusAdd('speech: loadedmetadata: ' + e);
+    	});
+    	audio.addEventListener('stalled', function(e) {
+    		statusAdd('speech: stalled: ' + e);
+    	});
+    	audio.addEventListener('suspend', function(e) {
+    		statusAdd('speech: suspend: ' + e);
+    	});
+    	audio.addEventListener('timeupdate', function(e) {
+    		//statusAdd('speech: timeupdate: ' + e);
+    	});
+
+    	setTimeout(function() {
+    		// cere-4ba32715-e16e-3f8c-b4a6-db2d1a7035e8
+        	audio.setAttribute("src", 'script1/cere-345550b5-f98f-36db-9934-c82625b1c615.wav');
+        	audio.load();
+    		audio.play();
+    	}, 1000);
+  	</script>
+  	-->
+  	
 	<div id="bottombar" style="border: 1px solid gray; margin: 4px; width: 720px;">
-		<a id="TogglePlay" href="#">Play</a>
+		<a id="TogglePlay" href="javascript:void(0);">Play</a>
+		<!--
+		<span> | <span>
+		<a href="javascript:void(0);" onclick="console.log('Log1');">Log</a>
+		-->
 	</div>
 	
 	<div id="status" style="border: 1px solid gray; margin: 4px; width: 720px;">
@@ -63,6 +128,16 @@
 	
 		function status(s) {
 			$('#status').text(s);
+		}
+
+		function statusX(s) {
+			$('#status').text(s);
+		}
+		
+		function statusAdd(s) {
+			var d = $('<div></div>');
+			d.text(s);
+			$('#status').append(d);
 		}
 
 		function grid() {
@@ -112,6 +187,7 @@
 		var a = $('#TogglePlay');
 		a.click(function() {
 			if (!player || player.state == 'none' || player.state == 'ended') {
+				a.text('Starting...');
 				playScript();
 			} else if (player.state == 'playing') {
 				player.suspend();

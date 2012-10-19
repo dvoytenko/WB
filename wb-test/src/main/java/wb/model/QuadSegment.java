@@ -10,6 +10,9 @@ public class QuadSegment extends CurveSegment {
 	public Point cp;
 	
 	public Point endPoint;
+	
+	public QuadSegment() {
+	}
 
 	public QuadSegment(Point cp, Point endPoint) {
 		this.cp = cp;

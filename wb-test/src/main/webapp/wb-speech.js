@@ -28,6 +28,8 @@ WB.SpeechPlayer = WB.Class.extend({
     	audio.addEventListener('canplay', function(e) {
     		console.log('speech: canplay: ' + e);
     		that.state = 'loaded';
+    		// TODO: testing
+    		//audio.play();
     	});
     	audio.addEventListener('canplaythrough', function(e) {
     		console.log('speech: canplaythrough: ' + e);
@@ -60,8 +62,20 @@ WB.SpeechPlayer = WB.Class.extend({
     		that.state = 'error';
     	});
     	audio.addEventListener('waiting', function(e) {
-    		console.log('!!!!!!!speech: waiting: ' + e);
+    		console.log('speech: waiting: ' + e);
     	});
+    	audio.addEventListener('loadedmetadata', function(e) {
+    		console.log('speech: loadedmetadata: ' + e);
+    	});
+    	audio.addEventListener('stalled', function(e) {
+    		console.log('speech: stalled: ' + e);
+    	});
+    	audio.addEventListener('suspend', function(e) {
+    		console.log('speech: suspend: ' + e);
+    	});
+//    	audio.addEventListener('timeupdate', function(e) {
+//    		console.log('speech: timeupdate: ' + e);
+//    	});
     	
     	this.state = 'none';
     },

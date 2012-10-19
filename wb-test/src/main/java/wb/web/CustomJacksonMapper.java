@@ -26,7 +26,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import wb.model.Parser;
+import wb.model.Segment;
 import wb.model.Serializer;
+import wb.model.Shape;
 import wb.model.ShapeMeta;
 
 public class CustomJacksonMapper extends ObjectMapper {
@@ -36,8 +38,11 @@ public class CustomJacksonMapper extends ObjectMapper {
 		configure(SerializationConfig.Feature.WRITE_DATES_AS_TIMESTAMPS, false);
 		
 		SimpleModule module = new SimpleModule("WB", new Version(1, 0, 0, null))
-			.addSerializer(ShapeMeta.class, new ShapeMetaSerializer())
-			.addDeserializer(ShapeMeta.class, new ShapeMetaDeserializer());
+			.addSerializer(ShapeMeta.class, new WbSerializer<ShapeMeta>())
+			.addDeserializer(ShapeMeta.class, new ShapeMetaDeserializer())
+			.addSerializer(Shape.class, new WbSerializer<Shape>())
+			.addSerializer(Segment.class, new WbSerializer<Segment>())
+			;
 		registerModule(module);
 	}
 	
@@ -97,10 +102,10 @@ public class CustomJacksonMapper extends ObjectMapper {
 
 	}
 	
-	private static class ShapeMetaSerializer extends JsonSerializer<ShapeMeta> {
+	private static class WbSerializer<T> extends JsonSerializer<T> {
 
 		@Override
-		public void serialize(ShapeMeta value, JsonGenerator jgen,
+		public void serialize(T value, JsonGenerator jgen,
 				SerializerProvider provider) throws IOException,
 				JsonProcessingException {
 			Object js;

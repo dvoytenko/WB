@@ -125,6 +125,12 @@ WB.TextShape = WB.Shape.extend({
 	// TODO remove
 	startPoint: null,
 	
+	glyphs: null,
+	
+	realHeight: null,
+	
+	realWidth: null,
+	
 	init: function(opts) {
 		if (opts) {
 			for (var k in opts) {
@@ -135,12 +141,19 @@ WB.TextShape = WB.Shape.extend({
 	
 	createTransform: function() {
 		var tr = new WB.Transform();
-		tr.translate(this.startPoint.x, this.startPoint.y);
-		var baseHeight = this.font.baseHeight;
-		var isResize = Math.abs(this.fontHeight - baseHeight) >= 1e-2;
-		var scale = isResize ? this.fontHeight/baseHeight : 1;
-		tr.scale(scale, -scale);
-		tr.translate(0, -baseHeight);
+		if (this.startPoint) {
+			tr.translate(this.startPoint.x, this.startPoint.y);
+		}
+		if (this.font) {
+			var baseHeight = this.font.baseHeight;
+			var isResize = Math.abs(this.fontHeight - baseHeight) >= 1e-2;
+			var scale = isResize ? this.fontHeight/baseHeight : 1;
+			tr.scale(scale, -scale);
+			tr.translate(0, -baseHeight);
+		} else if (this.realHeight) {
+			tr.scale(1, -1);
+			tr.translate(0, -this.realHeight);
+		}
 		return tr;
 	},
 	
@@ -154,10 +167,9 @@ WB.TextShape = WB.Shape.extend({
 	
 	_draw: function(pane) {
 		var p = {x: 0, y: 0};
-		for (var i = 0; i < this.text.length; i++) {
-			var c = this.text.substr(i, 1);
-			var glyph = this.font.getGlyph(c);
-			if (glyph) {
+		if (this.glyphs) {
+			for (var i = 0; i < this.glyphs.length; i++) {
+				var glyph = this.glyphs[i];
 				
 				// render
 				if (glyph.pathSegment) {
@@ -171,12 +183,35 @@ WB.TextShape = WB.Shape.extend({
 				}
 				
 				// offset
-				var advX = glyph.advX;
-				if (!advX) {
-					advX = this.font.baseAdvX;
+				if (glyph.advX) {
+					p = WB.Geom.movePoint(p, glyph.advX, 0);
 				}
-				if (advX) {
-					p = WB.Geom.movePoint(p, advX, 0);
+			}
+		} else {
+			for (var i = 0; i < this.text.length; i++) {
+				var c = this.text.substr(i, 1);
+				var glyph = this.font.getGlyph(c);
+				if (glyph) {
+					
+					// render
+					if (glyph.pathSegment) {
+						var tr = new WB.Transform().translate(p.x, p.y);
+						pane.withTr(tr, function() {
+							pane.beginPath();
+							pane.moveTo({x: 0, y: 0});
+							glyph.pathSegment.outline(pane);
+							pane.stroke();
+						});
+					}
+					
+					// offset
+					var advX = glyph.advX;
+					if (!advX) {
+						advX = this.font.baseAdvX;
+					}
+					if (advX) {
+						p = WB.Geom.movePoint(p, advX, 0);
+					}
 				}
 			}
 		}
