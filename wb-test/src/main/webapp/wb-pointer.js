@@ -2,6 +2,9 @@
 
 WB.Pointer = WB.Class.extend({
 	
+	beforeFrame: function() {
+	},
+	
 	update: function(state) {
 	}
 	

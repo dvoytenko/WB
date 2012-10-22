@@ -15,13 +15,37 @@ var DrawLineEpisodeView = BaseEpisodeView.extend({
 		this.$el.html(
 				'<div class="Icon"><img/></div>' + 
 				'<div class="Desc"></div>' + 
+				'<div class="PosSize"></div>' + 
 				'<div style="clear: both;"></div>');
 		
 		this.$el.find('div.Icon img').attr('src', 'images/arrow_right.png');
 		this.$el.find('div.Desc').text('Line');
+
+		var point1 = model.point1;
+		var point2 = model.point2;
+		var x1 = point1 ? point1.x : null;
+		var y1 = point1 ? point1.y : null;
+		var x2 = point2 ? point2.x : null;
+		var y2 = point2 ? point2.y : null;
+		this.$el.find('div.PosSize').text('point1: ' + x1 + ', ' + y1
+				+ '; point2: ' + x2 + ', ' + y2);
 		
 		return this;
 	},
+	
+	changed: function(model, event) {
+		if (event.changes.point1 || 
+				event.changes.point2) {
+			var point1 = model.get('point1');
+			var point2 = model.get('point2');
+			var x1 = point1 ? point1.x : null;
+			var y1 = point1 ? point1.y : null;
+			var x2 = point2 ? point2.x : null;
+			var y2 = point2 ? point2.y : null;
+			this.$el.find('div.PosSize').text('point1: ' + x1 + ', ' + y1
+					+ '; point2: ' + x2 + ', ' + y2);
+		}
+	}
 	
 });
 viewClassMap['DrawLineEpisode'] = DrawLineEpisodeView;
@@ -60,12 +84,14 @@ var BoardLineEditable = Kinetic.Group.extend({
         		x: Math.max(Math.round(Math.random() * this.attrs.spaceWidth), 10),
         		y: Math.max(Math.round(Math.random() * this.attrs.spaceHeight), 10)
         	};
+        	this.episode.set('point1', point1);
         }
         if (!point2) {
         	point2 = {
         		x: Math.max(Math.round(Math.random() * this.attrs.spaceWidth), 10),
         		y: Math.max(Math.round(Math.random() * this.attrs.spaceHeight), 10)
         	};
+        	this.episode.set('point2', point2);
         }
 //        console.log('initial coord: ' + JSON.stringify(point1) + ' to ' + 
 //        		JSON.stringify(point2));
@@ -101,8 +127,6 @@ var BoardLineEditable = Kinetic.Group.extend({
 			});
 		}
 
-        // xxx
-		
 		var point1Adj = point1;
 		var point2Adj = point2;
 		if (point1Shape) {
@@ -182,6 +206,9 @@ var BoardLineEditable = Kinetic.Group.extend({
 		if (point2Shape) {
 			point2Shape.updateLine(point2, point1);
 		}
+
+    	this.episode.set('point1', point1);
+    	this.episode.set('point2', point2);
 	},
 
 	_addAnchor: function(x, y, name) {

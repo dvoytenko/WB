@@ -162,6 +162,24 @@ public final class IoHelper {
 		}
 	}
 
+	public static void writeText(CharSequence text, File file, String encoding, 
+			String lineSeparator) throws IOException {
+		OutputStream stream = new FileOutputStream(file);
+		try {
+			Writer writer;
+			if (encoding != null) {
+				writer = new OutputStreamWriter(stream, encoding);
+			} else {
+				writer = new OutputStreamWriter(stream);
+			}
+			writer = new BufferedWriter(writer);
+			writeText(text, writer, lineSeparator);
+			writer.flush();
+		} finally {
+			stream.close();
+		}
+	}
+
 	/**
 	 * Writes text into a stream. If encoding is <code>null</code> default system encoding is used. If lineSeparator is
 	 * <code>null</code> - default line separator is used.
@@ -213,6 +231,13 @@ public final class IoHelper {
 		int r;
 		while ((r = in.read()) != -1) {
 			out.write(r);
+		}
+	}
+
+	public static void copy(Reader reader, Writer writer) throws IOException {
+		int r;
+		while ((r = reader.read()) != -1) {
+			writer.write(r);
 		}
 	}
 

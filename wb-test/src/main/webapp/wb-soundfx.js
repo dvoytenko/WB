@@ -61,6 +61,9 @@ WB.DrawingSoundEngine = WB.Class.extend({
     	});
     },
     
+    beforeFrame: function() {
+    },
+    
     update: function(state) {
     	// console.log('soundfx: update: ' + JSON.stringify(state));
     	if (state.height > 0.0 || !state.velocity) {

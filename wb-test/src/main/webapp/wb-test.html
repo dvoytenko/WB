@@ -35,6 +35,7 @@
     
     <script src="wb-parser.js"></script>
     <script src="wb-player.js"></script>
+    <script src="wb-stepper.js"></script>
 
   </head>
 
@@ -66,6 +67,8 @@
 		<a href="javascript:void(0);" onclick="pan2()">Pan 2</a>
 
 		<a href="javascript:void(0);" onclick="script1()">Script 1</a>
+		<a href="javascript:void(0);" onclick="script1Stepper()">Script 1 Stepper</a>
+		<a href="javascript:void(0);" onclick="script1Recorder()">Script 1 Recorder</a>
 		<!--
 		<a href="javascript:void(0);" onclick="script2()">Script 2</a>
 		<a href="javascript:void(0);" onclick="script3()">Script 3</a>
@@ -404,6 +407,285 @@
 			});
 		}
 		
+
+		function stepAny(animable, opts) {
+			
+			if (!opts) {
+				opts = {};
+			}
+			
+			// 720 x 405
+			var canvasWidth = 720;
+			var canvasHeight = 405;
+			var realWidth = 1440; // mm
+			var realHeight = 810; // mm
+			
+			var baseVelocity = 500;
+			if (opts.baseVelocity) {
+				baseVelocity = opts.baseVelocity;
+			}
+			
+			var defaultTransform = new WB.Transform();
+					//.scale(canvasWidth/realWidth, canvasHeight/realHeight)
+					//.translate(realWidth/2, realHeight/2);
+					
+			var speechPlayer = new WB.SpeechPlayerPsuedo({urlResolver: opts.urlResolver});
+			
+			var board = new WB.Board({
+				commitPane: new WB.Pane({
+					canvas: document.getElementById('canvas'), 
+					defaultTransform: defaultTransform
+					}),
+				animationPane: new WB.Pane({
+					canvas: document.getElementById('animCanvas'), 
+					defaultTransform: defaultTransform
+					}),
+//				drawingSoundEngine: new WB.DrawingSoundEngine({
+//					//baseVelocity: baseVelocity
+//					}),
+				pointer: new WB.HandPoint({
+					pane: new WB.Pane({
+						canvas: document.getElementById('pointerCanvas'),
+						defaultTransform: defaultTransform
+						})
+					}),
+				speechPlayer: speechPlayer,
+				urlResolver: opts.urlResolver,
+				baseVelocity: baseVelocity,
+				showBounds: false
+				});
+			
+			board.commitPane._clearCanvas();
+			board.animationPane._clearCanvas();
+			board.pointer.pane._clearCanvas();
+
+			$('#bottombar').html('<span class="Loading">Loading...</span><a class="StepAction" href="javascript:void(0);">Step</a>');
+			$('#bottombar .Loading').css('display', 'inline');
+			$('#bottombar a.StepAction').css('display', 'none');
+
+			var stepper = new WB.Stepper({board: board, interval: 10000});
+			$('#bottombar a.StepAction').click(function() {
+				stepper.step();
+				if (stepper.state == 'ended') {
+					$('#bottombar').html('Finished');
+				}
+			});
+			stepper.bind(function(event, opts) {
+				if (event == 'frame') {
+					var p = stepper.board.animationPane.getCurrentPoint();
+					status('Time: ' + (opts.time) + ' milliseconds' 
+							+ '; Position: ' + Math.round(p.x) + ',' + Math.round(p.y));
+				}
+			});
+
+			$.ajax({url: 'fonts/nova_thin_extended.json', contentType: 'application/json'})
+			.done(function(json) {
+				console.log('got data');
+				if (json) {
+					if (json.constructor == String) {
+						json = JSON.parse(json);
+					}
+					console.log(json);
+					
+					var parser = new WB.Parser();
+					var font = parser.parse(json);
+					console.log(font);
+					
+					board.font = font;
+					
+					stepper.start(animable);
+					$('#bottombar a.StepAction').css('display', 'inline');
+					$('#bottombar .Loading').css('display', 'none');
+				}
+			});
+		}
+		
+		function stepScript(scriptId) {
+			
+			var urlResolver = function(path) {
+				if (path.substr(0,1) != '/') {
+					path = '/' + path;
+				}
+				return '/wb/' + scriptId + path;
+			}
+
+			$.ajax({url: urlResolver('script.json'), contentType: 'application/json'})
+			.done(function(json) {
+				console.log('got data');
+				if (json) {
+					if (json.constructor == String) {
+						json = JSON.parse(json);
+					}
+					console.log(json);
+					
+					var parser = new WB.Parser();
+					var script = parser.parse(json);
+					console.log(script);
+					
+					stepAny(new WB.EpisodeList({episodes: script.episodes, pause: 100}),
+							{urlResolver: urlResolver});
+				}
+			});
+		}
+
+		
+		function recordAny(animable, opts, recordId) {
+			
+			if (!opts) {
+				opts = {};
+			}
+			
+			// 720 x 405
+			var canvasWidth = 720;
+			var canvasHeight = 405;
+			var realWidth = 1440; // mm
+			var realHeight = 810; // mm
+			
+			var baseVelocity = 500;
+			if (opts.baseVelocity) {
+				baseVelocity = opts.baseVelocity;
+			}
+			
+			var defaultTransform = new WB.Transform();
+					//.scale(canvasWidth/realWidth, canvasHeight/realHeight)
+					//.translate(realWidth/2, realHeight/2);
+					
+			var speechPlayer = new WB.SpeechPlayerPsuedo({urlResolver: opts.urlResolver});
+			
+			var board = new WB.Board({
+				commitPane: new WB.Pane({
+					canvas: document.getElementById('canvas'), 
+					defaultTransform: defaultTransform
+					}),
+				animationPane: new WB.Pane({
+					canvas: document.getElementById('animCanvas'), 
+					defaultTransform: defaultTransform
+					}),
+//				drawingSoundEngine: new WB.DrawingSoundEngine({
+//					//baseVelocity: baseVelocity
+//					}),
+				pointer: new WB.HandPoint({
+					pane: new WB.Pane({
+						canvas: document.getElementById('pointerCanvas'),
+						defaultTransform: defaultTransform
+						})
+					}),
+				speechPlayer: speechPlayer,
+				urlResolver: opts.urlResolver,
+				baseVelocity: baseVelocity,
+				showBounds: false
+				});
+			
+			board.commitPane._clearCanvas();
+			board.animationPane._clearCanvas();
+			board.pointer.pane._clearCanvas();
+
+			$('#bottombar').html('Loading...');
+
+			var stepper = new WB.Stepper({board: board, interval: 10000});
+			stepper.bind(function(event, opts) {
+				if (event == 'frame') {
+					var p = stepper.board.animationPane.getCurrentPoint();
+					status('Time: ' + (opts.time) + ' milliseconds' 
+							+ '; Position: ' + Math.round(p.x) + ',' + Math.round(p.y));
+				}
+			});
+			
+			$.ajax({url: 'fonts/nova_thin_extended.json', contentType: 'application/json'})
+			.done(function(json) {
+				console.log('got data');
+				if (json) {
+					if (json.constructor == String) {
+						json = JSON.parse(json);
+					}
+					console.log(json);
+					
+					var parser = new WB.Parser();
+					var font = parser.parse(json);
+					console.log(font);
+					
+					board.font = font;
+					
+					stepper.start(animable);
+					$('#bottombar').html('Recoding...');
+
+					var frameIndex = 0;
+					while (stepper.state == 'playing') {
+						stepper.step();
+						frameIndex++;
+						
+						var commitCanvas = board.commitPane.canvas;
+						var animCanvas = board.animationPane.canvas;
+						var pointerCanvas = board.pointer.pane.canvas;
+						
+						var canvasWidth = commitCanvas.width;
+						var canvasHeight = commitCanvas.height;
+						
+						// xxx
+						
+						var frame = {
+							state: board._state,
+							speech: speechPlayer.playingUrl,
+							width: canvasWidth,
+							height: canvasHeight,
+							panes: [
+						        {id:'commit', data:commitCanvas.toDataURL()},
+						        {id:'animation', data:animCanvas.toDataURL()},
+						        {id:'pointer', data:pointerCanvas.toDataURL()},
+					        ]
+						};
+						
+						$.ajax({
+							type: 'POST',
+							url: '/wb/service/recorder/frame?recordId=' + recordId + '&frameIndex=' + frameIndex,
+							contentType: 'application/json',
+							processData: false,
+							data: JSON.stringify(frame)
+						});
+						
+					}
+				}
+			});
+		}
+		
+		function recordScript(scriptId) {
+			
+			var urlResolver = function(path) {
+				if (path.substr(0,1) != '/') {
+					path = '/' + path;
+				}
+				return '/wb/' + scriptId + path;
+			}
+
+			$.ajax({url: urlResolver('script.json'), contentType: 'application/json'})
+			.done(function(json) {
+				console.log('got data');
+				if (json) {
+					if (json.constructor == String) {
+						json = JSON.parse(json);
+					}
+					console.log(json);
+					
+					var parser = new WB.Parser();
+					var script = parser.parse(json);
+					console.log(script);
+					
+					$.ajax({url: '/wb/service/recorder/start', contentType: 'application/json'})
+					.done(function(json) {
+						if (json.constructor == String) {
+							json = JSON.parse(json);
+						}
+						console.log(json);
+						
+						var recordId = json.id;
+						console.log('record id = ' + recordId);
+						recordAny(new WB.EpisodeList({episodes: script.episodes, pause: 100}),
+								{urlResolver: urlResolver},
+								recordId);
+					});
+				}
+			});
+		}
 		
 		
 		function anim1() {
@@ -1062,6 +1344,14 @@
 		
 		function script1() {
 			playScript('script1');
+		}
+		
+		function script1Stepper() {
+			stepScript('script1');
+		}
+		
+		function script1Recorder() {
+			recordScript('script1');
 		}
 		
 		function script2() {

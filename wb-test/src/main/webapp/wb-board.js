@@ -142,10 +142,26 @@ WB.Board = WB.Class.extend({
 			}
 		}
 	},
+
+	beforeFrame: function() {
+		this.animationPane._clearCanvas();
+		if (this.drawingSoundEngine) {
+			this.drawingSoundEngine.beforeFrame();
+		}
+		if (this.speechPlayer) {
+			this.speechPlayer.beforeFrame();
+		}
+		if (this.pointer) {
+			this.pointer.beforeFrame();
+		}
+	},
 	
 	afterFrame: function() {
 		if (this.drawingSoundEngine) {
 			this.drawingSoundEngine.update(this._state);
+		}
+		if (this.speechPlayer) {
+			this.speechPlayer.update(this._state);
 		}
 		if (this.pointer) {
 			this.pointer.update(this._state);
@@ -234,7 +250,7 @@ WB.BoardAnimation = WB.Class.extend({
 	},
 	
 	frame: function(time) {
-		this.board.animationPane._clearCanvas();
+		this.board.beforeFrame();
 		this.animation.frame(time);
 		this.board.afterFrame();
 	},

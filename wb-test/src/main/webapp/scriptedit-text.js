@@ -13,13 +13,33 @@ var DrawTextEpisodeView = BaseEpisodeView.extend({
 		this.$el.html(
 				'<div class="Icon"><img/></div>' + 
 				'<div class="Desc"></div>' + 
+				'<div class="PosSize"></div>' + 
 				'<div style="clear: both;"></div>');
 		
 		this.$el.find('div.Icon img').attr('src', 'images/quill.png');
 		this.$el.find('div.Desc').text('"' + model.text + '"');
+
+		var x = model.position ? model.position.x : null;
+		var y = model.position ? model.position.y : null;
+		this.$el.find('div.PosSize').text('position: ' + x + ', ' + y
+				+ '; size: ' + model.width + ' x ' + model.height);
 		
 		return this;
 	},
+
+	changed: function(model, event) {
+		if (event.changes.position || 
+				event.changes.width ||
+				event.changes.height) {
+			var pos = model.get('position');
+			var x = pos ? pos.x : null;
+			var y = pos ? pos.y : null;
+			var width = model.get('width');
+			var height = model.get('height');
+			this.$el.find('div.PosSize').text('position: ' + x + ', ' + y
+					+ '; size: ' + width + ' x ' + height);
+		}
+	}
 	
 });
 viewClassMap['DrawTextEpisode'] = DrawTextEpisodeView;

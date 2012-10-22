@@ -6,25 +6,18 @@ var DrawShapeEpisodeView = BaseEpisodeView.extend({
 	
 	className: "Episode DrawShapeEpisode",
 	
-	render: function() {
-		var model = this.model.toJSON();
-		// console.log('render: ' + JSON.stringify(model));
-		
-		this.$el.html(
-				'<div class="Icon"><img/></div>' + 
-				'<div class="Desc"></div>' + 
-				'<div style="clear: both;"></div>');
-		
-		this.$el.find('div.Icon img').attr('src', model.thumbUrl);
-		this.$el.find('div.Desc').text(model.title);
-
-		/*
-		if (model.source) {
-			this.$el.find('div.Source').text(model.source);
-		}
-		*/
-		
-		return this;
+	modelIconPath: function() {
+		return this.model.get('thumbUrl');
+	},
+	
+	modelPosSize: function() {
+		var pos = this.model.get('position');
+		var x = pos ? pos.x : null;
+		var y = pos ? pos.y : null;
+		var width = this.model.get('width');
+		var height = this.model.get('height');
+		return 'x: ' + Math.round(x) + ', y: ' + Math.round(y)
+			+ ', w: ' + Math.round(width) + ', h: ' + Math.round(height);
 	},
 	
 });
@@ -51,6 +44,9 @@ var BoardShapeEditable = Kinetic.Group.extend({
 			var estimatedSize = this.estimateSize(width, height);
 			width = estimatedSize.width;
 			height = estimatedSize.height;
+			// model will be assigned in _assignShape
+			// this.episode.set('width', width);
+			// this.episode.set('height', height);
 		}
 		
 		this.insets = this.attrs.insets;
@@ -67,6 +63,7 @@ var BoardShapeEditable = Kinetic.Group.extend({
         } else {
             x = Math.max(Math.round(Math.random() * this.attrs.spaceWidth) - width, 10);
             y = Math.max(Math.round(Math.random() * this.attrs.spaceHeight) - height, 10);
+            this.episode.set('position', {x: x, y: y});
         }
         this.setPosition(x, y);
         
@@ -96,6 +93,8 @@ var BoardShapeEditable = Kinetic.Group.extend({
 		});
 		this.add(image);
 
+		var that = this;
+		
 		// mouseover
 		this.on("mousemove", function(e) {
 			document.body.style.cursor = 'move';
@@ -108,7 +107,11 @@ var BoardShapeEditable = Kinetic.Group.extend({
 		this._addAnchor(fullWidth, 0, "topRight");
 		this._addAnchor(fullWidth, fullHeight, "bottomRight");
 		this._addAnchor(0, fullHeight, "bottomLeft");
-		
+
+		this.on("dragend", function() {
+			that._updateModel(true, false);
+		});
+
 //		this.on("dragstart", function() {
 //			this.moveToTop();
 //		});
@@ -192,37 +195,47 @@ var BoardShapeEditable = Kinetic.Group.extend({
         var currSize = image.getSize();
         
         image.setShape(shape);
+
+		var width = this.episode.get('width');
+		var height = this.episode.get('height');
+		if (!width || !height) {
+			// recalc size
+			var dWidth = currSize.width;
+			var dHeight = currSize.height;
+			width = dWidth;
+			height = dHeight;
+			if (!shape.localBounds) {
+				shape.localBounds = this.calcLocalBounds(shape);
+			}
+			if (shape.localBounds) {
+				width = Math.abs(shape.localBounds.bottomright.x - shape.localBounds.topleft.x);
+				height = Math.abs(shape.localBounds.bottomright.y - shape.localBounds.topleft.y);
+				// w/h: 200 vs 295; 200 vs 132
+				// console.log('w/h: ' + dWidth + ' vs ' + width + '; ' + dHeight + ' vs ' + height);
+				var scaleX = 1.0;
+				var scaleY = 1.0;
+				if (Math.abs(dWidth - width) > 1e-2) {
+					scaleX = dWidth / width;
+				}
+				if (Math.abs(dHeight - height) > 1e-2) {
+					scaleY = dHeight / height;
+				}
+				var scale = Math.min(scaleX, scaleY);
+				// scale: 0.6779661016949152
+				// console.log('scale: ' + scale);
+				
+				width *= scale;
+				height *= scale;
+				// console.log('w/h: ' + width + ' x ' + height);
+			}
+
+			// asign new size to the model
+			if (width && height) {
+				this.episode.set('width', width);
+				this.episode.set('height', height);
+			}
+		}
         
-		// recalc size
-		var dWidth = currSize.width;
-		var dHeight = currSize.height;
-		var width = dWidth;
-		var height = dHeight;
-		if (!shape.localBounds) {
-			shape.localBounds = this.calcLocalBounds(shape);
-		}
-		if (shape.localBounds) {
-			width = Math.abs(shape.localBounds.bottomright.x - shape.localBounds.topleft.x);
-			height = Math.abs(shape.localBounds.bottomright.y - shape.localBounds.topleft.y);
-			// w/h: 200 vs 295; 200 vs 132
-			// console.log('w/h: ' + dWidth + ' vs ' + width + '; ' + dHeight + ' vs ' + height);
-			var scaleX = 1.0;
-			var scaleY = 1.0;
-			if (Math.abs(dWidth - width) > 1e-2) {
-				scaleX = dWidth / width;
-			}
-			if (Math.abs(dHeight - height) > 1e-2) {
-				scaleY = dHeight / height;
-			}
-			var scale = Math.min(scaleX, scaleY);
-			// scale: 0.6779661016949152
-			// console.log('scale: ' + scale);
-			
-			width *= scale;
-			height *= scale;
-			// console.log('w/h: ' + width + ' x ' + height);
-		}
-		
 		if (width && height) {
 	        var fullWidth = width + this.insets.left + this.insets.right;
 	        var fullHeight = height + this.insets.top + this.insets.bottom;
@@ -268,8 +281,9 @@ var BoardShapeEditable = Kinetic.Group.extend({
 				break;
 		}
 
-		image.setPosition(topLeft.attrs.x + this.insets.left, 
-				topLeft.attrs.y + this.insets.top);
+		var x = topLeft.attrs.x + this.insets.left;
+		var y = topLeft.attrs.y + this.insets.top;
+		image.setPosition(x, y);
 		frame.setPosition(topLeft.attrs.x, topLeft.attrs.y);
 		
 		var fullWidth = topRight.attrs.x - topLeft.attrs.x;
@@ -279,6 +293,27 @@ var BoardShapeEditable = Kinetic.Group.extend({
 		if (width && height) {
 			image.setSize(width, height);
 			frame.setSize(fullWidth, fullHeight);
+		}
+		
+		this._updateModel(true, true);
+	},
+	
+	_updateModel: function(updatePosition, updateSize) {
+
+		if (updatePosition) {
+			var pos = this.getPosition();
+			var x = pos.x + this.insets.left;
+			var y = pos.y + this.insets.top;
+			console.log('update position to: ' + x + ', ' + y);
+			this.episode.set('position', {x: x, y: y});
+		}
+		
+		if (updateSize) {
+			var image = this.get(".image")[0];
+			var size = image.getSize();
+			console.log('update size to: ' + size.width + ' x ' + size.height);
+			this.episode.set('width', size.width);
+			this.episode.set('height', size.height);
 		}
 	},
 

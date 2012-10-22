@@ -73,6 +73,8 @@
 		margin-left: 55px;
 		margin-top: 10px;
 	}
+
+
 	
 	.Episode {
 		border: 1px solid #eee;
@@ -83,6 +85,7 @@
 		cursor: pointer;
 		min-height: 40px;
 		padding: 4px;
+		width: 370px;
 	}
 
 	.Episode:hover {
@@ -94,22 +97,85 @@
 		margin: 10px;
 	}
 
+	.Episode .footer {
+		clear: both;
+	}
+	
 	.Episode .Icon {
 		float: left;
 		margin: 2px;
+		width: 54px;
+		height: 54px;
+		padding: 2px;
 	}
 
 	.Episode .Icon img {
-		float: left;
-		margin: 2px;
 		max-width: 50px;
 		max-height: 50px;
 	}
 	
-	.Episode .Desc {
-		margin-left: 55px;
+	.Episode .Info {
+		float: left;
+		margin-left: 10px;
 		margin-top: 10px;
+		width: 240px;
 	}
+
+	.Episode .Title {
+		font-weight: bold;
+	}
+
+	.Episode .Desc {
+	}
+	
+	.Episode .PosSize {
+		font-size: 10px;
+	}
+	
+	.Episode .Tools {
+		float: right;
+		width: 40px;
+	}
+
+	.Episode .Tools .Seq {
+		border: 1px solid gray;
+		background-color: #F4FA58;
+		font-size: 11px;
+		margin: 2px 4px 2px auto;
+		width: 20px;
+		padding: 0 2px;
+		text-align: center;
+	}
+	
+	.Episode .Tools .Menu {
+		margin: 10px 4px 0px auto;
+		width: 32px;
+	}
+	
+	.Episode .Tools .Menu a {
+		display: block; 
+		text-indent: -99999px; 
+		overflow: hidden; 
+		width: 32px; 
+		height: 32px; 
+		background-image: url(images/badge_down_32.png);
+		background-repeat: no-repeat;
+		background-position: 0 0;
+	}
+	
+	.Episode .MenuPopup {
+		min-height: 80px;
+		min-width: 80px;
+		border: 1px solid gray; 
+		border-radius: 5px;
+		padding: 1em;
+		box-shadow: 3px 3px 5px -1px rgba(0, 0, 0, 0.5);
+		background: lightgray; 
+		font-size: 12px; 
+		outline: none;
+		cursor: default;
+	}
+
 	
 	#EpisodesPane {
 		max-height: 500px;
@@ -259,9 +325,9 @@
 				_type: 'DrawShapeEpisode',
 				id: 'episode-' + episodeListModel.length,
 				shapeId: 'openclipart_org-car-outline-modified-by-molumen',
-				position: null,
-				width: null,
-				height: null,
+//				position: {x: 20, y: 20},
+//				width: 200,
+//				height: 200,
 				realWidth: null,
 				realHeight: null,
 				rotationDegree: 0,

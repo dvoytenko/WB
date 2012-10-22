@@ -97,6 +97,52 @@ WB.SpeechPlayer = WB.Class.extend({
     
     getState: function() {
     	return this.state;
+    },
+    
+    beforeFrame: function() {
+    },
+    
+    update: function(state) {
+    }
+	
+});
+
+
+WB.SpeechPlayerPsuedo = WB.Class.extend({
+	
+	urlResolver: null,
+
+    init: function(opts) {
+    	
+		if (opts && opts.urlResolver) {
+			this.urlResolver = opts.urlResolver;
+		} else {
+			this.urlResolver = function(path) {return path;};
+		}
+    	
+    	this.state = 'none';
+    },
+    
+    play: function(track) {
+    	// decide b/w wav and other formats
+    	var file = this.urlResolver(track + '.wav');
+    	console.log('speech: play file: ' + file);
+    	this.state = 'playing';
+    	this.playingUrl = file;
+    },
+    
+    getState: function() {
+    	return this.state;
+    },
+    
+    beforeFrame: function() {
+    	if (this.state == 'playing') {
+    		this.state = 'ended';
+    	}
+    	this.playingUrl = null;
+    },
+    
+    update: function(state) {
     }
 	
 });

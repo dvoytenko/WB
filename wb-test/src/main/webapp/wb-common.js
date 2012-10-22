@@ -614,8 +614,6 @@ WB.PauseAnimation = WB.Animation.extend({
 	
 	init: function(time) {
 		this.pauseTime = time;
-		this.done = this.pauseTime < 1;
-		console.log('pause started');
 	},
 	
 	createAnimation: function() {
@@ -624,6 +622,8 @@ WB.PauseAnimation = WB.Animation.extend({
 	
 	start: function(board) {
 		this.board = board;
+		this.done = this.pauseTime < 1;
+		console.log('pause started');
 	},
 	
 	frame: function(time) {
