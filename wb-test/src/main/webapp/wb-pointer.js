@@ -1,6 +1,6 @@
 
 
-WB.Pointer = WB.Class.extend({
+WB.Pointer = WB.Class.extend('Pointer', {
 	
 	beforeFrame: function() {
 	},
@@ -11,7 +11,7 @@ WB.Pointer = WB.Class.extend({
 });
 
 
-WB.MarkerPoint = WB.Pointer.extend({
+WB.MarkerPoint = WB.Pointer.extend('MarkerPoint', {
 	
 	pane: null,
 	
@@ -50,7 +50,7 @@ WB.MarkerPoint = WB.Pointer.extend({
 });
 
 
-WB.HandPoint = WB.Pointer.extend({
+WB.HandPoint = WB.Pointer.extend('HandPoint', {
 	
 	pane: null,
 	

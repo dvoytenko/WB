@@ -1,6 +1,6 @@
 
 
-WB.PathBasedShape = WB.Shape.extend({
+WB.PathBasedShape = WB.Shape.extend('PathBasedShape', {
 	
 	resolveSegments: function() {
 		return [];
@@ -29,7 +29,7 @@ WB.PathBasedShape = WB.Shape.extend({
 /**
  * 
  */
-WB.RectangleShape = WB.PathBasedShape.extend({
+WB.RectangleShape = WB.PathBasedShape.extend('RectangleShape', {
 	
 	topleft: null,
 	
@@ -84,7 +84,7 @@ WB.RectangleShape = WB.PathBasedShape.extend({
 /**
  * http://www.w3.org/TR/SVG/shapes.html#PolylineElement
  */
-WB.PolylineShape = WB.PathBasedShape.extend({
+WB.PolylineShape = WB.PathBasedShape.extend('PolylineShape', {
 	
 	/**
 	 * array of points
@@ -112,7 +112,7 @@ WB.PolylineShape = WB.PathBasedShape.extend({
 /**
  * http://www.w3.org/TR/SVG/shapes.html#PolygonElement
  */
-WB.PolygonShape = WB.PathBasedShape.extend({
+WB.PolygonShape = WB.PathBasedShape.extend('PolygonShape', {
 	
 	/**
 	 * array of points

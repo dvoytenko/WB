@@ -1,5 +1,5 @@
 
-WB.DrawingSoundEngine = WB.Class.extend({
+WB.DrawingSoundEngine = WB.Class.extend('DrawingSoundEngine', {
 	
 	audio: null,
 	

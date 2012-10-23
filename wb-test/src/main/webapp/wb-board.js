@@ -8,7 +8,7 @@
  * - height
  * - pressure
  */
-WB.Board = WB.Class.extend({
+WB.Board = WB.Class.extend('Board', {
 	
 	commitPane: null,
 	
@@ -237,7 +237,7 @@ WB.Board = WB.Class.extend({
 });
 
 
-WB.BoardAnimation = WB.Class.extend({
+WB.BoardAnimation = WB.Class.extend('BoardAnimation', {
 	
 	init: function(animation, board) {
 		this.animation = animation;

@@ -1,6 +1,6 @@
 
 
-WB.SpeechPlayer = WB.Class.extend({
+WB.SpeechPlayer = WB.Class.extend('SpeechPlayer', {
 	
 	audio: null,
 	
@@ -108,7 +108,7 @@ WB.SpeechPlayer = WB.Class.extend({
 });
 
 
-WB.SpeechPlayerPsuedo = WB.Class.extend({
+WB.SpeechPlayerPseudo = WB.Class.extend('SpeechPlayerPseudo', {
 	
 	urlResolver: null,
 
@@ -148,7 +148,7 @@ WB.SpeechPlayerPsuedo = WB.Class.extend({
 });
 
 
-WB.SpeechEpisode = WB.Episode.extend({
+WB.SpeechEpisode = WB.Episode.extend('SpeechEpisode', {
 	
 	track: null,
 	
@@ -165,7 +165,7 @@ WB.SpeechEpisode = WB.Episode.extend({
 });
 
 
-WB.SpeechAnimation = WB.Animation.extend({
+WB.SpeechAnimation = WB.Animation.extend('SpeechAnimation', {
 	
 	init: function(speech) {
 		this.speech = speech;
@@ -220,7 +220,7 @@ WB.SpeechAnimation = WB.Animation.extend({
 });
 
 
-WB.SpeechEndEpisode = WB.Episode.extend({
+WB.SpeechEndEpisode = WB.Episode.extend('SpeechEndEpisode', {
 	
 	init: function(opts) {
 	},

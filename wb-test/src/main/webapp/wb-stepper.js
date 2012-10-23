@@ -1,5 +1,5 @@
 
-WB.Stepper = WB.Class.extend({
+WB.Stepper = WB.Class.extend('Stepper', {
 	
 	board: null,
 	

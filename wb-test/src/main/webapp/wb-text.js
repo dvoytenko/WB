@@ -1,5 +1,5 @@
 
-WB.Font = WB.Class.extend({
+WB.Font = WB.Class.extend('Font', {
 	
 	glyphMap: null,
 	
@@ -28,7 +28,7 @@ WB.Font = WB.Class.extend({
 });
 
 
-WB.Glyph = WB.Class.extend({
+WB.Glyph = WB.Class.extend('Glyph', {
 	
 	pathSegment: null,
 	
@@ -45,7 +45,7 @@ WB.Glyph = WB.Class.extend({
 });
 
 
-WB.DrawTextEpisode = WB.Episode.extend({
+WB.DrawTextEpisode = WB.Episode.extend('DrawTextEpisode', {
 	
 	text: null,
 	
@@ -68,7 +68,7 @@ WB.DrawTextEpisode = WB.Episode.extend({
 });
 
 
-WB.TextEpisodeAnimation = WB.Animation.extend({
+WB.TextEpisodeAnimation = WB.Animation.extend('TextEpisodeAnimation', {
 	
 	textEpisode: null,
 	
@@ -114,7 +114,7 @@ WB.TextEpisodeAnimation = WB.Animation.extend({
 });
 
 
-WB.TextShape = WB.Shape.extend({
+WB.TextShape = WB.Shape.extend('TextShape', {
 	
 	text: null,
 	
@@ -224,7 +224,7 @@ WB.TextShape = WB.Shape.extend({
 });
 
 
-WB.TextShapeAnimation = WB.ListAnimation.extend({
+WB.TextShapeAnimation = WB.ListAnimation.extend('TextShapeAnimation', {
 	
 	init: function(textShape) {
 		this.textShape = textShape;
@@ -279,7 +279,7 @@ WB.TextShapeAnimation = WB.ListAnimation.extend({
 });
 
 
-WB.GlyphShape = WB.Shape.extend({
+WB.GlyphShape = WB.Shape.extend('GlyphShape', {
 	
 	glyph: null,
 	
@@ -307,7 +307,7 @@ WB.GlyphShape = WB.Shape.extend({
 });
 
 
-WB.GlyphAnimation = WB.Animation.extend({
+WB.GlyphAnimation = WB.Animation.extend('GlyphAnimation', {
 	
 	glyphShape: null,
 	

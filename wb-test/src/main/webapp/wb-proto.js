@@ -9,7 +9,7 @@ var WB = {};
     };
     
     // Create a new Class that inherits from this class
-    WB.Class.extend = function(prop) {
+    WB.Class.extend = function(type, prop) {
         var _super = this.prototype;
 
         // Instantiate a base class (but only create the instance,
@@ -17,6 +17,9 @@ var WB = {};
         initializing = true;
         var prototype = new this();
         initializing = false;
+
+        // type
+        prototype._type = type;
 
         // Copy the properties over onto the new prototype
         for(var name in prop) {
@@ -31,7 +34,12 @@ var WB = {};
 
                     // The method only need to be bound temporarily, so we
                     // remove it when we're done executing
-                    var ret = fn.apply(this, arguments);
+                    var ret;
+                    if (!WB.interceptor) {
+                        ret = fn.apply(this, arguments);
+                    } else {
+                    	ret = WB.interceptor(this, name, fn, arguments);
+                    }
                     this._super = tmp;
 
                     return ret;

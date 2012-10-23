@@ -1,6 +1,6 @@
 
 
-WB.Script = WB.Class.extend({
+WB.Script = WB.Class.extend('Script', {
 	
 	episodes: null,
 	
@@ -15,7 +15,7 @@ WB.Script = WB.Class.extend({
 });
 
 
-WB.Episode = WB.Class.extend({
+WB.Episode = WB.Class.extend('Episode', {
 	
 	createAnimation: function() {
 		return null;
@@ -24,7 +24,7 @@ WB.Episode = WB.Class.extend({
 });
 
 
-WB.EpisodeList = WB.Class.extend({
+WB.EpisodeList = WB.Class.extend('EpisodeList', {
 	
 	episodes: null,
 	

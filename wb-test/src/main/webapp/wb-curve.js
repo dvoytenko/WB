@@ -1,9 +1,7 @@
 
 
-WB.CurveSegment = WB.Segment.extend({
+WB.CurveSegment = WB.Segment.extend('CurveSegment', {
 
-	_type: 'CurveSegment',
-	
 	expand: function(pane) {
 		return [];
 	},
@@ -31,7 +29,7 @@ WB.CurveSegment = WB.Segment.extend({
 });
 
 
-WB.CurveSegmentAnimation = WB.Animation.extend({
+WB.CurveSegmentAnimation = WB.Animation.extend('CurveSegmentAnimation', {
 	
 	curve: null,
 	
@@ -63,7 +61,7 @@ WB.CurveSegmentAnimation = WB.Animation.extend({
 });
 
 
-WB.CubicSegment = WB.CurveSegment.extend({
+WB.CubicSegment = WB.CurveSegment.extend('CubicSegment', {
 	
 	cp1: null,
 	
@@ -316,7 +314,7 @@ WB.CubicSegment = WB.CurveSegment.extend({
 });
 
 
-WB.QuadSegment = WB.CurveSegment.extend({
+WB.QuadSegment = WB.CurveSegment.extend('QuadSegment', {
 
 	cp: null,
 	

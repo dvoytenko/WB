@@ -1,6 +1,6 @@
 
 
-WB.PanEpisode = WB.Episode.extend({
+WB.PanEpisode = WB.Episode.extend('PanEpisode', {
 	
 	point: null,
 	
@@ -19,7 +19,7 @@ WB.PanEpisode = WB.Episode.extend({
 });
 
 
-WB.PanAnimation = WB.Animation.extend({
+WB.PanAnimation = WB.Animation.extend('PanAnimation', {
 	
 	pan: null,
 	

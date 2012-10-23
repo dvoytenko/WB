@@ -1,6 +1,6 @@
 
 
-WB.EraserEpisode = WB.Episode.extend({
+WB.EraserEpisode = WB.Episode.extend('EraserEpisode', {
 	
 	eraseAll: false,
 	
@@ -25,7 +25,7 @@ WB.EraserEpisode = WB.Episode.extend({
 });
 
 
-WB.EraserShape = WB.Shape.extend({
+WB.EraserShape = WB.Shape.extend('EraserShape', {
 	
 	eraseAll: false,
 
@@ -106,7 +106,7 @@ WB.EraserShape = WB.Shape.extend({
 });
 
 
-WB.EraserAnimation = WB.Animation.extend({
+WB.EraserAnimation = WB.Animation.extend('EraserAnimation', {
 	
 	eraser: null,
 	

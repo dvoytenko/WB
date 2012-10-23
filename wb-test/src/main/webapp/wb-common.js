@@ -3,7 +3,7 @@
 /**
  * 
  */
-WB.GeomProto = WB.Class.extend({
+WB.GeomProto = WB.Class.extend('GeomProto', {
 	
 	PI: Math.PI,
 	
@@ -86,7 +86,7 @@ WB.Geom = new WB.GeomProto();
 /**
  * Most methods return 'this'
  */
-WB.Transform = WB.Class.extend({
+WB.Transform = WB.Class.extend('Transform', {
 	
 	m: null,
 	
@@ -208,7 +208,7 @@ WB.Transform = WB.Class.extend({
 /**
  * 
  */
-WB.Pane = WB.Class.extend({
+WB.Pane = WB.Class.extend('Pane', {
 	
 	canvas: null,
 	
@@ -586,7 +586,7 @@ WB.Pane = WB.Class.extend({
 /**
  * 
  */
-WB.Animation = WB.Class.extend({
+WB.Animation = WB.Class.extend('Animation', {
 	
 	start: function(board) {
 	},
@@ -608,7 +608,7 @@ WB.Animation = WB.Class.extend({
 });
 
 
-WB.PauseAnimation = WB.Animation.extend({
+WB.PauseAnimation = WB.Animation.extend('PauseAnimation', {
 	
 	pauseTime: null,
 	
@@ -644,7 +644,7 @@ WB.PauseAnimation = WB.Animation.extend({
 });
 
 
-WB.WaitForAnimation = WB.Animation.extend({
+WB.WaitForAnimation = WB.Animation.extend('WaitForAnimation', {
 	
 	happenedCheck: null,
 	
@@ -686,7 +686,7 @@ WB.WaitForAnimation = WB.Animation.extend({
 /**
  * 
  */
-WB.SubAnimation = WB.Animation.extend({
+WB.SubAnimation = WB.Animation.extend('SubAnimation', {
 	
 	source: null,
 	
@@ -724,7 +724,7 @@ WB.SubAnimation = WB.Animation.extend({
 /**
  *
  */
-WB.AnimationDelegate = WB.Animation.extend({
+WB.AnimationDelegate = WB.Animation.extend('AnimationDelegate', {
 	
 	animation: null,
 	
@@ -761,7 +761,7 @@ WB.AnimationDelegate = WB.Animation.extend({
 
 /**
  */
-WB.ListAnimation = WB.Animation.extend({
+WB.ListAnimation = WB.Animation.extend('ListAnimation', {
 	
 	items: null,
 	
@@ -794,44 +794,52 @@ WB.ListAnimation = WB.Animation.extend({
 		this.pendingList = this.items.slice(0);
 		this.timeLeft = 0;
 		this.done = !this.pendingList.length;
+		this.prevTime = 0;
 	},
 	
 	_frame: function(time) {
 		
-		var timeLeft = 0;
+		var currentTime = this.prevTime;
 		do {
 
 			if (!this.wip && this.pendingList.length) {
 				do {
-					if (!!this.wip) {
+					if (this.wip) {
 						this.wip.end();
 						this.completeList.push(this.wip.source);
 						this.wip = null;
 					}
 					if (this.pendingList.length) {
 						var part = this.pendingList.splice(0, 1)[0];
-						this.wip = new WB.SubAnimation(part, time - timeLeft);
+						this.wip = new WB.SubAnimation(part, currentTime);
 						this.wip.start(this.board);
 					}
 				} while (!!this.wip && this.wip.isDone());
 			}
 			
-			if (!!this.wip && !this.wip.isDone()) {
-				timeLeft = 0;
-				this.wip.frame(time);
-			}
-	
-			if (!!this.wip && this.wip.isDone()) {
-				this.wip.end();
-		    	this.completeList.push(this.wip.source);
-				timeLeft = this.wip.getTimeLeft();
-		    	this.wip = null;
-			}
+			if (this.wip) {
 
-		} while (timeLeft > 1 && this.pendingList.length);
+				// do a frame if not over
+				if (!this.wip.isDone()) {
+					this.wip.frame(time);
+				}
+				
+				// complete frame if finished in the last frame
+				if (this.wip.isDone()) {
+					var timeLeft = this.wip.getTimeLeft();
+					currentTime = time - (timeLeft ? timeLeft : 0);
+					this.wip.end();
+			    	this.completeList.push(this.wip.source);
+			    	this.wip = null;
+				} else {
+					currentTime = time;
+				}
+			}
+		} while (currentTime < time && this.pendingList.length);
 
-		this.timeLeft = timeLeft > 1 ? timeLeft : 0;
 		this.done = !this.pendingList.length && !this.wip;
+		this.timeLeft = time > currentTime + 1 ? time - currentTime : 0;
+		this.prevTime = currentTime;
 	},
 	
 	getTimeLeft: function() {

@@ -1,6 +1,6 @@
 
 
-WB.DrawShapeEpisode = WB.Class.extend({
+WB.DrawShapeEpisode = WB.Class.extend('DrawShapeEpisode', {
 	
 	shape: null,
 	
@@ -56,7 +56,7 @@ WB.DrawShapeEpisode = WB.Class.extend({
 });
 
 
-WB.DrawShapeEpisodeAnimation = WB.Animation.extend({
+WB.DrawShapeEpisodeAnimation = WB.Animation.extend('DrawShapeEpisodeAnimation', {
 	
 	animation: null,
 	
@@ -97,7 +97,7 @@ WB.DrawShapeEpisodeAnimation = WB.Animation.extend({
 });
 
 
-WB.Shape = WB.Class.extend({
+WB.Shape = WB.Class.extend('Shape', {
 	
 	draw: function(pane) {
 	},
@@ -109,7 +109,7 @@ WB.Shape = WB.Class.extend({
 });
 
 
-WB.GroupShape = WB.Shape.extend({
+WB.GroupShape = WB.Shape.extend('GroupShape', {
 	
 	transform: null,
 	
@@ -150,7 +150,7 @@ WB.GroupShape = WB.Shape.extend({
 });
 
 
-WB.GroupShapeAnimation = WB.ListAnimation.extend({
+WB.GroupShapeAnimation = WB.ListAnimation.extend('GroupShapeAnimation', {
 	
 	init: function(group) {
 		this.group = group;

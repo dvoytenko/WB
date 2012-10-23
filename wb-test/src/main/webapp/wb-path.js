@@ -1,7 +1,7 @@
 
 /**
  */
-WB.PathShape = WB.Shape.extend({
+WB.PathShape = WB.Shape.extend('PathShape', {
 	
 	pathSegment: null,
 	
@@ -29,10 +29,8 @@ WB.PathShape = WB.Shape.extend({
 	
 });
 
-WB.PathSegment = WB.Segment.extend({
+WB.PathSegment = WB.Segment.extend('PathSegment', {
 
-	_type: 'PathSegment',
-	
 	segments: null,
 	
 	init: function(opts) {
@@ -54,7 +52,7 @@ WB.PathSegment = WB.Segment.extend({
 });
 
 
-WB.PathShapeAnimation = WB.AnimationDelegate.extend({
+WB.PathShapeAnimation = WB.AnimationDelegate.extend('PathShapeAnimation', {
 	
 	pathShape: null,
 	
@@ -75,7 +73,7 @@ WB.PathShapeAnimation = WB.AnimationDelegate.extend({
 	
 });
 
-WB.PathSegmentAnimation = WB.Animation.extend({
+WB.PathSegmentAnimation = WB.Animation.extend('PathSegmentAnimation', {
 	
 	ps: null,
 	
@@ -101,6 +99,7 @@ WB.PathSegmentAnimation = WB.Animation.extend({
 		}
 		this.timeLeft = 0;
 		this.done = !this.pendingList.length;
+		this.prevTime = 0;
 	},
 	
 	isDone: function() {
@@ -112,43 +111,49 @@ WB.PathSegmentAnimation = WB.Animation.extend({
 		for (var i = 0; i < this.completeList.length; i++) {
 			this.completeList[i].outline(this.pane);
 		}
-		
-		var timeLeft = 0;
+
+		var currentTime = this.prevTime;
 		do {
 			
 			if (!this.wip && this.pendingList.length) {
 				do {
-					if (!!this.wip) {
+					if (this.wip) {
 						this.wip.end();
 						this.completeList.push(this.wip.source);
 						this.wip = null;
 					}
 					if (this.pendingList.length) {
 						var part = this.pendingList.splice(0, 1)[0];
-						this.wip = new WB.SubAnimation(part, time - timeLeft);
+						this.wip = new WB.SubAnimation(part, currentTime);
 						this.wip.start(this.board);
-						// console.log(this.wip.animation);
-						// TODO: what happens here with timeLeft? 
-						// basically, we didn't spend any time at all
 					}
-				} while (!!this.wip && this.wip.isDone());
+				} while (this.wip && this.wip.isDone());
+			}
+			
+			if (this.wip) {
+				
+				// do a frame if not over
+				if (!this.wip.isDone()) {
+					this.wip.frame(time);
+				}
+				
+				// complete frame if finished in the last frame
+				if (this.wip.isDone()) {
+					var timeLeft = this.wip.getTimeLeft();
+					currentTime = time - (timeLeft ? timeLeft : 0);
+					this.wip.end();
+			    	this.completeList.push(this.wip.source);
+			    	this.wip = null;
+				} else {
+					currentTime = time;
+				}
 			}
 
-			if (!!this.wip && !this.wip.isDone()) {
-				timeLeft = 0;
-				this.wip.frame(time);
-			}
-
-			if (!!this.wip && this.wip.isDone()) {
-				timeLeft = this.wip.getTimeLeft();
-				this.wip.end();
-		    	this.completeList.push(this.wip.source);
-		    	this.wip = null;
-			}
-		} while (timeLeft > 1 && this.pendingList.length);
+		} while (currentTime < time && this.pendingList.length);
 		
-		this.timeLeft = timeLeft > 1 ? timeLeft : 0;
 		this.done = !this.pendingList.length && !this.wip;
+		this.timeLeft = time > currentTime + 1 ? time - currentTime : 0;
+		this.prevTime = currentTime;
 	},
 	
 	getTimeLeft: function() {

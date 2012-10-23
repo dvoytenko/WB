@@ -1,5 +1,5 @@
 
-WB.Player = WB.Class.extend({
+WB.Player = WB.Class.extend('Player', {
 	
 	board: null,
 	

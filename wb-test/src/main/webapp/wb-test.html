@@ -60,6 +60,7 @@
 		<a href="javascript:void(0);" onclick="text1anim()">Text 1 Anim</a>
 		<a href="javascript:void(0);" onclick="eq1()">EQ 1</a>
 		<a href="javascript:void(0);" onclick="eq1anim()">EQ 1 Anim</a>
+		<a href="javascript:void(0);" onclick="eq1step()">EQ 1 Step</a>
 		<a href="javascript:void(0);" onclick="letterH1()">Letter H</a>
 		<a href="javascript:void(0);" onclick="speech1()">Speech 1</a>
 		<a href="javascript:void(0);" onclick="eraser1()">Eraser 1</a>
@@ -161,7 +162,7 @@
 			
 			var pane = new WB.Pane({canvas: document.getElementById('canvas')});
 	
-			var Shape1 = WB.Class.extend({
+			var Shape1 = WB.Class.extend('Shape1', {
 				draw: function(pane) {
 					console.log('Shape1 at ' + pane);
 					pane.moveTo({x: 10, y: 10});
@@ -319,7 +320,7 @@
 			var realWidth = 1440; // mm
 			var realHeight = 810; // mm
 			
-			var baseVelocity = 500;
+			var baseVelocity = 1000;
 			if (opts.baseVelocity) {
 				baseVelocity = opts.baseVelocity;
 			}
@@ -414,6 +415,18 @@
 				opts = {};
 			}
 			
+			WB.interceptor = function(obj, fnName, fn, args) {
+				if (fnName != 'frame') {
+					return fn.apply(obj, args);
+				}
+				
+				var s = '' + obj._type + ' ' + args[0];
+				console.log('Frame ' + s);
+				var ret = fn.apply(obj, args);
+				console.log('-> ' + s + ': ' + obj.isDone() + '; ' + obj.getTimeLeft());
+				return ret;
+			};
+			
 			// 720 x 405
 			var canvasWidth = 720;
 			var canvasHeight = 405;
@@ -429,7 +442,7 @@
 					//.scale(canvasWidth/realWidth, canvasHeight/realHeight)
 					//.translate(realWidth/2, realHeight/2);
 					
-			var speechPlayer = new WB.SpeechPlayerPsuedo({urlResolver: opts.urlResolver});
+			var speechPlayer = new WB.SpeechPlayerPseudo({urlResolver: opts.urlResolver});
 			
 			var board = new WB.Board({
 				commitPane: new WB.Pane({
@@ -465,6 +478,7 @@
 
 			var stepper = new WB.Stepper({board: board, interval: 10000});
 			$('#bottombar a.StepAction').click(function() {
+				//debugger;
 				stepper.step();
 				if (stepper.state == 'ended') {
 					$('#bottombar').html('Finished');
@@ -550,7 +564,7 @@
 					//.scale(canvasWidth/realWidth, canvasHeight/realHeight)
 					//.translate(realWidth/2, realHeight/2);
 					
-			var speechPlayer = new WB.SpeechPlayerPsuedo({urlResolver: opts.urlResolver});
+			var speechPlayer = new WB.SpeechPlayerPseudo({urlResolver: opts.urlResolver});
 			
 			var board = new WB.Board({
 				commitPane: new WB.Pane({
@@ -620,8 +634,6 @@
 						
 						var canvasWidth = commitCanvas.width;
 						var canvasHeight = commitCanvas.height;
-						
-						// xxx
 						
 						var frame = {
 							state: board._state,
@@ -1200,8 +1212,8 @@
 				audio3: ??? some minor issues
 				server: ??? missing rect?
 			*/
-			var name = 'molumen_car_outline_modified';
-			var tr = new WB.Transform().translate(10, 10).scale(1, 1);
+			var name = 'tom_trumpet';
+			var tr = new WB.Transform().translate(10, 10).scale(0.5, 0.5);
 			$.ajax({url: 'shapes/' + name + '.json', contentType: 'application/json'})
 			.done(function(json) {
 				console.log('got data');
@@ -1226,56 +1238,10 @@
 		}
 
 		function eq1anim() {
-			/*
-				eq1: new WB.Transform().scale(3, 3)
-				Astrologyisnotscience: new WB.Transform().scale(0.5, 0.5)
-				Face-drawing_nevit_098: new WB.Transform().scale(0.5, 0.5).translate(100,50);
-				TUX-G2-SVG: new WB.Transform().scale(0.3, 0.3).translate(100,50);
-				Woman_Silhouette_51: new WB.Transform().scale(2, 2).translate(100,50);
-
-				+FEN_bedroom_eyes: new WB.Transform().scale(1, 1)
-				+FEN_Carl: new WB.Transform().scale(1, 1)
-				+FEN_frank: new WB.Transform().scale(2, 2)
-				+FEN_Young_man: new WB.Transform().scale(1, 1)
-				(low)liftarn_A_raised_fist: new WB.Transform().scale(0.2, 0.2)
-				++liftarn_Felix_the_cat: new WB.Transform().scale(1, 1)
-				(low)liftarn_Karate_1: new WB.Transform().scale(1, 1)
-				++molumen_plane_silhouet: new WB.Transform().scale(0.5, 0.5)
-				(too long) molumen_Tramway: new WB.Transform().scale(0.7, 0.7)
-				++liftarn_Adult_and_child: new WB.Transform().translate(100, 100).scale(0.25, 0.25)
-
-				++ryanlerch_umbrella_outline: new WB.Transform().translate(100, 100).scale(0.25, 0.25)
-				+ryanlerch_thinkingboy_outline: new WB.Transform().translate(100, 50).scale(0.5, 0.5)
-				+ryanlerch_boyface8_outline: new WB.Transform().translate(100, 50).scale(0.3, 0.3)
-				(too long)ryanlerch_boyface3_outline: new WB.Transform().translate(100, 50).scale(0.3, 0.3)
-				+pitr_Coffee_cup_icon: new WB.Transform().translate(100, 50).scale(1, 1)
-				++PeterM_Tree: new WB.Transform().translate(100, 50).scale(0.3, 0.3)
-				++nicubunu_Dog_head_1: new WB.Transform().translate(100, 50).scale(1.5, 1.5)
-				+molumen_car_outline_modified: new WB.Transform().translate(100, 50).scale(1, 1)
-				+lalolalo_Smiling_pig: new WB.Transform().translate(100, 50).scale(0.3, 0.3)
-				++Gioppino_slamdunk_outline: new WB.Transform().translate(100, 50).scale(0.5, 0.5)
-				
-				chart1: new WB.Transform().translate(100, 50).scale(1, 1);
-				cogs1: 
-				cogs2: 
-				laurent_amerique_du_sud_politique: new WB.Transform().translate(10, 10).scale(2, 2);
-				win7_mute:
-					
-				+++mbs_ICE-Train: new WB.Transform().translate(10, 70).scale(1, 1)
-				yamanotelinetrain: new WB.Transform().translate(10, 10).scale(1, 1)
-				train_icon: ??? missed the coord for a line!
-
-				+liftarn_Wolf: new WB.Transform().translate(10, 10).scale(0.2, 0.2)
-				Peileppe_Wolf: throw away a circle behind or switch it to arc
-				choochus_Wolf_Head_Howl_2: new WB.Transform().translate(10, 10).scale(1, 1)
-
-				karderio_computer_screen: new WB.Transform().translate(10, 10).scale(1, 1)
-				++fortran_minimalist_monitor_and_computer: new WB.Transform().translate(10, 10).scale(1, 1)
-				lmproulx_Iphone: remove extra arc
-					
-			*/
-			var name = 'lmproulx_Iphone';
-			var tr = new WB.Transform().translate(10, 10).scale(1, 1);
+			var velocity = 10000;
+			// 
+			var name = 'tom_trumpet';
+			var tr = new WB.Transform().translate(10, 10).scale(0.5, 0.5);
 			$.ajax({url: 'shapes/' + name + '.json', contentType: 'application/json'})
 			.done(function(json) {
 				console.log('got data');
@@ -1295,13 +1261,39 @@
 					});
 					
 					playAny(group, {
-						baseVelocity: 500
+						baseVelocity: velocity
 						});
 					/*
 						framer: function(callback) {
 					        	window.setTimeout(callback, 1000);
 					        }
 					*/
+				}
+			});
+		}
+		
+		function eq1step() {
+			var name = 'molumen_plane_silhouet';
+			var tr = new WB.Transform().translate(10, 10).scale(0.25, 0.25);
+			$.ajax({url: 'shapes/' + name + '.json', contentType: 'application/json'})
+			.done(function(json) {
+				console.log('got data');
+				if (json) {
+					if (json.constructor == String) {
+						json = JSON.parse(json);
+					}
+					console.log(json);
+					
+					var parser = new WB.Parser();
+					var shape = parser.parse(json);
+					console.log(shape);
+
+					var group = new WB.GroupShape({
+						transform: tr,
+						shapes: [shape]
+					});
+					
+					stepAny(group);
 				}
 			});
 		}

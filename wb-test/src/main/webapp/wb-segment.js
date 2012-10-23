@@ -1,7 +1,5 @@
 
-WB.Segment = WB.Class.extend({
-	
-	_type: 'Segment',
+WB.Segment = WB.Class.extend('Segment', {
 	
 	// potentially consider prevSegment and nextSegment in this contract
 	outline: function(pane) {
@@ -14,9 +12,7 @@ WB.Segment = WB.Class.extend({
 });
 
 
-WB.MoveToSegment = WB.Segment.extend({
-
-	_type: 'MoveToSegment',
+WB.MoveToSegment = WB.Segment.extend('MoveToSegment', {
 
 	point: null,
 	
@@ -37,7 +33,7 @@ WB.MoveToSegment = WB.Segment.extend({
 });
 
 
-WB.MoveToAnimation = WB.Animation.extend({
+WB.MoveToAnimation = WB.Animation.extend('MoveToAnimation', {
 	
 	moveto: null,
 	
@@ -81,9 +77,7 @@ WB.MoveToAnimation = WB.Animation.extend({
 });
 
 
-WB.ClosePathSegment = WB.Segment.extend({
-	
-	_type: 'ClosePathSegment',
+WB.ClosePathSegment = WB.Segment.extend('ClosePathSegment', {
 	
 	outline: function(pane) {
 		var p = pane.getPathStartPoint();
@@ -99,7 +93,7 @@ WB.ClosePathSegment = WB.Segment.extend({
 });
 
 
-WB.ClosePathAnimation = WB.Animation.extend({
+WB.ClosePathAnimation = WB.Animation.extend('ClosePathAnimation', {
 	
 	start: function(board) {
 		this.board = board;
@@ -140,9 +134,7 @@ WB.ClosePathAnimation = WB.Animation.extend({
 });
 
 
-WB.LineSegment = WB.Segment.extend({
-	
-	_type: 'LineSegment',
+WB.LineSegment = WB.Segment.extend('LineSegment', {
 	
 	resolvePoint: function(pane) {
 		return null;
@@ -160,7 +152,7 @@ WB.LineSegment = WB.Segment.extend({
 	
 });
 
-WB.LineToSegment = WB.LineSegment.extend({
+WB.LineToSegment = WB.LineSegment.extend('LineToSegment', {
 	
 	point: null,
 	
@@ -177,7 +169,7 @@ WB.LineToSegment = WB.LineSegment.extend({
 });
 
 
-WB.LineAnimation = WB.Animation.extend({
+WB.LineAnimation = WB.Animation.extend('LineAnimation', {
 	
 	line: null,
 	
@@ -253,9 +245,7 @@ WB.LineAnimation = WB.Animation.extend({
  * Arc{Point center, double radiusX, double radiusY, double xAxisRotation, 
  * 		double startAngle, double endAngle, boolean counterclockwise}
  */
-WB.ArcSegment = WB.Segment.extend({
-	
-	_type: 'ArcSegment',
+WB.ArcSegment = WB.Segment.extend('ArcSegment', {
 	
 	arc: null,
 	
@@ -318,9 +308,7 @@ WB.ArcSegment = WB.Segment.extend({
 });
 
 
-WB.ArcAngleSegment = WB.ArcSegment.extend({
-	
-	_type: 'ArcAngleSegment',
+WB.ArcAngleSegment = WB.ArcSegment.extend('ArcAngleSegment', {
 	
 	center: null,
 	
@@ -351,7 +339,7 @@ WB.ArcAngleSegment = WB.ArcSegment.extend({
 });
 
 
-WB.ArcSegmentAnimation = WB.Animation.extend({
+WB.ArcSegmentAnimation = WB.Animation.extend('ArcSegmentAnimation', {
 	
 	init: function(arcsegm) {
 		this.arcsegm = arcsegm;
@@ -477,7 +465,7 @@ WB.ArcSegmentAnimation = WB.Animation.extend({
 });
 
 
-WB.ArcToSvgSegment = WB.ArcSegment.extend({
+WB.ArcToSvgSegment = WB.ArcSegment.extend('ArcToSvgSegment', {
 
 	radiusX: null,
 	
