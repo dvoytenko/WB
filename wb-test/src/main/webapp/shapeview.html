@@ -23,6 +23,11 @@
 		display: block;
 	}
 
+	#ImageTypeSelector {
+		float: right; 
+		width: 460px;
+	}
+
 	#ImageViewer.loading #ImageListPane,
 		#ImageViewer.loading #ImagePane {
 		display: none;
@@ -38,11 +43,6 @@
 		width: 520px;
 	}
 	
-	#ImageListPane {
-		float: right; 
-		width: 460px;
-	}
-
 	#ShapeDescListView {
 		height: 500px;
 		overflow-y: auto;
@@ -115,6 +115,13 @@
 	
 </style>
 
+	<script type="text/javascript">
+	    $(document).ready(function() {
+	    	$('.tabs').tabs();
+	    	$('.accordion').accordion();
+	    });
+	</script>
+
 	<div class="ImageViewer">
 	
 		<div id="ImagePane">
@@ -143,9 +150,218 @@
 			</div>
 		</div>
 		
-		<div id="ImageListPane">
-			<div id="ShapeDescListView"></div>
+		<div id="ImageTypeSelector">
+			<div class="tabs">
+				<ul>
+					<li><a href="#gallery">Gallery</a></li>
+					<li><a href="#svg">SVG</a></li>
+					<li><a href="#text1">Text</a></li>
+					<li><a href="#latex">Math (LaTeX)</a></li>
+				</ul>
+				
+				<div id="gallery">
+					<div id="ImageListPane">
+						<div id="ShapeDescListView"></div>
+					</div>
+				</div>
+	
+				<div id="svg">
+					<div>
+						<div>
+							<h3>URL</h3>
+							<div>
+								<input id="svgByUrlInput" type="text" style="width: 100%" />
+							</div>
+							<div style="margin-top: 4px; text-align: right;">
+								<input id="svgByUrlButton" type="button" value="Generate"/>
+							</div>
+						</div>
+						
+						<div style="margin-top: 10px;">
+							<h3>Path</h3>
+							<div>
+								<textarea id="svgByPathInput" spellcheck="false" style="width: 98%; height: 80px;"></textarea>
+							</div>
+							<div style="margin-top: 4px; text-align: right;">
+								<input id="svgByPathButton" type="button" value="Generate"/>
+							</div>
+						</div>
+						
+						<div style="margin-top: 10px;">
+							<h3>Document</h3>
+							<div>
+								<textarea id="svgByDocInput" spellcheck="false" style="width: 98%; height: 200px;"></textarea>
+							</div>
+							<div style="margin-top: 4px; text-align: right;">
+								<input id="svgByDocButton" type="button" value="Generate"/>
+							</div>
+						</div>
+					</div>
+					
+					<script type="text/javascript">
+						function svggen(data) {
+							
+					    	console.log('svg by ' + data);
+							$.ajax({
+								type: 'POST',
+								url: '/wb/service/svg/gen',
+								data: data
+							}).done(function(data) {
+								console.log('done!');
+								console.log(data);
+								if (data) {
+									if (data.constructor == String) {
+										data = JSON.parse(data);
+										console.log(data);
+									}
+									
+									var parser = new WB.Parser();
+									var meta = parser.parse(data);
+									console.log(meta);
+									
+									if (!meta.thumbUrl) {
+										meta.nothumb = true;
+									}
+									
+									var desc = new ShapeDesc(meta);
+									shapeDetailApp.setShape(desc);
+								} else {
+									shapeDetailApp.setShape(null);
+								}
+							});
+						}
+						
+				    	$('#svgByUrlButton').click(function() {
+				    		svggen({url: $('#svgByUrlInput').val()});
+				    	});
+				    	$('#svgByPathButton').click(function() {
+				    		svggen({path: $('#svgByPathInput').val()});
+				    	});
+				    	$('#svgByDocButton').click(function() {
+				    		svggen({doc: $('#svgByDocInput').val()});
+				    	});
+					</script>
+				</div>
+
+				<div id="text1">
+					<div>
+						<textarea id="text1Input" spellcheck="false" style="width: 98%; height: 120px;">Hello World!</textarea>
+					</div>
+					<div style="margin-top: 4px; text-align: right;">
+						<input id="text1Button" type="button" value="Generate"/>
+					</div>
+					<script type="text/javascript">
+						function text1() {
+							
+					    	var text = $('#text1Input').val();
+					    	console.log('text: ' + text);
+							$.ajax({
+								type: 'POST',
+								url: '/wb/service/text/getshape.json',
+								data: {
+									text: text
+								}
+							}).done(function(data) {
+								console.log('data:');
+								console.log(data);
+								if (data) {
+									if (data.constructor == String) {
+										data = JSON.parse(data);
+										console.log(data);
+									}
+									
+									var parser = new WB.Parser();
+									var shape = parser.parse(data);
+									console.log(shape);
+	
+									var scale = 40 / shape.realHeight;
+									var tr = new WB.Transform();
+									tr.scale(scale, scale);
+									var group = new WB.GroupShape({transform: tr, shapes: [shape]});
+									
+									//xxx
+									var desc = new ShapeDesc({
+										source: 'text',
+										id: 'text1',
+										title: 'Text',
+										nothumb: true,
+										shape: group
+									});
+									shapeDetailApp.setShape(desc);
+								} else {
+									shapeDetailApp.setShape(null);
+								}
+							});
+						}
+						
+				    	$('#text1Button').click(function() {
+				    		text1();
+				    	});
+					</script>
+				</div>
+	
+				<div id="latex">
+					<div>
+						<textarea id="formula" spellcheck="false" style="width: 98%; height: 120px;">\sum _{n=1}^{\infty } \frac{1}{n^2}=\frac{\pi ^2}{6}</textarea>
+					</div>
+					
+					<div style="margin-top: 4px; text-align: right;">
+						<input id="latexButton" type="button" value="Generate"/>
+					</div>
+					
+					<script type="text/javascript">
+						function latex() {
+							
+					    	var formula = $('#formula').val();
+					    	console.log('formula: ' + formula);
+							$.ajax({
+								type: 'POST',
+								url: '/wb/service/latex/gen',
+								data: {
+									formula: formula
+								}
+							}).done(function(data) {
+								console.log('done!');
+								console.log(data);
+								if (data) {
+									if (data.constructor == String) {
+										data = JSON.parse(data);
+										console.log(data);
+									}
+									
+									var parser = new WB.Parser();
+									var shape = parser.parse(data.shape);
+									console.log(shape);
+	
+									var tr = new WB.Transform();
+									tr.scale(2, 2);
+									var group = new WB.GroupShape({transform: tr, shapes: [shape]});
+									
+									//xxx
+									var desc = new ShapeDesc({
+										source: 'latex',
+										id: 'latex1',
+										title: 'Math (LaTeX)',
+										nothumb: true,
+										shape: group
+									});
+									shapeDetailApp.setShape(desc);
+								} else {
+									shapeDetailApp.setShape(null);
+								}
+							});
+						}
+						
+				    	$('#latexButton').click(function() {
+				    		latex();
+				    	});
+					</script>
+				</div>
+				
+			</div>
+			<div style="clear: both;"></div>
 		</div>
+		
 	</div>
 
 	
@@ -227,25 +443,35 @@
 					this.$el.find('div.Source a').text(model.source);
 					this.$el.find('div.Source a').attr('href', model.url);
 				}
-				this.$el.find('div.Thumb img').attr('src', '/wb/shapedb/' + model.id + '.png');
+				if (model.nothumb) {
+					this.$el.find('div.Thumb').css('display', 'none');
+				} else {
+					this.$el.find('div.Thumb').css('display', 'block');
+					this.$el.find('div.Thumb img').attr('src', '/wb/shapedb/' + model.id + '.png');
+				}
 
-				var that = this;
-				$.ajax({url: '/wb/shapedb/' + model.id + '.json', contentType: 'application/json'})
-				.done(function(json) {
-					console.log('got data');
-					if (json) {
-						if (json.constructor == String) {
-							json = JSON.parse(json);
+				var shape = descModel.get('shape');
+				if (shape) {
+					this.shapeLoaded(shape, true);
+				} else {
+					var that = this;
+					$.ajax({url: '/wb/shapedb/' + model.id + '.json', contentType: 'application/json'})
+					.done(function(json) {
+						console.log('got data');
+						if (json) {
+							if (json.constructor == String) {
+								json = JSON.parse(json);
+							}
+							console.log(json);
+							
+							var parser = new WB.Parser();
+							var shape = parser.parse(json);
+							console.log(shape);
+							
+							that.shapeLoaded(shape, true);
 						}
-						console.log(json);
-						
-						var parser = new WB.Parser();
-						var shape = parser.parse(json);
-						console.log(shape);
-						
-						that.shapeLoaded(shape, true);
-					}
-				});
+					});
+				}
 				
 				$('#ImagePane').toggleClass('content', true);
 				

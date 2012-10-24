@@ -109,6 +109,19 @@ WB.Shape = WB.Class.extend('Shape', {
 });
 
 
+WB.ShapeMeta = WB.Class.extend('ShapeMeta', {
+	
+	init: function(opts) {
+		if (opts) {
+			for (var k in opts) {
+				this[k] = opts[k];
+			}
+		}
+	}
+	
+});
+
+
 WB.GroupShape = WB.Shape.extend('GroupShape', {
 	
 	transform: null,

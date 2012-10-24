@@ -65,7 +65,7 @@ public class TextController implements ApplicationContextAware {
 		return font;
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value="/getshape.json")
+	@RequestMapping(method = {RequestMethod.GET, RequestMethod.POST}, value="/getshape.json")
 	@ResponseBody
 	public TextShape getShape(@RequestParam("text") String text) {
 		

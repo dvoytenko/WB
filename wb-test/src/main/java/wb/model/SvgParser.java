@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStreamWriter;
+import java.io.Reader;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -82,6 +83,10 @@ public class SvgParser {
 	
 	public Shape parse(InputStream stream) throws IOException, SAXException {
 		return parse(new InputSource(stream));
+	}
+	
+	public Shape parse(Reader reader) throws IOException, SAXException {
+		return parse(new InputSource(reader));
 	}
 	
 	public Shape parse(InputSource source) throws SAXException, IOException {
@@ -384,6 +389,32 @@ public class SvgParser {
 		return top;
 	}
 
+	public PathShape parsePath(String d) {
+		if (d == null || d.isEmpty()) {
+			return null;
+		}
+		
+		PathShape pathShape = new PathShape();
+		
+		List<PathAction> actions = parsePathActions(d);
+		
+		PathConsumer consumer = new PathConsumer();
+		
+		for (PathAction a : actions) {
+			try {
+				a.interpret(consumer);
+			} catch (Exception e) {
+				throw new RuntimeException("failed to interpret [" + d + "]" +
+						", action [" + a.code + ": " + Arrays.toString(a.values) + "]" +
+						": " + e, e);
+			}
+		}
+		
+		pathShape.pathSegment.segments.addAll(consumer.segments);
+		
+		return pathShape;
+	}
+	
 	private Transform parseTransform(Element elem) {
 		return parseTransform(elem.getAttribute("transform"));
 	}

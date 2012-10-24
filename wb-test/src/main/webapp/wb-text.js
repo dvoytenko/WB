@@ -231,11 +231,12 @@ WB.TextShapeAnimation = WB.ListAnimation.extend('TextShapeAnimation', {
 		
 		this.items = [];
 		var p = {x:0, y:0};
-		for (var i = 0; i < textShape.text.length; i++) {
-			var c = textShape.text.substr(i, 1);
-			var glyph = textShape.font.getGlyph(c);
-			if (glyph) {
+		
+		if (textShape.glyphs) {
+			for (var i = 0; i < textShape.glyphs.length; i++) {
+				var glyph = textShape.glyphs[i];
 				
+				// render
 				if (glyph.pathSegment) {
 					// move over
 					this.items.push(new WB.MoveToSegment({point: p}));
@@ -243,18 +244,39 @@ WB.TextShapeAnimation = WB.ListAnimation.extend('TextShapeAnimation', {
 					// render
 					var tr = new WB.Transform().translate(p.x, p.y);
 					this.items.push(new WB.GlyphShape(glyph, tr));
-					
-					// TODO remove
-					//this.items.push(new WB.PauseAnimation(5000));
 				}
 				
 				// offset
-				var advX = glyph.advX;
-				if (!advX) {
-					advX = textShape.font.baseAdvX;
+				if (glyph.advX) {
+					p = WB.Geom.movePoint(p, glyph.advX, 0);
 				}
-				if (advX) {
-					p = WB.Geom.movePoint(p, advX, 0);
+			}
+		} else {
+			for (var i = 0; i < textShape.text.length; i++) {
+				var c = textShape.text.substr(i, 1);
+				var glyph = textShape.font.getGlyph(c);
+				if (glyph) {
+					
+					if (glyph.pathSegment) {
+						// move over
+						this.items.push(new WB.MoveToSegment({point: p}));
+						
+						// render
+						var tr = new WB.Transform().translate(p.x, p.y);
+						this.items.push(new WB.GlyphShape(glyph, tr));
+						
+						// TODO remove
+						//this.items.push(new WB.PauseAnimation(5000));
+					}
+					
+					// offset
+					var advX = glyph.advX;
+					if (!advX) {
+						advX = textShape.font.baseAdvX;
+					}
+					if (advX) {
+						p = WB.Geom.movePoint(p, advX, 0);
+					}
 				}
 			}
 		}
