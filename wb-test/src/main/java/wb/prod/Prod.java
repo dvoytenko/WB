@@ -15,6 +15,8 @@ import wb.util.IoHelper;
 
 public class Prod {
 	
+	// ffmpeg.exe -r 30 -b:v 1800 -i ^%010d.png -probesize 100 -analyzeduration 10000000 r30b1800.mp4
+	
 	public static void main(String[] args) throws Exception {
 		final String frame = "1000";
 		File dir = new File("C:\\Work\\WB\\wb-test\\target\\1350788300811-278");
