@@ -1,0 +1,231 @@
+<html>
+
+<body>
+
+<style>
+	body {
+		margin: 0px;
+		padding: 0px;
+	}
+	canvas {
+		border: 1px solid #9C9898;
+	}
+
+	.progress {
+		display: none;
+	}
+	
+	#TTS {
+		width: 1000px;
+	}
+
+	#TTS.loading .progress {
+		display: block;
+	}
+
+	#TtsConfig {
+		float: right; 
+		width: 460px;
+	}
+
+	#TTS.loading #TtsPlayer {
+		display: none;
+	}
+
+	#TtsPlayerContainer {
+		float: left; 
+		width: 520px;
+	}
+	
+	#TtsPlayer {
+		display: none;
+	}
+	
+	#TTS.content #TtsPlayer {
+		display: block;
+	}
+
+	#TtsPlayerContainer .WaitingForAction {
+		display: block;
+	}
+
+	#TTS.content .WaitingForAction,
+		#TTS.loading .WaitingForAction,
+		#TTS.error .WaitingForAction {
+		display: none;
+	}
+	
+	#TTS .WhenError {
+		display: none;
+	}
+	
+	#TTS.error .WhenError {
+		display: block;
+	}
+
+</style>
+
+	<script type="text/javascript">
+	    $(document).ready(function() {
+	    });
+	</script>
+
+	<div id="TTS">
+	
+		<div id="TtsPlayerContainer">
+			<div class="WaitingForAction" style="margin: 100px;">
+				Please select a track on the right.
+			</div>
+			<div class="progress" style="margin: 100px;">
+				<img src="loading.gif"/>
+			</div>
+			<div id="TtsError" class="WhenError" style="margin: 100px; color: red;">
+				TTS failed!
+			</div>
+			<div id="TtsPlayer">
+				<audio id="TtsPlayerAudio" controls="controls" autoplay="autoplay" preload="auto">
+				</audio>
+			</div>
+		</div>
+		
+		<div id="TtsConfig">
+			<div>
+				
+				<div>
+					<textarea id="textInput" spellcheck="false" style="width: 98%; height: 100px;">Hello World! Welcome to TTS engine!</textarea>
+				</div>
+
+				<div style="margin-top: 4px;">Engine:
+					<select id="engineInput">
+						<!--
+						<option>Cere</option>
+						<option>Ivona</option>
+						<option>Mary</option>
+						-->
+					</select>
+				</div>
+				
+				<div style="margin-top: 4px;">Voice:
+					<select id="voiceInput">
+					</select>
+				</div>
+				
+				<div style="margin-top: 4px; text-align: right;">
+					<input id="generateButton" type="button" value="Generate"/>
+				</div>
+			</div>
+			
+			<div style="clear: both;"></div>
+		</div>
+		
+	</div>
+
+	
+	<script type="text/javascript">
+	
+		function loadEngines() {
+			console.log('get engines');
+			$.ajax({
+				type: 'GET',
+				url: '/wb/service/tts/getengines.json'
+			}).done(function(data) {
+				console.log('done!');
+				console.log(data);
+				if (data) {
+					if (data.constructor == String) {
+						data = JSON.parse(data);
+						console.log(data);
+					}
+					var input = $('#engineInput');
+					input.append($('<option value="none">-- Select one --</option>'));
+					for (var i = 0; i < data.length; i++) {
+						var opt = $('<option></option>');
+						opt.attr('value', data[i].value);
+						opt.text(data[i].label);
+						input.append(opt);
+					}
+				}
+			});
+		}
+
+		function loadVoices(engineId) {
+			console.log('get voices for ' + engineId);
+			$('#voiceInput').empty();
+			$.ajax({
+				type: 'GET',
+				url: '/wb/service/tts/getvoices.json',
+				data: {engine: engineId}
+			}).done(function(data) {
+				console.log('done!');
+				console.log(data);
+				if (data) {
+					if (data.constructor == String) {
+						data = JSON.parse(data);
+						console.log(data);
+					}
+					var input = $('#voiceInput');
+					for (var i = 0; i < data.length; i++) {
+						var opt = $('<option></option>');
+						opt.attr('value', data[i].value);
+						opt.text(data[i].label);
+						input.append(opt);
+					}
+					if (data.length > 0) {
+						input.val(data[0].value);
+					}
+				}
+			});
+		}
+		
+		function runTts(engineId, voiceId, text) {
+			console.log('tts for ' + engineId + '/' + voiceId + ': ' + text);
+			$('#TTS').toggleClass('loading', true);
+			$('#TTS').toggleClass('error', false);
+			$.ajax({
+				type: 'POST',
+				url: '/wb/service/tts/gen.json',
+				data: {engine: engineId, voice: voiceId, text: text}
+			}).done(function(data) {
+				console.log('done!');
+				console.log(data);
+				$('#TTS').toggleClass('loading', false);
+				if (data) {
+					if (data.constructor == String) {
+						data = JSON.parse(data);
+						console.log(data);
+					}
+					if (data.error) {
+						$('#TtsError').text(data.error);
+						$('#TTS').toggleClass('error', true);
+					} else {
+						console.log('track: ' + data.track);
+						$('#TTS').toggleClass('content', true);
+						var audio = document.getElementById('TtsPlayerAudio');
+						audio.src = '/wb/service/tts/temp/' + data.track;
+						audio.load();
+						audio.play();
+					}
+				}
+			}).error(function(data) {
+				console.log('error!');
+				console.log(data);
+				$('#TTS').toggleClass('loading', false);
+				$('#TtsError').text('unknown error!');
+				$('#TTS').toggleClass('error', true);
+			});
+		}
+		
+		$('#engineInput').change(function() {
+			loadVoices($('#engineInput').val());
+		});
+		
+		$('#generateButton').click(function() {
+			runTts($('#engineInput').val(), $('#voiceInput').val(),
+					$('#textInput').val());
+		});
+		
+		loadEngines();
+	</script>
+
+</body>
+</html>

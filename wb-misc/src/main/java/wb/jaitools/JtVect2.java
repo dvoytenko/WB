@@ -27,7 +27,8 @@ public class JtVect2 {
 	public static void main(String[] aargs) throws Exception {
 
 		File root = new File("target");
-		final String image = "phone2.jpg";
+		final String image = "phone1.jpg";
+		String suffix = "";
 
 		final BufferedImage src = ImageIO.read(new File(root, image));
 		System.out.println(src.getWidth() + " x " + src.getHeight());
@@ -36,17 +37,26 @@ public class JtVect2 {
 		// http://jaitools.org/docs/jaitools/stable/apidocs/
 		// args.put("outsideValues", Collections.singleton(0)); // o0
 		// args.put("insideEdges", Boolean.FALSE); // ie0
-		// args.put("removeCollinear", Boolean.TRUE); // rc
+		
+		/*
+		args.put("removeCollinear", Boolean.TRUE); // rc
+		suffix += "-rc";
+		*/
+		
 		// args.put("roi", new ROI); // roi
+
+		/*
 		args.put("filterThreshold", 5.1);
-		args.put("filterMethod", VectorizeDescriptor.FILTER_MERGE_LARGEST);
+		args.put("filterMethod", VectorizeDescriptor.FILTER_MERGE_LARGEST); // f51ml
+		suffix += "-f51ml";
+		*/
 		 
 		// 256 x 362
 		
 		Collection<Polygon> polys = doVectorize(src, args);
 		printPolys(polys, 5);
 		
-		writePolys(polys, new File(root, image + "-f51ml.svg"), src.getWidth(), src.getHeight());
+		writePolys(polys, new File(root, image + (suffix.isEmpty() ? "-1" : suffix) + ".svg"), src.getWidth(), src.getHeight());
 	}
 
 	private static void writePolys(Collection<Polygon> polys, File file, 
@@ -60,7 +70,7 @@ public class JtVect2 {
 				continue;
 			}
 			// external ring
-			writer.println("<polygon style='fill:none;stroke:black;stroke-width:1'");
+			writer.println("<polyline style='fill:none;stroke:black;stroke-width:1'");
 			writer.println("  points='" + toSvgPoints(poly.getExteriorRing()) + "'");
 			writer.println("/>");
 			
