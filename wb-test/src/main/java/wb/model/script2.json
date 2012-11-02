@@ -95,7 +95,7 @@
 
 		{
 			_type: 'SpeechEpisode',
-			text: 'So, you invited your friends, neighbors and your investors to your first presentation. You put together a decent Power Point presentation.',
+			text: 'So, you invited your friends, neighbors and your investors to see what you got. You put together a decent Power Point presentation.',
 			engine: 'cere'
 		},
 		
@@ -282,7 +282,8 @@
 			shapeId: 'www_clker_com-1195422841878786329disco_ball_hermann_schw_01r_svg',
 			position: {x: 2000, y: 140},
 			width: 80,
-			rotationDegree: 0
+			rotationDegree: 0,
+			rate: 2
 		},
 
 		{

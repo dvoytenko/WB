@@ -1,7 +1,5 @@
 package wb.model;
 
-import java.util.Comparator;
-
 public class Voice {
 	
 	public String id;
