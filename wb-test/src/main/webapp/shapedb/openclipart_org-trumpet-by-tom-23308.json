@@ -1,17 +1,8 @@
 {
   "_type": "GroupShape",
   "author": "tom",
+  "height": 391,
   "id": "openclipart_org-trumpet-by-tom-23308",
-  "localBounds": {
-    "bottomright": {
-      "x": 584,
-      "y": 391
-    },
-    "topleft": {
-      "x": 0,
-      "y": 0
-    }
-  },
   "shapes": [{
     "_type": "GroupShape",
     "shapes": [{
@@ -47459,5 +47450,6 @@
     "media"
   ],
   "title": "trumpet",
-  "url": "http://openclipart.org/detail/23308/trumpet-by-tom-23308"
+  "url": "http://openclipart.org/detail/23308/trumpet-by-tom-23308",
+  "width": 584
 }

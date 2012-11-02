@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="110"
+   height="110"
+   id="svg20398"
+   sodipodi:version="0.32"
+   inkscape:version="0.45.1"
+   version="1.0"
+   sodipodi:docbase="/home/eric/graphique/svg/publication"
+   sodipodi:docname="linuxien_panda.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+  <defs
+     id="defs20400" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="3.959798"
+     inkscape:cx="52.678034"
+     inkscape:cy="52.373622"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     height="110px"
+     width="110px"
+     inkscape:window-width="1018"
+     inkscape:window-height="684"
+     inkscape:window-x="0"
+     inkscape:window-y="30" />
+  <metadata
+     id="metadata20403">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license
+           rdf:resource="http://creativecommons.org/licenses/GPL/2.0/" />
+        <dc:title>Panda</dc:title>
+        <dc:date>2008, Apr 10</dc:date>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Eric Madrange</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:rights>
+          <cc:Agent>
+            <dc:title>Eric Madrange</dc:title>
+          </cc:Agent>
+        </dc:rights>
+        <dc:publisher>
+          <cc:Agent>
+            <dc:title>Eric Madrange</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:source>http://perso.dolphweb.com/publication/linuxien_panda.svg</dc:source>
+        <dc:language>fr_FR</dc:language>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>panda</rdf:li>
+            <rdf:li>animal</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+        <dc:description>Le Panda</dc:description>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/GPL/2.0/">
+        <cc:permits
+           rdf:resource="http://web.resource.org/cc/Reproduction" />
+        <cc:permits
+           rdf:resource="http://web.resource.org/cc/Distribution" />
+        <cc:requires
+           rdf:resource="http://web.resource.org/cc/Notice" />
+        <cc:permits
+           rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+        <cc:requires
+           rdf:resource="http://web.resource.org/cc/ShareAlike" />
+        <cc:requires
+           rdf:resource="http://web.resource.org/cc/SourceCode" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g20425"
+       transform="translate(-37.123106,-43.184021)"
+       inkscape:export-filename="/home/eric/graphique/svg/publication/linuxien_panda.png"
+       inkscape:export-xdpi="89.980003"
+       inkscape:export-ydpi="89.980003">
+      <path
+         sodipodi:open="true"
+         sodipodi:end="7.4455311"
+         sodipodi:start="3.5824095"
+         transform="matrix(-0.6635399,0,0,0.6382058,110.44363,50.358921)"
+         d="M 62.720609,11.505351 A 19.445436,20.076782 0 1 1 88.030619,38.496893"
+         sodipodi:ry="20.076782"
+         sodipodi:rx="19.445436"
+         sodipodi:cy="20.07168"
+         sodipodi:cx="80.307129"
+         id="path18101"
+         style="fill:#333333;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:3.72801805;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         sodipodi:type="arc" />
+      <path
+         transform="matrix(-1,0,0,1,143.03901,49.140863)"
+         sodipodi:open="true"
+         sodipodi:end="7.4455311"
+         sodipodi:start="3.5824095"
+         d="M 78.722325,11.33714 A 7.1973367,7.4498749 0 1 1 88.090315,21.352869"
+         sodipodi:ry="7.4498749"
+         sodipodi:rx="7.1973367"
+         sodipodi:cy="14.515841"
+         sodipodi:cx="85.231621"
+         id="path18103"
+         style="fill:#917c6f;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         sodipodi:type="arc" />
+      <path
+         sodipodi:open="true"
+         sodipodi:end="7.4455311"
+         sodipodi:start="3.5824095"
+         transform="matrix(0.6635399,0,0,0.6382058,75.537843,50.358921)"
+         d="M 62.720609,11.505351 A 19.445436,20.076782 0 1 1 88.030619,38.496893"
+         sodipodi:ry="20.076782"
+         sodipodi:rx="19.445436"
+         sodipodi:cy="20.07168"
+         sodipodi:cx="80.307129"
+         id="path16141"
+         style="fill:#333333;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:3.72801805;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         sodipodi:type="arc" />
+      <path
+         transform="translate(42.942468,49.140863)"
+         sodipodi:open="true"
+         sodipodi:end="7.4455311"
+         sodipodi:start="3.5824095"
+         d="M 78.722325,11.33714 A 7.1973367,7.4498749 0 1 1 88.090315,21.352869"
+         sodipodi:ry="7.4498749"
+         sodipodi:rx="7.1973367"
+         sodipodi:cy="14.515841"
+         sodipodi:cx="85.231621"
+         id="path16155"
+         style="fill:#917c6f;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         sodipodi:type="arc" />
+      <path
+         inkscape:export-ydpi="18.9"
+         inkscape:export-xdpi="18.9"
+         inkscape:export-filename="/home/eric/graphique/png/ours.png"
+         transform="matrix(0.9901229,0,0,0.9827346,43.925451,50.378905)"
+         d="M 98.742413 49.618641 A 49.244938 49.623745 0 1 1  0.25253677,49.618641 A 49.244938 49.623745 0 1 1  98.742413 49.618641 z"
+         sodipodi:ry="49.623745"
+         sodipodi:rx="49.244938"
+         sodipodi:cy="49.618641"
+         sodipodi:cx="49.497475"
+         id="path15162"
+         style="opacity:1;fill:#f9f9f9;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.534199;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         sodipodi:type="arc" />
+      <path
+         inkscape:export-ydpi="18.9"
+         inkscape:export-xdpi="18.9"
+         inkscape:export-filename="/home/eric/graphique/png/ours.png"
+         sodipodi:nodetypes="ccccc"
+         id="path14065"
+         d="M 85.264308,97.999008 C 85.262913,93.410865 100.56014,93.214256 100.62083,97.836152 C 99.395376,100.86587 97.921608,104.75442 95.268348,104.77999 L 90.680507,104.81923 C 87.974967,104.81433 86.448922,101.07556 85.264308,97.999008 z "
+         style="fill:#4d4d4d;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.64327455px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="18.9"
+         inkscape:export-xdpi="18.9"
+         inkscape:export-filename="/home/eric/graphique/png/ours.png"
+         id="path14073"
+         d="M 92.958693,105.14086 L 92.958693,120.42345"
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <g
+         transform="translate(42.942468,49.140863)"
+         inkscape:export-ydpi="18.9"
+         inkscape:export-xdpi="18.9"
+         inkscape:export-filename="/home/eric/graphique/png/ours.png"
+         id="g19289">
+        <rect
+           style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.11366093;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           id="rect18316"
+           width="6.8888917"
+           height="12.886335"
+           x="42.556831"
+           y="71.556831" />
+        <rect
+           style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.11366093;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           id="rect19287"
+           width="6.8888917"
+           height="12.886335"
+           x="50.554279"
+           y="71.556831" />
+      </g>
+      <path
+         inkscape:export-ydpi="18.9"
+         inkscape:export-xdpi="18.9"
+         inkscape:export-filename="/home/eric/graphique/png/ours.png"
+         sodipodi:nodetypes="ccc"
+         id="path6430"
+         d="M 74.106096,113.47761 C 79.919143,117.43327 85.479651,120.94699 93.060465,121.17771 C 100.50118,120.9381 105.92159,117.47864 111.78394,113.45097"
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2.29990888;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         sodipodi:nodetypes="ccccccc"
+         id="path19408"
+         d="M 85.491876,73.437483 C 88.612917,74.959666 87.475369,86.763804 85.917659,89.372717 C 82.910805,94.039198 82.945248,95.446597 75.254792,100.30479 C 68.757964,103.6795 59.888922,105.77615 59.109736,104.03858 C 57.168195,103.47359 60.944296,90.575218 62.591487,85.089656 C 63.635606,82.808047 64.27125,77.530241 70.259229,73.764402 C 74.007623,71.132616 83.134505,70.792026 85.491876,73.437483 z "
+         style="fill:#333333;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.94643897;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <g
+         inkscape:export-ydpi="18.9"
+         inkscape:export-xdpi="18.9"
+         inkscape:export-filename="/home/eric/graphique/png/ours.png"
+         transform="translate(-10.693341,27.077422)"
+         id="g19301">
+        <path
+           sodipodi:type="arc"
+           style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.00112331;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           id="path19303"
+           sodipodi:cx="35.008099"
+           sodipodi:cy="35.002998"
+           sodipodi:rx="7.0395007"
+           sodipodi:ry="6.976366"
+           d="M 42.047599 35.002998 A 7.0395007 6.976366 0 1 1  27.968598,35.002998 A 7.0395007 6.976366 0 1 1  42.047599 35.002998 z"
+           transform="matrix(0.9943886,0,0,1.0033876,53.324156,21.441866)"
+           inkscape:export-filename="/home/eric/graphique/png/tigre.png"
+           inkscape:export-xdpi="18.9"
+           inkscape:export-ydpi="18.9" />
+        <path
+           sodipodi:type="arc"
+           style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           id="path19305"
+           sodipodi:cx="35.008099"
+           sodipodi:cy="35.097698"
+           sodipodi:rx="5.0191956"
+           sodipodi:ry="4.987628"
+           d="M 40.027294 35.097698 A 5.0191956 4.987628 0 1 1  29.988903,35.097698 A 5.0191956 4.987628 0 1 1  40.027294 35.097698 z"
+           transform="matrix(0.9961755,0,0,1.0024806,53.261602,21.378678)"
+           inkscape:export-filename="/home/eric/graphique/png/tigre.png"
+           inkscape:export-xdpi="18.9"
+           inkscape:export-ydpi="18.9" />
+      </g>
+      <path
+         sodipodi:nodetypes="ccccccc"
+         id="path20396"
+         d="M 100.42227,73.437483 C 97.301227,74.959666 98.438775,86.763804 99.996485,89.372717 C 103.00334,94.039198 102.9689,95.446597 110.65935,100.30479 C 117.15618,103.6795 126.02522,105.77615 126.80441,104.03858 C 128.74595,103.47359 124.96985,90.575218 123.32266,85.089656 C 122.27854,82.808047 121.64289,77.530241 115.65491,73.764402 C 111.90652,71.132616 102.77964,70.792026 100.42227,73.437483 z "
+         style="fill:#333333;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.94643897;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <g
+         inkscape:export-ydpi="18.9"
+         inkscape:export-xdpi="18.9"
+         inkscape:export-filename="/home/eric/graphique/png/ours.png"
+         transform="translate(20.306659,27.077422)"
+         id="g19295">
+        <path
+           sodipodi:type="arc"
+           style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.00112331;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           id="path14055"
+           sodipodi:cx="35.008099"
+           sodipodi:cy="35.002998"
+           sodipodi:rx="7.0395007"
+           sodipodi:ry="6.976366"
+           d="M 42.047599 35.002998 A 7.0395007 6.976366 0 1 1  27.968598,35.002998 A 7.0395007 6.976366 0 1 1  42.047599 35.002998 z"
+           transform="matrix(0.9943886,0,0,1.0033876,53.324156,21.441866)"
+           inkscape:export-filename="/home/eric/graphique/png/tigre.png"
+           inkscape:export-xdpi="18.9"
+           inkscape:export-ydpi="18.9" />
+        <path
+           sodipodi:type="arc"
+           style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           id="path14057"
+           sodipodi:cx="35.008099"
+           sodipodi:cy="35.097698"
+           sodipodi:rx="5.0191956"
+           sodipodi:ry="4.987628"
+           d="M 40.027294 35.097698 A 5.0191956 4.987628 0 1 1  29.988903,35.097698 A 5.0191956 4.987628 0 1 1  40.027294 35.097698 z"
+           transform="matrix(0.9961755,0,0,1.0024806,53.261602,21.378678)"
+           inkscape:export-filename="/home/eric/graphique/png/tigre.png"
+           inkscape:export-xdpi="18.9"
+           inkscape:export-ydpi="18.9" />
+      </g>
+    </g>
+  </g>
+</svg>

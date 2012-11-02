@@ -1,0 +1,341 @@
+{
+  "_type": "GroupShape",
+  "author": "drbarakota",
+  "height": 1035,
+  "id": "www_clker_com-white-door_svg",
+  "shapes": [{
+    "_type": "GroupShape",
+    "shapes": [{
+      "_type": "GroupShape",
+      "shapes": [{
+        "_type": "GroupShape",
+        "shapes": [{
+          "_type": "GroupShape",
+          "shapes": [
+            {
+              "_type": "GroupShape",
+              "shapes": [{
+                "_type": "EllipseShape",
+                "center": {
+                  "x": 164.510632,
+                  "y": 879.920712
+                },
+                "radiusX": 188.999989,
+                "radiusY": 12
+              }],
+              "transform": {
+                "_type": "Transform",
+                "m": [
+                  1.18981,
+                  0,
+                  0,
+                  0.996301,
+                  -61.4878,
+                  3.32131
+                ]
+              }
+            },
+            {
+              "_type": "GroupShape",
+              "shapes": [{
+                "_type": "EllipseShape",
+                "center": {
+                  "x": 358.082228,
+                  "y": 475.570914
+                },
+                "radiusX": 11.999999,
+                "radiusY": 410.999976
+              }],
+              "transform": {
+                "_type": "Transform",
+                "m": [
+                  1.00046,
+                  0,
+                  0,
+                  0.977392,
+                  -0.252024,
+                  12.9827
+                ]
+              }
+            },
+            {
+              "_type": "GroupShape",
+              "shapes": [{
+                "_type": "EllipseShape",
+                "center": {
+                  "x": 162.272934,
+                  "y": 75.921003
+                },
+                "radiusX": 191,
+                "radiusY": 11
+              }],
+              "transform": {
+                "_type": "Transform",
+                "m": [
+                  1.17293,
+                  0,
+                  0,
+                  0.996317,
+                  -54.5449,
+                  0.346194
+                ]
+              }
+            },
+            {
+              "_type": "GroupShape",
+              "shapes": [{
+                "_type": "EllipseShape",
+                "center": {
+                  "x": -87.912201,
+                  "y": 477.549839
+                },
+                "radiusX": 12,
+                "radiusY": 412
+              }],
+              "transform": {
+                "_type": "Transform",
+                "m": [
+                  1.00049,
+                  0,
+                  0,
+                  0.976274,
+                  -0.0472623,
+                  12.5698
+                ]
+              }
+            },
+            {
+              "_type": "GroupShape",
+              "shapes": [{
+                "_type": "EllipseShape",
+                "center": {
+                  "x": -29.541452,
+                  "y": 681.781185
+                },
+                "radiusX": 10.999999,
+                "radiusY": 155.999991
+              }],
+              "transform": {
+                "_type": "Transform",
+                "m": [
+                  1.0025,
+                  0,
+                  0,
+                  0.890876,
+                  -0.387216,
+                  77.9417
+                ]
+              }
+            },
+            {
+              "_type": "GroupShape",
+              "shapes": [{
+                "_type": "EllipseShape",
+                "center": {
+                  "x": 165.813431,
+                  "y": 822.90662
+                },
+                "radiusX": 132,
+                "radiusY": 12
+              }],
+              "transform": {
+                "_type": "Transform",
+                "m": [
+                  1.23182,
+                  0,
+                  0,
+                  0.995525,
+                  -72.9263,
+                  3.76305
+                ]
+              }
+            },
+            {
+              "_type": "GroupShape",
+              "shapes": [{
+                "_type": "EllipseShape",
+                "center": {
+                  "x": 293.313019,
+                  "y": 686.378223
+                },
+                "radiusX": 12,
+                "radiusY": 151.999991
+              }],
+              "transform": {
+                "_type": "Transform",
+                "m": [
+                  1.00171,
+                  0,
+                  0,
+                  0.917983,
+                  -0.817904,
+                  54.6767
+                ]
+              }
+            },
+            {
+              "_type": "GroupShape",
+              "shapes": [{
+                "_type": "EllipseShape",
+                "center": {
+                  "x": 169.216931,
+                  "y": 546.895218
+                },
+                "radiusX": 130.999992,
+                "radiusY": 11
+              }],
+              "transform": {
+                "_type": "Transform",
+                "m": [
+                  1.24344,
+                  0,
+                  0,
+                  0.994898,
+                  -78.2727,
+                  2.8827
+                ]
+              }
+            },
+            {
+              "_type": "GroupShape",
+              "shapes": [{
+                "_type": "EllipseShape",
+                "center": {
+                  "x": -29.644608,
+                  "y": 277.303474
+                },
+                "radiusX": 11,
+                "radiusY": 154
+              }],
+              "transform": {
+                "_type": "Transform",
+                "m": [
+                  1.00194,
+                  0,
+                  0,
+                  0.914497,
+                  -0.301387,
+                  24.3655
+                ]
+              }
+            },
+            {
+              "_type": "GroupShape",
+              "shapes": [{
+                "_type": "EllipseShape",
+                "center": {
+                  "x": 174.107071,
+                  "y": 416.873732
+                },
+                "radiusX": 126,
+                "radiusY": 11.000001
+              }],
+              "transform": {
+                "_type": "Transform",
+                "m": [
+                  1.30382,
+                  0,
+                  0,
+                  0.993716,
+                  -94.3239,
+                  2.73371
+                ]
+              }
+            },
+            {
+              "_type": "GroupShape",
+              "shapes": [{
+                "_type": "EllipseShape",
+                "center": {
+                  "x": 170.56134,
+                  "y": 138.881813
+                },
+                "radiusX": 129,
+                "radiusY": 11
+              }],
+              "transform": {
+                "_type": "Transform",
+                "m": [
+                  1.28084,
+                  0,
+                  0,
+                  0.994162,
+                  -85.4719,
+                  0.916555
+                ]
+              }
+            },
+            {
+              "_type": "EllipseShape",
+              "center": {
+                "x": 292.997192,
+                "y": 474.987587
+              },
+              "radiusX": 8,
+              "radiusY": 8
+            },
+            {
+              "_type": "EllipseShape",
+              "center": {
+                "x": 292.997192,
+                "y": 474.987587
+              },
+              "radiusX": 31,
+              "radiusY": 31
+            },
+            {
+              "_type": "GroupShape",
+              "shapes": [{
+                "_type": "EllipseShape",
+                "center": {
+                  "x": -29.598541,
+                  "y": 277.078889
+                },
+                "radiusX": 11,
+                "radiusY": 153.999991
+              }],
+              "transform": {
+                "_type": "Transform",
+                "m": [
+                  1.00219,
+                  0,
+                  0,
+                  0.904188,
+                  326.57,
+                  26.8624
+                ]
+              }
+            }
+          ],
+          "transform": {
+            "_type": "Transform",
+            "m": [
+              1.15995,
+              0,
+              0,
+              1.15995,
+              116.579,
+              -74.802
+            ]
+          }
+        }]
+      }]
+    }]
+  }],
+  "source": "www.clker.com",
+  "tags": [],
+  "title": "Door",
+  "transform": {
+    "_type": "Transform",
+    "m": [
+      1,
+      0,
+      0,
+      1,
+      0,
+      75
+    ]
+  },
+  "url": "http://www.clker.com/cliparts/8/5/e/2/j/1/white-door.svg",
+  "width": 546
+}

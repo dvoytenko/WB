@@ -6,12 +6,12 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import wb.util.IoHelper;
 
 public class PrepareScript {
 
@@ -23,6 +23,10 @@ public class PrepareScript {
 	private File soundsFolder;
 
 	private TtsEngines ttsEngines = new TtsEngines();
+
+	private File fontsFolder;
+	
+	private Map<String, Font> fonts = new HashMap<String, Font>();
 	
 	public void setOutputFolder(File outputFolder) {
 		this.outputFolder = outputFolder;
@@ -36,6 +40,10 @@ public class PrepareScript {
 		this.soundsFolder = soundsFolder;
 	}
 
+	public void setFontsFolder(File fontsFolder) {
+		this.fontsFolder = fontsFolder;
+	}
+	
 	public void saveObject(String name, Object object) throws JSONException, IOException {
 		
 		JSONObject js = (JSONObject) new Serializer().toJson(object);
@@ -99,11 +107,28 @@ public class PrepareScript {
 		File shapeFile = new File(this.shapesFolder, shapeId);
 		
 		try {
-			JSONObject js = new JSONObject(IoHelper.readText(shapeFile, "UTF-8"));
-			Shape shape = (Shape) new Parser().fromJson(js);
+			Shape shape = new Parser().fromJsonFile(shapeFile, GroupShape.class);
 			return shape;
 		} catch (Exception e) {
 			throw new RuntimeException("failed to load shape [" + shapeId + "]: " + e, e);
+		}
+	}
+	
+	public Font getFont(String fontName) {
+		Font font = this.fonts.get(fontName);
+		if (font == null) {
+			font = loadFont(fontName);
+			this.fonts.put(fontName, font);
+		}
+		return font;
+	}
+
+	private Font loadFont(String fontName) {
+		try {
+			return new Parser().fromJsonFile(new File(this.fontsFolder, 
+					fontName + ".json"), Font.class);
+		} catch (Exception e) {
+			throw new RuntimeException("can't get font [" + fontName + "]: " + e, e);
 		}
 	}
 

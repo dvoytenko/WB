@@ -1,0 +1,80 @@
+{
+  "_type": "GroupShape",
+  "author": "OCAL",
+  "height": 618,
+  "id": "www_clker_com-12065718611541467738yish_pull_down_screen_svg",
+  "shapes": [{
+    "_type": "GroupShape",
+    "shapes": [{
+      "_type": "GroupShape",
+      "shapes": [{
+        "_type": "GroupShape",
+        "shapes": [
+          {
+            "_type": "RectangleShape",
+            "height": 540,
+            "topleft": {
+              "x": 114.28571,
+              "y": 186.6479
+            },
+            "width": 574.28571
+          },
+          {
+            "_type": "RectangleShape",
+            "height": 37.142857,
+            "topleft": {
+              "x": 88.571426,
+              "y": 152.36218
+            },
+            "width": 622.85712
+          },
+          {
+            "_type": "RectangleShape",
+            "height": 8.5714283,
+            "topleft": {
+              "x": 91.428574,
+              "y": 735.2193
+            },
+            "width": 631.42859
+          },
+          {
+            "_type": "RectangleShape",
+            "height": 25.714285,
+            "topleft": {
+              "x": 331.42856,
+              "y": 743.79077
+            },
+            "width": 117.14286
+          }
+        ]
+      }],
+      "transform": {
+        "_type": "Transform",
+        "m": [
+          1,
+          0,
+          0,
+          1,
+          -85.071426,
+          -148.86218
+        ]
+      }
+    }]
+  }],
+  "source": "www.clker.com",
+  "tags": [],
+  "title": "Screen",
+  "transform": {
+    "_type": "Transform",
+    "m": [
+      1,
+      0,
+      0,
+      1,
+      -3,
+      -3
+    ]
+  },
+  "url": "http://www.clker.com/cliparts/1/7/a/8/12065718611541467738yish_pull_down_screen.svg",
+  "width": 635
+}

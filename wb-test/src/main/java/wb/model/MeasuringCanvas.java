@@ -65,6 +65,9 @@ public class MeasuringCanvas implements Canvas {
 	}
 
 	private Point current() {
+		if (this.current == null) {
+			return null;
+		}
 		return toLocalPoint(this.current);
 	}
 	

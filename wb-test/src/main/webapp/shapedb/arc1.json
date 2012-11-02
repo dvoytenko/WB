@@ -1,0 +1,95 @@
+{
+  "_type": "GroupShape",
+  "author": "OCAL",
+  "height": 100,
+  "id": "arc1",
+  "shapes": [{
+    "_type": "GroupShape",
+    "shapes": [
+      {
+        "_type": "RectangleShape",
+        "height": 100,
+        "topleft": {
+          "x": 0,
+          "y": 0
+        },
+        "width": 100
+      },
+      {
+        "_type": "PathShape",
+        "pathSegment": {
+          "_type": "PathSegment",
+          "segments": [
+            {
+              "_type": "MoveToSegment",
+              "point": {
+                "x": 25,
+                "y": 50
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 75,
+                "y": 50
+              }
+            }
+          ]
+        }
+      },
+      {
+        "_type": "PathShape",
+        "pathSegment": {
+          "_type": "PathSegment",
+          "segments": [
+            {
+              "_type": "MoveToSegment",
+              "point": {
+                "x": 50,
+                "y": 25
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 50,
+                "y": 75
+              }
+            }
+          ]
+        }
+      },
+      {
+        "_type": "PathShape",
+        "pathSegment": {
+          "_type": "PathSegment",
+          "segments": [
+            {
+              "_type": "MoveToSegment",
+              "point": {
+                "x": 75,
+                "y": 50
+              }
+            },
+            {
+              "_type": "ArcToSvgSegment",
+              "endPoint": {
+                "x": 25,
+                "y": 50
+              },
+              "largeArcFlag": 0,
+              "radiusX": 25,
+              "radiusY": 25,
+              "sweepFlag": 1,
+              "xAxisRotation": 0
+            }
+          ]
+        }
+      }
+    ]
+  }],
+  "source": "",
+  "title": "Arc1",
+  "url": "",
+  "width": 100
+}

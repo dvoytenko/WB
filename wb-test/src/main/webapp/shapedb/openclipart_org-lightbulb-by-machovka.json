@@ -1,17 +1,8 @@
 {
   "_type": "GroupShape",
   "author": "Machovka",
+  "height": 245,
   "id": "openclipart_org-lightbulb-by-machovka",
-  "localBounds": {
-    "bottomright": {
-      "x": 140,
-      "y": 245
-    },
-    "topleft": {
-      "x": 0,
-      "y": 0
-    }
-  },
   "shapes": [{
     "_type": "GroupShape",
     "shapes": [
@@ -1567,7 +1558,7 @@
     }
   }],
   "source": "openclipart.org",
-  "tags": [],
   "title": "Lightbulb2",
-  "url": "http://openclipart.org/detail/2433/lightbulb-by-machovka"
+  "url": "http://openclipart.org/detail/2433/lightbulb-by-machovka",
+  "width": 140
 }

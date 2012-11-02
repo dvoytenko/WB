@@ -70,10 +70,10 @@ WB.DrawShapeEpisodeAnimation = WB.Animation.extend('DrawShapeEpisodeAnimation', 
 	start: function(board) {
 		this.board = board;
 		this.pane = board.animationPane;
-		this.animation.start(board);
 		this.oldVelocity = this.board.baseVelocity;
 		this.board.baseVelocity = this.oldVelocity * this.rate;
 		console.log('rate: ' + this.rate);
+		this.animation.start(board);
 	},
 	
 	frame: function(time) {
@@ -138,8 +138,11 @@ WB.GroupShape = WB.Shape.extend('GroupShape', {
 		if (opts && opts.shapes) {
 			this.shapes = opts.shapes;
 		}
-		if (opts && opts.localBounds) {
-			this.localBounds = opts.localBounds;
+		if (opts && opts.width) {
+			this.width = opts.width;
+		}
+		if (opts && opts.height) {
+			this.height = opts.height;
 		}
 	},
 	

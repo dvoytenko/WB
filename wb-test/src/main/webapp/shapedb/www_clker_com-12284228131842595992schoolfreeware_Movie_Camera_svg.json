@@ -1,0 +1,412 @@
+{
+  "_type": "GroupShape",
+  "author": "OCAL",
+  "height": 248,
+  "id": "www_clker_com-12284228131842595992schoolfreeware_Movie_Camera_svg",
+  "shapes": [{
+    "_type": "GroupShape",
+    "shapes": [{
+      "_type": "GroupShape",
+      "shapes": [
+        {
+          "_type": "PathShape",
+          "pathSegment": {
+            "_type": "PathSegment",
+            "segments": [
+              {
+                "_type": "MoveToSegment",
+                "point": {
+                  "x": 95.084903,
+                  "y": 177.04278
+                }
+              },
+              {
+                "_type": "CubicSegment",
+                "cp1": {
+                  "x": 112.81599,
+                  "y": 166.12805
+                },
+                "cp2": {
+                  "x": 125.96439,
+                  "y": 184.49485
+                },
+                "endPoint": {
+                  "x": 125.96439,
+                  "y": 184.49485
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 168.05984,
+                  "y": 250.73131
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 144.25142,
+                  "y": 250.35031
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 95.084903,
+                  "y": 177.04278
+                }
+              },
+              {"_type": "ClosePathSegment"}
+            ]
+          }
+        },
+        {
+          "_type": "PathShape",
+          "pathSegment": {
+            "_type": "PathSegment",
+            "segments": [
+              {
+                "_type": "MoveToSegment",
+                "point": {
+                  "x": 76.135959,
+                  "y": 196.74076
+                }
+              },
+              {
+                "_type": "CubicSegment",
+                "cp1": {
+                  "x": 58.404869,
+                  "y": 185.82603
+                },
+                "cp2": {
+                  "x": 57.883379,
+                  "y": 185.50501
+                },
+                "endPoint": {
+                  "x": 57.883379,
+                  "y": 185.50501
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 17.808232,
+                  "y": 249.72117
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 41.111574,
+                  "y": 249.84524
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 76.135959,
+                  "y": 196.74076
+                }
+              },
+              {"_type": "ClosePathSegment"}
+            ]
+          }
+        },
+        {
+          "_type": "GroupShape",
+          "shapes": [{
+            "_type": "PathShape",
+            "pathSegment": {
+              "_type": "PathSegment",
+              "segments": [
+                {
+                  "_type": "MoveToSegment",
+                  "point": {
+                    "x": -129.29952,
+                    "y": -27.791949
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": -96.227704,
+                    "y": -49.219376
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": -62.863863,
+                    "y": -70.18921
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": -60.843078,
+                    "y": -30.834459
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": -59.364589,
+                    "y": 8.5443913
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": -94.457195,
+                    "y": -9.3829327
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": -129.29952,
+                    "y": -27.791949
+                  }
+                },
+                {"_type": "ClosePathSegment"}
+              ]
+            }
+          }],
+          "transform": {
+            "_type": "Transform",
+            "m": [
+              0.8812507,
+              0.043018248,
+              -0.037944987,
+              0.9990743,
+              298.88685,
+              155.66165
+            ]
+          }
+        },
+        {
+          "_type": "RectangleShape",
+          "height": 80.777184,
+          "topleft": {
+            "x": 5.9769001,
+            "y": 83.342339
+          },
+          "width": 178.76199
+        },
+        {
+          "_type": "GroupShape",
+          "shapes": [{
+            "_type": "PathShape",
+            "pathSegment": {
+              "_type": "PathSegment",
+              "segments": [
+                {
+                  "_type": "MoveToSegment",
+                  "point": {
+                    "x": 32.324883,
+                    "y": 29.28167
+                  }
+                },
+                {
+                  "_type": "ArcToSvgSegment",
+                  "endPoint": {
+                    "x": -67.680222,
+                    "y": 29.28167
+                  },
+                  "largeArcFlag": 1,
+                  "radiusX": 50.002552,
+                  "radiusY": 50.002552,
+                  "sweepFlag": 1,
+                  "xAxisRotation": 0
+                },
+                {
+                  "_type": "ArcToSvgSegment",
+                  "endPoint": {
+                    "x": 32.324883,
+                    "y": 29.28167
+                  },
+                  "largeArcFlag": 1,
+                  "radiusX": 50.002552,
+                  "radiusY": 50.002552,
+                  "sweepFlag": 1,
+                  "xAxisRotation": 0
+                },
+                {"_type": "ClosePathSegment"}
+              ]
+            }
+          }],
+          "transform": {
+            "_type": "Transform",
+            "m": [
+              0.7778932,
+              0,
+              0,
+              0.7778932,
+              59.187897,
+              20.140718
+            ]
+          }
+        },
+        {
+          "_type": "GroupShape",
+          "shapes": [{
+            "_type": "PathShape",
+            "pathSegment": {
+              "_type": "PathSegment",
+              "segments": [
+                {
+                  "_type": "MoveToSegment",
+                  "point": {
+                    "x": 32.324883,
+                    "y": 29.28167
+                  }
+                },
+                {
+                  "_type": "ArcToSvgSegment",
+                  "endPoint": {
+                    "x": -67.680222,
+                    "y": 29.28167
+                  },
+                  "largeArcFlag": 1,
+                  "radiusX": 50.002552,
+                  "radiusY": 50.002552,
+                  "sweepFlag": 1,
+                  "xAxisRotation": 0
+                },
+                {
+                  "_type": "ArcToSvgSegment",
+                  "endPoint": {
+                    "x": 32.324883,
+                    "y": 29.28167
+                  },
+                  "largeArcFlag": 1,
+                  "radiusX": 50.002552,
+                  "radiusY": 50.002552,
+                  "sweepFlag": 1,
+                  "xAxisRotation": 0
+                },
+                {"_type": "ClosePathSegment"}
+              ]
+            }
+          }],
+          "transform": {
+            "_type": "Transform",
+            "m": [
+              0.7778932,
+              0,
+              0,
+              0.7778932,
+              160.12193,
+              20.140719
+            ]
+          }
+        },
+        {
+          "_type": "RectangleShape",
+          "height": 65.221077,
+          "topleft": {
+            "x": 184.9758,
+            "y": 89.605156
+          },
+          "width": 14.71345
+        },
+        {
+          "_type": "RectangleShape",
+          "height": 43.436558,
+          "topleft": {
+            "x": 200.91882,
+            "y": 101.50758
+          },
+          "width": 12.121831
+        },
+        {
+          "_type": "RectangleShape",
+          "height": 29.294424,
+          "topleft": {
+            "x": 50.46701,
+            "y": 166.15735
+          },
+          "width": 84.852814
+        },
+        {
+          "_type": "PathShape",
+          "pathSegment": {
+            "_type": "PathSegment",
+            "segments": [
+              {
+                "_type": "MoveToSegment",
+                "point": {
+                  "x": 80.223107,
+                  "y": 197.38318
+                }
+              },
+              {
+                "_type": "CubicSegment",
+                "cp1": {
+                  "x": 103.40064,
+                  "y": 197.38318
+                },
+                "cp2": {
+                  "x": 104.08232,
+                  "y": 197.38318
+                },
+                "endPoint": {
+                  "x": 104.08232,
+                  "y": 197.38318
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 104.64456,
+                  "y": 251.09904
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 81.909813,
+                  "y": 250.59436
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 80.223107,
+                  "y": 197.38318
+                }
+              },
+              {"_type": "ClosePathSegment"}
+            ]
+          }
+        }
+      ],
+      "transform": {
+        "_type": "Transform",
+        "m": [
+          1,
+          0,
+          0,
+          1,
+          -5.3593915,
+          -2.9330845
+        ]
+      }
+    }]
+  }],
+  "source": "www.clker.com",
+  "title": "Camera",
+  "transform": {
+    "_type": "Transform",
+    "m": [
+      1,
+      0,
+      0,
+      1,
+      0,
+      -1
+    ]
+  },
+  "url": "http://www.clker.com/cliparts/a/7/8/5/12284228131842595992schoolfreeware_Movie_Camera.svg",
+  "width": 242
+}

@@ -1,0 +1,313 @@
+{
+  "_type": "GroupShape",
+  "author": "OCAL",
+  "height": 126,
+  "id": "www_clker_com-1206559418992710147mystica_Arrow_set_Comic_2_svg",
+  "shapes": [{
+    "_type": "GroupShape",
+    "shapes": [{
+      "_type": "GroupShape",
+      "shapes": [{
+        "_type": "GroupShape",
+        "shapes": [
+          {
+            "_type": "GroupShape",
+            "shapes": [{
+              "_type": "PathShape",
+              "pathSegment": {
+                "_type": "PathSegment",
+                "segments": [
+                  {
+                    "_type": "MoveToSegment",
+                    "point": {
+                      "x": 385.53663,
+                      "y": 459.29684
+                    }
+                  },
+                  {
+                    "_type": "CubicSegment",
+                    "cp1": {
+                      "x": 448.87366,
+                      "y": 447.97326
+                    },
+                    "cp2": {
+                      "x": 486.88228,
+                      "y": 449.91696
+                    },
+                    "endPoint": {
+                      "x": 510.69453,
+                      "y": 459.29684
+                    }
+                  },
+                  {
+                    "_type": "CubicSegment",
+                    "cp1": {
+                      "x": 506.60715,
+                      "y": 473.30101
+                    },
+                    "cp2": {
+                      "x": 491.42497,
+                      "y": 483.82438
+                    },
+                    "endPoint": {
+                      "x": 477.46051,
+                      "y": 496.06639
+                    }
+                  },
+                  {
+                    "_type": "CubicSegment",
+                    "cp1": {
+                      "x": 504.85956,
+                      "y": 482.96304
+                    },
+                    "cp2": {
+                      "x": 532.65313,
+                      "y": 470.98863
+                    },
+                    "endPoint": {
+                      "x": 561.60622,
+                      "y": 460.00394
+                    }
+                  },
+                  {
+                    "_type": "CubicSegment",
+                    "cp1": {
+                      "x": 553.2699,
+                      "y": 425.17784
+                    },
+                    "cp2": {
+                      "x": 524.8409,
+                      "y": 405.86817
+                    },
+                    "endPoint": {
+                      "x": 500.79504,
+                      "y": 381.5151
+                    }
+                  },
+                  {
+                    "_type": "CubicSegment",
+                    "cp1": {
+                      "x": 504.31529,
+                      "y": 389.70469
+                    },
+                    "cp2": {
+                      "x": 509.44384,
+                      "y": 398.67901
+                    },
+                    "endPoint": {
+                      "x": 512.88271,
+                      "y": 406.83605
+                    }
+                  },
+                  {
+                    "_type": "CubicSegment",
+                    "cp1": {
+                      "x": 514.60727,
+                      "y": 410.92672
+                    },
+                    "cp2": {
+                      "x": 515.3734,
+                      "y": 414.63402
+                    },
+                    "endPoint": {
+                      "x": 514.23007,
+                      "y": 417.57753
+                    }
+                  },
+                  {
+                    "_type": "CubicSegment",
+                    "cp1": {
+                      "x": 472.51077,
+                      "y": 403.68304
+                    },
+                    "cp2": {
+                      "x": 430.79147,
+                      "y": 404.14736
+                    },
+                    "endPoint": {
+                      "x": 389.07217,
+                      "y": 414.7491
+                    }
+                  },
+                  {
+                    "_type": "LineToSegment",
+                    "point": {
+                      "x": 385.53663,
+                      "y": 459.29684
+                    }
+                  },
+                  {"_type": "ClosePathSegment"}
+                ]
+              }
+            }],
+            "transform": {
+              "_type": "Transform",
+              "m": [
+                -1,
+                0,
+                0,
+                1,
+                550.71429,
+                3.9285816
+              ]
+            }
+          },
+          {
+            "_type": "PathShape",
+            "pathSegment": {
+              "_type": "PathSegment",
+              "segments": [
+                {
+                  "_type": "MoveToSegment",
+                  "point": {
+                    "x": 155.89194,
+                    "y": 452.51113
+                  }
+                },
+                {
+                  "_type": "CubicSegment",
+                  "cp1": {
+                    "x": 92.554914,
+                    "y": 441.18755
+                  },
+                  "cp2": {
+                    "x": 54.546294,
+                    "y": 443.13125
+                  },
+                  "endPoint": {
+                    "x": 30.734044,
+                    "y": 452.51113
+                  }
+                },
+                {
+                  "_type": "CubicSegment",
+                  "cp1": {
+                    "x": 34.821424,
+                    "y": 466.5153
+                  },
+                  "cp2": {
+                    "x": 50.003604,
+                    "y": 477.03867
+                  },
+                  "endPoint": {
+                    "x": 63.968064,
+                    "y": 489.28068
+                  }
+                },
+                {
+                  "_type": "CubicSegment",
+                  "cp1": {
+                    "x": 36.569014,
+                    "y": 476.17733
+                  },
+                  "cp2": {
+                    "x": 8.7754443,
+                    "y": 464.20292
+                  },
+                  "endPoint": {
+                    "x": -20.177646,
+                    "y": 453.21823
+                  }
+                },
+                {
+                  "_type": "CubicSegment",
+                  "cp1": {
+                    "x": -11.841326,
+                    "y": 418.39213
+                  },
+                  "cp2": {
+                    "x": 16.587674,
+                    "y": 399.08246
+                  },
+                  "endPoint": {
+                    "x": 40.633534,
+                    "y": 374.72939
+                  }
+                },
+                {
+                  "_type": "CubicSegment",
+                  "cp1": {
+                    "x": 37.113284,
+                    "y": 382.91898
+                  },
+                  "cp2": {
+                    "x": 31.984734,
+                    "y": 391.8933
+                  },
+                  "endPoint": {
+                    "x": 28.545864,
+                    "y": 400.05034
+                  }
+                },
+                {
+                  "_type": "CubicSegment",
+                  "cp1": {
+                    "x": 26.821304,
+                    "y": 404.14101
+                  },
+                  "cp2": {
+                    "x": 26.055174,
+                    "y": 407.84831
+                  },
+                  "endPoint": {
+                    "x": 27.198504,
+                    "y": 410.79182
+                  }
+                },
+                {
+                  "_type": "CubicSegment",
+                  "cp1": {
+                    "x": 68.917804,
+                    "y": 396.89733
+                  },
+                  "cp2": {
+                    "x": 110.6371,
+                    "y": 397.36165
+                  },
+                  "endPoint": {
+                    "x": 152.3564,
+                    "y": 407.96339
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 155.89194,
+                    "y": 452.51113
+                  }
+                },
+                {"_type": "ClosePathSegment"}
+              ]
+            }
+          }
+        ]
+      }],
+      "transform": {
+        "_type": "Transform",
+        "m": [
+          1,
+          0,
+          0,
+          1,
+          29.299255,
+          -367.48364
+        ]
+      }
+    }]
+  }],
+  "source": "www.clker.com",
+  "title": "Arrow Comic",
+  "transform": {
+    "_type": "Transform",
+    "m": [
+      1,
+      0,
+      0,
+      1,
+      -9,
+      -7
+    ]
+  },
+  "url": "http://www.clker.com/cliparts/0/3/3/a/1206559418992710147mystica_Arrow_set_(Comic)_2.svg",
+  "width": 186
+}

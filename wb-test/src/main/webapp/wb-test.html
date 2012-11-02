@@ -67,15 +67,13 @@
 		<a href="javascript:void(0);" onclick="pan1()">Pan 1</a>
 		<a href="javascript:void(0);" onclick="pan2()">Pan 2</a>
 
+		<br/>
 		<a href="javascript:void(0);" onclick="script1()">Script 1</a>
 		<a href="javascript:void(0);" onclick="script1Stepper()">Script 1 Stepper</a>
 		<a href="javascript:void(0);" onclick="script1Recorder()">Script 1 Recorder</a>
-		<!--
+		
+		<br/>
 		<a href="javascript:void(0);" onclick="script2()">Script 2</a>
-		<a href="javascript:void(0);" onclick="script3()">Script 3</a>
-		<a href="javascript:void(0);" onclick="script4()">Script 4</a>
-		<a href="javascript:void(0);" onclick="script5()">Script 5</a>
-		-->
 	</div>
 	
 	<div id="status" style="border: 1px solid gray; margin: 4px; width: 720px;">
@@ -1211,9 +1209,11 @@
 				audio: ??? problem with circles, etc
 				audio3: ??? some minor issues
 				server: ??? missing rect?
+						
+				stickman-sleeping-upd: 
 			*/
-			var name = 'tom_trumpet';
-			var tr = new WB.Transform().translate(10, 10).scale(0.5, 0.5);
+			var name = 'stickman-sleeping-upd';
+				var tr = new WB.Transform().translate(100, 100).scale(1, 1);
 			$.ajax({url: 'shapes/' + name + '.json', contentType: 'application/json'})
 			.done(function(json) {
 				console.log('got data');
@@ -1240,8 +1240,8 @@
 		function eq1anim() {
 			var velocity = 10000;
 			// 
-			var name = 'tom_trumpet';
-			var tr = new WB.Transform().translate(10, 10).scale(0.5, 0.5);
+			var name = 'stickman-sleeping-upd';
+			var tr = new WB.Transform().translate(100, 100).scale(1, 1);
 			$.ajax({url: 'shapes/' + name + '.json', contentType: 'application/json'})
 			.done(function(json) {
 				console.log('got data');
@@ -1337,7 +1337,11 @@
 		function script1() {
 			playScript('script1');
 		}
-		
+
+		function script2() {
+			playScript('script2');
+		}
+
 		function script1Stepper() {
 			stepScript('script1');
 		}
@@ -1346,22 +1350,6 @@
 			recordScript('script1');
 		}
 		
-		function script2() {
-			playScript('script2');
-		}
-
-		function script3() {
-			playScript('script3');
-		}
-
-		function script4() {
-			playScript('script4');
-		}
-
-		function script5() {
-			playScript('script5');
-		}
-
 		function eraser1() {
 			var pane = new WB.Pane({canvas: document.getElementById('canvas')});
 			

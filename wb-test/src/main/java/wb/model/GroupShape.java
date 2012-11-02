@@ -15,7 +15,9 @@ public class GroupShape extends Shape {
 	
 	public String author;
 	
-	public Bounds localBounds;
+	public Double width;
+
+	public Double height;
 	
 	public Transform transform;
 	

@@ -1,17 +1,8 @@
 {
   "_type": "GroupShape",
   "author": "mbs",
+  "height": 155,
   "id": "openclipart_org-ice-train-by-mbs",
-  "localBounds": {
-    "bottomright": {
-      "x": 342,
-      "y": 155
-    },
-    "topleft": {
-      "x": 0,
-      "y": 0
-    }
-  },
   "shapes": [
     {
       "_type": "GroupShape",
@@ -1696,18 +1687,19 @@
   "source": "openclipart.org",
   "tags": [
     "svg",
-    "speed",
     "png",
+    "speed",
     "ice",
-    "inkscape",
     "clip art",
-    "train",
+    "inkscape",
     "image",
+    "train",
     "germany",
     "transportation",
-    "public domain",
-    "media"
+    "media",
+    "public domain"
   ],
   "title": "ICE-Train",
-  "url": "http://openclipart.org/detail/18947/ice-train-by-mbs"
+  "url": "http://openclipart.org/detail/18947/ice-train-by-mbs",
+  "width": 342
 }

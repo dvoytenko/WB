@@ -1,28 +1,83 @@
 {
 	episodes: [
+	
+		/*
+			Part 1
+		*/
+
+		{
+			_type: 'SpeechEpisode',
+			text: 'That\'s the oldest story in the world. You came up with an idea and created a product',
+			engine: 'cere'
+		},
+		
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'openclipart_org-lightbulb-by-anonymous-23587',
+			position: {x: 10, y: 10},
+			width: 70,
+			rotationDegree: 0
+		},
+		
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'www_clker_com-carton-open-box_svg',
+			position: {x: 140, y: 10},
+			width: 120,
+			rotationDegree: 0
+		},
+
+		{
+			_type: 'SpeechEpisode',
+			text: 'And now you want the whole world to start using it!',
+			engine: 'cere'
+		},
+		
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'www_clker_com-1194984395619889880earth_globe_dan_gerhrads_01_svg',
+			position: {x: 340, y: 100},
+			width: 220,
+			rotationDegree: 0
+		},
+		
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'www_clker_com-stickman-celebrating_svg',
+			position: {x: 280, y: 140},
+			width: 70,
+			rotationDegree: -30
+		},
 
 		{
 			_type: 'DrawShapeEpisode',
-			_desc: 'remove',
+			shapeId: 'www_clker_com-stickman-celebrating_svg',
+			position: {x: 580, y: 50},
+			width: 60,
+			rotationDegree: 45
+		},
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'www_clker_com-stickman-celebrating_svg',
+			position: {x: 590, y: 90},
+			width: 60,
+			rotationDegree: 45
+		},
+
+		{
+			_type: 'DrawShapeEpisode',
+			_desc: 'move away',
 			position: {x: 0, y: 0},
-			width: 1,
-			height: 1,
-			realWidth: 1,
-			realHeight: 1,
-			rotationDegree: 0,
+			width: 1, height: 1, realWidth: 1, realHeight: 1,
 			shape: {
 				_type: 'PathShape',
 				pathSegment: {
 					_type: 'PathSegment',
 					segments: [
 						{
-							_type: 'ArcAngleSegment',
-							center: {x: 100, y: 100},
-							radiusX: 50,
-							radiusY: 50,
-							startAngle: 0,
-							endAngle: 7
-						},
+							_type: 'MoveToSegment',
+							point: {x: 10, y: 500}
+						}
 					]
 				}
 			}
@@ -34,27 +89,83 @@
 		},
 
 
-
-
 		/*
 			Part 2
-		*/		
+		*/
 
 		{
 			_type: 'SpeechEpisode',
-			text: 'In some more business use cases, one may want to show a table of products revenue',
+			text: 'So, you invited your friends, neighbors and your investors to your first presentation. You put together a decent Power Point presentation.',
 			engine: 'cere'
 		},
 		
 		{
 			_type: 'DrawShapeEpisode',
-			_desc: 'table',
-			position: {x: 740, y: 20},
-			width: 1,
-			height: 1,
-			realWidth: 1,
-			realHeight: 1,
-			rotationDegree: 0,
+			shapeId: 'www_clker_com-1229694631796223111radacina_men_in_black_svg',
+			position: {x: 1120, y: 10},
+			width: 250,
+			rotationDegree: 0
+		},
+		
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'www_clker_com-teacher_svg',
+			position: {x: 730, y: 100},
+			width: 250,
+			rotationDegree: 0
+		},
+
+		{
+			_type: 'SpeechEpisode',
+			text: 'But all of a sudden people seem bored. Some are dashing for a door, others might be even falling asleep.',
+			engine: 'cere'
+		},
+		
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'www_clker_com-stickmap-jumping_svg',
+			position: {x: 1260, y: 280},
+			height: 100,
+			rotationDegree: 0
+		},
+
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'www_clker_com-1197148408345705582SRD_comic_clouds_10_svg',
+			position: {x: 1220, y: 230},
+			width: 160,
+			height: 50,
+			rotationDegree: 0
+		},
+
+		{
+			_type: 'DrawTextEpisode',
+			text: 'Oh. Forgot...',
+			position: {x: 1230, y: 245},
+			fontHeight: 15
+		},
+
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'www_clker_com-stickman-tired_svg',
+			position: {x: 1130, y: 200},
+			height: 120,
+			rotationDegree: 0
+		},
+
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'www_clker_com-stickman-sleeping_svg',
+			position: {x: 980, y: 320},
+			width: 140,
+			rotationDegree: 0
+		},
+
+		{
+			_type: 'DrawShapeEpisode',
+			_desc: 'move away',
+			position: {x: 0, y: 0},
+			width: 1, height: 1, realWidth: 1, realHeight: 1,
 			shape: {
 				_type: 'PathShape',
 				pathSegment: {
@@ -62,29 +173,7 @@
 					segments: [
 						{
 							_type: 'MoveToSegment',
-							point: {x: 0, y: 40}
-						},
-						{
-							_type: 'LineToSegment',
-							point: {x: 300, y: 40}
-						},
-						
-						{
-							_type: 'MoveToSegment',
-							point: {x: 150, y: 0}
-						},
-						{
-							_type: 'LineToSegment',
-							point: {x: 150, y: 200}
-						},
-						
-						{
-							_type: 'MoveToSegment',
-							point: {x: 225, y: 0}
-						},
-						{
-							_type: 'LineToSegment',
-							point: {x: 225, y: 200}
+							point: {x: 730, y: 500}
 						}
 					]
 				}
@@ -92,71 +181,115 @@
 		},
 		
 		{
-			_type: 'DrawTextEpisode',
-			text: '2011',
-			position: {x: 900, y: 25},
-			fontHeight: 30
+			_type: 'SpeechEndEpisode'
 		},
+		
 		{
-			_type: 'DrawTextEpisode',
-			text: '2012',
-			position: {x: 970, y: 25},
-			fontHeight: 30
-		},
-		{
-			_type: 'DrawTextEpisode',
-			text: 'Desktop',
-			position: {x: 750, y: 60},
-			fontHeight: 30
-		},
-		{
-			_type: 'DrawTextEpisode',
-			text: '30M',
-			position: {x: 900, y: 60},
-			fontHeight: 25
-		},
-		{
-			_type: 'DrawTextEpisode',
-			text: '25M',
-			position: {x: 980, y: 60},
-			fontHeight: 25
-		},
-		{
-			_type: 'DrawTextEpisode',
-			text: 'Mobile',
-			position: {x: 750, y: 100},
-			fontHeight: 30
-		},
-		{
-			_type: 'DrawTextEpisode',
-			text: '15M',
-			position: {x: 900, y: 100},
-			fontHeight: 25
-		},
-		{
-			_type: 'DrawTextEpisode',
-			text: '45M',
-			position: {x: 980, y: 100},
-			fontHeight: 25
+			_type: 'PanEpisode',
+			point: {x: -1440, y: 0}
 		},
 
 
+		/*
+			Part 3
+		*/
 
 		{
 			_type: 'SpeechEpisode',
-			text: 'Or a chart',
+			text: 'What if instead you had a cool and dynamic presentation. Kind of like this one.',
 			engine: 'cere'
 		},
 		
 		{
 			_type: 'DrawShapeEpisode',
-			_desc: 'Chart',
-			position: {x: 1120, y: 40},
-			width: 1,
-			height: 1,
-			realWidth: 1,
-			realHeight: 1,
+			shapeId: 'www_clker_com-12305710175679798AJ_Portable_Projection_Screen_svg',
+			position: {x: 1460, y: 50},
+			width: 250,
 			rotationDegree: 0,
+			rate: 2
+		},
+
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'www_clker_com-11954382541257828096play_symbol_cosmin_humen_01_svg',
+			position: {x: 1555, y: 110},
+			width: 65,
+			rotationDegree: 0
+		},
+		
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'openclipart_org-lightbulb-by-anonymous-23587',
+			position: {x: 1470, y: 70},
+			width: 30,
+			rotationDegree: 0
+		},
+		
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'www_clker_com-carton-open-box_svg',
+			position: {x: 1510, y: 70},
+			width: 50,
+			rotationDegree: 0
+		},
+		
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'www_clker_com-1194984395619889880earth_globe_dan_gerhrads_01_svg',
+			position: {x: 1635, y: 145},
+			width: 60,
+			rotationDegree: 0
+		},
+
+		{
+			_type: 'SpeechEpisode',
+			text: 'Your audience is engaged! Everyone wants to try your product!',
+			engine: 'cere'
+		},
+		
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'www_clker_com-stickman-celebrating_svg',
+			position: {x: 1740, y: 40},
+			height: 140,
+			rotationDegree: 0
+		},
+
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'www_clker_com-stickman-celebrating_svg',
+			position: {x: 1830, y: 40},
+			height: 140,
+			rotationDegree: 0
+		},
+
+		{
+			_type: 'SpeechEpisode',
+			text: 'Some might even break into a spontaneous dance!',
+			engine: 'cere'
+		},
+		
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'www_clker_com-dance-toon_svg',
+			position: {x: 1960, y: 240},
+			height: 140,
+			rotationDegree: 0
+		},
+
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'www_clker_com-1195422841878786329disco_ball_hermann_schw_01r_svg',
+			position: {x: 2000, y: 140},
+			width: 80,
+			rotationDegree: 0
+		},
+
+		{
+			_type: 'DrawShapeEpisode',
+			_desc: 'move away',
+			position: {x: 0, y: 0},
+			width: 1, height: 1, realWidth: 1, realHeight: 1,
 			shape: {
 				_type: 'PathShape',
 				pathSegment: {
@@ -164,82 +297,47 @@
 					segments: [
 						{
 							_type: 'MoveToSegment',
-							point: {x: 10, y: 0}
-						},
-						{
-							_type: 'LineToSegment',
-							point: {x: 10, y: 150}
-						},
-						
-						{
-							_type: 'MoveToSegment',
-							point: {x: 0, y: 140}
-						},
-						{
-							_type: 'LineToSegment',
-							point: {x: 220, y: 140}
-						},
-						
-						
-						{
-							_type: 'MoveToSegment',
-							point: {x: 5, y: 120}
-						},
-						{
-							_type: 'LineToSegment',
-							point: {x: 60, y: 110}
-						},
-						{
-							_type: 'LineToSegment',
-							point: {x: 110, y: 80}
-						},
-						{
-							_type: 'LineToSegment',
-							point: {x: 180, y: 70}
-						},
-
-						{
-							_type: 'MoveToSegment',
-							point: {x: 5, y: 40}
-						},
-						{
-							_type: 'LineToSegment',
-							point: {x: 80, y: 60}
-						},
-						{
-							_type: 'LineToSegment',
-							point: {x: 110, y: 120}
-						},
+							point: {x: 1450, y: 500}
+						}
 					]
 				}
 			}
 		},
-
-
+		
 		{
-			_type: 'SpeechEpisode',
-			text: 'Or maybe a sales person would like to explain exactly how a product works.',
-			engine: 'cere'
+			_type: 'PanEpisode',
+			point: {x: -2160, y: 0}
 		},
+		
+
+		/*
+			Part 4
+		*/
 
 		{
 			_type: 'DrawShapeEpisode',
-			shapeId: 'cogs1',
-			position: {x: 1140, y: 260},
-			width: 1,
-			height: 1,
-			realWidth: 1,
-			realHeight: 1,
-			rotationDegree: 0
+			shapeId: 'www_clker_com-whiteboard_svg',
+			position: {x: 2220, y: 30},
+			width: 600,
+			height: 350,
+			rotationDegree: 0,
+			rate: 5
 		},
-
-
+		
+		{
+			_type: 'DrawTextEpisode',
+			text: 'Express yourself !',
+			position: {x: 2330, y: 60},
+			fontHeight: 40
+		},
 
 		{
-			_type: 'PanEpisode',
-			point: {x: -1440, y: 0}
+			_type: 'DrawTextEpisode',
+			text: 'And never run out of markers again!',
+			position: {x: 2245, y: 140},
+			fontHeight: 30
 		},
-
+		
 	]
 	
 }

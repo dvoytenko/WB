@@ -67,9 +67,7 @@ public class SvgController {
 		}
 		
 		if (meta != null) {
-			GroupShape top = new GroupShape();
-			top.shapes.add(meta.shape);
-			PrepareShape.measureShape(top);
+			GroupShape top = PrepareShape.prepareShape(meta.shape);
 			meta.shape = top;
 		}
 		

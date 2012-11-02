@@ -1,0 +1,383 @@
+{
+  "_type": "GroupShape",
+  "author": "OCAL",
+  "height": 298,
+  "id": "www_clker_com-carton-open-box_svg",
+  "shapes": [{
+    "_type": "GroupShape",
+    "shapes": [{
+      "_type": "GroupShape",
+      "shapes": [
+        {
+          "_type": "PathShape",
+          "pathSegment": {
+            "_type": "PathSegment",
+            "segments": [
+              {
+                "_type": "MoveToSegment",
+                "point": {
+                  "x": 293.24383,
+                  "y": 120.1601
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 189.47803,
+                  "y": 68.28333
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 46.821152,
+                  "y": 139.56117
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 150.62913,
+                  "y": 191.43795
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 293.24383,
+                  "y": 120.1601
+                }
+              },
+              {"_type": "ClosePathSegment"}
+            ]
+          }
+        },
+        {
+          "_type": "PathShape",
+          "pathSegment": {
+            "_type": "PathSegment",
+            "segments": [
+              {
+                "_type": "MoveToSegment",
+                "point": {
+                  "x": 293.24383,
+                  "y": 231.4632
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 293.24383,
+                  "y": 120.1601
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 150.62913,
+                  "y": 191.43795
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 150.62913,
+                  "y": 302.74104
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 293.24383,
+                  "y": 231.4632
+                }
+              },
+              {"_type": "ClosePathSegment"}
+            ]
+          }
+        },
+        {
+          "_type": "PathShape",
+          "pathSegment": {
+            "_type": "PathSegment",
+            "segments": [
+              {
+                "_type": "MoveToSegment",
+                "point": {
+                  "x": 150.62913,
+                  "y": 191.43795
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 46.821152,
+                  "y": 139.56117
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 46.821152,
+                  "y": 250.86427
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 150.62913,
+                  "y": 302.74104
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 150.62913,
+                  "y": 191.43795
+                }
+              },
+              {"_type": "ClosePathSegment"}
+            ]
+          }
+        },
+        {
+          "_type": "PathShape",
+          "pathSegment": {
+            "_type": "PathSegment",
+            "segments": [
+              {
+                "_type": "MoveToSegment",
+                "point": {
+                  "x": 46.905514,
+                  "y": 139.77206
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 6.2850015,
+                  "y": 96.330529
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 148.98406,
+                  "y": 24.841805
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 189.47803,
+                  "y": 68.452035
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 46.905514,
+                  "y": 139.77206
+                }
+              },
+              {"_type": "ClosePathSegment"}
+            ]
+          }
+        },
+        {
+          "_type": "PathShape",
+          "pathSegment": {
+            "_type": "PathSegment",
+            "segments": [
+              {
+                "_type": "MoveToSegment",
+                "point": {
+                  "x": 189.26712,
+                  "y": 68.325507
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 220.77649,
+                  "y": 5.9046734
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 324.03612,
+                  "y": 57.570566
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 292.61111,
+                  "y": 119.94922
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 189.26712,
+                  "y": 68.325507
+                }
+              },
+              {"_type": "ClosePathSegment"}
+            ]
+          }
+        },
+        {
+          "_type": "PathShape",
+          "pathSegment": {
+            "_type": "PathSegment",
+            "segments": [
+              {
+                "_type": "MoveToSegment",
+                "point": {
+                  "x": 24.971281,
+                  "y": 95.782238
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 46.694608,
+                  "y": 139.89858
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 149.95423,
+                  "y": 191.5223
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 128.31526,
+                  "y": 147.40595
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 24.971281,
+                  "y": 95.782238
+                }
+              },
+              {"_type": "ClosePathSegment"}
+            ]
+          }
+        },
+        {
+          "_type": "PathShape",
+          "pathSegment": {
+            "_type": "PathSegment",
+            "segments": [
+              {
+                "_type": "MoveToSegment",
+                "point": {
+                  "x": 189.7733,
+                  "y": 68.578564
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 189.7733,
+                  "y": 174.77832999999998
+                }
+              }
+            ]
+          }
+        },
+        {
+          "_type": "PathShape",
+          "pathSegment": {
+            "_type": "PathSegment",
+            "segments": [
+              {
+                "_type": "MoveToSegment",
+                "point": {
+                  "x": 150.79785,
+                  "y": 191.01619
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 202.13240000000002,
+                  "y": 198.2705
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 344.91582000000005,
+                  "y": 126.99265
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 293.49691000000007,
+                  "y": 119.73834
+                }
+              },
+              {
+                "_type": "LineToSegment",
+                "point": {
+                  "x": 150.79785000000007,
+                  "y": 191.01619
+                }
+              },
+              {"_type": "ClosePathSegment"}
+            ]
+          }
+        },
+        {
+          "_type": "PathShape",
+          "pathSegment": {
+            "_type": "PathSegment",
+            "segments": [{
+              "_type": "MoveToSegment",
+              "point": {
+                "x": 241.40311,
+                "y": 261.02874
+              }
+            }]
+          }
+        }
+      ],
+      "transform": {
+        "_type": "Transform",
+        "m": [
+          1,
+          0,
+          0,
+          1,
+          -5.0406556,
+          -4.6603275
+        ]
+      }
+    }]
+  }],
+  "source": "www.clker.com",
+  "title": "Box",
+  "transform": {
+    "_type": "Transform",
+    "m": [
+      1,
+      0,
+      0,
+      1,
+      -1,
+      -1
+    ]
+  },
+  "url": "http://www.clker.com/cliparts/P/e/k/7/a/a/carton-open-box.svg",
+  "width": 339
+}

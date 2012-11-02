@@ -412,13 +412,13 @@
 				this.shape = shape;
 
 				var tr = new WB.Transform();
-				console.log(shape.localBounds);
-				if (shape.localBounds) {
+				console.log('size: ' + shape.width + ' x ' + shape.height);
+				if (shape.width) {
 					
 					var dWidth = this.pane.canvas.width;
 					var dHeight = this.pane.canvas.height;
-					var lWidth = Math.abs(shape.localBounds.bottomright.x - shape.localBounds.topleft.x);
-					var lHeight = Math.abs(shape.localBounds.bottomright.y - shape.localBounds.topleft.y);
+					var lWidth = shape.width;
+					var lHeight = shape.height;
 					console.log('w/h: ' + dWidth + ' vs ' + lWidth + '; ' + dHeight + ' vs ' + lHeight);
 					var scaleX = 1.0;
 					var scaleY = 1.0;
@@ -432,15 +432,9 @@
 					console.log('scale: ' + scale);
 					tr.scale(scale, scale);
 
-					// compensate
-					tr.translate(-shape.localBounds.topleft.x, 
-							-shape.localBounds.topleft.y);
-
 					// center
 					var dx = (dWidth - lWidth * scale) / 2;
 					var dy = (dHeight - lHeight * scale) / 2;
-					console.log('translate: ' + (-shape.localBounds.topleft.x + dx) + 
-							', ' + (-shape.localBounds.topleft.y + dy));
 					tr.translate(dx/scale, dy/scale);
 				}
 

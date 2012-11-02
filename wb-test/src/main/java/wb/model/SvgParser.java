@@ -24,13 +24,7 @@ public class SvgParser {
 	public static void main(String[] args) throws Exception {
 		
 		final String[] files = {
-				"karderio_computer_screen.svg",
-				"fortran_minimalist_monitor_and_computer.svg",
-				"pc.svg",
-				"server.svg",
-				"lmproulx_Iphone.svg",
-				"BenBois_iPhone_SVG.svg",
-				"hand_phone.svg",
+				"stickman-sleeping-upd.svg",
 				};
 		for (String fileName : files) {
 			System.out.println(fileName);
@@ -125,10 +119,18 @@ public class SvgParser {
 				&& !noStroke(root)) {
 			return parseRect(root);
 		}
-//		if (root.getName().equalsIgnoreCase("xxx") 
-//				&& !noStroke(root)) {
-//			return parseXXX(root);
-//		}
+		if (root.getTagName().equalsIgnoreCase("ellipse")
+				&& !noStroke(root)) {
+			return parseEllipse(root);
+		}
+		if (root.getTagName().equalsIgnoreCase("circle")
+				&& !noStroke(root)) {
+			return parseCircle(root);
+		}
+		if (root.getTagName().equalsIgnoreCase("line")
+				&& !noStroke(root)) {
+			return parseLine(root);
+		}
 		
 		return null;
 	}
@@ -234,17 +236,7 @@ public class SvgParser {
 		 */
 		shape.points.addAll(parseListOfPoints(pointsAttr));
 		
-		Shape top;
-		Transform tr = parseTransform(root);
-		if (tr != null) {
-			GroupShape group = new GroupShape();
-			group.transform = tr;
-			group.shapes.add(shape);
-			top = group;
-		} else {
-			top = shape;
-		}
-		return top;
+		return wrapTransform(shape, root);
 	}
 
 	/**
@@ -265,23 +257,13 @@ public class SvgParser {
 		 */
 		shape.points.addAll(parseListOfPoints(pointsAttr));
 		
-		Shape top;
-		Transform tr = parseTransform(root);
-		if (tr != null) {
-			GroupShape group = new GroupShape();
-			group.transform = tr;
-			group.shapes.add(shape);
-			top = group;
-		} else {
-			top = shape;
-		}
-		return top;
+		return wrapTransform(shape, root);
 	}
 
 	/**
 	 * http://www.w3.org/TR/SVG/shapes.html#RectElement
 	 */
-	private Shape parseRect(Element root) {
+	public Shape parseRect(Element root) {
 		
 		/*
 			‘width’
@@ -337,8 +319,197 @@ public class SvgParser {
 		shape.width = width;
 		shape.height = height;
 		
+		return wrapTransform(shape, root);
+	}
+
+	/**
+	 * http://www.w3.org/TR/SVG/shapes.html#EllipseElement
+	 */
+	public Shape parseEllipse(Element root) {
+		
+		/*
+			‘cx’
+			‘cy’
+			‘rx’
+			‘ry’
+		 */
+		
+		/* cx:
+		 * The x-axis coordinate of the center of the ellipse.
+		 * If the attribute is not specified, the effect is as if a value of "0" were specified. 
+		 */
+		double cx;
+		try {
+			cx = Double.parseDouble(root.getAttribute("cx").trim());
+		} catch (Exception e) {
+			cx = 0.0;
+		}
+		
+		/* cy:
+		 * The y-axis coordinate of the center of the ellipse.
+		 * If the attribute is not specified, the effect is as if a value of "0" were specified.
+		 */
+		double cy;
+		try {
+			cy = Double.parseDouble(root.getAttribute("cy").trim());
+		} catch (Exception e) {
+			cy = 0.0;
+		}
+		
+		/* rx:
+		 * The x-axis radius of the ellipse.
+		 * A negative value is an error (see Error processing). 
+		 * A value of zero disables rendering of the element.
+		 */
+		double rx = Double.parseDouble(root.getAttribute("rx").trim());
+		
+		/* ry:
+		 * The y-axis radius of the ellipse.
+		 * A negative value is an error (see Error processing). 
+		 * A value of zero disables rendering of the element.
+		 */
+		double ry = Double.parseDouble(root.getAttribute("ry").trim());
+		
+		EllipseShape shape = new EllipseShape();
+		shape.center = new Point(cx, cy);
+		shape.radiusX = rx;
+		shape.radiusY = ry;
+		
+		return wrapTransform(shape, root);
+	}
+
+	/**
+	 * http://www.w3.org/TR/SVG/shapes.html#CircleElement
+	 */
+	public Shape parseCircle(Element root) {
+		
+		/*
+			‘cx’
+			‘cy’
+			‘r’
+		 */
+		
+		/* cx:
+		 * The x-axis coordinate of the center of the ellipse.
+		 * If the attribute is not specified, the effect is as if a value of "0" were specified. 
+		 */
+		double cx;
+		try {
+			cx = Double.parseDouble(root.getAttribute("cx").trim());
+		} catch (Exception e) {
+			cx = 0.0;
+		}
+		
+		/* cy:
+		 * The y-axis coordinate of the center of the ellipse.
+		 * If the attribute is not specified, the effect is as if a value of "0" were specified.
+		 */
+		double cy;
+		try {
+			cy = Double.parseDouble(root.getAttribute("cy").trim());
+		} catch (Exception e) {
+			cy = 0.0;
+		}
+		
+		/* r:
+		 * The radius of the circle.
+		 * A negative value is an error (see Error processing). A value of 
+		 * zero disables rendering of the element.
+		 */
+		double r = Double.parseDouble(root.getAttribute("r").trim());
+		
+		EllipseShape shape = new EllipseShape();
+		shape.center = new Point(cx, cy);
+		shape.radiusX = r;
+		shape.radiusY = r;
+		
+		return wrapTransform(shape, root);
+	}
+
+	/**
+	 * http://www.w3.org/TR/SVG/shapes.html#LineElement
+	 */
+	public Shape parseLine(Element root) {
+		
+		/*
+			‘x1’
+			‘y1’
+			‘x2’
+			‘y2’
+		 */
+		
+		/* x1:
+		 * The x-axis coordinate of the start of the line.
+		 * If the attribute is not specified, the effect is as if a value of "0" were specified. 
+		 */
+		double x1;
+		try {
+			x1 = Double.parseDouble(root.getAttribute("x1").trim());
+		} catch (Exception e) {
+			x1 = 0.0;
+		}
+		
+		/* y1:
+		 * The y-axis coordinate of the start of the line.
+		 * If the attribute is not specified, the effect is as if a value of "0" were specified.
+		 */
+		double y1;
+		try {
+			y1 = Double.parseDouble(root.getAttribute("y1").trim());
+		} catch (Exception e) {
+			y1 = 0.0;
+		}
+		
+		/* x2:
+		 * The x-axis coordinate of the start of the line.
+		 * If the attribute is not specified, the effect is as if a value of "0" were specified. 
+		 */
+		double x2;
+		try {
+			x2 = Double.parseDouble(root.getAttribute("x2").trim());
+		} catch (Exception e) {
+			x2 = 0.0;
+		}
+		
+		/* y2:
+		 * The y-axis coordinate of the start of the line.
+		 * If the attribute is not specified, the effect is as if a value of "0" were specified.
+		 */
+		double y2;
+		try {
+			y2 = Double.parseDouble(root.getAttribute("y2").trim());
+		} catch (Exception e) {
+			y2 = 0.0;
+		}
+		
+		/*
+		 * Mathematically, a ‘line’ element can be mapped to an equivalent 
+		 * ‘path’ element as follows: (Note: all coordinate and length 
+		 * values are first converted into user space coordinates according 
+		 * to Units.)
+		 */
+		
+		PolylineShape shape = new PolylineShape();
+
+		/* 1) perform an absolute moveto operation to absolute location (x1,y1), 
+		 * where x1 and y1 are the values of the ‘line’ element's ‘x1’ and ‘y1’ 
+		 * attributes converted to user space, respectively
+		 */
+		shape.points.add(new Point(x1, y1));
+
+		/*
+		 * 2) perform an absolute lineto operation to absolute location (x2,y2), 
+		 * where x2 and y2 are the values of the ‘line’ element's ‘x2’ and ‘y2’ 
+		 * attributes converted to user space, respectively
+		 */
+		shape.points.add(new Point(x2, y2));
+		
+		return wrapTransform(shape, root);
+	}
+
+	private Shape wrapTransform(Shape shape, Element element) {
 		Shape top;
-		Transform tr = parseTransform(root);
+		Transform tr = parseTransform(element);
 		if (tr != null) {
 			GroupShape group = new GroupShape();
 			group.transform = tr;
@@ -350,7 +521,7 @@ public class SvgParser {
 		return top;
 	}
 
-	private Shape parsePath(Element root) {
+	public Shape parsePath(Element root) {
 		
 		String d = root.getAttribute("d");
 		if (d == null || d.isEmpty()) {
@@ -870,8 +1041,8 @@ public class SvgParser {
 				double x = values[i + 4];
 				double y = values[i + 5];
 				Point cp1 = consumer.resolvePoint(abs, x1, y1);
-				Point cp2 = consumer.resolvePoint(cp1, abs, x2, y2);
-				Point ep = consumer.resolvePoint(cp2, abs, x, y);
+				Point cp2 = consumer.resolvePoint(abs, x2, y2);
+				Point ep = consumer.resolvePoint(abs, x, y);
 				consumer.addSegment(new CubicSegment(cp1, cp2, ep));
 				consumer.setCurrentPoint(ep);
 			}
@@ -896,7 +1067,7 @@ public class SvgParser {
 				double y = values[i + 3];
 				
 				Point cp2 = consumer.resolvePoint(abs, x2, y2);
-				Point ep = consumer.resolvePoint(cp2, abs, x, y);
+				Point ep = consumer.resolvePoint(abs, x, y);
 				
 				/*
 				 * The first control point is assumed to be the reflection of 
@@ -946,7 +1117,7 @@ public class SvgParser {
 				double x = values[i + 2];
 				double y = values[i + 3];
 				Point cp1 = consumer.resolvePoint(abs, x1, y1);
-				Point ep = consumer.resolvePoint(cp1, abs, x, y);
+				Point ep = consumer.resolvePoint(abs, x, y);
 				consumer.addSegment(new QuadSegment(cp1, ep));
 				consumer.setCurrentPoint(ep);
 			}

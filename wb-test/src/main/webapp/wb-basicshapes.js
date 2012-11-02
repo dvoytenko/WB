@@ -82,6 +82,54 @@ WB.RectangleShape = WB.PathBasedShape.extend('RectangleShape', {
 
 
 /**
+ * http://www.w3.org/TR/SVG/shapes.html#EllipseElement
+ */
+WB.EllipseShape = WB.PathBasedShape.extend('EllipseShape', {
+	
+	center: null,
+	
+	radiusX: null,
+	
+	radiusY: null,
+	
+	init: function(opts) {
+		if (opts && opts.center) {
+			this.center = opts.center;
+		}
+		if (!this.center) {
+			this.center = {x: 0, y: 0};
+		}
+		if (opts && opts.radiusX) {
+			this.radiusX = opts.radiusX;
+		}
+		if (opts && opts.radiusY) {
+			this.radiusY = opts.radiusY;
+		}
+	},
+	
+	resolveSegments: function() {
+		var segments = [];
+		// segments.push(new WB.MoveToSegment({point: this.topleft}));
+		
+		segments.push(new WB.ArcSegment({
+			arc: {
+				center: this.center, 
+				radiusX: this.radiusX, 
+				radiusY: this.radiusY, 
+				xAxisRotation: 0, 
+				startAngle: Math.PI, 
+				endAngle: Math.PI * 3, 
+				counterclockwise: false
+				}
+		}));
+		
+		return segments;
+	}
+	
+});
+
+
+/**
  * http://www.w3.org/TR/SVG/shapes.html#PolylineElement
  */
 WB.PolylineShape = WB.PathBasedShape.extend('PolylineShape', {

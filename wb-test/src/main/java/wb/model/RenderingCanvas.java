@@ -57,6 +57,9 @@ public class RenderingCanvas implements Canvas {
 	}
 
 	private Point current() {
+		if (this.current == null) {
+			return this.current;
+		}
 		return toLocalPoint(this.current);
 	}
 
@@ -106,14 +109,14 @@ public class RenderingCanvas implements Canvas {
 		int y = di(cy - r);
 		int width = di(r * 2);
 		int height = di(r * 2);
-		int startAngle = di(sAngle);
+		int startAngle = di(Geom.grad(sAngle));
 		double da = eAngle - sAngle;
 		if (da > 0 && counterclockwise) {
 			da = da - Geom.PI_2;
 		} else if (da < 0 && !counterclockwise) {
 			da = Geom.PI_2 + da;
 		}
-		int arcAngle = di(da);
+		int arcAngle = - di(Geom.grad(da));
 		
 		this.graphics.drawArc(x, y, width, height, startAngle, arcAngle);
 	}

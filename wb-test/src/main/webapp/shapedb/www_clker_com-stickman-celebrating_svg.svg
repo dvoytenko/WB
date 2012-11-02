@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="480">
+ <title>Stickman celebrating</title>
+ <defs>
+  <linearGradient id="svg_2" x1="0" y1="0" x2="1" y2="1">
+   <stop offset="0" stop-color="#000000"/>
+   <stop offset="1" stop-color="#b2b2b2"/>
+  </linearGradient>
+ </defs>
+ <metadata id="metadata7">image/svg+xml09/06/06PAROPUBLIC DOMAINOPENCLIPART.ORGhttp://www.openclipart.org/PECPECSALSTICKSTICK FIGURESTANDINGPAROTHIS IS AL, HE'S STANDING UP.</metadata>
+ <g>
+  <ellipse fill="none" stroke="#000000" stroke-width="1.979501" stroke-linecap="round" cx="353.000004" cy="192.500001" id="svg_17" rx="14.000001" ry="21.500001"/>
+  <path d="m364.882935,176.727844" id="path3075" stroke-dashoffset="0" stroke-miterlimit="4" stroke-linecap="round" stroke-width="2.35337" stroke="#000000" fill="none"/>
+  <path d="m361.395386,184.470917" id="path4833" stroke-dashoffset="0" stroke-miterlimit="4" stroke-linecap="round" stroke-width="2.075" stroke="#000000" fill="none"/>
+  
+  <path id="path4874" d="m354.706757,219.861282c1.837128,-4.329102 18.064575,-1.901779 42.770203,-42.636139" stroke-miterlimit="4" stroke-width="1.9" stroke="#000000" fill="none"/>
+  <path id="path4876" d="m352.783875,219.250702l-0.59198,-0.110382c-1.651123,-2.184326 -38.517395,-22.809265 -43.051666,-34.809265" stroke-miterlimit="4" stroke-width="1.9" stroke="#000000" fill="none"/>
+  <path id="path4878" d="m355.974884,286.604034c22.523926,27.71106 11.043427,58.731354 21.043427,59.731354" stroke-miterlimit="4" stroke-width="1.9" stroke="#000000" fill="none"/>
+  <path id="path4880" d="m355.473755,286.622772c-31.122131,42.183868 -20.240295,58.662689 -20.65918,61.274536" stroke-miterlimit="4" stroke-width="1.9" stroke="#000000" fill="none"/>
+  <path id="path4882" d="m382.45993,345.304932c8.377472,-1.565979 1.766144,-1.516357 7.286011,1.040619c5.519867,2.556976 -9.732391,5.794281 -13.169281,2.030457c-3.741211,-4.097076 -2.494202,-1.505096 5.88327,-3.071075z" stroke-width="1px" stroke="#000000" fill-rule="evenodd" fill="#000000"/>
+  <path id="path5757" d="m331.592255,351.726929c2.025116,-3.873535 4.692139,-1.644806 2.532135,-4.072113c-4.447021,-4.997253 -12.319611,-5.395111 -13.625397,-3.61084c-1.305786,1.784271 -2.299286,-2.553223 11.093262,7.682953z" stroke-width="1px" stroke="#000000" fill-rule="evenodd" fill="#000000" transform="rotate(157.015, 327.356, 347.401)"/>
+  <path id="path5761" d="m401.356323,167.22287c3.312988,-0.688416 2.124847,-6.470078 2.960815,-3.267303c1.640991,6.287155 16.041504,2.00174 4.089294,6.966675c-11.952209,4.964935 -15.009247,14.095673 -7.05011,-3.699371z" stroke-width="1px" stroke="#000000" fill-rule="evenodd" fill="#000000"/>
+  <path id="path3077" d="m352.959564,214.45015c-0.346924,2.4319 0.089813,3.424896 1.176727,6.459702c6.793396,18.967392 5.475403,68.197693 1.310577,66.02771c-6.405914,-3.33902 3.381592,-50.359009 -1.397369,-66.018311c-0.603027,-1.975708 -1.303467,-4.552505 -1.089935,-6.469101l0,0z" stroke-miterlimit="4" stroke-width="3" stroke="#000000" fill="none"/>
+  <path d="m350.080505,184.610367" id="path4835" stroke-dashoffset="0" stroke-miterlimit="4" stroke-linecap="round" stroke-width="1.979501" stroke="#000000" fill="none"/>
+  <path d="m311.624695,176.998856c0.42392,-9.593369 0.923065,-8.440659 -1.695313,-4.145432c-2.618378,4.295227 -25.149963,-3.277054 -12.443054,5.677673c12.706909,8.954727 13.714447,8.061127 14.138367,-1.532242z" id="path3787" stroke-width="1px" stroke="#000000" fill-rule="evenodd" fill="#000000"/>
+  <title>Layer 1</title>
+  <ellipse fill="none" stroke="#000000" stroke-width="1.979501" stroke-linecap="round" cx="349" cy="189" id="svg_19" rx="3" ry="4"/>
+  <ellipse fill="none" stroke="#000000" stroke-width="1.979501" stroke-linecap="round" cx="358" cy="189" rx="3" ry="4" id="svg_20"/>
+  <path fill="none" stroke="#000000" stroke-linecap="round" id="svg_22" d="m347,199.483749c1.014496,12.839447 14.954041,8.223846 13.194733,-0.483749"/>
+ </g>
+</svg>

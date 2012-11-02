@@ -1,17 +1,8 @@
 {
   "_type": "GroupShape",
   "author": "FEN",
+  "height": 283,
   "id": "openclipart_org-bedroom-eyes-by-fen",
-  "localBounds": {
-    "bottomright": {
-      "x": 223,
-      "y": 283
-    },
-    "topleft": {
-      "x": 0,
-      "y": 0
-    }
-  },
   "shapes": [{
     "_type": "PathShape",
     "pathSegment": {
@@ -2394,5 +2385,6 @@
     "girl"
   ],
   "title": "bedroom eyes",
-  "url": "http://openclipart.org/detail/1166/bedroom-eyes-by-fen"
+  "url": "http://openclipart.org/detail/1166/bedroom-eyes-by-fen",
+  "width": 223
 }

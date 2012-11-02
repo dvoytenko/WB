@@ -353,11 +353,88 @@ var BoardView = Backbone.View.extend({
 	
 	initialize: function() {
 		
+		var canvasWidth = 592;
+		var canvasHeight = 333;
+		
 	    this.stage = new Kinetic.Stage({
 	        container: "Board",
-	        width: 592,
-	        height: 333
+	        width: canvasWidth,
+	        height: canvasHeight
 	      });
+	    
+	    // this.stage.setScale(0.9, 0.9);
+	    // this.stage.setOffset(-100, -100);
+	    // this.stage.setScale(0.2, 0.2);
+	    
+	    function pos(layer, x, y) {
+	    	var tr = layer.getAbsoluteTransform();
+	    	tr.translate(x, y);
+	    	return tr.getTranslation();
+	    }
+	    
+	    this.bgLayer = new Kinetic.Layer({
+	    	drawFunc: function() {
+	    		console.log('_backgroundDraw:');
+	    		console.log(this);
+	    		var canvas = this.getCanvas();
+	    		var context = this.getContext();
+	    		console.log(canvas);
+	    		console.log(context);
+	            var topleft = pos(this, 0, 0);
+	            var topright = pos(this, 700, 0);
+	            var bottomright = pos(this, 700, 400);
+	            var bottomleft = pos(this, 0, 400);
+//	    		console.log(topleft); // 20,20
+//	    		console.log(topright) // 160,20
+//	    		console.log(bottomright); // 160,100
+//	    		console.log(bottomleft); // 20,100
+	    		
+	    		// var startX = topleft.x - canvasWidth;
+	    		
+	    		var offset = this.getStage().getOffset();
+	    		var scale = this.getStage().getScale();
+	    		
+	    		var offsetX = - offset.x * scale.x;
+	    		var offsetY = - offset.y * scale.y;
+	    		var w = canvasWidth * scale.x;
+	    		var h = canvasHeight * scale.y;
+	    		
+	    		var startX = offsetX - w * Math.floor(offsetX / w) - w;
+	    		var startY = offsetY - h * Math.floor(offsetY / h) - h;
+	    		
+	    		console.log(offsetX);
+	    		console.log(offsetY);
+	    		console.log(w);
+	    		console.log(h);
+	    		console.log(startX);
+	    		
+	    		context.save();
+	    		
+	    		context.strokeStyle = '#ddd';
+	    		context.globalAlpha = 0.5;
+	    		context.strokeWidth = 1;
+	    		for (var x = startX; x <= canvasWidth; x += w) {
+	    			context.beginPath();
+	    			context.moveTo(x, 0);
+	    			context.lineTo(x, canvasHeight);
+	    			context.stroke();
+	    		}
+	    		for (var y = startY; y <= canvasHeight; y += h) {
+	    			context.beginPath();
+	    			context.moveTo(0, y);
+	    			context.lineTo(canvasWidth, y);
+	    			context.stroke();
+	    		}
+	    		
+	    		context.strokeStyle = '#aaa';
+	    		context.globalAlpha = 1;
+	    		context.strokeWidth = 2;
+	    		context.strokeRect(offsetX, offsetY, w, h);
+	    		
+	    		context.restore();
+	    	}
+	    });
+	    this.stage.add(this.bgLayer);
 	
 	    this.layer = new Kinetic.Layer();
 	    this.stage.add(this.layer);
@@ -369,7 +446,7 @@ var BoardView = Backbone.View.extend({
 		this.model.bind('remove', this.episodeRemoved, this);
 		this.model.bind('selected', this.episodeSelected, this);
 	},
-
+	
 	render: function() {
 		return this;
 	},

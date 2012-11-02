@@ -1,0 +1,223 @@
+{
+  "_type": "GroupShape",
+  "author": "OCAL",
+  "height": 250,
+  "id": "www_clker_com-11954382541257828096play_symbol_cosmin_humen_01_svg",
+  "shapes": [{
+    "_type": "GroupShape",
+    "shapes": [{
+      "_type": "GroupShape",
+      "shapes": [{
+        "_type": "GroupShape",
+        "shapes": [
+          {
+            "_type": "GroupShape",
+            "shapes": [{
+              "_type": "PathShape",
+              "pathSegment": {
+                "_type": "PathSegment",
+                "segments": [
+                  {
+                    "_type": "MoveToSegment",
+                    "point": {
+                      "x": 6.4397221,
+                      "y": 233.82295
+                    }
+                  },
+                  {
+                    "_type": "ArcToSvgSegment",
+                    "endPoint": {
+                      "x": -25.001276,
+                      "y": 233.82295
+                    },
+                    "largeArcFlag": 1,
+                    "radiusX": 15.720499,
+                    "radiusY": 15.720499,
+                    "sweepFlag": 1,
+                    "xAxisRotation": 0
+                  },
+                  {
+                    "_type": "ArcToSvgSegment",
+                    "endPoint": {
+                      "x": 6.4397221,
+                      "y": 233.82295
+                    },
+                    "largeArcFlag": 1,
+                    "radiusX": 15.720499,
+                    "radiusY": 15.720499,
+                    "sweepFlag": 1,
+                    "xAxisRotation": 0
+                  },
+                  {"_type": "ClosePathSegment"}
+                ]
+              }
+            }],
+            "transform": {
+              "_type": "Transform",
+              "m": [
+                7.951251,
+                0,
+                0,
+                7.951251,
+                211.3069,
+                -1726.741
+              ]
+            }
+          },
+          {
+            "_type": "GroupShape",
+            "shapes": [{
+              "_type": "PathShape",
+              "pathSegment": {
+                "_type": "PathSegment",
+                "segments": [
+                  {
+                    "_type": "MoveToSegment",
+                    "point": {
+                      "x": 6.4397221,
+                      "y": 233.82295
+                    }
+                  },
+                  {
+                    "_type": "ArcToSvgSegment",
+                    "endPoint": {
+                      "x": -25.001276,
+                      "y": 233.82295
+                    },
+                    "largeArcFlag": 1,
+                    "radiusX": 15.720499,
+                    "radiusY": 15.720499,
+                    "sweepFlag": 1,
+                    "xAxisRotation": 0
+                  },
+                  {
+                    "_type": "ArcToSvgSegment",
+                    "endPoint": {
+                      "x": 6.4397221,
+                      "y": 233.82295
+                    },
+                    "largeArcFlag": 1,
+                    "radiusX": 15.720499,
+                    "radiusY": 15.720499,
+                    "sweepFlag": 1,
+                    "xAxisRotation": 0
+                  },
+                  {"_type": "ClosePathSegment"}
+                ]
+              }
+            }],
+            "transform": {
+              "_type": "Transform",
+              "m": [
+                6.384548,
+                0,
+                0,
+                6.384548,
+                196.7667,
+                -1360.409
+              ]
+            }
+          },
+          {
+            "_type": "GroupShape",
+            "shapes": [{
+              "_type": "PathShape",
+              "pathSegment": {
+                "_type": "PathSegment",
+                "segments": [
+                  {
+                    "_type": "MoveToSegment",
+                    "point": {
+                      "x": -9.9752557,
+                      "y": 218.86006
+                    }
+                  },
+                  {
+                    "_type": "LineToSegment",
+                    "point": {
+                      "x": -16.549706,
+                      "y": 222.78209
+                    }
+                  },
+                  {
+                    "_type": "LineToSegment",
+                    "point": {
+                      "x": -23.124156,
+                      "y": 226.70412
+                    }
+                  },
+                  {
+                    "_type": "LineToSegment",
+                    "point": {
+                      "x": -23.233508,
+                      "y": 219.04946
+                    }
+                  },
+                  {
+                    "_type": "LineToSegment",
+                    "point": {
+                      "x": -23.34286,
+                      "y": 211.39481
+                    }
+                  },
+                  {
+                    "_type": "LineToSegment",
+                    "point": {
+                      "x": -16.659058,
+                      "y": 215.12743
+                    }
+                  },
+                  {
+                    "_type": "LineToSegment",
+                    "point": {
+                      "x": -9.9752557,
+                      "y": 218.86006
+                    }
+                  },
+                  {"_type": "ClosePathSegment"}
+                ]
+              }
+            }],
+            "transform": {
+              "_type": "Transform",
+              "m": [
+                7.907459,
+                0,
+                0,
+                8.114994,
+                290.54,
+                -1645.141
+              ]
+            }
+          }
+        ],
+        "transform": {
+          "_type": "Transform",
+          "m": [
+            1,
+            0,
+            0,
+            1,
+            -9.513108,
+            -4.443988
+          ]
+        }
+      }]
+    }]
+  }],
+  "source": "www.clker.com",
+  "title": "Play",
+  "transform": {
+    "_type": "Transform",
+    "m": [
+      1,
+      0,
+      0,
+      1,
+      -3,
+      -3
+    ]
+  },
+  "url": "http://www.clker.com/cliparts/2/2/3/e/11954382541257828096play_symbol_cosmin_humen_01.svg",
+  "width": 250
+}

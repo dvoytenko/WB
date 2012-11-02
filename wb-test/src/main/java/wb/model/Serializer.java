@@ -1,5 +1,11 @@
 package wb.model;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
@@ -14,6 +20,14 @@ import org.json.JSONObject;
 public class Serializer {
 	
 	private SimpleDateFormat df;
+
+	public void toJson(Object obj, File targetFile) throws IOException, JSONException {
+		JSONObject js = (JSONObject) toJson(obj);
+		Writer writer = new BufferedWriter(new OutputStreamWriter(
+				new FileOutputStream(targetFile), "UTF-8"));
+		writer.write(js.toString(2));
+		writer.close();
+	}
 
 	@SuppressWarnings("rawtypes")
 	public Object toJson(Object obj) throws JSONException {

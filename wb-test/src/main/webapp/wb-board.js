@@ -117,6 +117,13 @@ WB.Board = WB.Class.extend('Board', {
 		});
 	},
 	
+	withRate: function(rate, runnable) {
+		var oldVelocity = this.baseVelocity;
+		this.baseVelocity = oldVelocity * rate;
+		runnable();
+		this.baseVelocity = oldVelocity;
+	},
+	
 	withTr: function(transform, runnable) {
 		if (transform) {
 			var pane1 = this.commitPane;
@@ -141,6 +148,11 @@ WB.Board = WB.Class.extend('Board', {
 				this._state[k] = state[k];
 			}
 		}
+	},
+	
+	resetPosition: function() {
+		// TODO smoothly move
+		this.state({position: {x: 10, y: 390}});
 	},
 
 	beforeFrame: function() {
@@ -264,8 +276,7 @@ WB.BoardAnimation = WB.Class.extend('BoardAnimation', {
 		this.board.animationPane._clearCanvas();
 		this.board.state({height: 1});
 		
-		// TODO smoothly move
-		this.board.state({position: {x: 10, y: 390}});
+		this.board.resetPosition();
 		
 		this.board.afterFrame();
 		console.log('animation stopped');

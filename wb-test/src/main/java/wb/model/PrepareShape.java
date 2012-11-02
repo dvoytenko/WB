@@ -3,12 +3,9 @@ package wb.model;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.io.Reader;
-import java.io.Writer;
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -20,7 +17,6 @@ import org.apache.batik.transcoder.TranscoderOutput;
 import org.apache.batik.transcoder.image.ImageTranscoder;
 import org.apache.batik.transcoder.image.PNGTranscoder;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import wb.openclipart.OpenClipArtSource;
 import wb.util.IoHelper;
@@ -82,14 +78,11 @@ public class PrepareShape {
 
 		// construct shape
 		Shape sourceShape = new SvgParser().parse(svgFile);
-		GroupShape shape;
-		if (sourceShape instanceof GroupShape) {
-			shape = (GroupShape) sourceShape;
-		} else {
-			shape = new GroupShape();
-			shape.shapes.add(sourceShape);
-		}
+
+		// prepare shape
+		GroupShape shape = prepareShape(sourceShape);
 		
+		// meta data
 		shape.id = shapeId;
 		shape.source = meta.source;
 		shape.url = meta.url;
@@ -107,9 +100,6 @@ public class PrepareShape {
 			IoHelper.readFile(new URL(meta.thumbUrl), 
 					new File(dbDir, shapeId + "-thumb.png"));
 		}
-		
-		// measure shape
-		measureShape(shape);
 		
 		// save converted image
 		saveShapeImage(shape, new File(dbDir, shapeId + ".png"),
@@ -164,21 +154,39 @@ public class PrepareShape {
 		return sb.toString();
 	}
 
-	public static void measureShape(GroupShape shape) {
+	public static GroupShape prepareShape(Shape sourceShape) {
 		
-		if (shape.localBounds != null) {
-			return;
+		GroupShape result;
+		if (sourceShape instanceof GroupShape) {
+			result = (GroupShape) sourceShape;
+		} else {
+			result = new GroupShape();
+			result.shapes.add(sourceShape);
+		}
+
+		// bounds
+		Bounds bounds;
+		{
+			MeasuringCanvas canvas = new MeasuringCanvas();
+			Pane pane = new Pane(canvas, new Transform());
+			result.draw(pane);
+			bounds = canvas.getBounds();
+			System.out.println("Bounds: " + bounds);
 		}
 		
-		MeasuringCanvas canvas = new MeasuringCanvas();
+		if (!Geom.almostZero(bounds.topleft.x, 1e-3) ||
+				!Geom.almostZero(bounds.topleft.y, 1e-3)) {
+			GroupShape group = new GroupShape();
+			group.shapes.add(result);
+			group.transform = new Transform().translate(
+					-bounds.topleft.x, -bounds.topleft.y);
+			result = group;
+		}
 		
-		Pane pane = new Pane(canvas, new Transform());
+		result.width = Math.abs(bounds.bottomright.x - bounds.topleft.x);
+		result.height = Math.abs(bounds.bottomright.y - bounds.topleft.y);
 		
-		shape.draw(pane);
-		
-		Bounds bounds = canvas.getBounds();
-		shape.localBounds = bounds;
-		System.out.println("Bounds: " + bounds);
+		return result;
 	}
 
 	public static void saveShapeImage(GroupShape shape, File targetFile, 
@@ -190,13 +198,13 @@ public class PrepareShape {
 		RenderingCanvas canvas = new RenderingCanvas(image.createGraphics());
 		
 		Transform tr = new Transform();
-		if (shape.localBounds != null) {
+		if (shape.width != null) {
 			
 			// scale
 			double dWidth = width;
 			double dHeight = height;
-			double lWidth = Math.abs(shape.localBounds.bottomright.x - shape.localBounds.topleft.x);
-			double lHeight = Math.abs(shape.localBounds.bottomright.y - shape.localBounds.topleft.y);
+			double lWidth = shape.width;
+			double lHeight = shape.height;
 			double scaleX = 1.0;
 			double scaleY = 1.0;
 			if (Math.abs(dWidth - lWidth) > 1e-2) {
@@ -208,10 +216,6 @@ public class PrepareShape {
 			double scale = Math.min(scaleX, scaleY);
 			tr.scale(scale, scale);
 
-			// compensate
-			tr.translate(-shape.localBounds.topleft.x, 
-					-shape.localBounds.topleft.y);
-			
 			// center
 			double dx = (dWidth - lWidth * scale) / 2;
 			double dy = (dHeight - lHeight * scale) / 2;
@@ -250,15 +254,12 @@ public class PrepareShape {
 	    ImageIO.write(image, "png", targetFile);
 	}
 
-	private static void saveShape(GroupShape shape, File targetFile) 
+	public static void saveShape(GroupShape shape, File targetFile) 
 			throws IOException, JSONException {
-		JSONObject js = (JSONObject) new Serializer().toJson(shape);
-		Writer writer = new OutputStreamWriter(new FileOutputStream(targetFile), "UTF-8");
-		writer.write(js.toString(2));
-		writer.close();
+		new Serializer().toJson(shape, targetFile);
 	}
 
-	private static void saveMeta(GroupShape shape, File targetFile) 
+	public static void saveMeta(GroupShape shape, File targetFile) 
 			throws JSONException, IOException {
 		ShapeMeta meta = new ShapeMeta();
 		meta.id = shape.id;
@@ -273,10 +274,7 @@ public class PrepareShape {
 			meta.tags.addAll(shape.tags);
 		}
 		
-		JSONObject js = (JSONObject) new Serializer().toJson(meta);
-		Writer writer = new OutputStreamWriter(new FileOutputStream(targetFile), "UTF-8");
-		writer.write(js.toString(2));
-		writer.close();
+		new Serializer().toJson(meta, targetFile);
 	}
 
 	private static class BufferedImageTranscoder extends ImageTranscoder {
@@ -323,13 +321,7 @@ public class PrepareShape {
 		
 		// construct shape
 		Shape sourceShape = meta.shape;
-		GroupShape shape;
-		if (sourceShape instanceof GroupShape) {
-			shape = (GroupShape) sourceShape;
-		} else {
-			shape = new GroupShape();
-			shape.shapes.add(sourceShape);
-		}
+		GroupShape shape = prepareShape(sourceShape);
 
 		shape.id = shapeId;
 		shape.source = meta.source;
@@ -345,9 +337,6 @@ public class PrepareShape {
 		saveSvgImage(svgFile, new File(dbDir, shapeId + "-orig.png"), 
 				300, 300);
 
-		// measure shape
-		measureShape(shape);
-		
 		// save converted image
 		saveShapeImage(shape, new File(dbDir, shapeId + ".png"),
 				200, 200);

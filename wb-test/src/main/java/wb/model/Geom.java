@@ -20,14 +20,22 @@ public class Geom {
 		return start.move(dx, dy);
 	}
 
-	public static double rad(double degree) {
-		return PI_2 * degree / 360; 
+	public static double rad(double grad) {
+		return PI_2 * grad / 360; 
+	}
+
+	public static double grad(double rad) {
+		return rad * 360 / PI_2; 
 	}
 
 	public static double distance(Point p1, Point p2) {
 		double dx = p1.x - p2.x;
 		double dy = p1.y - p2.y;
 		return Math.sqrt(dx * dx + dy * dy);
+	}
+
+	public static boolean almostZero(double v, double eps) {
+		return Math.abs(v) <= eps;
 	}
 	
 }

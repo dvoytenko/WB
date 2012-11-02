@@ -201,6 +201,8 @@
 		<a class="AddALine">Add a line</a>
 		<span> | </span>
 		<a class="AddAText">Add a text</a>
+		<span> | </span>
+		<a class="AMove">Move/Zoom</a>
 	</div>
 
 	<div id="Editor">
@@ -378,6 +380,15 @@
 			
 			episodeListModel.add(episode);
 			episode.select();
+		});
+
+		$('a.AMove').click(function() {
+			
+			// boardView.zoomMove(0.2, 0.2, -100, -100);
+			var stage = boardView.stage;
+			stage.setOffset(-100, -100);
+			stage.setScale(0.2, 0.2);
+			stage.draw();
 		});
 		
 	</script>

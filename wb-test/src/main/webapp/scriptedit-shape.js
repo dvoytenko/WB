@@ -204,12 +204,16 @@ var BoardShapeEditable = Kinetic.Group.extend({
 			var dHeight = currSize.height;
 			width = dWidth;
 			height = dHeight;
-			if (!shape.localBounds) {
-				shape.localBounds = this.calcLocalBounds(shape);
+			if (!shape.width) {
+				var size = this.calcSize(shape);
+				if (size) {
+					shape.width = size.width;
+					shape.height = size.height;
+				}
 			}
-			if (shape.localBounds) {
-				width = Math.abs(shape.localBounds.bottomright.x - shape.localBounds.topleft.x);
-				height = Math.abs(shape.localBounds.bottomright.y - shape.localBounds.topleft.y);
+			if (shape.width) {
+				width = shape.width;
+				height = shape.height;
 				// w/h: 200 vs 295; 200 vs 132
 				// console.log('w/h: ' + dWidth + ' vs ' + width + '; ' + dHeight + ' vs ' + height);
 				var scaleX = 1.0;
@@ -249,7 +253,7 @@ var BoardShapeEditable = Kinetic.Group.extend({
 		}
 	},
 	
-	calcLocalBounds: function(shape) {
+	calcSize: function(shape) {
 		return null;
 	},
 	
@@ -450,11 +454,11 @@ var BoardShape = Kinetic.Shape.extend({
 		if (shape) {
 			var tr = new WB.Transform();
 			//tr.translate(this.attrs.x, this.attrs.y);
-			if (shape.localBounds) {
+			if (shape.width) {
 				var dWidth = this.attrs.width;
 				var dHeight = this.attrs.height;
-				var lWidth = Math.abs(shape.localBounds.bottomright.x - shape.localBounds.topleft.x);
-				var lHeight = Math.abs(shape.localBounds.bottomright.y - shape.localBounds.topleft.y);
+				var lWidth = shape.width;
+				var lHeight = shape.height;
 				var scaleX = 1.0;
 				var scaleY = 1.0;
 				if (Math.abs(dWidth - lWidth) > 1e-2) {
@@ -464,10 +468,6 @@ var BoardShape = Kinetic.Shape.extend({
 					scaleY = dHeight / lHeight;
 				}
 				tr.scale(scaleX, scaleY);
-
-				// compensate
-				tr.translate(-shape.localBounds.topleft.x, 
-						-shape.localBounds.topleft.y);
 
 				// center
 				var dx = (dWidth - lWidth * scaleX) / 2;

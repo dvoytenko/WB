@@ -1,17 +1,8 @@
 {
   "_type": "GroupShape",
   "author": "johnny_automatic",
+  "height": 104,
   "id": "openclipart_org-fire-tower-by-johnny_automatic",
-  "localBounds": {
-    "bottomright": {
-      "x": 63,
-      "y": 104
-    },
-    "topleft": {
-      "x": 0,
-      "y": 0
-    }
-  },
   "shapes": [{
     "_type": "PathShape",
     "pathSegment": {
@@ -280,5 +271,6 @@
     "media"
   ],
   "title": "fire tower",
-  "url": "http://openclipart.org/detail/11580/fire-tower-by-johnny_automatic"
+  "url": "http://openclipart.org/detail/11580/fire-tower-by-johnny_automatic",
+  "width": 63
 }

@@ -1,5 +1,7 @@
 package wb.model;
 
+import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
@@ -17,10 +19,19 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import wb.util.IoHelper;
+
 public class Parser {
 
 	private SimpleDateFormat df;
 	
+	@SuppressWarnings("unchecked")
+	public <T> T fromJsonFile(File file, Class<T> type) throws IOException, JSONException {
+		String s = IoHelper.readText(file, "UTF-8");
+		JSONObject js = new JSONObject(s);
+		return (T) fromJson(js, type);
+	}
+
 	public Object fromJson(Object js) throws JSONException {
 		return fromJson(js, null);
 	}

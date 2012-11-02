@@ -1,17 +1,8 @@
 {
   "_type": "GroupShape",
   "author": "Gioppino",
+  "height": 465,
   "id": "openclipart_org-slamdunk-outline-by-gioppino",
-  "localBounds": {
-    "bottomright": {
-      "x": 225,
-      "y": 465
-    },
-    "topleft": {
-      "x": 0,
-      "y": 0
-    }
-  },
   "shapes": [{
     "_type": "GroupShape",
     "shapes": [{
@@ -1069,13 +1060,14 @@
     "basketball",
     "svg",
     "clip art",
-    "slamdunk",
-    "sport",
     "image",
+    "sport",
+    "slamdunk",
     "outline",
-    "public domain",
-    "media"
+    "media",
+    "public domain"
   ],
   "title": "slamdunk outline",
-  "url": "http://openclipart.org/detail/5642/slamdunk-outline-by-gioppino"
+  "url": "http://openclipart.org/detail/5642/slamdunk-outline-by-gioppino",
+  "width": 225
 }

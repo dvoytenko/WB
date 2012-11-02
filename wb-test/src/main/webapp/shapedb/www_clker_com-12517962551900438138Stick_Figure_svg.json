@@ -1,0 +1,326 @@
+{
+  "_type": "GroupShape",
+  "author": "Mohamed Ibrahim",
+  "height": 206,
+  "id": "www_clker_com-12517962551900438138Stick_Figure_svg",
+  "shapes": [{
+    "_type": "GroupShape",
+    "shapes": [{
+      "_type": "GroupShape",
+      "shapes": [{
+        "_type": "GroupShape",
+        "shapes": [
+          {
+            "_type": "PathShape",
+            "pathSegment": {
+              "_type": "PathSegment",
+              "segments": [
+                {
+                  "_type": "MoveToSegment",
+                  "point": {
+                    "x": 289.70588,
+                    "y": 466.47983
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 345.58824,
+                    "y": 482.95042
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 397.05882,
+                    "y": 465.59748
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "_type": "PathShape",
+            "pathSegment": {
+              "_type": "PathSegment",
+              "segments": [
+                {
+                  "_type": "MoveToSegment",
+                  "point": {
+                    "x": 305,
+                    "y": 576.18571
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 345.88235,
+                    "y": 515.89159
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 377.64706,
+                    "y": 575.59748
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "_type": "PathShape",
+            "pathSegment": {
+              "_type": "PathSegment",
+              "segments": [
+                {
+                  "_type": "MoveToSegment",
+                  "point": {
+                    "x": 345.9104,
+                    "y": 516.00089
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 345.9104,
+                    "y": 451.63338
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "_type": "GroupShape",
+            "shapes": [{
+              "_type": "PathShape",
+              "pathSegment": {
+                "_type": "PathSegment",
+                "segments": [
+                  {
+                    "_type": "MoveToSegment",
+                    "point": {
+                      "x": 361.49863,
+                      "y": 429.93896
+                    }
+                  },
+                  {
+                    "_type": "ArcToSvgSegment",
+                    "endPoint": {
+                      "x": 286.93332,
+                      "y": 429.93896
+                    },
+                    "largeArcFlag": 1,
+                    "radiusX": 37.282658,
+                    "radiusY": 34.34148,
+                    "sweepFlag": 1,
+                    "xAxisRotation": 0
+                  },
+                  {
+                    "_type": "ArcToSvgSegment",
+                    "endPoint": {
+                      "x": 361.49863,
+                      "y": 429.93896
+                    },
+                    "largeArcFlag": 1,
+                    "radiusX": 37.282658,
+                    "radiusY": 34.34148,
+                    "sweepFlag": 1,
+                    "xAxisRotation": 0
+                  },
+                  {"_type": "ClosePathSegment"}
+                ]
+              }
+            }],
+            "transform": {
+              "_type": "Transform",
+              "m": [
+                1,
+                0,
+                0,
+                1,
+                22.352941,
+                -12.411765
+              ]
+            }
+          },
+          {
+            "_type": "GroupShape",
+            "shapes": [{
+              "_type": "PathShape",
+              "pathSegment": {
+                "_type": "PathSegment",
+                "segments": [
+                  {
+                    "_type": "MoveToSegment",
+                    "point": {
+                      "x": 330.1751,
+                      "y": 429.93896
+                    }
+                  },
+                  {
+                    "_type": "ArcToSvgSegment",
+                    "endPoint": {
+                      "x": 318.25684,
+                      "y": 429.93896
+                    },
+                    "largeArcFlag": 1,
+                    "radiusX": 5.9591279,
+                    "radiusY": 5.9591279,
+                    "sweepFlag": 1,
+                    "xAxisRotation": 0
+                  },
+                  {
+                    "_type": "ArcToSvgSegment",
+                    "endPoint": {
+                      "x": 330.1751,
+                      "y": 429.93896
+                    },
+                    "largeArcFlag": 1,
+                    "radiusX": 5.9591279,
+                    "radiusY": 5.9591279,
+                    "sweepFlag": 1,
+                    "xAxisRotation": 0
+                  },
+                  {"_type": "ClosePathSegment"}
+                ]
+              }
+            }],
+            "transform": {
+              "_type": "Transform",
+              "m": [
+                1,
+                0,
+                0,
+                1,
+                12.880335,
+                -19.248572
+              ]
+            }
+          },
+          {
+            "_type": "GroupShape",
+            "shapes": [{
+              "_type": "PathShape",
+              "pathSegment": {
+                "_type": "PathSegment",
+                "segments": [
+                  {
+                    "_type": "MoveToSegment",
+                    "point": {
+                      "x": 330.1751,
+                      "y": 429.93896
+                    }
+                  },
+                  {
+                    "_type": "ArcToSvgSegment",
+                    "endPoint": {
+                      "x": 318.25684,
+                      "y": 429.93896
+                    },
+                    "largeArcFlag": 1,
+                    "radiusX": 5.9591279,
+                    "radiusY": 5.9591279,
+                    "sweepFlag": 1,
+                    "xAxisRotation": 0
+                  },
+                  {
+                    "_type": "ArcToSvgSegment",
+                    "endPoint": {
+                      "x": 330.1751,
+                      "y": 429.93896
+                    },
+                    "largeArcFlag": 1,
+                    "radiusX": 5.9591279,
+                    "radiusY": 5.9591279,
+                    "sweepFlag": 1,
+                    "xAxisRotation": 0
+                  },
+                  {"_type": "ClosePathSegment"}
+                ]
+              }
+            }],
+            "transform": {
+              "_type": "Transform",
+              "m": [
+                1,
+                0,
+                0,
+                1,
+                32.439159,
+                -19.248572
+              ]
+            }
+          },
+          {
+            "_type": "GroupShape",
+            "shapes": [{
+              "_type": "PathShape",
+              "pathSegment": {
+                "_type": "PathSegment",
+                "segments": [
+                  {
+                    "_type": "MoveToSegment",
+                    "point": {
+                      "x": 344.35227,
+                      "y": 455.7106
+                    }
+                  },
+                  {
+                    "_type": "ArcToSvgSegment",
+                    "endPoint": {
+                      "x": 304.35677,
+                      "y": 455.96005
+                    },
+                    "largeArcFlag": 0,
+                    "radiusX": 31.228014,
+                    "radiusY": 33.717564,
+                    "sweepFlag": 1,
+                    "xAxisRotation": 0
+                  }
+                ]
+              }
+            }],
+            "transform": {
+              "_type": "Transform",
+              "m": [
+                0.9995118,
+                -0.031243063,
+                0.031243063,
+                0.9995118,
+                9.3957979,
+                -16.053504
+              ]
+            }
+          }
+        ],
+        "transform": {
+          "_type": "Transform",
+          "m": [
+            1,
+            0,
+            0,
+            1,
+            -258.38235,
+            -359.68572
+          ]
+        }
+      }]
+    }]
+  }],
+  "source": "www.clker.com",
+  "title": "Stick Figure Smiley",
+  "transform": {
+    "_type": "Transform",
+    "m": [
+      1,
+      0,
+      0,
+      1,
+      -31,
+      -11
+    ]
+  },
+  "url": "http://www.clker.com/cliparts/b/7/5/b/12517962551900438138Stick_Figure.svg",
+  "width": 108
+}

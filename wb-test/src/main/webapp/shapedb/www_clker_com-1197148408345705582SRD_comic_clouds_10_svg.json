@@ -1,0 +1,166 @@
+{
+  "_type": "GroupShape",
+  "author": "OCAL",
+  "height": 89,
+  "id": "www_clker_com-1197148408345705582SRD_comic_clouds_10_svg",
+  "shapes": [{
+    "_type": "GroupShape",
+    "shapes": [{
+      "_type": "GroupShape",
+      "shapes": [{
+        "_type": "PathShape",
+        "pathSegment": {
+          "_type": "PathSegment",
+          "segments": [
+            {
+              "_type": "MoveToSegment",
+              "point": {
+                "x": 2661.3377,
+                "y": 1493.7011
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 2652.0835,
+                "y": 1492.167
+              },
+              "cp2": {
+                "x": 2642.5188,
+                "y": 1491.6618
+              },
+              "endPoint": {
+                "x": 2633.109,
+                "y": 1492.3688
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 2632.7952,
+                "y": 1492.392
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 2594.7173,
+                "y": 1495.3618
+              },
+              "cp2": {
+                "x": 2573.6379,
+                "y": 1517.2302
+              },
+              "endPoint": {
+                "x": 2585.6481,
+                "y": 1541.3028
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 2597.6918,
+                "y": 1565.4423
+              },
+              "cp2": {
+                "x": 2638.5065,
+                "y": 1582.6943
+              },
+              "endPoint": {
+                "x": 2676.7432,
+                "y": 1579.8214
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 2701.3879,
+                "y": 1577.9698
+              },
+              "cp2": {
+                "x": 2718.9767,
+                "y": 1568.2086
+              },
+              "endPoint": {
+                "x": 2725.1443,
+                "y": 1555.0365
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 2791.7326,
+                "y": 1557.1082
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 2725.2536,
+                "y": 1533.2176
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 2724.9345,
+                "y": 1532.4462
+              },
+              "cp2": {
+                "x": 2724.5726,
+                "y": 1531.6608
+              },
+              "endPoint": {
+                "x": 2724.1852,
+                "y": 1530.8842
+              }
+            },
+            {
+              "_type": "CubicSegment",
+              "cp1": {
+                "x": 2715.1054,
+                "y": 1512.6852
+              },
+              "cp2": {
+                "x": 2689.6877,
+                "y": 1498.4007
+              },
+              "endPoint": {
+                "x": 2661.3377,
+                "y": 1493.7011
+              }
+            },
+            {"_type": "ClosePathSegment"}
+          ]
+        }
+      }],
+      "transform": {
+        "_type": "Transform",
+        "m": [
+          1,
+          0,
+          0,
+          1,
+          -2580.1389,
+          -1489.9182
+        ]
+      }
+    }]
+  }],
+  "source": "www.clker.com",
+  "tags": [],
+  "title": "Callout",
+  "transform": {
+    "_type": "Transform",
+    "m": [
+      1,
+      0,
+      0,
+      1,
+      -2,
+      -2
+    ]
+  },
+  "url": "http://www.clker.com/cliparts/c/4/7/f/1197148408345705582SRD_comic_clouds_10.svg",
+  "width": 210
+}

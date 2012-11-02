@@ -52,6 +52,12 @@ WB.DrawTextEpisode = WB.Episode.extend('DrawTextEpisode', {
 	position: null,
 
 	fontHeight: null,
+	
+	shape: null,
+	
+	width: null,
+	
+	height: null,
 
 	init: function(opts) {
 		if (opts) {
@@ -83,12 +89,24 @@ WB.TextEpisodeAnimation = WB.Animation.extend('TextEpisodeAnimation', {
 	start: function(board) {
 		this.board = board;
 		
-		var shape = new WB.TextShape({
-			text: this.textEpisode.text,
-			fontHeight: this.textEpisode.fontHeight,
-			startPoint: this.textEpisode.position,
-			font: board.font
-			});
+		var shape = this.textEpisode.shape;
+		if (shape) {
+			var group = new WB.GroupShape();
+			if (this.textEpisode.realWidth) {
+				if (this.textEpisode.width) {
+					// TODO xxx
+					group.transform = null;
+					group.shapes = [shape];
+				}
+			}
+		} else {
+			shape = new WB.TextShape({
+				text: this.textEpisode.text,
+				fontHeight: this.textEpisode.fontHeight,
+				startPoint: this.textEpisode.position,
+				font: board.font
+				});
+		}
 		
 		this.animation = shape.createAnimation();
 		this.animation.start(board);

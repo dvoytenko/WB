@@ -1,17 +1,8 @@
 {
   "_type": "GroupShape",
   "author": "FEN",
+  "height": 283,
   "id": "openclipart_org-carl-by-fen",
-  "localBounds": {
-    "bottomright": {
-      "x": 251,
-      "y": 283
-    },
-    "topleft": {
-      "x": 0,
-      "y": 0
-    }
-  },
   "shapes": [{
     "_type": "PathShape",
     "pathSegment": {
@@ -2196,5 +2187,6 @@
     "senior"
   ],
   "title": "Carl",
-  "url": "http://openclipart.org/detail/1168/carl-by-fen"
+  "url": "http://openclipart.org/detail/1168/carl-by-fen",
+  "width": 251
 }

@@ -8,43 +8,19 @@ var DrawLineEpisodeView = BaseEpisodeView.extend({
 	
 	className: "Episode DrawLineEpisode",
 	
-	render: function() {
-		var model = this.model.toJSON();
-		// console.log('render: ' + JSON.stringify(model));
-		
-		this.$el.html(
-				'<div class="Icon"><img/></div>' + 
-				'<div class="Desc"></div>' + 
-				'<div class="PosSize"></div>' + 
-				'<div style="clear: both;"></div>');
-		
-		this.$el.find('div.Icon img').attr('src', 'images/arrow_right.png');
-		this.$el.find('div.Desc').text('Line');
-
-		var point1 = model.point1;
-		var point2 = model.point2;
+	modelIconPath: function() {
+		return 'images/arrow_right.png';
+	},
+	
+	modelPosSize: function() {
+		var point1 = this.model.get('point1');
+		var point2 = this.model.get('point2');
 		var x1 = point1 ? point1.x : null;
 		var y1 = point1 ? point1.y : null;
 		var x2 = point2 ? point2.x : null;
 		var y2 = point2 ? point2.y : null;
-		this.$el.find('div.PosSize').text('point1: ' + x1 + ', ' + y1
-				+ '; point2: ' + x2 + ', ' + y2);
-		
-		return this;
-	},
-	
-	changed: function(model, event) {
-		if (event.changes.point1 || 
-				event.changes.point2) {
-			var point1 = model.get('point1');
-			var point2 = model.get('point2');
-			var x1 = point1 ? point1.x : null;
-			var y1 = point1 ? point1.y : null;
-			var x2 = point2 ? point2.x : null;
-			var y2 = point2 ? point2.y : null;
-			this.$el.find('div.PosSize').text('point1: ' + x1 + ', ' + y1
-					+ '; point2: ' + x2 + ', ' + y2);
-		}
+		return 'p1: ' + x1 + ', ' + y1
+			+ '; p2: ' + x2 + ', ' + y2;
 	}
 	
 });

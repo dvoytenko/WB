@@ -1,17 +1,8 @@
 {
   "_type": "GroupShape",
   "author": "molumen",
+  "height": 543,
   "id": "openclipart_org-plane-silhouet-by-molumen",
-  "localBounds": {
-    "bottomright": {
-      "x": 673,
-      "y": 543
-    },
-    "topleft": {
-      "x": 0,
-      "y": 0
-    }
-  },
   "shapes": [{
     "_type": "GroupShape",
     "shapes": [{
@@ -1610,10 +1601,10 @@
     "tail",
     "skies",
     "737",
-    "traffic",
     "sky",
-    "landing",
+    "traffic",
     "plane",
+    "landing",
     "png",
     "airlines",
     "clip art",
@@ -1623,5 +1614,6 @@
     "reactors"
   ],
   "title": "plane silhouet",
-  "url": "http://openclipart.org/detail/850/plane-silhouet-by-molumen"
+  "url": "http://openclipart.org/detail/850/plane-silhouet-by-molumen",
+  "width": 673
 }
