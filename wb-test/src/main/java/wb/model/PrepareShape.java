@@ -70,6 +70,11 @@ public class PrepareShape {
 		System.out.println("id: " + shapeId);
 		
 		final File dbDir = new File("src/main/webapp/shapedb");
+		final File fontsDir = new File("src/main/webapp/fonts");
+		
+		PrepareScript prepareScript = new PrepareScript();
+		prepareScript.setShapesFolder(dbDir);
+		prepareScript.setFontsFolder(fontsDir);
 		
 		final File svgFile = new File(dbDir, shapeId + ".svg");
 		
@@ -101,15 +106,15 @@ public class PrepareShape {
 					new File(dbDir, shapeId + "-thumb.png"));
 		}
 		
-		// save converted image
-		saveShapeImage(shape, new File(dbDir, shapeId + ".png"),
-				200, 200);
-		
 		// save shape
 		saveShape(shape, new File(dbDir, shapeId + ".json"));
 		
 		// save meta
 		saveMeta(shape, new File(dbDir, shapeId + "-meta.json"));
+
+		// save converted image
+		saveShapeImage(prepareScript, shape, new File(dbDir, shapeId + ".png"),
+				200, 200);
 	}
 
 	public static ShapeSource getSource(String shapeUrl) {
@@ -189,8 +194,11 @@ public class PrepareShape {
 		return result;
 	}
 
-	public static void saveShapeImage(GroupShape shape, File targetFile, 
+	public static void saveShapeImage(PrepareScript prepareScript,
+			GroupShape shape, File targetFile, 
 			int width, int height) throws IOException {
+		
+		shape.prepare(prepareScript);
 		
 		BufferedImage image = new BufferedImage(width, height, 
 				BufferedImage.TYPE_INT_ARGB);
@@ -312,7 +320,12 @@ public class PrepareShape {
 		System.out.println("id: " + shapeId);
 
 		final File dbDir = new File("src/main/webapp/shapedb");
+		final File fontsDir = new File("src/main/webapp/fonts");
 
+		PrepareScript prepareScript = new PrepareScript();
+		prepareScript.setShapesFolder(dbDir);
+		prepareScript.setFontsFolder(fontsDir);
+		
 		final File svgFile = new File(dbDir, shapeId + ".svg");
 		if (meta.svgUrl != null) {
 			// download SVG
@@ -337,15 +350,15 @@ public class PrepareShape {
 		saveSvgImage(svgFile, new File(dbDir, shapeId + "-orig.png"), 
 				300, 300);
 
-		// save converted image
-		saveShapeImage(shape, new File(dbDir, shapeId + ".png"),
-				200, 200);
-		
 		// save shape
 		saveShape(shape, new File(dbDir, shapeId + ".json"));
 		
 		// save meta
 		saveMeta(shape, new File(dbDir, shapeId + "-meta.json"));
+
+		// save converted image
+		saveShapeImage(prepareScript, shape, new File(dbDir, shapeId + ".png"),
+				200, 200);
 	}
 	
 }

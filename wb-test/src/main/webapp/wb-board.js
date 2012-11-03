@@ -24,8 +24,6 @@ WB.Board = WB.Class.extend('Board', {
 	
 	urlResolver: null,
 	
-	font: null,
-	
 	showBounds: false,
 	
 	init: function(opts) {
@@ -51,10 +49,6 @@ WB.Board = WB.Class.extend('Board', {
 		}
 		if (opts && opts.pointer) {
 			this.pointer = opts.pointer;
-		}
-		
-		if (opts && opts.font) {
-			this.font = opts.font;
 		}
 		
 		if (opts && opts.baseVelocity) {

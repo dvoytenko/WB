@@ -65,10 +65,10 @@ var BoardTextEditable = BoardShapeEditable.extend({
 	},
 	
 	calcSize: function(shape) {
-		if (!shape.realWidth && !shape.realHeight) {
+		if (!shape.width && !shape.height) {
 			return null;
 		}
-		return {width: shape.realWidth, height: shape.realHeight};
+		return {width: shape.width, height: shape.height};
 	},
 	
 });

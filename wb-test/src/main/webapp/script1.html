@@ -257,24 +257,7 @@
 				}
 			});
 			
-			$.ajax({url: 'fonts/nova_thin_extended.json', contentType: 'application/json'})
-			.done(function(json) {
-				console.log('got data');
-				if (json) {
-					if (json.constructor == String) {
-						json = JSON.parse(json);
-					}
-					console.log(json);
-					
-					var parser = new WB.Parser();
-					var font = parser.parse(json);
-					console.log(font);
-					
-					board.font = font;
-					
-					player.playAny(animable);
-				}
-			});
+			player.playAny(animable);
 		}
 		
 		function playScript() {

@@ -27,7 +27,12 @@ public class PrepareShapeRedo {
 		System.out.println("id: " + shapeId);
 
 		final File dbDir = new File("src/main/webapp/shapedb");
-		
+		final File fontsDir = new File("src/main/webapp/fonts");
+
+		PrepareScript prepareScript = new PrepareScript();
+		prepareScript.setShapesFolder(dbDir);
+		prepareScript.setFontsFolder(fontsDir);
+
 		final File svgFile = new File(dbDir, shapeId + ".svg");
 		
 		// load/convert svg
@@ -49,8 +54,8 @@ public class PrepareShapeRedo {
 		}
 
 		// save converted image
-		PrepareShape.saveShapeImage(shape, new File(dbDir, shapeId + ".png"),
-				200, 200);
+		PrepareShape.saveShapeImage(prepareScript, shape, 
+				new File(dbDir, shapeId + ".png"), 200, 200);
 		
 		// save shape
 		PrepareShape.saveShape(shape, new File(dbDir, shapeId + ".json"));

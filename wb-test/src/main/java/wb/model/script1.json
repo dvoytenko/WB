@@ -97,7 +97,7 @@
 			_type: 'DrawTextEpisode',
 			text: 'Got it?',
 			position: {x: 400, y: 300},
-			fontHeight: 60
+			height: 60
 		},
 		
 		{
@@ -216,49 +216,49 @@
 			_type: 'DrawTextEpisode',
 			text: '2011',
 			position: {x: 900, y: 25},
-			fontHeight: 30
+			height: 30
 		},
 		{
 			_type: 'DrawTextEpisode',
 			text: '2012',
 			position: {x: 970, y: 25},
-			fontHeight: 30
+			height: 30
 		},
 		{
 			_type: 'DrawTextEpisode',
 			text: 'Desktop',
 			position: {x: 750, y: 60},
-			fontHeight: 30
+			height: 30
 		},
 		{
 			_type: 'DrawTextEpisode',
 			text: '30M',
 			position: {x: 900, y: 60},
-			fontHeight: 25
+			height: 25
 		},
 		{
 			_type: 'DrawTextEpisode',
 			text: '25M',
 			position: {x: 980, y: 60},
-			fontHeight: 25
+			height: 25
 		},
 		{
 			_type: 'DrawTextEpisode',
 			text: 'Mobile',
 			position: {x: 750, y: 100},
-			fontHeight: 30
+			height: 30
 		},
 		{
 			_type: 'DrawTextEpisode',
 			text: '15M',
 			position: {x: 900, y: 100},
-			fontHeight: 25
+			height: 25
 		},
 		{
 			_type: 'DrawTextEpisode',
 			text: '45M',
 			position: {x: 980, y: 100},
-			fontHeight: 25
+			height: 25
 		},
 
 
@@ -440,7 +440,7 @@
 			_desc: 'episode 1',
 			text: '(1)',
 			position: {x: 1470, y: 30},
-			fontHeight: 30
+			height: 30
 		},
 
 		{
@@ -513,7 +513,7 @@
 			_desc: 'episode 2',
 			text: '(2)',
 			position: {x: 1470, y: 130},
-			fontHeight: 30
+			height: 30
 		},
 
 		{
@@ -521,7 +521,7 @@
 			_desc: 'episode 2 - text',
 			text: 'Text!',
 			position: {x: 1510, y: 170},
-			fontHeight: 40
+			height: 40
 		},
 
 		
@@ -536,7 +536,7 @@
 			_desc: 'episode 3',
 			text: '(3)',
 			position: {x: 1470, y: 230},
-			fontHeight: 30
+			height: 30
 		},
 
 		{
@@ -561,14 +561,14 @@
 			_type: 'DrawTextEpisode',
 			text: '1 minute = $1',
 			position: {x: 1760, y: 100},
-			fontHeight: 60
+			height: 60
 		},
 
 		{
 			_type: 'DrawTextEpisode',
 			text: 'with our logo in a corner',
 			position: {x: 1760, y: 180},
-			fontHeight: 30
+			height: 30
 		},
 
 		{
@@ -617,7 +617,7 @@
 			_type: 'DrawTextEpisode',
 			text: '$2',
 			position: {x: 2070, y: 40},
-			fontHeight: 60
+			height: 60
 		},
 		
 
@@ -672,7 +672,7 @@
 			_desc: 'WB',
 			text: 'WB',
 			position: {x: 2490, y: 180},
-			fontHeight: 30
+			height: 30
 		},
 
 
@@ -704,13 +704,13 @@
 			_type: 'DrawTextEpisode',
 			text: 'Animation',
 			position: {x: 2180, y: 175},
-			fontHeight: 20
+			height: 20
 		},
 		{
 			_type: 'DrawTextEpisode',
 			text: 'Engine',
 			position: {x: 2180, y: 200},
-			fontHeight: 20
+			height: 20
 		},
 
 
@@ -742,7 +742,7 @@
 			_type: 'DrawTextEpisode',
 			text: 'Gallery',
 			position: {x: 2240, y: 50},
-			fontHeight: 20
+			height: 20
 		},
 
 
@@ -775,7 +775,7 @@
 			_type: 'DrawTextEpisode',
 			text: 'Script Editor',
 			position: {x: 2460, y: 20},
-			fontHeight: 20
+			height: 20
 		},
 
 
@@ -807,7 +807,7 @@
 			_type: 'DrawTextEpisode',
 			text: 'Video Producer',
 			position: {x: 2720, y: 60},
-			fontHeight: 20
+			height: 20
 		},
 
 
@@ -839,7 +839,7 @@
 			_type: 'DrawTextEpisode',
 			text: 'Site',
 			position: {x: 2750, y: 190},
-			fontHeight: 20
+			height: 20
 		},
 
 
@@ -871,7 +871,7 @@
 			_type: 'DrawTextEpisode',
 			text: 'User\'s Projects',
 			position: {x: 2240, y: 330},
-			fontHeight: 20
+			height: 20
 		},
 		
 
@@ -903,7 +903,7 @@
 			_type: 'DrawTextEpisode',
 			text: 'Shopping Cart',
 			position: {x: 2690, y: 330},
-			fontHeight: 20
+			height: 20
 		},
 
 
@@ -930,7 +930,7 @@
 			_type: 'DrawTextEpisode',
 			text: 'Never run out of markers again!',
 			position: {x: 3000, y: 50},
-			fontHeight: 30
+			height: 30
 		},
 
 		{

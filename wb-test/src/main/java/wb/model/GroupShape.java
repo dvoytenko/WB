@@ -25,6 +25,13 @@ public class GroupShape extends Shape {
 	
 	public List<Shape> shapes = new ArrayList<Shape>();
 
+	public void prepare(PrepareScript prepareScript) {
+		super.prepare(prepareScript);
+		for (Shape shape : this.shapes) {
+			shape.prepare(prepareScript);
+		}
+	}
+
 	@Override
 	public void draw(final Pane pane) {
 		pane.withTr(this.transform, new Runnable() {

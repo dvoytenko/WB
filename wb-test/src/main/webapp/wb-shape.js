@@ -1,10 +1,10 @@
 
 
-WB.DrawShapeEpisode = WB.Class.extend('DrawShapeEpisode', {
+/**
+ */
+WB.ShapeEpisodeBase = WB.Episode.extend('ShapeEpisodeBase', {
 	
 	shape: null,
-	
-//	shapeId: null,
 	
 	position: null,
 	
@@ -49,14 +49,22 @@ WB.DrawShapeEpisode = WB.Class.extend('DrawShapeEpisode', {
 	},
 	
 	createAnimation: function() {
-		return new WB.DrawShapeEpisodeAnimation(this._shape().createAnimation(),
+		return new WB.ShapeEpisodeAnimation(this._shape().createAnimation(),
 				this.rate);
 	}
 	
 });
 
 
-WB.DrawShapeEpisodeAnimation = WB.Animation.extend('DrawShapeEpisodeAnimation', {
+/**
+ */
+WB.DrawShapeEpisode = WB.ShapeEpisodeBase.extend('DrawShapeEpisode', {
+});
+
+
+/**
+ */
+WB.ShapeEpisodeAnimation = WB.Animation.extend('ShapeEpisodeAnimation', {
 	
 	animation: null,
 	
@@ -97,6 +105,8 @@ WB.DrawShapeEpisodeAnimation = WB.Animation.extend('DrawShapeEpisodeAnimation', 
 });
 
 
+/**
+ */
 WB.Shape = WB.Class.extend('Shape', {
 	
 	draw: function(pane) {
@@ -109,6 +119,8 @@ WB.Shape = WB.Class.extend('Shape', {
 });
 
 
+/**
+ */
 WB.ShapeMeta = WB.Class.extend('ShapeMeta', {
 	
 	init: function(opts) {
@@ -122,6 +134,8 @@ WB.ShapeMeta = WB.Class.extend('ShapeMeta', {
 });
 
 
+/**
+ */
 WB.GroupShape = WB.Shape.extend('GroupShape', {
 	
 	transform: null,

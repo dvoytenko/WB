@@ -32,6 +32,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
 import wb.model.GroupShape;
+import wb.model.PrepareScript;
 import wb.model.PrepareShape;
 import wb.model.ShapeMeta;
 import wb.model.ShapeSource;
@@ -137,7 +138,9 @@ public class ShapeDbController {
 			File file;
 			try {
 				file = File.createTempFile("shape", ".png", tempDir);
-				PrepareShape.saveShapeImage(shape, file, 300, 300);
+				PrepareScript prepareScript = new PrepareScript();
+				PrepareShape.saveShapeImage(prepareScript, shape, 
+						file, 300, 300);
 			} catch (IOException e) {
 				throw new RuntimeException(e);
 			}

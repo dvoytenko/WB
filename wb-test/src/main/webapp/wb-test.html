@@ -65,7 +65,6 @@
 		<a href="javascript:void(0);" onclick="speech1()">Speech 1</a>
 		<a href="javascript:void(0);" onclick="eraser1()">Eraser 1</a>
 		<a href="javascript:void(0);" onclick="pan1()">Pan 1</a>
-		<a href="javascript:void(0);" onclick="pan2()">Pan 2</a>
 
 		<br/>
 		<a href="javascript:void(0);" onclick="script1()">Script 1</a>
@@ -358,24 +357,7 @@
 			var player = new WB.Player({board: board, framer: opts.framer});
 			bindPlayer(player);
 
-			$.ajax({url: 'fonts/nova_thin_extended.json', contentType: 'application/json'})
-			.done(function(json) {
-				console.log('got data');
-				if (json) {
-					if (json.constructor == String) {
-						json = JSON.parse(json);
-					}
-					console.log(json);
-					
-					var parser = new WB.Parser();
-					var font = parser.parse(json);
-					console.log(font);
-					
-					board.font = font;
-					
-					player.playAny(animable);
-				}
-			});
+			player.playAny(animable);
 		}
 		
 		function playScript(scriptId) {
@@ -490,26 +472,9 @@
 				}
 			});
 
-			$.ajax({url: 'fonts/nova_thin_extended.json', contentType: 'application/json'})
-			.done(function(json) {
-				console.log('got data');
-				if (json) {
-					if (json.constructor == String) {
-						json = JSON.parse(json);
-					}
-					console.log(json);
-					
-					var parser = new WB.Parser();
-					var font = parser.parse(json);
-					console.log(font);
-					
-					board.font = font;
-					
-					stepper.start(animable);
-					$('#bottombar a.StepAction').css('display', 'inline');
-					$('#bottombar .Loading').css('display', 'none');
-				}
-			});
+			stepper.start(animable);
+			$('#bottombar a.StepAction').css('display', 'inline');
+			$('#bottombar .Loading').css('display', 'none');
 		}
 		
 		function stepScript(scriptId) {
@@ -603,59 +568,41 @@
 				}
 			});
 			
-			$.ajax({url: 'fonts/nova_thin_extended.json', contentType: 'application/json'})
-			.done(function(json) {
-				console.log('got data');
-				if (json) {
-					if (json.constructor == String) {
-						json = JSON.parse(json);
-					}
-					console.log(json);
-					
-					var parser = new WB.Parser();
-					var font = parser.parse(json);
-					console.log(font);
-					
-					board.font = font;
-					
-					stepper.start(animable);
-					$('#bottombar').html('Recoding...');
+			stepper.start(animable);
+			$('#bottombar').html('Recoding...');
 
-					var frameIndex = 0;
-					while (stepper.state == 'playing') {
-						stepper.step();
-						frameIndex++;
-						
-						var commitCanvas = board.commitPane.canvas;
-						var animCanvas = board.animationPane.canvas;
-						var pointerCanvas = board.pointer.pane.canvas;
-						
-						var canvasWidth = commitCanvas.width;
-						var canvasHeight = commitCanvas.height;
-						
-						var frame = {
-							state: board._state,
-							speech: speechPlayer.playingUrl,
-							width: canvasWidth,
-							height: canvasHeight,
-							panes: [
-						        {id:'commit', data:commitCanvas.toDataURL()},
-						        {id:'animation', data:animCanvas.toDataURL()},
-						        {id:'pointer', data:pointerCanvas.toDataURL()},
-					        ]
-						};
-						
-						$.ajax({
-							type: 'POST',
-							url: '/wb/service/recorder/frame?recordId=' + recordId + '&frameIndex=' + frameIndex,
-							contentType: 'application/json',
-							processData: false,
-							data: JSON.stringify(frame)
-						});
-						
-					}
-				}
-			});
+			var commitCanvas = board.commitPane.canvas;
+			var animCanvas = board.animationPane.canvas;
+			var pointerCanvas = board.pointer.pane.canvas;
+			
+			var canvasWidth = commitCanvas.width;
+			var canvasHeight = commitCanvas.height;
+			
+			var frameIndex = 0;
+			while (stepper.state == 'playing') {
+				stepper.step();
+				frameIndex++;
+				
+				var frame = {
+					state: board._state,
+					speech: speechPlayer.playingUrl,
+					width: canvasWidth,
+					height: canvasHeight,
+					panes: [
+				        {id:'commit', data:commitCanvas.toDataURL()},
+				        {id:'animation', data:animCanvas.toDataURL()},
+				        {id:'pointer', data:pointerCanvas.toDataURL()},
+			        ]
+				};
+				
+				$.ajax({
+					type: 'POST',
+					url: '/wb/service/recorder/frame?recordId=' + recordId + '&frameIndex=' + frameIndex,
+					contentType: 'application/json',
+					processData: false,
+					data: JSON.stringify(frame)
+				});
+			}
 		}
 		
 		function recordScript(scriptId) {
@@ -1085,61 +1032,67 @@
 				-SingleMalta.json: multiline, wrong order
 				-TakeMeOut.json: multiline, wrong order
 				-TogetherAgain.json: multiline, wrong order
-				-MecSoft_Font-1.json: just wrong
+				-MecSoft-1.json: just wrong
 				-Znikomit.json
 				-Znikomit2.json
 			 */
-			$.ajax({url: 'fonts/nova_thin_extended.json', contentType: 'application/json'})
-				.done(function(json) {
-					console.log('got data');
-					if (json) {
-						if (json.constructor == String) {
-							json = JSON.parse(json);
-						}
-						console.log(json);
-						
-						var parser = new WB.Parser();
-						var font = parser.parse(json);
-						console.log(font);
-						
-						var text = new WB.TextShape({
-							text: 'Hello World!',
-							font: font,
-							fontHeight: 60,
-							startPoint: {x: 10, y: 10}
-						});
-						
-						text.draw(new WB.Pane({canvas: document.getElementById('canvas')}));
+			$.ajax({
+				url: 'service/text/getshape.json',
+				data: {
+					text: 'Hello World!'
+				}
+			}).done(function(json) {
+				console.log('got data');
+				if (json) {
+					if (json.constructor == String) {
+						json = JSON.parse(json);
 					}
-				});
+					console.log(json);
+					
+					var parser = new WB.Parser();
+					var shape = parser.parse(json);
+					console.log(shape);
+					
+					var scale = 60/shape.height;
+					
+					var group = new WB.GroupShape({
+						shapes: [shape],
+						transform: new WB.Transform().translate(10, 10).scale(scale, scale);
+					});
+					
+					group.draw(new WB.Pane({canvas: document.getElementById('canvas')}));
+				}
+			});
 		}
 
 		function text1anim() {
-			$.ajax({url: 'fonts/nova_thin_extended.json', contentType: 'application/json'})
-				.done(function(json) {
-					console.log('got data');
-					if (json) {
-						if (json.constructor == String) {
-							json = JSON.parse(json);
-						}
-						console.log(json);
-						
-						var parser = new WB.Parser();
-						var font = parser.parse(json);
-						console.log(font);
-						
-						var text = new WB.TextShape({
-							text: 'Hello World!',
-							font: font,
-							fontHeight: 60,
-							startPoint: {x: 10, y: 10}
-						});
-						
-						// text.draw(new WB.Pane({canvas: document.getElementById('canvas')}));
-						
-						playAny(text);
+			$.ajax({
+				url: 'service/text/getshape.json',
+				data: {
+					text: 'Hello World!'
+				}
+			}).done(function(json) {
+				console.log('got data');
+				if (json) {
+					if (json.constructor == String) {
+						json = JSON.parse(json);
 					}
-				});
+					console.log(json);
+					
+					var parser = new WB.Parser();
+					var shape = parser.parse(json);
+					console.log(shape);
+					
+					var scale = 60/shape.height;
+					
+					var group = new WB.GroupShape({
+						shapes: [shape],
+						transform: new WB.Transform().translate(10, 10).scale(scale, scale);
+					});
+					
+					playAny(group);
+				}
+			});
 		}
 		
 		function eq1() {
@@ -1428,63 +1381,6 @@
 						    ], 
 						pause: 100})
 					);
-				}
-			});
-		}
-		
-		function pan2() {
-
-			// 720 x 405
-			var canvasWidth = 720;
-			var canvasHeight = 405;
-			var realWidth = 1440; // mm
-			var realHeight = 810; // mm
-			
-			var baseVelocity = 500;
-			
-			var defaultTransform = new WB.Transform();
-					//.scale(canvasWidth/realWidth, canvasHeight/realHeight)
-					//.translate(realWidth/2, realHeight/2);
-			
-			var board = new WB.Board({
-				commitPane: new WB.Pane({
-					canvas: document.getElementById('canvas'), 
-					defaultTransform: defaultTransform
-					}),
-				animationPane: new WB.Pane({
-					canvas: document.getElementById('animCanvas'), 
-					defaultTransform: defaultTransform
-					}),
-				baseVelocity: baseVelocity,
-				showBounds: false
-				});
-			
-			var player = new WB.Player({board: board});
-			bindPlayer(player);
-
-			$.ajax({url: 'fonts/nova_thin_extended.json', contentType: 'application/json'})
-			.done(function(json) {
-				console.log('got data');
-				if (json) {
-					if (json.constructor == String) {
-						json = JSON.parse(json);
-					}
-					console.log(json);
-					
-					var parser = new WB.Parser();
-					var font = parser.parse(json);
-					console.log(font);
-					
-					var text = new WB.TextShape({
-						text: 'H',
-						font: font,
-						fontHeight: 60,
-						startPoint: {x: 10, y: 10}
-					});
-					
-					player.playAny(text, function() {
-						player.playAny(new WB.PanEpisode({point: {x: 200, y: 100}}));
-					});
 				}
 			});
 		}

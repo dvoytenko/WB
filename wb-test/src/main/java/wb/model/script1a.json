@@ -101,7 +101,7 @@
 			_type: 'DrawTextEpisode',
 			text: 'Got it?',
 			position: {x: 400, y: 300},
-			fontHeight: 60
+			height: 60
 		},
 		
 		{

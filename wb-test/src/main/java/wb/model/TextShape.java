@@ -10,18 +10,20 @@ public class TextShape extends Shape {
 //	// Gentium, Mvboli
 //	public String fontName;
 	
-	public Double fontHeight;
-	
-	public Font font;
-	
-	// TODO remove
-	public Point startPoint;
-
 	public List<Glyph> glyphs;
 	
-	public Double realHeight;
+	public Double height;
 	
-	public Double realWidth;
+	public Double width;
+	
+	@Override
+	public void prepare(PrepareScript prepareScript) {
+		super.prepare(prepareScript);
+		
+		// TODO customize
+		final String fontId = "nova_thin_extended";
+		this.prepare(prepareScript.getFont(fontId));
+	}
 	
 	public void prepare(Font font) {
 		
@@ -44,24 +46,20 @@ public class TextShape extends Shape {
 		}
 		
 		// size
-		this.realHeight = realHeight;
-		this.realWidth = realWidth;
+		this.height = realHeight;
+		this.width = realWidth;
 	}
 	
 	public Transform createTransform() {
 		Transform tr = new Transform();
-		tr.translate(this.startPoint.x, this.startPoint.y);
-		double baseHeight = this.font.baseHeight;
-		boolean isResize = Math.abs(this.fontHeight - baseHeight) >= 1e-2;
-		double scale = isResize ? this.fontHeight/baseHeight : 1;
-		tr.scale(scale, -scale);
-		tr.translate(0, -baseHeight);
+		tr.scale(1, -1);
+		tr.translate(0, -this.height);
 		return tr;
 	}
 	
 	@Override
 	public void draw(final Pane pane) {
-//		double baseHeight = this.font.baseHeight;
+//		double baseHeight = this.height;
 		// console.log('baseHeight = ' + baseHeight);
 		// final boolean isUpsideDown = this.font.isUpsideDown();
 		pane.withTr(createTransform(), new Runnable() {
@@ -73,32 +71,25 @@ public class TextShape extends Shape {
 
 	private void _draw(final Pane pane) {
 		Point p = new Point(0, 0);
-		for (int i = 0; i < this.text.length(); i++) {
-			char c = this.text.charAt(i);
-			final Glyph glyph = this.font.getGlyph(c);
-			if (glyph != null) {
-				
-				// render
-				if (glyph.pathSegment != null) {
-					Transform tr = new Transform().translate(p.x, p.y);
-					pane.withTr(tr, new Runnable() {
-						public void run() {
-							pane.beginPath();
-							pane.moveTo(new Point(0, 0));
-							glyph.pathSegment.outline(pane);
-							pane.stroke();
-						}
-					});
-				}
-				
-				// offset
-				Double advX = glyph.advX;
-				if (advX == null) {
-					advX = this.font.baseAdvX;
-				}
-				if (advX != null) {
-					p = p.move(advX, 0);
-				}
+		for (int i = 0; i < this.glyphs.size(); i++) {
+			final Glyph glyph = this.glyphs.get(i);
+			
+			// render
+			if (glyph.pathSegment != null) {
+				Transform tr = new Transform().translate(p.x, p.y);
+				pane.withTr(tr, new Runnable() {
+					public void run() {
+						pane.beginPath();
+						pane.moveTo(new Point(0, 0));
+						glyph.pathSegment.outline(pane);
+						pane.stroke();
+					}
+				});
+			}
+			
+			// offset
+			if (glyph.advX != null) {
+				p = p.move(glyph.advX, 0);
 			}
 		}
 	}

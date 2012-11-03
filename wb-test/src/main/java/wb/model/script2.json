@@ -142,7 +142,7 @@
 			_type: 'DrawTextEpisode',
 			text: 'Oh. Forgot...',
 			position: {x: 1230, y: 245},
-			fontHeight: 15
+			height: 15
 		},
 
 		{
@@ -329,14 +329,14 @@
 			_type: 'DrawTextEpisode',
 			text: 'Express yourself !',
 			position: {x: 2330, y: 60},
-			fontHeight: 40
+			height: 40
 		},
 
 		{
 			_type: 'DrawTextEpisode',
 			text: 'And never run out of markers again!',
 			position: {x: 2245, y: 140},
-			fontHeight: 30
+			height: 30
 		},
 		
 	]
