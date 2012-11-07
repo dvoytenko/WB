@@ -9,4 +9,9 @@ public class EraserEpisode extends Episode {
 		return null;
 	}
 
+	@Override
+	public String toText() {
+		return "Erase";
+	}
+
 }

@@ -10,5 +10,10 @@ public class DrawTextEpisode extends ShapeEpisodeBase {
 		shape.text = this.text;
 		return shape;
 	}
+
+	@Override
+	public String toText() {
+		return "Write text: \"" + text + "\"";
+	}
 	
 }

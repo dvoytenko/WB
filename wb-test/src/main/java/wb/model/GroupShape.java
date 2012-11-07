@@ -3,7 +3,7 @@ package wb.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GroupShape extends Shape {
+public class GroupShape extends Shape implements SizeAwareShape {
 	
 	public String id;
 	
@@ -25,6 +25,16 @@ public class GroupShape extends Shape {
 	
 	public List<Shape> shapes = new ArrayList<Shape>();
 
+	@Override
+	public Double getWidth() {
+		return this.width;
+	}
+	
+	@Override
+	public Double getHeight() {
+		return this.height;
+	}
+	
 	public void prepare(PrepareScript prepareScript) {
 		super.prepare(prepareScript);
 		for (Shape shape : this.shapes) {

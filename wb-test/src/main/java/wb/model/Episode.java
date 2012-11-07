@@ -5,4 +5,6 @@ public abstract class Episode implements Animable {
 	public void prepare(PrepareScript preparator) {
 	}
 
+	public abstract String toText();
+
 }

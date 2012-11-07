@@ -49,7 +49,7 @@ WB.ShapeEpisodeBase = WB.Episode.extend('ShapeEpisodeBase', {
 	},
 	
 	createAnimation: function() {
-		return new WB.ShapeEpisodeAnimation(this._shape().createAnimation(),
+		return new WB.ShapeEpisodeAnimation(this, this._shape().createAnimation(),
 				this.rate);
 	}
 	
@@ -66,11 +66,14 @@ WB.DrawShapeEpisode = WB.ShapeEpisodeBase.extend('DrawShapeEpisode', {
  */
 WB.ShapeEpisodeAnimation = WB.Animation.extend('ShapeEpisodeAnimation', {
 	
+	episode: null,
+	
 	animation: null,
 	
 	board: null,
 	
-	init: function(animation, rate) {
+	init: function(episode, animation, rate) {
+		this.episode = episode;
 		this.animation = animation;
 		this.rate = rate;
 	},
@@ -79,9 +82,13 @@ WB.ShapeEpisodeAnimation = WB.Animation.extend('ShapeEpisodeAnimation', {
 		this.board = board;
 		this.pane = board.animationPane;
 		this.oldVelocity = this.board.baseVelocity;
-		this.board.baseVelocity = this.oldVelocity * this.rate;
+		
 		console.log('rate: ' + this.rate);
+		this.board.baseVelocity = this.oldVelocity * this.rate;
+		
 		this.animation.start(board);
+
+		console.log('Episode started ' + this.episode._type);
 	},
 	
 	frame: function(time) {

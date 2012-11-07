@@ -1,0 +1,11 @@
+{
+	episodes: [
+		{
+			_type: 'DrawTextEpisode',
+			text: 'Oh. Forgot...',
+			position: {x: 10, y: 10},
+			height: 15
+		},
+	]
+	
+}

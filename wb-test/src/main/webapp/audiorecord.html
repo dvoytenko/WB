@@ -1,0 +1,71 @@
+<html>
+
+<body>
+
+<style>
+	body {
+		margin: 0px;
+		padding: 0px;
+	}
+	canvas {
+		border: 1px solid #9C9898;
+	}
+
+</style>
+
+    <script src="sink.js"></script>
+
+	<script type="text/javascript">
+	    $(document).ready(function() {
+	    	
+	    	// [callback=null], [channelCount=2], [preBufferSize=4096], [sampleRate=44100]
+	    	var sink = Sink();
+	    	
+	    	var recording;
+	    	
+	    	$('#startButton').click(function() {
+	    		recording = sink.record();
+	    		console.log('recording started');
+	    	});
+
+	    	$('#stopButton').click(function() {
+	    		console.log('stop recording');
+	    		recording.stop();
+	    		var buffer = recording.join();
+	    		console.log(buffer);
+	    		
+				$.ajax({
+					type: 'POST',
+					url: '/wb/service/speech/save',
+					contentType: 'application/octet-stream',
+					processData: false,
+					data: buffer
+				});
+	    		
+	    	});
+
+	    });
+	    
+	</script>
+	
+	<div>
+		<div>
+			<a id="startButton">Start</a>
+			<a id="stopButton">Stop</a>
+		</div>
+		<div id="recorder"></div>
+		<div>
+			<audio id="playback" autoplay="autoplay" controls="controls" />
+		</div>
+		<div>
+			<form enctype="multipart/form-data" method="post">
+				<!--
+				<input type="file" accept="audio/*" capture="microphone"/>
+				-->
+				<input type="file" accept="image/*" capture="camera"/>
+			</form>
+		</div>
+	</div>
+
+</body>
+</html>

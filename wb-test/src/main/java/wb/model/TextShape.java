@@ -3,7 +3,7 @@ package wb.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TextShape extends Shape {
+public class TextShape extends Shape implements SizeAwareShape {
 	
 	public String text;
 
@@ -15,6 +15,16 @@ public class TextShape extends Shape {
 	public Double height;
 	
 	public Double width;
+	
+	@Override
+	public Double getWidth() {
+		return this.width;
+	}
+	
+	@Override
+	public Double getHeight() {
+		return this.height;
+	}
 	
 	@Override
 	public void prepare(PrepareScript prepareScript) {

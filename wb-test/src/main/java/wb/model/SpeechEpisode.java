@@ -24,4 +24,12 @@ public class SpeechEpisode extends Episode {
 		return null;
 	}
 
+	@Override
+	public String toText() {
+		if (this.text != null) {
+			return "Say: \"" + this.text + "\"";
+		}
+		return "Play: " + this.track;
+	}
+
 }

@@ -12,4 +12,9 @@ public class DrawShapeEpisode extends ShapeEpisodeBase {
 		return preparator.getShape(this.shapeId);
 	}
 
+	@Override
+	public String toText() {
+		return "Draw shape: " + this.shapeId;
+	}
+
 }

@@ -217,6 +217,10 @@ WB.Pane = WB.Class.extend('Pane', {
     init: function(opts) {
     	this.trace = opts && opts.trace || false;
     	
+    	if (opts && opts._desc) {
+    		this._desc = opts._desc;
+    	}
+    	
     	if (opts && opts.canvas) {
     		this.canvas = opts.canvas;
     	}
@@ -286,6 +290,10 @@ WB.Pane = WB.Class.extend('Pane', {
 	_setCanvasTransform: function(tr) {
 		if (!tr) {
 			tr = new WB.Transform();
+		}
+		
+		if (!tr.m[0] && tr.m[0] != 0) {
+			throw "invalid matrix: " + JSON.stringify(tr.m);
 		}
 		
 		this.currentTransform = tr;
@@ -397,6 +405,9 @@ WB.Pane = WB.Class.extend('Pane', {
 	},
 	
 	toGlobalPoint: function(p) {
+		if (!p) {
+			return null;
+		}
 		return this.currentTransform.transformPoint(p.x, p.y);
 	},
 	
@@ -417,6 +428,9 @@ WB.Pane = WB.Class.extend('Pane', {
 	},
 	
 	toLocalPoint: function(p) {
+		if (!p) {
+			return null;
+		}
 		return this.currentTransformInv.transformPoint(p.x, p.y);
 	},
 
@@ -453,7 +467,9 @@ WB.Pane = WB.Class.extend('Pane', {
 			this.pathStartPoint = this._currentPoint;
 		}
 			
-		// console.log('-> ' + JSON.stringify(this._currentPoint));
+		if (this.trace) {
+			console.log('cp: ' + JSON.stringify(this._currentPoint));
+		}
 	},
 	
 	getCurrentPoint: function(global) {

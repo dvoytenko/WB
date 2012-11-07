@@ -28,11 +28,13 @@ public abstract class ShapeEpisodeBase extends Episode {
 		if (this.shape != null) {
 			this.shape.prepare(preparator);
 		}
-		if (this.shape instanceof GroupShape) {
-			GroupShape group = (GroupShape) this.shape;
+		if (this.shape instanceof SizeAwareShape) {
+			SizeAwareShape group = (SizeAwareShape) this.shape;
 			if (this.realWidth == null) {
-				this.realWidth = group.width;
-				this.realHeight = group.height;
+				this.realWidth = group.getWidth();
+			}
+			if (this.realHeight == null) {
+				this.realHeight = group.getHeight();
 			}
 		}
 		if ((this.width == null || this.height == null)

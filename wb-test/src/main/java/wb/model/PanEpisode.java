@@ -9,4 +9,9 @@ public class PanEpisode extends Episode {
 		return null;
 	}
 
+	@Override
+	public String toText() {
+		return "Pan board";
+	}
+
 }

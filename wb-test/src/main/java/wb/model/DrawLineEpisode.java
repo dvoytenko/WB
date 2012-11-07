@@ -15,4 +15,9 @@ public class DrawLineEpisode extends Episode {
 		return null;
 	}
 
+	@Override
+	public String toText() {
+		return "Draw Line";
+	}
+
 }

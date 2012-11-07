@@ -123,6 +123,14 @@
 		
 		{
 			_type: 'DrawShapeEpisode',
+			shapeId: 'www_clker_com-stickman-tired_svg',
+			position: {x: 1130, y: 200},
+			height: 120,
+			rotationDegree: 0
+		},
+
+		{
+			_type: 'DrawShapeEpisode',
 			shapeId: 'www_clker_com-stickmap-jumping_svg',
 			position: {x: 1260, y: 280},
 			height: 100,
@@ -143,14 +151,6 @@
 			text: 'Oh. Forgot...',
 			position: {x: 1230, y: 245},
 			height: 15
-		},
-
-		{
-			_type: 'DrawShapeEpisode',
-			shapeId: 'www_clker_com-stickman-tired_svg',
-			position: {x: 1130, y: 200},
-			height: 120,
-			rotationDegree: 0
 		},
 
 		{

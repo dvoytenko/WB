@@ -276,7 +276,7 @@
 									var shape = parser.parse(data);
 									console.log(shape);
 	
-									var scale = 40 / shape.realHeight;
+									var scale = 40 / shape.height;
 									var tr = new WB.Transform();
 									tr.scale(scale, scale);
 									var group = new WB.GroupShape({transform: tr, shapes: [shape]});

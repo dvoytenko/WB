@@ -141,8 +141,6 @@ WB.LineSegment = WB.Segment.extend('LineSegment', {
 	},
 	
 	outline: function(pane) {
-        //console.log('outline start: ' + JSON.stringify(pane.getCurrentPoint()));
-        //console.log('outline end: ' + JSON.stringify(this.resolvePoint(pane)));
 		pane.lineTo(this.resolvePoint(pane));
 	},
 	
@@ -192,11 +190,6 @@ WB.LineAnimation = WB.Animation.extend('LineAnimation', {
     	this.dy = this.endPoint.y - this.startPoint.y;
         this.totalDistance = this.pane.distanceGlobal(this.startPoint, 
         		this.endPoint, false, true);
-//        console.log('start: ' + JSON.stringify(this.startPoint));
-//        console.log('end: ' + JSON.stringify(this.endPoint));
-//        console.log('total distance: ' + this.totalDistance);
-//        console.log('velocity: ' + this.velocity);
-        // time - this.totalDistance / this.velocity * 1000;
         this.timeLeft = 0;
         this.done = this.totalDistance < 1.0;
 	},
@@ -211,12 +204,9 @@ WB.LineAnimation = WB.Animation.extend('LineAnimation', {
 	
 	frame: function(time) {
 		
-        // var distance = Math.min(time * this.velocity / 1000, this.totalDistance);
-        // console.log('distance: ' + distance + ' vs total ' + this.totalDistance);
 		var distance = time * this.velocity / 1000;
 		if (distance > this.totalDistance) {
 	        this.timeLeft = time - this.totalDistance / this.velocity * 1000;
-	        // console.log('timeLeft: ' + this.timeLeft + ' from ' + time);
 			distance = this.totalDistance;
 		}
         

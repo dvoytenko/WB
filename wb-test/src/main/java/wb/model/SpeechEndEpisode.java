@@ -7,4 +7,9 @@ public class SpeechEndEpisode extends Episode {
 		return null;
 	}
 
+	@Override
+	public String toText() {
+		return "Wait for speech to finish";
+	}
+
 }
