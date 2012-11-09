@@ -20,6 +20,8 @@ WB.ShapeEpisodeBase = WB.Episode.extend('ShapeEpisodeBase', {
 	
 	rate: 1,
 	
+	predraw: false,
+	
 	init: function(opts) {
 		if (opts) {
 			for (var k in opts) {
@@ -48,7 +50,17 @@ WB.ShapeEpisodeBase = WB.Episode.extend('ShapeEpisodeBase', {
 		return this._shapeCache;
 	},
 	
+	prepare: function(board) {
+		if (this.predraw) {
+			console.log('!!!!!!!!! predraw: ' + this._type);
+			board.commitShape(this._shape(), true);
+		}
+	},
+	
 	createAnimation: function() {
+		if (this.predraw) {
+			return new WB.Animation();
+		}
 		return new WB.ShapeEpisodeAnimation(this, this._shape().createAnimation(),
 				this.rate);
 	}
@@ -277,6 +289,7 @@ WB.MoveShapeAnimation = WB.Animation.extend('MoveShapeAnimation', {
 		
 	    this.done = Math.abs(this.totalDistance - distance) < 1.0;
 	    
+	    // TODO position
 	    this.board.state({
 	    	pointer: 'move',
 	    	//position: this.pane.toGlobalPoint(newPoint),

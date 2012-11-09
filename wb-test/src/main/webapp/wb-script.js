@@ -17,6 +17,9 @@ WB.Script = WB.Class.extend('Script', {
 
 WB.Episode = WB.Class.extend('Episode', {
 	
+	prepare: function(board) {
+	},
+	
 	createAnimation: function() {
 		return null;
 	}
@@ -37,15 +40,32 @@ WB.EpisodeList = WB.Class.extend('EpisodeList', {
 	},
 	
 	createAnimation: function() {
-		var items = [];
-		for (var i = 0; i < this.episodes.length; i++) {
-			items.push(this.episodes[i]);
-			if (i < this.episodes.length - 1 && this.pause > 0) {
-				items.push(new WB.PauseAnimation(this.pause));
-			}
-		}
-		return new WB.ListAnimation(items);
+		return new WB.EpisodeListAnimation(this);
 	}
 	
 });
 
+
+WB.EpisodeListAnimation = WB.ListAnimation.extend('EpisodeListAnimation', {
+	
+	init: function(episodeList) {
+		this.episodeList = episodeList;
+		
+		var items = [];
+		for (var i = 0; i < this.episodeList.episodes.length; i++) {
+			items.push(this.episodeList.episodes[i]);
+			if (i < this.episodeList.episodes.length - 1 && this.episodeList.pause > 0) {
+				items.push(new WB.PauseAnimation(this.episodeList.pause));
+			}
+		}
+		this.items = items;
+	},
+	
+	start: function(board) {
+		this._super(board);
+		for (var i = 0; i < this.episodeList.episodes.length; i++) {
+			this.episodeList.episodes[i].prepare(board);
+		}
+	}
+	
+});

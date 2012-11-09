@@ -353,7 +353,8 @@
 			width: 600,
 			height: 350,
 			rotationDegree: 0,
-			rate: 5
+			rate: 5,
+			predraw: true
 		},
 		
 		{

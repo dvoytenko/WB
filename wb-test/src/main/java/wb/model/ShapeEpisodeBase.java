@@ -19,6 +19,8 @@ public abstract class ShapeEpisodeBase extends Episode {
 	
 	public Double rate;
 	
+	public boolean predraw;
+	
 	@Override
 	public void prepare(PrepareScript preparator) {
 		super.prepare(preparator);
