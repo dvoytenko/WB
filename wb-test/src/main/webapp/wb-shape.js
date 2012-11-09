@@ -187,6 +187,8 @@ WB.GroupShape = WB.Shape.extend('GroupShape', {
 });
 
 
+/**
+ */
 WB.GroupShapeAnimation = WB.ListAnimation.extend('GroupShapeAnimation', {
 	
 	init: function(group) {
@@ -220,6 +222,78 @@ WB.GroupShapeAnimation = WB.ListAnimation.extend('GroupShapeAnimation', {
 				that._frame(time);
 			});
 		}
+	}
+	
+});
+
+
+/**
+ */
+WB.MoveShapeAnimation = WB.Animation.extend('MoveShapeAnimation', {
+	
+	init: function(shape, fromPoint, toPoint) {
+		this.shape = shape;
+		this.fromPoint = fromPoint;
+		this.toPoint = toPoint;
+	},
+	
+	start: function(board) {
+		this.board = board;
+		this.velocity = board.getBaseVelocity();
+		this.pane = board.animationPane;
+		
+    	this.dx = this.toPoint.x - this.fromPoint.x;
+    	this.dy = this.toPoint.y - this.fromPoint.y;
+        this.totalDistance = this.pane.distanceGlobal(this.fromPoint, 
+        		this.toPoint, false, true);
+        this.timeLeft = 0;
+        this.done = this.totalDistance < 1.0;
+
+        this.movedShape = new WB.GroupShape({
+			transform: new WB.Transform().translate(this.fromPoint.x, this.fromPoint.y),
+			shapes: [this.shape]
+		});	
+	},
+	
+	isDone: function() {
+		return this.done;
+	},
+	
+	frame: function(time) {
+		var distance = time * this.velocity / 1000;
+		if (distance > this.totalDistance) {
+	        this.timeLeft = time - this.totalDistance / this.velocity * 1000;
+			distance = this.totalDistance;
+		}
+        
+        var x2 = this.dx * distance/this.totalDistance;
+        var y2 = this.dx != 0 ? (this.dy/this.dx) * x2 : 
+			this.dy * distance/this.totalDistance;
+		
+        var newPoint = WB.Geom.movePoint(this.fromPoint, x2, y2);
+        
+        this.movedShape.transform = new WB.Transform().translate(newPoint.x, newPoint.y);
+        this.movedShape.draw(this.pane);
+		
+	    this.done = Math.abs(this.totalDistance - distance) < 1.0;
+	    
+	    this.board.state({
+	    	pointer: 'move',
+	    	//position: this.pane.toGlobalPoint(newPoint),
+	    	velocity: this.velocity,
+	    	angle: WB.Geom.angle(this.fromPoint, newPoint),
+	    	height: 1.0
+	    });
+	},
+	
+	end: function() {
+		var p = this.toPoint;
+        this.movedShape.transform = new WB.Transform().translate(p.x, p.y);
+		this.board.commitShape(this.movedShape, true);
+	},
+	
+	getTimeLeft: function() {
+		return this.timeLeft;
 	}
 	
 });

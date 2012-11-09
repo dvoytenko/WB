@@ -116,8 +116,27 @@
 		},
 
 		{
+			_type: 'DrawTextEpisode',
+			text: '1',
+			position: {x: 870, y: 130},
+			height: 30
+		},
+		{
+			_type: 'DrawTextEpisode',
+			text: '2',
+			position: {x: 895, y: 150},
+			height: 30
+		},
+		{
+			_type: 'DrawTextEpisode',
+			text: '3',
+			position: {x: 930, y: 170},
+			height: 30
+		},
+
+		{
 			_type: 'SpeechEpisode',
-			text: 'But all of a sudden people seem bored. Some are dashing for a door, others might be even falling asleep.',
+			text: 'But all of a sudden people seem bored.',
 			engine: 'cere'
 		},
 		
@@ -129,6 +148,12 @@
 			rotationDegree: 0
 		},
 
+		{
+			_type: 'SpeechEpisode',
+			text: 'Some are dashing for the door.',
+			engine: 'cere'
+		},
+		
 		{
 			_type: 'DrawShapeEpisode',
 			shapeId: 'www_clker_com-stickmap-jumping_svg',
@@ -153,6 +178,12 @@
 			height: 15
 		},
 
+		{
+			_type: 'SpeechEpisode',
+			text: 'Others might be even falling asleep.',
+			engine: 'cere'
+		},
+		
 		{
 			_type: 'DrawShapeEpisode',
 			shapeId: 'www_clker_com-stickman-sleeping_svg',

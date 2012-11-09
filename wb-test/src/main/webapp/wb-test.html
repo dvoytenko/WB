@@ -25,6 +25,7 @@
     <script src="wb-board.js"></script>
     
     <script src="wb-shape.js"></script>
+    <script src="wb-image.js"></script>
     <script src="wb-segment.js"></script>
     <script src="wb-path.js"></script>
     <script src="wb-curve.js"></script>
@@ -74,6 +75,10 @@
 		<br/>
 		<a href="javascript:void(0);" onclick="script2()">Script 2</a>
 		<a href="javascript:void(0);" onclick="script3()">Script 3</a>
+		
+		<br/>
+		<a href="javascript:void(0);" onclick="image1()">Image 1</a>
+		<a href="javascript:void(0);" onclick="image1anim()">Image 1 Anim</a>
 	</div>
 	
 	<div id="status" style="border: 1px solid gray; margin: 4px; width: 720px;">
@@ -1405,6 +1410,81 @@
 					);
 				}
 			});
+		}
+		
+		function image1() {
+
+			var name = 'funnycat.png';
+			var tr = new WB.Transform().translate(20, 20).scale(0.5, 0.5);
+			
+			var pane = new WB.Pane({canvas: document.getElementById('canvas')});
+			
+			var image = new Image();
+			image.onload = function() {
+				
+				console.log('image loaded: ' + image.width + ' x ' + image.height);
+				
+				var shape = new WB.ImageShape({image: image});
+				
+				var group = new WB.GroupShape({
+					transform: tr,
+					shapes: [shape]
+				});
+				
+				group.draw(pane);
+			};
+			image.onerror = function() {
+				console.log('image error!');
+			};
+			image.onabort = function() {
+				console.log('image abort!');
+			};
+			
+			image.src = 'images/' + name;
+		}
+
+		function image1anim() {
+
+			var name = 'funnycat.png';
+			var tr = new WB.Transform().scale(0.5, 0.5);
+			
+			var pane = new WB.Pane({canvas: document.getElementById('canvas')});
+			
+			var image = new Image();
+			image.onload = function() {
+				
+				console.log('image loaded: ' + image.width + ' x ' + image.height);
+				
+				var shape = new WB.ImageShape({image: image});
+				
+				var group = new WB.GroupShape({
+					transform: tr,
+					shapes: [shape]
+				});
+				
+				var MovingAnimable = WB.Class.extend('MovingAnimable', {
+					
+					init: function(shape) {
+						this.shape = shape;
+					},
+					
+					createAnimation: function() {
+						return new WB.MoveShapeAnimation(this.shape,
+								{x:0, y:0}, {x: 300, y: 300});
+					}
+					
+				});
+				
+				playAny(new MovingAnimable(group));
+			};
+			image.onerror = function() {
+				console.log('image error!');
+			};
+			image.onabort = function() {
+				console.log('image abort!');
+			};
+			
+			image.src = 'images/' + name;
 		}
 		
 	</script>

@@ -79,6 +79,8 @@ WB.Board = WB.Class.extend('Board', {
 	
 	commitShape: function(shape, render) {
 		
+		console.log('commit shape: ' + shape._type);
+		
 		// render and bounds
 		this.commitPane.captureBounds(render);
 		shape.draw(this.commitPane);
