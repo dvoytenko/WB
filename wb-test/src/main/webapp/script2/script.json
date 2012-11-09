@@ -14,7 +14,7 @@
         "x": 10,
         "y": 10
       },
-      "predraw": true,
+      "predraw": false,
       "realHeight": 411,
       "realWidth": 262,
       "rotationDegree": 0,
@@ -44427,7 +44427,7 @@
         "x": 2330,
         "y": 60
       },
-      "predraw": false,
+      "predraw": true,
       "realHeight": 1024,
       "realWidth": 9336,
       "shape": {

@@ -52,7 +52,6 @@ WB.ShapeEpisodeBase = WB.Episode.extend('ShapeEpisodeBase', {
 	
 	prepare: function(board) {
 		if (this.predraw) {
-			console.log('!!!!!!!!! predraw: ' + this._type);
 			board.commitShape(this._shape(), true);
 		}
 	},

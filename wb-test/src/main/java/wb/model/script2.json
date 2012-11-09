@@ -361,7 +361,8 @@
 			_type: 'DrawTextEpisode',
 			text: 'Express yourself !',
 			position: {x: 2330, y: 60},
-			height: 40
+			height: 40,
+			predraw: true
 		},
 
 		{

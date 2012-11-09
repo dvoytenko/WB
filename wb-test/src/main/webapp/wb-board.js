@@ -79,7 +79,7 @@ WB.Board = WB.Class.extend('Board', {
 	
 	commitShape: function(shape, render) {
 		
-		console.log('commit shape: ' + shape._type);
+		// console.log('commit shape: ' + shape._type);
 		
 		// render and bounds
 		this.commitPane.captureBounds(render);
@@ -95,7 +95,7 @@ WB.Board = WB.Class.extend('Board', {
 		
 		if (this.showBounds && bounds) {
 			var loc = this.commitPane.toLocalBounds(bounds);
-			console.log('local: ' + JSON.stringify(loc));
+			// console.log('local: ' + JSON.stringify(loc));
 			var ctx = this.commitPane.context;
 			ctx.save();
 			ctx.lineWidth = 1;
@@ -208,19 +208,19 @@ WB.Board = WB.Class.extend('Board', {
 		var pane = this.commitPane;
 		pane._clearCanvas();
 		var screenBounds = pane.globalBounds();
-		console.log('screenBounds: ' + JSON.stringify(screenBounds));
+		// console.log('screenBounds: ' + JSON.stringify(screenBounds));
 		for (var i = 0; i < this._shapes.length; i++) {
 			var c = this._shapes[i];
-			console.log('shape bounds: ' + JSON.stringify(c.bounds));
+			// console.log('shape bounds: ' + JSON.stringify(c.bounds));
 			var incl = !c.bounds || WB.Geom.boundsOverlap(screenBounds, c.bounds);
 			if (incl) {
-				console.log('shape overlaps');
+				// console.log('shape overlaps');
 				
 				var tr = c.tr ? c.tr : new WB.Transform();
 				pane.withTr(tr, function() {
 					if (that.showBounds && c.bounds) {
 						var loc = pane.toLocalBounds(c.bounds);
-						console.log('local: ' + JSON.stringify(loc));
+						// console.log('local: ' + JSON.stringify(loc));
 						var ctx = pane.context;
 						ctx.save();
 						ctx.lineWidth = 1;
@@ -233,7 +233,7 @@ WB.Board = WB.Class.extend('Board', {
 					c.shape.draw(pane);
 				});
 			} else {
-				console.log('shape doesn\'t overlaps');
+				// console.log('shape doesn\'t overlaps');
 			}
 		}
 	},
