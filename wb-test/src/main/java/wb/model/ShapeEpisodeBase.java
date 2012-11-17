@@ -21,6 +21,10 @@ public abstract class ShapeEpisodeBase extends Episode {
 	
 	public boolean predraw;
 	
+	public String action;
+	
+	public Point moveStartPosition;
+	
 	@Override
 	public void prepare(PrepareScript preparator) {
 		super.prepare(preparator);

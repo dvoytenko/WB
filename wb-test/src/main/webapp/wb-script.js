@@ -17,11 +17,32 @@ WB.Script = WB.Class.extend('Script', {
 
 WB.Episode = WB.Class.extend('Episode', {
 	
+	pause: null,
+	
+	init: function(opts) {
+		if (opts) {
+			for (var k in opts) {
+				this[k] = opts[k];
+			}
+		}
+	},
+	
 	prepare: function(board) {
 	},
 	
 	createAnimation: function() {
 		return null;
+	}
+	
+});
+
+
+WB.PauseEpisode = WB.Episode.extend('PauseEpisode', {
+	
+	pause: null,
+	
+	createAnimation: function() {
+		return new WB.PauseAnimation(pause);
 	}
 	
 });
@@ -53,9 +74,15 @@ WB.EpisodeListAnimation = WB.ListAnimation.extend('EpisodeListAnimation', {
 		
 		var items = [];
 		for (var i = 0; i < this.episodeList.episodes.length; i++) {
-			items.push(this.episodeList.episodes[i]);
-			if (i < this.episodeList.episodes.length - 1 && this.episodeList.pause > 0) {
-				items.push(new WB.PauseAnimation(this.episodeList.pause));
+			var episode = this.episodeList.episodes[i];
+			items.push(episode);
+			if (i < this.episodeList.episodes.length - 1) {
+				var next = this.episodeList.episodes[i + 1];
+				var pause = next.pause || next.pause == 0 ? 
+						next.pause : this.episodeList.pause;
+				if (pause) {
+					items.push(new WB.PauseAnimation(pause));
+				}
 			}
 		}
 		this.items = items;

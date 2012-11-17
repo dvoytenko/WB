@@ -231,6 +231,10 @@ WB.Pane = WB.Class.extend('Pane', {
     		this.context = this.canvas.getContext('2d');
     	}
     	
+    	if (opts && opts.strokeStyle) {
+    		this.context.strokeStyle = opts.strokeStyle;
+    	}
+    	
     	this._trStack = [];
     	
     	var tr;
@@ -594,6 +598,15 @@ WB.Pane = WB.Class.extend('Pane', {
 		if (this.capturer) {
 			this._capture(x, y, x + width, y + height);
 		}
+	},
+	
+	drawImageClipped: function(img, sx, sy, swidth, sheight, x, y, width, height) {
+		if (this.rendering) {
+			this.context.drawImage(img, sx, sy, swidth, sheight, x, y, width, height);
+		}
+		if (this.capturer) {
+			this._capture(x, y, x + width, y + height);
+		}
 	}
 	
 });
@@ -639,7 +652,7 @@ WB.PauseAnimation = WB.Animation.extend('PauseAnimation', {
 	start: function(board) {
 		this.board = board;
 		this.done = this.pauseTime < 1;
-		console.log('pause started');
+		console.log('pause started: ' + this.pauseTime);
 	},
 	
 	frame: function(time) {
@@ -647,6 +660,9 @@ WB.PauseAnimation = WB.Animation.extend('PauseAnimation', {
 			this.startTime = time;
 		}
 		this.done = (time - this.startTime) > this.pauseTime;
+		if (this.done) {
+			console.log('pause finished: ' + this.pauseTime + ' @ ' + time);			
+		}
 	},
 	
 	isDone: function() {

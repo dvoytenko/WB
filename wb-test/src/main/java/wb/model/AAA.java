@@ -10,7 +10,7 @@ public class AAA {
 	
 	public static void main(String[] args) throws Exception {
 		
-		final String scr = "script2";
+		final String scr = "script1";
 		
 		System.out.println("Script: " + scr);
 		
@@ -27,12 +27,14 @@ public class AAA {
 		}
 		
 		File shapesFolder = new File(root, "shapedb");
+		File imagesFolder = new File(root, "imagedb");
 		File soundsFolder = new File(root, "sounds");
 		File fontsFolder = new File(root, "fonts");
 		
 		PrepareScript prepareScript = new PrepareScript();
 		prepareScript.setOutputFolder(scriptFolder);
 		prepareScript.setShapesFolder(shapesFolder);
+		prepareScript.setImagesFolder(imagesFolder);
 		prepareScript.setSoundsFolder(soundsFolder);
 		prepareScript.setFontsFolder(fontsFolder);
 		

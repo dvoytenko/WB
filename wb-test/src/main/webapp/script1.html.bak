@@ -1,0 +1,285 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+  
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+      canvas {
+        border: 1px solid #9C9898;
+      }
+    </style>
+
+    <script src="jquery-1.7.1.js"></script>
+    
+    <script src="wb-proto.js"></script>
+    
+    <script src="wb-common.js"></script>
+    
+    <script src="wb-script.js"></script>
+    <script src="wb-soundfx.js"></script>
+    <script src="wb-speech.js"></script>
+    <script src="wb-pointer.js"></script>
+    <script src="wb-board.js"></script>
+    
+    <script src="wb-shape.js"></script>
+    <script src="wb-segment.js"></script>
+    <script src="wb-path.js"></script>
+    <script src="wb-curve.js"></script>
+    <script src="wb-basicshapes.js"></script>
+    <script src="wb-text.js"></script>
+    <script src="wb-eraser.js"></script>
+    <script src="wb-pan.js"></script>
+    
+    <script src="wb-parser.js"></script>
+    <script src="wb-player.js"></script>
+
+  </head>
+
+  <body>
+  	
+  	<h1>Script 1</h1>
+  	
+  	<!--
+  	<script>
+		var audio = new Audio();
+    	audio.addEventListener('canplay', function(e) {
+    		statusAdd('speech: canplay: ' + e);
+    		//audio.play();
+    	});
+    	audio.addEventListener('canplaythrough', function(e) {
+    		statusAdd('speech: canplaythrough: ' + e);
+    	});
+    	audio.addEventListener('progress', function(e) {
+    		statusAdd('speech: progress: ' + e);
+    	});
+    	audio.addEventListener('ended', function(e) {
+    		statusAdd('speech: ended: ' + e);
+        	setTimeout(function() {
+            	audio.setAttribute("src", 'script1/cere-4ba32715-e16e-3f8c-b4a6-db2d1a7035e8.wav');
+            	audio.load();
+        		audio.play();
+        	}, 1000);
+    	});
+    	audio.addEventListener('play', function(e) {
+    		statusAdd('speech: play: ' + e);
+    	});
+    	audio.addEventListener('playing', function(e) {
+    		statusAdd('speech: playing: ' + e);
+    	});
+    	audio.addEventListener('pause', function(e) {
+    		statusAdd('speech: pause: ' + e);
+    	});
+    	audio.addEventListener('abort', function(e) {
+    		statusAdd('speech: abort: ' + e);
+    	});
+    	audio.addEventListener('error', function(e) {
+    		statusAdd('speech: error: ' + e);
+    	});
+    	audio.addEventListener('waiting', function(e) {
+    		statusAdd('speech: waiting: ' + e);
+    	});
+    	audio.addEventListener('loadedmetadata', function(e) {
+    		statusAdd('speech: loadedmetadata: ' + e);
+    	});
+    	audio.addEventListener('stalled', function(e) {
+    		statusAdd('speech: stalled: ' + e);
+    	});
+    	audio.addEventListener('suspend', function(e) {
+    		statusAdd('speech: suspend: ' + e);
+    	});
+    	audio.addEventListener('timeupdate', function(e) {
+    		//statusAdd('speech: timeupdate: ' + e);
+    	});
+
+    	setTimeout(function() {
+    		// cere-4ba32715-e16e-3f8c-b4a6-db2d1a7035e8
+        	audio.setAttribute("src", 'script1/cere-345550b5-f98f-36db-9934-c82625b1c615.wav');
+        	audio.load();
+    		audio.play();
+    	}, 1000);
+  	</script>
+  	-->
+  	
+	<div id="bottombar" style="border: 1px solid gray; margin: 4px; width: 720px;">
+		<a id="TogglePlay" href="javascript:void(0);">Play</a>
+		<!--
+		<span> | <span>
+		<a href="javascript:void(0);" onclick="console.log('Log1');">Log</a>
+		-->
+	</div>
+	
+	<div id="status" style="border: 1px solid gray; margin: 4px; width: 720px;">
+		status
+	</div>
+	
+	<div id="container" style="position: relative; margin: 4px; padding: 0; width: 720px; height: 405px;">
+		<!--
+		<canvas id="gridCanvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 1;"></canvas>
+		-->
+		<canvas id="canvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 2;"></canvas>
+		<canvas id="animCanvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 3;"></canvas>
+		<canvas id="pointerCanvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 4;"></canvas>
+	</div>
+
+	<script>
+	
+		function status(s) {
+			$('#status').text(s);
+		}
+
+		function statusX(s) {
+			$('#status').text(s);
+		}
+		
+		function statusAdd(s) {
+			var d = $('<div></div>');
+			d.text(s);
+			$('#status').append(d);
+		}
+
+		function grid() {
+			var canvas = document.getElementById('gridCanvas');
+			if (!canvas) {
+				return;
+			}
+			
+			var context = canvas.getContext('2d');
+			var width = canvas.width;
+			var height = canvas.height;
+			var delta = 50;
+			for (var x = delta; x < width; x += delta) {
+				context.beginPath();
+				context.moveTo(x, 0);
+				context.lineTo(x, height);
+				context.lineWidth = 0.7;
+				//context.strokeStyle = 'rgba(220,220,220,0.5)';
+				context.strokeStyle = 'rgba(0,255,0,1)';
+				context.stroke();
+				for (var y = delta; y < height; y += delta) {
+					context.beginPath();
+					context.moveTo(0, y);
+					context.lineTo(width, y);
+					context.lineWidth = 0.7;
+					//context.strokeStyle = 'rgba(220,220,220,0.1)';
+					context.strokeStyle = 'rgba(0,255,0,1)';
+					context.stroke();
+				}
+			}
+		}
+		
+		grid();
+
+
+		var scriptId = 'script1';
+
+		var urlResolver = function(path) {
+			if (path.substr(0,1) != '/') {
+				path = '/' + path;
+			}
+			return '/wb/' + scriptId + path;
+		}
+
+		var player = null;
+
+		var a = $('#TogglePlay');
+		a.click(function() {
+			if (!player || player.state == 'none' || player.state == 'ended') {
+				a.text('Starting...');
+				playScript();
+			} else if (player.state == 'playing') {
+				player.suspend();
+			} else if (player.state == 'suspended') {
+				player.resume();
+			}
+		});
+
+		
+		function playAny(animable) {
+			
+			// 720 x 405
+			var canvasWidth = 720;
+			var canvasHeight = 405;
+			var realWidth = 1440; // mm
+			var realHeight = 810; // mm
+			
+			var baseVelocity = 500;
+			
+			var defaultTransform = new WB.Transform();
+					//.scale(canvasWidth/realWidth, canvasHeight/realHeight)
+					//.translate(realWidth/2, realHeight/2);
+			
+			var board = new WB.Board({
+				commitPane: new WB.Pane({
+					canvas: document.getElementById('canvas'), 
+					defaultTransform: defaultTransform
+					}),
+				animationPane: new WB.Pane({
+					canvas: document.getElementById('animCanvas'), 
+					defaultTransform: defaultTransform
+					}),
+				drawingSoundEngine: new WB.DrawingSoundEngine({
+					//baseVelocity: baseVelocity
+					}),
+				pointer: new WB.HandPoint({
+					pane: new WB.Pane({
+						canvas: document.getElementById('pointerCanvas'),
+						defaultTransform: defaultTransform
+						})
+					}),
+				speechPlayer: new WB.SpeechPlayer({urlResolver: urlResolver}),
+				urlResolver: urlResolver,
+				baseVelocity: baseVelocity,
+				showBounds: false
+				});
+
+			board.commitPane._clearCanvas();
+			board.animationPane._clearCanvas();
+			board.pointer.pane._clearCanvas();
+			
+			player = new WB.Player({board: board});
+			
+			player.bind(function(event, opts) {
+				if (event == 'frame') {
+					var p = player.board.animationPane.getCurrentPoint();
+					status('Time: ' + (opts.time) + ' milliseconds' 
+							+ '; Position: ' + Math.round(p.x) + ',' + Math.round(p.y));
+				} else if (event == 'state') {
+					if (opts.state == 'playing') {
+						a.text('Suspend');
+					} else if (opts.state == 'suspended') {
+						a.text('Resume');
+					} else if (opts.state == 'ended') {
+						a.text('Play');
+					}
+				}
+			});
+			
+			player.playAny(animable);
+		}
+		
+		function playScript() {
+
+			$.ajax({url: urlResolver('script.json'), contentType: 'application/json'})
+			.done(function(json) {
+				console.log('got data');
+				if (json) {
+					if (json.constructor == String) {
+						json = JSON.parse(json);
+					}
+					console.log(json);
+					
+					var parser = new WB.Parser();
+					var script = parser.parse(json);
+					console.log(script);
+					
+					playAny(new WB.EpisodeList({episodes: script.episodes, pause: 100}));
+				}
+			});
+		}
+		
+	</script>
+  </body>
+</html>

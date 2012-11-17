@@ -29,29 +29,31 @@ public class PrepareShape {
 	
 	public static void main(String[] args) throws Exception {
 		
-		prepareAndSave("http://openclipart.org/detail/13886/car-outline-modified-by-molumen");
-		prepareAndSave("http://openclipart.org/detail/1200/felix-the-cat-by-liftarn");
-		prepareAndSave("http://openclipart.org/detail/850/plane-silhouet-by-molumen");
-		prepareAndSave("http://openclipart.org/detail/472/adult-and-child-by-liftarn");
-		prepareAndSave("http://openclipart.org/detail/854/tramway-by-molumen");
-		prepareAndSave("http://openclipart.org/detail/539/umbrella-outline-by-ryanlerch");
-		prepareAndSave("http://openclipart.org/detail/630/thinkingboy-outline-by-ryanlerch");
-		prepareAndSave("http://openclipart.org/detail/469/boyface8-outline-by-ryanlerch");
-		prepareAndSave("http://openclipart.org/detail/22305/coffee-cup-icon-by-pitr-22305");
-		prepareAndSave("http://openclipart.org/detail/80/tree-by-peterm");
-		prepareAndSave("http://openclipart.org/detail/14504/dog-head-by-nicubunu-14504");
-		prepareAndSave("http://openclipart.org/detail/1900/smiling-pig-by-lalolalo");
-		prepareAndSave("http://openclipart.org/detail/5642/slamdunk-outline-by-gioppino");
-		prepareAndSave("http://openclipart.org/detail/18947/ice-train-by-mbs");
-		prepareAndSave("http://openclipart.org/detail/837/wolf-by-liftarn");
-		prepareAndSave("http://openclipart.org/detail/1953/minimalist-monitor-and-computer-by-fortran");
-		prepareAndSave("http://openclipart.org/detail/23308/trumpet-by-tom-23308");
-		prepareAndSave("http://openclipart.org/detail/6069/eiffle-tower-paris-by-shokunin");
-		prepareAndSave("http://openclipart.org/detail/7649/eiffel-tower-by-benbois");
-		prepareAndSave("http://openclipart.org/detail/12745/eiffel-tower-by-anonymous-12745");
-		prepareAndSave("http://openclipart.org/detail/21829/big-ben-houses-of-parliament--by-tom");
-		prepareAndSave("http://openclipart.org/detail/5326/art-deco-empire-state-building-by-boort");
-		prepareAndSave("http://openclipart.org/detail/11580/fire-tower-by-johnny_automatic");
+//		prepareAndSave("http://openclipart.org/detail/13886/car-outline-modified-by-molumen");
+//		prepareAndSave("http://openclipart.org/detail/1200/felix-the-cat-by-liftarn");
+//		prepareAndSave("http://openclipart.org/detail/850/plane-silhouet-by-molumen");
+//		prepareAndSave("http://openclipart.org/detail/472/adult-and-child-by-liftarn");
+//		prepareAndSave("http://openclipart.org/detail/854/tramway-by-molumen");
+//		prepareAndSave("http://openclipart.org/detail/539/umbrella-outline-by-ryanlerch");
+//		prepareAndSave("http://openclipart.org/detail/630/thinkingboy-outline-by-ryanlerch");
+//		prepareAndSave("http://openclipart.org/detail/469/boyface8-outline-by-ryanlerch");
+//		prepareAndSave("http://openclipart.org/detail/22305/coffee-cup-icon-by-pitr-22305");
+//		prepareAndSave("http://openclipart.org/detail/80/tree-by-peterm");
+//		prepareAndSave("http://openclipart.org/detail/14504/dog-head-by-nicubunu-14504");
+//		prepareAndSave("http://openclipart.org/detail/1900/smiling-pig-by-lalolalo");
+//		prepareAndSave("http://openclipart.org/detail/5642/slamdunk-outline-by-gioppino");
+//		prepareAndSave("http://openclipart.org/detail/18947/ice-train-by-mbs");
+//		prepareAndSave("http://openclipart.org/detail/837/wolf-by-liftarn");
+//		prepareAndSave("http://openclipart.org/detail/1953/minimalist-monitor-and-computer-by-fortran");
+//		prepareAndSave("http://openclipart.org/detail/23308/trumpet-by-tom-23308");
+//		prepareAndSave("http://openclipart.org/detail/6069/eiffle-tower-paris-by-shokunin");
+//		prepareAndSave("http://openclipart.org/detail/7649/eiffel-tower-by-benbois");
+//		prepareAndSave("http://openclipart.org/detail/12745/eiffel-tower-by-anonymous-12745");
+//		prepareAndSave("http://openclipart.org/detail/21829/big-ben-houses-of-parliament--by-tom");
+//		prepareAndSave("http://openclipart.org/detail/5326/art-deco-empire-state-building-by-boort");
+//		prepareAndSave("http://openclipart.org/detail/11580/fire-tower-by-johnny_automatic");
+		
+		prepareAndSave(new File("src/main/webapp/shapes/audio10.svg").toURI().toString());
 		
 		// (not good) prepare("http://openclipart.org/detail/1186/leaning-tower-of-pisa-by-johnny_automatic");
 		// (not good) prepare("http://openclipart.org/detail/6942/coit-tower-from-below-by-stevelambert-6942");
@@ -63,8 +65,27 @@ public class PrepareShape {
 		
 		final ShapeSource source = getSource(shapeUrl);
 		
-		final ShapeMeta meta = source.getShapeMetaByUrl(shapeUrl);
+		final ShapeMeta meta = source != null ? source.getShapeMetaByUrl(shapeUrl) : 
+			new ShapeMeta();
 		System.out.println("meta: " + meta);
+		if (meta.id == null) {
+			URL u = new URL(shapeUrl);
+			meta.id = safe(u.toString());
+			if (meta.source == null) {
+				meta.source = u.getProtocol() + 
+						(u.getAuthority() != null ? "_" + u.getAuthority() : "");
+			}
+			if (meta.title == null) {
+				meta.title = u.toString();
+				int ti = meta.title.lastIndexOf('/');
+				if (ti != -1 && ti < meta.title.length() - 1) {
+					meta.title = meta.title.substring(ti + 1);
+				}
+			}
+			if (meta.svgUrl == null) {
+				meta.svgUrl = shapeUrl;
+			}
+		}
 		
 		final String shapeId = toShapeId(meta);
 		System.out.println("id: " + shapeId);

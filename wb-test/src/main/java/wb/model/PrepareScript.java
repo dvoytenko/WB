@@ -1,5 +1,7 @@
 package wb.model;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -10,6 +12,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.imageio.ImageIO;
+
+import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.codec.binary.StringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -18,6 +24,8 @@ public class PrepareScript {
 	private File outputFolder;
 	
 	private File shapesFolder;
+
+	private File imagesFolder;
 
 	@SuppressWarnings("unused")
 	private File soundsFolder;
@@ -34,6 +42,10 @@ public class PrepareScript {
 
 	public void setShapesFolder(File shapesFolder) {
 		this.shapesFolder = shapesFolder;
+	}
+	
+	public void setImagesFolder(File imagesFolder) {
+		this.imagesFolder = imagesFolder;
 	}
 
 	public void setSoundsFolder(File soundsFolder) {
@@ -114,6 +126,40 @@ public class PrepareScript {
 		}
 	}
 	
+	public ImageShape getImageShape(String imageId) {
+		
+		if (!imageId.contains(".")) {
+			imageId += ".png";
+		}
+		
+		File imageFile = new File(this.imagesFolder, imageId);
+
+		try {
+			ImageShape shape = new ImageShape();
+			
+			BufferedImage image = ImageIO.read(imageFile);
+			// image.imageUrl = imageId;
+
+//			StringWriter w = new StringWriter();
+//			w.write("data:image/png;base64,");
+			
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			ImageIO.write(image, "png", baos);
+			byte[] bytes = baos.toByteArray();
+			String data = StringUtils.newStringUtf8(Base64.encodeBase64(bytes, false));
+//			w.write(data);
+			
+			shape.data = data;
+			
+			shape.width = (double) image.getWidth();
+			shape.height = (double) image.getHeight();
+			
+			return shape;
+		} catch (Exception e) {
+			throw new RuntimeException("failed to load image [" + imageId + "]: " + e, e);
+		}
+	}
+
 	public Font getFont(String fontName) {
 		Font font = this.fonts.get(fontName);
 		if (font == null) {

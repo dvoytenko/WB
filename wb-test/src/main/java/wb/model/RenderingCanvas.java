@@ -3,9 +3,11 @@ package wb.model;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.Stroke;
 import java.awt.geom.AffineTransform;
+import java.awt.image.ImageObserver;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -150,7 +152,8 @@ public class RenderingCanvas implements Canvas {
 	@Override
 	public void drawImage(Object img, double x, double y, double width,
 			double height) {
-		throw new RuntimeException("not implemented");
+		ImageObserver observer = null;
+		this.graphics.drawImage((Image) img, di(x), di(y), di(width), di(height), observer);
 	}
 	
 	private abstract class Op {

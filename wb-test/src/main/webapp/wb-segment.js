@@ -62,6 +62,7 @@ WB.MoveToAnimation = WB.Animation.extend('MoveToAnimation', {
 		this.timeLeft = time;
 		
 		this.board.state({
+			pointer: 'draw',
 			position: pane.toGlobalPoint(this.moveto.point),
 			velocity: 0,
 			angle: 0,
@@ -221,6 +222,7 @@ WB.LineAnimation = WB.Animation.extend('LineAnimation', {
 	    this.done = Math.abs(this.totalDistance - distance) < 1.0;
 	    
 	    this.board.state({
+			pointer: 'draw',
 	    	position: this.pane.toGlobalPoint(newPoint),
 	    	velocity: this.velocity,
 	    	angle: WB.Geom.angle(this.startPoint, newPoint),
@@ -445,6 +447,7 @@ WB.ArcSegmentAnimation = WB.Animation.extend('ArcSegmentAnimation', {
 		this.done = dist < 1;
 		
 		this.board.state({
+			pointer: 'draw',
 			position: this.lastPoint,
 			velocity: this.velocity,
 			angle: this.da >= 0 ? WB.Geom.PI_HALF + eap : WB.Geom.PI_1_HALF + eap,

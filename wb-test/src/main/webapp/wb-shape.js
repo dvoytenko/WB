@@ -22,6 +22,10 @@ WB.ShapeEpisodeBase = WB.Episode.extend('ShapeEpisodeBase', {
 	
 	predraw: false,
 	
+	action: null,
+	
+	moveStartPosition: null,
+	
 	init: function(opts) {
 		if (opts) {
 			for (var k in opts) {
@@ -30,37 +34,45 @@ WB.ShapeEpisodeBase = WB.Episode.extend('ShapeEpisodeBase', {
 		}
 	},
 	
-	_shape: function() {
-		if (!this._shapeCache) {
-			
-			var tr = new WB.Transform();
+	_shape: function(includePosition) {
+		
+		var tr = new WB.Transform();
+		
+		if (includePosition) {
 			tr.translate(this.position.x, this.position.y);
-			// TODO calculate real width/height if not given
-			tr.scale(this.width/this.realWidth, 
-					this.height/this.realHeight);
-			if (this.rotationDegree) {
-				tr.rotate(WB.Geom.rad(this.rotationDegree));
-			}
-			
-			this._shapeCache = new WB.GroupShape({
-				shapes: [this.shape],
-				transform: tr
-				});
 		}
-		return this._shapeCache;
+		
+		// TODO calculate real width/height if not given?
+		tr.scale(this.width/this.realWidth, 
+				this.height/this.realHeight);
+		if (this.rotationDegree) {
+			tr.rotate(WB.Geom.rad(this.rotationDegree));
+		}
+		
+		return new WB.GroupShape({
+			shapes: [this.shape],
+			transform: tr
+			});
 	},
 	
 	prepare: function(board) {
-		if (this.predraw) {
-			board.commitShape(this._shape(), true);
+		if (this.predraw || this.action == 'predraw') {
+			board.commitShape(this._shape(true), true);
 		}
 	},
 	
 	createAnimation: function() {
-		if (this.predraw) {
+		if (this.predraw || this.action == 'predraw') {
 			return new WB.Animation();
 		}
-		return new WB.ShapeEpisodeAnimation(this, this._shape().createAnimation(),
+		if (this.action == 'move') {
+			// TODO default moveStartPosition to something?
+			return new WB.MoveShapeAnimation(this._shape(false),
+					this.moveStartPosition, this.position,
+					this.width, this.height,
+					this.rate);
+		}
+		return new WB.ShapeEpisodeAnimation(this, this._shape(true).createAnimation(),
 				this.rate);
 	}
 	
@@ -127,6 +139,10 @@ WB.ShapeEpisodeAnimation = WB.Animation.extend('ShapeEpisodeAnimation', {
  */
 WB.Shape = WB.Class.extend('Shape', {
 	
+	isReady: function() {
+		return true;
+	},
+	
 	draw: function(pane) {
 	},
 	
@@ -176,6 +192,15 @@ WB.GroupShape = WB.Shape.extend('GroupShape', {
 		if (opts && opts.height) {
 			this.height = opts.height;
 		}
+	},
+	
+	isReady: function() {
+		for (var i = 0; i < this.shapes.length; i++) {
+			if (!this.shapes[i].isReady()) {
+				return false;
+			}
+		}
+		return true;
 	},
 	
 	draw: function(pane) {
@@ -242,10 +267,18 @@ WB.GroupShapeAnimation = WB.ListAnimation.extend('GroupShapeAnimation', {
  */
 WB.MoveShapeAnimation = WB.Animation.extend('MoveShapeAnimation', {
 	
-	init: function(shape, fromPoint, toPoint) {
+	init: function(shape, fromPoint, toPoint, width, height, rate) {
 		this.shape = shape;
 		this.fromPoint = fromPoint;
 		this.toPoint = toPoint;
+		
+		this.width = width;
+		this.height = height;
+		
+		// TODO process rate
+		this.rate = rate;
+	
+		console.log('MoveShapeAnimation from ' + JSON.stringify(fromPoint) + ' to ' + JSON.stringify(toPoint));
 	},
 	
 	start: function(board) {
@@ -258,7 +291,7 @@ WB.MoveShapeAnimation = WB.Animation.extend('MoveShapeAnimation', {
         this.totalDistance = this.pane.distanceGlobal(this.fromPoint, 
         		this.toPoint, false, true);
         this.timeLeft = 0;
-        this.done = this.totalDistance < 1.0;
+        this.done = this.shape.isReady() && this.totalDistance < 1.0;
 
         this.movedShape = new WB.GroupShape({
 			transform: new WB.Transform().translate(this.fromPoint.x, this.fromPoint.y),
@@ -284,14 +317,21 @@ WB.MoveShapeAnimation = WB.Animation.extend('MoveShapeAnimation', {
         var newPoint = WB.Geom.movePoint(this.fromPoint, x2, y2);
         
         this.movedShape.transform = new WB.Transform().translate(newPoint.x, newPoint.y);
+		// console.log('draw image @ ' + newPoint.x + ' x ' + newPoint.y);
         this.movedShape.draw(this.pane);
 		
-	    this.done = Math.abs(this.totalDistance - distance) < 1.0;
+	    this.done = this.shape.isReady() && Math.abs(this.totalDistance - distance) < 1.0;
 	    
-	    // TODO position
+	    var holdPoint;
+	    if (this.width && this.height) {
+	    	holdPoint = WB.Geom.movePoint(newPoint, this.width/2, this.height/3*2);
+	    } else {
+	    	holdPoint = WB.Geom.movePoint(newPoint, 10, 10);
+	    }
+	    
 	    this.board.state({
 	    	pointer: 'move',
-	    	//position: this.pane.toGlobalPoint(newPoint),
+	    	position: this.pane.toGlobalPoint(holdPoint),
 	    	velocity: this.velocity,
 	    	angle: WB.Geom.angle(this.fromPoint, newPoint),
 	    	height: 1.0

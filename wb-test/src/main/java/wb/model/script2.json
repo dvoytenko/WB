@@ -7,7 +7,8 @@
 
 		{
 			_type: 'SpeechEpisode',
-			text: 'That\'s the oldest story in the world. You came up with an idea and created a product',
+			track: 'oldest-story',
+			text: 'It\'s one of the oldest stories in the world. You came up with an idea, rolled up your sleeves, and created a product.',
 			engine: 'cere'
 		},
 		
@@ -29,7 +30,8 @@
 
 		{
 			_type: 'SpeechEpisode',
-			text: 'And now you want the whole world to start using it!',
+			track: 'whole-world-using',
+			text: 'And now you want to get the word out and have the whole world to start using it!',
 			engine: 'cere'
 		},
 		
@@ -95,7 +97,8 @@
 
 		{
 			_type: 'SpeechEpisode',
-			text: 'So, you invited your friends, neighbors and your investors to see what you got. You put together a decent Power Point presentation.',
+			track: 'invite',
+			text: 'So, you’ve invited your friends, family and your investors to see what you’ve got. You’ve also put together a decent Power Point presentation.',
 			engine: 'cere'
 		},
 		
@@ -136,6 +139,7 @@
 
 		{
 			_type: 'SpeechEpisode',
+			track: 'bored',
 			text: 'But all of a sudden people seem bored.',
 			engine: 'cere'
 		},
@@ -150,7 +154,8 @@
 
 		{
 			_type: 'SpeechEpisode',
-			text: 'Some are dashing for the door.',
+			track: 'dashing-door',
+			text: 'Some are dashing for a door.',
 			engine: 'cere'
 		},
 		
@@ -180,7 +185,8 @@
 
 		{
 			_type: 'SpeechEpisode',
-			text: 'Others might be even falling asleep.',
+			track: 'falling-asleep',
+			text: 'Others are even falling asleep.',
 			engine: 'cere'
 		},
 		
@@ -227,7 +233,8 @@
 
 		{
 			_type: 'SpeechEpisode',
-			text: 'What if instead you had a cool and dynamic presentation. Kind of like this one.',
+			track: 'dynamic-pres',
+			text: 'What if instead you had a fun and dynamic presentation. Kind of like this one.',
 			engine: 'cere'
 		},
 		
@@ -274,7 +281,8 @@
 
 		{
 			_type: 'SpeechEpisode',
-			text: 'Your audience is engaged! Everyone wants to try your product!',
+			track: 'engaged',
+			text: 'Your audience is now engaged and everyone wants to try your product!',
 			engine: 'cere'
 		},
 		
@@ -296,7 +304,8 @@
 
 		{
 			_type: 'SpeechEpisode',
-			text: 'Some might even break into a spontaneous dance!',
+			track: 'dance',
+			text: 'They may even feel like getting a little loose and breaking it down right in the conference room!',
 			engine: 'cere'
 		},
 		
@@ -358,6 +367,13 @@
 		},
 		
 		{
+			_type: 'SpeechEpisode',
+			track: 'express-yourself',
+			text: 'Express yourself and never run out of markers again!',
+			engine: 'cere'
+		},
+		
+		{
 			_type: 'DrawTextEpisode',
 			text: 'Express yourself !',
 			position: {x: 2330, y: 60},
@@ -369,6 +385,14 @@
 			_type: 'DrawTextEpisode',
 			text: 'And never run out of markers again!',
 			position: {x: 2245, y: 140},
+			height: 30,
+			rate: 1.5
+		},
+
+		{
+			_type: 'DrawTextEpisode',
+			text: '(or ideas)',
+			position: {x: 2451, y: 200},
 			height: 30
 		},
 		

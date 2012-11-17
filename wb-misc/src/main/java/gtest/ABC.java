@@ -1,6 +1,9 @@
 package gtest;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.PriorityQueue;
 import java.util.TreeSet;
 
@@ -8,6 +11,15 @@ public class ABC {
 	
 	public static void main(String[] args) {
 		new ABC().priorityQueue();
+	}
+	
+	public void x() {
+		
+	}
+	
+	public void shuffle() {
+		List<String> list = new ArrayList<String>();
+		Collections.shuffle(list);
 	}
 	
 	public void hashMap() {

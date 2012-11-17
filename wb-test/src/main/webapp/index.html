@@ -270,6 +270,7 @@
     <script src="wb-board.js"></script>
     
     <script src="wb-shape.js"></script>
+    <script src="wb-image.js"></script>
     <script src="wb-segment.js"></script>
     <script src="wb-path.js"></script>
     <script src="wb-curve.js"></script>
@@ -307,7 +308,7 @@
 		<div id="content">
 			<div class="Demo">
 				<h2>Demo 1</h2>
-				<div id="script2" class="ScriptContainer Ready" style="width: 720px; height: 405px; position: relative;">
+				<div id="script3" class="ScriptContainer Ready" style="width: 720px; height: 405px; position: relative;">
 					<div class="Board" style="position: relative; width: 720px; height: 405px;">
 						<canvas class="CommitCanvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 2;"></canvas>
 						<canvas class="AnimCanvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 3;"></canvas>
@@ -332,7 +333,7 @@
 		function status(s) {
 		}
 		
-		var scriptId = 'script2';
+		var scriptId = 'script3';
 		var script$ = $('#' + scriptId);
 		
 		function state(st) {
@@ -379,7 +380,7 @@
 			var realWidth = 1440; // mm
 			var realHeight = 810; // mm
 			
-			var baseVelocity = 500;
+			var baseVelocity = 700;
 			
 			var defaultTransform = new WB.Transform();
 					//.scale(canvasWidth/realWidth, canvasHeight/realHeight)

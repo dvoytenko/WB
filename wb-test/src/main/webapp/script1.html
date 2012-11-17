@@ -1,18 +1,263 @@
-<!DOCTYPE HTML>
-<html>
-  <head>
-  
-    <style>
-      body {
-        margin: 0px;
-        padding: 0px;
-      }
-      canvas {
-        border: 1px solid #9C9898;
-      }
-    </style>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
 
-    <script src="jquery-1.7.1.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<title>Whiteboard Tool</title>
+  
+<style>
+	body {
+		padding: 0;
+		margin: 0;
+		font-size: 14px;
+		line-height: 18px;
+		color: #333;	
+	}
+
+	body, label, input, textarea, select, button {
+		font-family: "Helvetica Neue",Arial,sans-serif;
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		margin: 0;
+		color: #333;
+		text-rendering: optimizeLegibility;
+	}
+	
+	h2 {
+		font-size: 18px;
+		font-weight: bold;
+		line-height: 20px;
+	}
+	
+	h3 {
+		font-size: 14px;
+		font-weight: normal;
+		line-height: 1;
+	}
+	
+	img {
+		border: 0;
+	}
+
+	ul {
+		list-style: none;
+	}
+	
+	ul, ol {
+		padding: 0;
+		margin: 0;
+	}
+	
+	ol ul, ul ol, ul ul, ol ol {
+		-webkit-margin-before: 0px;
+		-webkit-margin-after: 0px;
+	}
+	
+	ul ul, ol ul {
+		list-style-type: circle;
+	}
+	
+	li {
+		display: list-item;
+		text-align: -webkit-match-parent;
+		margin: 0;
+		padding: 0;
+	}
+	
+	a {
+		/*
+		color: #0084B4;
+		*/
+		color: #878869;
+		text-decoration: none;
+		outline: 0;
+		cursor: pointer;
+	}
+	
+	a:hover {
+		text-decoration: underline;
+	}
+	
+	small {
+		font-size: 12px;
+	}
+	
+	i, cite, em, var, address, dfn {
+		font-style: italic;
+	}
+	
+	p {
+		margin: 0;
+	}
+	
+	form {
+		display: block;
+		font-size: 12px;
+		margin-bottom: 0;
+		margin-top: 0;
+	}
+	
+	/*
+	button {
+		border: 0;
+		margin: 0;
+		-webkit-appearance: button;
+	}
+
+	input[type="button"], input[type="submit"], input[type="reset"],
+			input[type="checkbox"], 
+			input[type="file"]::-webkit-file-upload-button, button {
+		padding: 1px 6px;
+		width: auto;
+	}
+	
+	input, textarea, select {
+		display: inline-block;
+		width: 210px;
+		padding: 4px;
+		margin: 0;
+		outline: none;
+		background-color: white;
+		border: 1px solid #CCC;
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+		border-radius: 3px;
+	}
+	*/
+	
+	label, input, textarea, select {
+		margin: 0;
+		font-size: 13px;
+		line-height: 20px;
+	}
+	
+	header {
+		position: fixed;
+		top: 0;
+		right: 0;
+		left: 0;
+		z-index: 1000;
+		border-bottom: 2px solid rgba(0, 0, 0, .25);
+		width: 710px;
+		margin: 0 auto;
+		background-color: white;
+		height: 40px;
+		width: 1000px;
+	}
+	
+	#Logo {
+		float: left;
+		margin: 10px 5px;
+		padding: 0;
+		color: #24a624;
+		/*
+		width: 90px;
+		*/
+	}
+	
+	#Logo a {
+		color: inherit;
+		text-decoration: none;
+		text-transform: lowercase;
+	}
+	
+	#Logo a:hover {
+		text-decoration: none;
+	}
+	
+	#RootMenu {
+		float: left;
+		margin: 10px 5px;
+		padding: 0;
+	}
+
+	#RootMenu li {
+		float: left;
+	}
+	
+	#RootMenu li:before {
+		content: "|";
+		margin-left: 4px;
+		margin-right: 4px;
+	}
+
+	#RootMenu li:first-child:before {
+		content: ""
+	}
+	
+	#ContentSection {
+		position: relative;
+		min-height: 500px;
+		margin: 0 auto;
+		padding: 48px 8px 8px;
+		padding-bottom: 0;
+		width: 1000px;
+	}
+	
+	.Demo {
+		width: 730px;
+		height: 415px;
+		margin: 10px auto;
+	}
+	
+	.ScriptContainer {
+		border: 1px solid #9C9898;
+	}
+
+	.ScriptContainer .Curtain {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 720px;
+		height: 405px;
+		z-index: 1000;
+	}
+	
+	/*
+	.ScriptContainer.Ready .Curtain {
+		cursor: pointer;
+	}
+	*/
+	
+	.ScriptContainer.Playing .Curtain {
+		display: none;
+	}
+	
+	.ScriptContainer.Ready .State {
+		background-image: url(images/play1pressed.png);
+		background-size: 128px 128px;
+		background-repeat: no-repeat;
+		width: 128px;
+		height: 128px;
+		margin: 138px auto;
+	}
+	
+	.ScriptContainer.Ready .PlayAction {
+		display: block;
+		width: 128px;
+		height: 128px;
+	}
+
+	.ScriptContainer.Loading .State {
+		background-image: url(loading.gif);
+		background-size: 200px 100px;
+		background-repeat: no-repeat;
+		width: 128px;
+		height: 128px;
+		margin: 138px auto;
+	}
+	
+</style>
+
+	<link rel="stylesheet" type="text/css" href="css/smoothness/jquery-ui-1.8.17.custom.css" />	
+
+    <script src="jquery-1.8.2.js"></script>
+    <script src="jquery-ui-1.9.0.custom.js"></script>
+    <script src="jquery.ui.popup.js"></script>
+    <script src="underscore-1.3.1.js"></script>
+    <script src="backbone-0.9.2-164.js"></script>
     
     <script src="wb-proto.js"></script>
     
@@ -25,6 +270,7 @@
     <script src="wb-board.js"></script>
     
     <script src="wb-shape.js"></script>
+    <script src="wb-image.js"></script>
     <script src="wb-segment.js"></script>
     <script src="wb-path.js"></script>
     <script src="wb-curve.js"></script>
@@ -35,145 +281,72 @@
     
     <script src="wb-parser.js"></script>
     <script src="wb-player.js"></script>
+    
+</head>
 
-  </head>
+<body>
 
-  <body>
-  	
-  	<h1>Script 1</h1>
-  	
-  	<!--
-  	<script>
-		var audio = new Audio();
-    	audio.addEventListener('canplay', function(e) {
-    		statusAdd('speech: canplay: ' + e);
-    		//audio.play();
-    	});
-    	audio.addEventListener('canplaythrough', function(e) {
-    		statusAdd('speech: canplaythrough: ' + e);
-    	});
-    	audio.addEventListener('progress', function(e) {
-    		statusAdd('speech: progress: ' + e);
-    	});
-    	audio.addEventListener('ended', function(e) {
-    		statusAdd('speech: ended: ' + e);
-        	setTimeout(function() {
-            	audio.setAttribute("src", 'script1/cere-4ba32715-e16e-3f8c-b4a6-db2d1a7035e8.wav');
-            	audio.load();
-        		audio.play();
-        	}, 1000);
-    	});
-    	audio.addEventListener('play', function(e) {
-    		statusAdd('speech: play: ' + e);
-    	});
-    	audio.addEventListener('playing', function(e) {
-    		statusAdd('speech: playing: ' + e);
-    	});
-    	audio.addEventListener('pause', function(e) {
-    		statusAdd('speech: pause: ' + e);
-    	});
-    	audio.addEventListener('abort', function(e) {
-    		statusAdd('speech: abort: ' + e);
-    	});
-    	audio.addEventListener('error', function(e) {
-    		statusAdd('speech: error: ' + e);
-    	});
-    	audio.addEventListener('waiting', function(e) {
-    		statusAdd('speech: waiting: ' + e);
-    	});
-    	audio.addEventListener('loadedmetadata', function(e) {
-    		statusAdd('speech: loadedmetadata: ' + e);
-    	});
-    	audio.addEventListener('stalled', function(e) {
-    		statusAdd('speech: stalled: ' + e);
-    	});
-    	audio.addEventListener('suspend', function(e) {
-    		statusAdd('speech: suspend: ' + e);
-    	});
-    	audio.addEventListener('timeupdate', function(e) {
-    		//statusAdd('speech: timeupdate: ' + e);
-    	});
-
-    	setTimeout(function() {
-    		// cere-4ba32715-e16e-3f8c-b4a6-db2d1a7035e8
-        	audio.setAttribute("src", 'script1/cere-345550b5-f98f-36db-9934-c82625b1c615.wav');
-        	audio.load();
-    		audio.play();
-    	}, 1000);
-  	</script>
-  	-->
-  	
-	<div id="bottombar" style="border: 1px solid gray; margin: 4px; width: 720px;">
-		<a id="TogglePlay" href="javascript:void(0);">Play</a>
-		<!--
-		<span> | <span>
-		<a href="javascript:void(0);" onclick="console.log('Log1');">Log</a>
-		-->
-	</div>
+	<header>
+		<h1 id="Logo"><a>Whiteboard</a></h1>
+		
+		<ul id="RootMenu">
+			<!--
+			<li><a href="#c/shapeview">Shape Viewer</a></li>
+			<li><a href="#c/tts">TTS</a></li>
+			<li><a href="#c/scriptedit">Script Editor</a></li>
+			<li><a href="#c/getbookmarklet">Shapes Bookmarklet</a></li>
+			-->
+		</ul>
+		
+		<div class="sep"></div>
+		
+		<div style="clear: both;"></div>
+	</header>
 	
-	<div id="status" style="border: 1px solid gray; margin: 4px; width: 720px;">
-		status
-	</div>
+	<section id="ContentSection">
+		<div id="ContentLoading" style="display: none;"><img src="loading.gif"/></div>
+		<div id="content">
+			<div class="Demo">
+				<h2>Demo 1</h2>
+				<div id="script1" class="ScriptContainer Ready" style="width: 720px; height: 405px; position: relative;">
+					<div class="Board" style="position: relative; width: 720px; height: 405px;">
+						<canvas class="CommitCanvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 2;"></canvas>
+						<canvas class="AnimCanvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 3;"></canvas>
+						<canvas class="PointerCanvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 4;"></canvas>
+					</div>
+					<div class="Curtain">
+						<div class="State"><a class="PlayAction"></a></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div style="clear: both;"></div>
+	</section>
 	
-	<div id="container" style="position: relative; margin: 4px; padding: 0; width: 720px; height: 405px;">
-		<!--
-		<canvas id="gridCanvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 1;"></canvas>
-		-->
-		<canvas id="canvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 2;"></canvas>
-		<canvas id="animCanvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 3;"></canvas>
-		<canvas id="pointerCanvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 4;"></canvas>
-	</div>
+	<footer>
+		<div style="clear: both;"></div>
+	</footer>
 
-	<script>
+
+	<script type="text/javascript">
 	
 		function status(s) {
-			$('#status').text(s);
-		}
-
-		function statusX(s) {
-			$('#status').text(s);
 		}
 		
-		function statusAdd(s) {
-			var d = $('<div></div>');
-			d.text(s);
-			$('#status').append(d);
-		}
-
-		function grid() {
-			var canvas = document.getElementById('gridCanvas');
-			if (!canvas) {
-				return;
-			}
-			
-			var context = canvas.getContext('2d');
-			var width = canvas.width;
-			var height = canvas.height;
-			var delta = 50;
-			for (var x = delta; x < width; x += delta) {
-				context.beginPath();
-				context.moveTo(x, 0);
-				context.lineTo(x, height);
-				context.lineWidth = 0.7;
-				//context.strokeStyle = 'rgba(220,220,220,0.5)';
-				context.strokeStyle = 'rgba(0,255,0,1)';
-				context.stroke();
-				for (var y = delta; y < height; y += delta) {
-					context.beginPath();
-					context.moveTo(0, y);
-					context.lineTo(width, y);
-					context.lineWidth = 0.7;
-					//context.strokeStyle = 'rgba(220,220,220,0.1)';
-					context.strokeStyle = 'rgba(0,255,0,1)';
-					context.stroke();
-				}
-			}
-		}
-		
-		grid();
-
-
 		var scriptId = 'script1';
+		var script$ = $('#' + scriptId);
+		
+		function state(st) {
+			console.log('State: ' + st);
+			script$.toggleClass('Ready', false);
+			script$.toggleClass('Loading', false);
+			script$.toggleClass('Playing', false);
+			if (st) {
+				script$.toggleClass(st, true);
+			}
+		}
+		
+		state('Ready');
 
 		var urlResolver = function(path) {
 			if (path.substr(0,1) != '/') {
@@ -181,23 +354,15 @@
 			}
 			return '/wb/' + scriptId + path;
 		}
-
+		
+		var commitCanvas = script$.find('canvas.CommitCanvas').get(0);
+		var animCanvas = script$.find('canvas.AnimCanvas').get(0);
+		var pointerCanvas = script$.find('canvas.PointerCanvas').get(0);
+		
 		var player = null;
 
-		var a = $('#TogglePlay');
-		a.click(function() {
-			if (!player || player.state == 'none' || player.state == 'ended') {
-				a.text('Starting...');
-				playScript();
-			} else if (player.state == 'playing') {
-				player.suspend();
-			} else if (player.state == 'suspended') {
-				player.resume();
-			}
-		});
-
-		
 		function playAny(animable) {
+			state('Loading');
 			
 			// 720 x 405
 			var canvasWidth = 720;
@@ -205,7 +370,7 @@
 			var realWidth = 1440; // mm
 			var realHeight = 810; // mm
 			
-			var baseVelocity = 500;
+			var baseVelocity = 700;
 			
 			var defaultTransform = new WB.Transform();
 					//.scale(canvasWidth/realWidth, canvasHeight/realHeight)
@@ -213,11 +378,11 @@
 			
 			var board = new WB.Board({
 				commitPane: new WB.Pane({
-					canvas: document.getElementById('canvas'), 
+					canvas: commitCanvas, 
 					defaultTransform: defaultTransform
 					}),
 				animationPane: new WB.Pane({
-					canvas: document.getElementById('animCanvas'), 
+					canvas: animCanvas, 
 					defaultTransform: defaultTransform
 					}),
 				drawingSoundEngine: new WB.DrawingSoundEngine({
@@ -225,7 +390,7 @@
 					}),
 				pointer: new WB.HandPoint({
 					pane: new WB.Pane({
-						canvas: document.getElementById('pointerCanvas'),
+						canvas: pointerCanvas,
 						defaultTransform: defaultTransform
 						})
 					}),
@@ -248,11 +413,14 @@
 							+ '; Position: ' + Math.round(p.x) + ',' + Math.round(p.y));
 				} else if (event == 'state') {
 					if (opts.state == 'playing') {
-						a.text('Suspend');
+						// a.text('Suspend');
+						state('Playing');
 					} else if (opts.state == 'suspended') {
-						a.text('Resume');
+						// a.text('Resume');
+						state('Suspended');
 					} else if (opts.state == 'ended') {
-						a.text('Play');
+						// a.text('Play');
+						state('Ready');
 					}
 				}
 			});
@@ -262,6 +430,8 @@
 		
 		function playScript() {
 
+			state('Loading');
+			
 			$.ajax({url: urlResolver('script.json'), contentType: 'application/json'})
 			.done(function(json) {
 				console.log('got data');
@@ -280,6 +450,11 @@
 			});
 		}
 		
+		script$.find('a.PlayAction').click(function() {
+			playScript();
+		});
+	
 	</script>
-  </body>
+
+</body>
 </html>

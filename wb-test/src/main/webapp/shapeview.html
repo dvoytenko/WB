@@ -163,6 +163,10 @@
 				
 				<div id="gallery">
 					<div id="ImageListPane">
+						<div style="margin-bottom: 4px;">
+							Filter: 
+							<input id="listFilterInput" type="text" />
+						</div>
 						<div id="ShapeDescListView"></div>
 					</div>
 				</div>
@@ -622,9 +626,23 @@
 			
 			model: shapeDescListModel,
 			
+			filter: null,
+			
 			initialize: function() {
 				this.model.bind('add', this.addOne, this);
 				this.model.bind('reset', this.reAddAll, this);
+
+				this.filterInput$ = $('#listFilterInput');
+				var that = this;
+				this.filterInput$.change(function(){
+					that.filterChanged();
+				});
+				this.filterInput$.change(function(){
+					that.filterChanged();
+				});
+				this.filterInput$.keyup(function(){
+					that.filterChanged();
+				});
 			},
 
 			render: function() {
@@ -637,9 +655,47 @@
 			},			
 			
 			addOne: function(shapeDescModel) {
-				var view = new ShapeDescView({model: shapeDescModel});
-				this.$el.append(view.render().el);
+				if (!this.filter || this.filter(shapeDescModel)) {
+					var view = new ShapeDescView({model: shapeDescModel});
+					this.$el.append(view.render().el);
+				}
 			},
+			
+			filterChanged: function() {
+				var val = this.filterInput$.val();
+				// console.log('filter changed: ' + val);
+				if (!val) {
+					this.filter = null;
+				} else {
+					function contains(s1, s2) {
+						return s1 && s1.indexOf(s2) != -1;
+					}
+					this.filter = function(shapeDescModel) {
+						var id = shapeDescModel.get('id');
+						var title = shapeDescModel.get('title');
+						var url = shapeDescModel.get('tags');
+						var tags = shapeDescModel.get('tags');
+						if (contains(id, val)) {
+							return true;
+						}
+						if (contains(url, val)) {
+							return true;
+						}
+						if (contains(title, val)) {
+							return true;
+						}
+						if (tags) {
+							for (var i = 0; i < tags.length; i++) {
+								if (contains(tags[i], val)) {
+									return true;
+								}
+							}
+						}
+						return false;
+					}
+				}
+				this.reAddAll();
+			}
 			
 		});
 

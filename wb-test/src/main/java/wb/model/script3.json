@@ -1,11 +1,431 @@
 {
 	episodes: [
+	
+		/*
+			Part 1
+		 */
+
+		{
+			_type: 'SpeechEpisode',
+			track: 'oldest-story',
+			text: 'It\'s one of the oldest stories in the world. You came up with an idea, rolled up your sleeves, and created a product.',
+			engine: 'cere'
+		},
+		
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'openclipart_org-lightbulb-by-anonymous-23587',
+			position: {x: 10, y: 10},
+			width: 70,
+			rotationDegree: 0
+		},
+		
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'www_clker_com-carton-open-box_svg',
+			position: {x: 140, y: 10},
+			width: 120,
+			rotationDegree: 0
+		},
+
+		{
+			_type: 'SpeechEpisode',
+			track: 'whole-world-using',
+			text: 'And now you want to get the word out and have the whole world to start using it!',
+			engine: 'cere'
+		},
+		
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'www_clker_com-1194984395619889880earth_globe_dan_gerhrads_01_svg',
+			position: {x: 340, y: 100},
+			width: 220,
+			rotationDegree: 0
+		},
+		
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'www_clker_com-stickman-celebrating_svg',
+			position: {x: 280, y: 140},
+			width: 70,
+			rotationDegree: -30
+		},
+
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'www_clker_com-stickman-celebrating_svg',
+			position: {x: 580, y: 50},
+			width: 60,
+			rotationDegree: 45
+		},
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'www_clker_com-stickman-celebrating_svg',
+			position: {x: 590, y: 90},
+			width: 60,
+			rotationDegree: 45
+		},
+
+		{
+			_type: 'DrawShapeEpisode',
+			_desc: 'move away',
+			position: {x: 0, y: 0},
+			width: 1, height: 1, realWidth: 1, realHeight: 1,
+			shape: {
+				_type: 'PathShape',
+				pathSegment: {
+					_type: 'PathSegment',
+					segments: [
+						{
+							_type: 'MoveToSegment',
+							point: {x: 10, y: 500}
+						}
+					]
+				}
+			}
+		},
+
+		{
+			_type: 'PanEpisode',
+			point: {x: -720, y: 0}
+		},
+
+
+		/*
+			Part 2
+		*/
+
+		{
+			_type: 'SpeechEpisode',
+			track: 'invite',
+			text: 'So, you’ve invited your friends, family and your investors to see what you’ve got. You’ve also put together a decent Power Point presentation.',
+			engine: 'cere'
+		},
+		
+		{
+			_type: 'PasteImageEpisode',
+			imageId: 'best-friends',
+			position: {x: 1070, y: 40},
+			height: 100,
+			rotationDegree: 0,
+			action: 'move',
+			moveStartPosition: {x: 800, y: 500},
+			pause: 700
+		},
+		
+		{
+			_type: 'PasteImageEpisode',
+			imageId: 'family',
+			position: {x: 1200, y: 10},
+			height: 160,
+			rotationDegree: 0,
+			action: 'move',
+			moveStartPosition: {x: 900, y: 500},
+			pause: 100
+		},
+
+		{
+			_type: 'PasteImageEpisode',
+			imageId: 'buffet',
+			position: {x: 1350, y: 20},
+			height: 140,
+			rotationDegree: 0,
+			action: 'move',
+			moveStartPosition: {x: 1000, y: 500},
+			pause: 100
+		},
+		
+		{
+			_type: 'PasteImageEpisode',
+			imageId: 'coaching-stick-figures',
+			position: {x: 720, y: 100},
+			height: 240,
+			rotationDegree: 0,
+			action: 'move',
+			moveStartPosition: {x: 720, y: 500},
+			pause: 2000
+		},
+
+		{
+			_type: 'DrawTextEpisode',
+			text: '1',
+			position: {x: 825, y: 128},
+			height: 30
+		},
+		{
+			_type: 'DrawTextEpisode',
+			text: '2',
+			position: {x: 845, y: 133},
+			height: 30
+		},
+		{
+			_type: 'DrawTextEpisode',
+			text: '3',
+			position: {x: 870, y: 140},
+			height: 30
+		},
+
+		{
+			_type: 'SpeechEpisode',
+			track: 'bored',
+			text: 'But all of a sudden people seem bored.',
+			engine: 'cere'
+		},
+		
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'www_clker_com-stickman-tired_svg',
+			position: {x: 1130, y: 200},
+			height: 120,
+			rotationDegree: 0
+		},
+
+		{
+			_type: 'SpeechEpisode',
+			track: 'dashing-door',
+			text: 'Some are dashing for a door.',
+			engine: 'cere'
+		},
+		
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'www_clker_com-stickmap-jumping_svg',
+			position: {x: 1260, y: 280},
+			height: 100,
+			rotationDegree: 0
+		},
+
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'www_clker_com-1197148408345705582SRD_comic_clouds_10_svg',
+			position: {x: 1220, y: 230},
+			width: 160,
+			height: 50,
+			rotationDegree: 0
+		},
+
 		{
 			_type: 'DrawTextEpisode',
 			text: 'Oh. Forgot...',
-			position: {x: 10, y: 10},
+			position: {x: 1230, y: 245},
 			height: 15
 		},
+
+		{
+			_type: 'SpeechEpisode',
+			track: 'falling-asleep',
+			text: 'Others are even falling asleep.',
+			engine: 'cere'
+		},
+		
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'www_clker_com-stickman-sleeping_svg',
+			position: {x: 980, y: 320},
+			width: 140,
+			rotationDegree: 0
+		},
+
+		{
+			_type: 'DrawShapeEpisode',
+			_desc: 'move away',
+			position: {x: 0, y: 0},
+			width: 1, height: 1, realWidth: 1, realHeight: 1,
+			shape: {
+				_type: 'PathShape',
+				pathSegment: {
+					_type: 'PathSegment',
+					segments: [
+						{
+							_type: 'MoveToSegment',
+							point: {x: 730, y: 500}
+						}
+					]
+				}
+			}
+		},
+		
+		{
+			_type: 'SpeechEndEpisode'
+		},
+		
+		{
+			_type: 'PanEpisode',
+			point: {x: -1440, y: 0}
+		},
+
+
+		/*
+			Part 3
+		 */
+
+		{
+			_type: 'SpeechEpisode',
+			track: 'dynamic-pres',
+			text: 'What if instead you had a fun and dynamic presentation. Kind of like this one.',
+			engine: 'cere'
+		},
+		
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'www_clker_com-12305710175679798AJ_Portable_Projection_Screen_svg',
+			position: {x: 1460, y: 50},
+			width: 250,
+			rotationDegree: 0,
+			rate: 2,
+			action: 'predraw'
+		},
+
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'www_clker_com-11954382541257828096play_symbol_cosmin_humen_01_svg',
+			position: {x: 1555, y: 110},
+			width: 65,
+			rotationDegree: 0,
+			pause: 3000
+		},
+		
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'openclipart_org-lightbulb-by-anonymous-23587',
+			position: {x: 1470, y: 70},
+			width: 30,
+			rotationDegree: 0
+		},
+		
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'www_clker_com-carton-open-box_svg',
+			position: {x: 1510, y: 70},
+			width: 50,
+			rotationDegree: 0
+		},
+		
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'www_clker_com-1194984395619889880earth_globe_dan_gerhrads_01_svg',
+			position: {x: 1635, y: 145},
+			width: 60,
+			rotationDegree: 0
+		},
+
+		{
+			_type: 'SpeechEpisode',
+			track: 'engaged',
+			text: 'Your audience is now engaged and everyone wants to try your product!',
+			engine: 'cere'
+		},
+		
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'www_clker_com-stickman-celebrating_svg',
+			position: {x: 1740, y: 40},
+			height: 140,
+			rotationDegree: 0
+		},
+
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'www_clker_com-stickman-celebrating_svg',
+			position: {x: 1830, y: 40},
+			height: 140,
+			rotationDegree: 0
+		},
+
+		{
+			_type: 'SpeechEpisode',
+			track: 'dance',
+			text: 'They may even feel like getting a little loose and breaking it down right in the conference room!',
+			engine: 'cere'
+		},
+		
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'www_clker_com-dance-toon_svg',
+			position: {x: 1960, y: 240},
+			height: 140,
+			rotationDegree: 0
+		},
+
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'www_clker_com-1195422841878786329disco_ball_hermann_schw_01r_svg',
+			position: {x: 2000, y: 140},
+			width: 80,
+			rotationDegree: 0,
+			rate: 2
+		},
+
+		{
+			_type: 'DrawShapeEpisode',
+			_desc: 'move away',
+			position: {x: 0, y: 0},
+			width: 1, height: 1, realWidth: 1, realHeight: 1,
+			shape: {
+				_type: 'PathShape',
+				pathSegment: {
+					_type: 'PathSegment',
+					segments: [
+						{
+							_type: 'MoveToSegment',
+							point: {x: 1450, y: 500}
+						}
+					]
+				}
+			}
+		},
+		
+		{
+			_type: 'PanEpisode',
+			point: {x: -2160, y: 0}
+		},
+		
+
+		/*
+			Part 4
+		*/
+
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'www_clker_com-whiteboard_svg',
+			position: {x: 2220, y: 30},
+			width: 600,
+			height: 350,
+			rotationDegree: 0,
+			rate: 5,
+			predraw: true
+		},
+		
+		{
+			_type: 'SpeechEpisode',
+			track: 'express-yourself',
+			text: 'Express yourself and never run out of markers again!',
+			engine: 'cere'
+		},
+		
+		{
+			_type: 'DrawTextEpisode',
+			text: 'Express yourself !',
+			position: {x: 2330, y: 60},
+			height: 40,
+			predraw: true
+		},
+
+		{
+			_type: 'DrawTextEpisode',
+			text: 'And never run out of markers again!',
+			position: {x: 2245, y: 140},
+			height: 30,
+			rate: 1.5
+		},
+
+		{
+			_type: 'DrawTextEpisode',
+			text: '(or ideas)',
+			position: {x: 2451, y: 200},
+			height: 30
+		},
+		
 	]
 	
 }

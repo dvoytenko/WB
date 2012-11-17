@@ -18,7 +18,7 @@
 		},
 		{
 			_type: 'DrawShapeEpisode',
-			shapeId: 'molumen_plane_silhouet',
+			shapeId: 'openclipart_org-plane-silhouet-by-molumen',
 			position: {x: 10, y: 10},
 			width: 1,
 			height: 1,
@@ -34,7 +34,7 @@
 		},
 		{
 			_type: 'DrawShapeEpisode',
-			shapeId: 'liftarn_Adult_and_child',
+			shapeId: 'openclipart_org-adult-and-child-by-liftarn',
 			position: {x: 10, y: 190},
 			width: 1,
 			height: 1,
@@ -50,7 +50,7 @@
 		},
 		{
 			_type: 'DrawShapeEpisode',
-			shapeId: 'nicubunu_Dog_head_1',
+			shapeId: 'openclipart_org-dog-head-by-nicubunu-14504',
 			position: {x: 200, y: 240},
 			width: 0.8,
 			height: 0.8,
@@ -71,7 +71,7 @@
 		},
 		{
 			_type: 'DrawShapeEpisode',
-			shapeId: 'ryanlerch_thinkingboy_outline',
+			shapeId: 'openclipart_org-thinkingboy-outline-by-ryanlerch',
 			position: {x: 400, y: 20},
 			width: 2,
 			height: 2,
@@ -81,10 +81,11 @@
 			rate: 2
 		},
 
-
+		/* LaTeX shape? A custom URL-based shape?
+		 */
 		{
 			_type: 'DrawShapeEpisode',
-			shapeId: 'eq1',
+			shapeId: 'file-fileCWorkWBwb-testsrcmainwebappshapeseq1_svg',
 			position: {x: 550, y: 200},
 			width: 1.2,
 			height: 1.2,
@@ -345,7 +346,7 @@
 
 		{
 			_type: 'DrawShapeEpisode',
-			shapeId: 'cogs1',
+			shapeId: 'openclipart_org--by--3572',
 			position: {x: 1140, y: 260},
 			width: 1,
 			height: 1,
@@ -541,7 +542,7 @@
 
 		{
 			_type: 'DrawShapeEpisode',
-			shapeId: 'audio10',
+			shapeId: 'file-fileCWorkWBwb-testsrcmainwebappshapesaudio10_svg',
 			position: {x: 1540, y: 240},
 			width: 1,
 			height: 1,
@@ -550,7 +551,7 @@
 			rotationDegree: 0
 		},
 
-
+		/*
 		{
 			_type: 'SpeechEpisode',
 			text: 'How can we charge for something like this? One approach: we would charge 1 dollar per a minute of a produced video. We will keep our logo in a corner of this video.',
@@ -619,7 +620,7 @@
 			position: {x: 2070, y: 40},
 			height: 60
 		},
-		
+		*/
 
 
 		{
@@ -632,7 +633,6 @@
 
 		/*
 			Part 4
-		*/		
 
 		{
 			_type: 'SpeechEpisode',
@@ -905,7 +905,7 @@
 			position: {x: 2690, y: 330},
 			height: 20
 		},
-
+		*/		
 
 
 		{
@@ -935,7 +935,7 @@
 
 		{
 			_type: 'DrawShapeEpisode',
-			shapeId: 'molumen_car_outline_modified',
+			shapeId: 'openclipart_org-car-outline-modified-by-molumen',
 			position: {x: 3030, y: 140},
 			width: 3,
 			height: 3,

@@ -131,6 +131,8 @@ public class Parser {
 		if (value instanceof Number) {
 			if (type == Integer.class) {
 				return ((Number) value).intValue();
+			} else if (type == Long.class) {
+				return ((Number) value).longValue();
 			} else {
 				return ((Number) value).doubleValue();
 			}

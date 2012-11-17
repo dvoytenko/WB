@@ -133,7 +133,7 @@ public class ShapeDbController {
 		// thumbnails
 		final File tempDir = new File(System.getProperty("java.io.tmpdir"));
 		for (ShapeMeta meta : shapes) {
-			GroupShape shape = PrepareShape.prepareShape(meta.shape);;
+			GroupShape shape = PrepareShape.prepareShape(meta.shape);
 			meta.shape = shape;
 			File file;
 			try {

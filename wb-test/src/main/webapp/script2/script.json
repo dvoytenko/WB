@@ -4,8 +4,8 @@
     {
       "_type": "SpeechEpisode",
       "engine": "cere",
-      "text": "That's the oldest story in the world. You came up with an idea and created a product",
-      "track": "cere-a56181b5-1d55-3dc2-981e-1d22045a2f19"
+      "text": "It's one of the oldest stories in the world. You came up with an idea, rolled up your sleeves, and created a product.",
+      "track": "oldest-story"
     },
     {
       "_type": "DrawShapeEpisode",
@@ -1788,8 +1788,8 @@
     {
       "_type": "SpeechEpisode",
       "engine": "cere",
-      "text": "And now you want the whole world to start using it!",
-      "track": "cere-23bc8c22-e074-3ee1-9865-bf4dcc4111cf"
+      "text": "And now you want to get the word out and have the whole world to start using it!",
+      "track": "whole-world-using"
     },
     {
       "_type": "DrawShapeEpisode",
@@ -6432,8 +6432,8 @@
     {
       "_type": "SpeechEpisode",
       "engine": "cere",
-      "text": "So, you invited your friends, neighbors and your investors to see what you got. You put together a decent Power Point presentation.",
-      "track": "cere-b334c27f-1211-3df7-98fe-4e3c9db387a5"
+      "text": "So, you\u2019ve invited your friends, family and your investors to see what you\u2019ve got. You\u2019ve also put together a decent Power Point presentation.",
+      "track": "invite"
     },
     {
       "_type": "DrawShapeEpisode",
@@ -19402,7 +19402,7 @@
       "_type": "SpeechEpisode",
       "engine": "cere",
       "text": "But all of a sudden people seem bored.",
-      "track": "cere-3fdc19e8-c079-304f-9740-e007af949438"
+      "track": "bored"
     },
     {
       "_type": "DrawShapeEpisode",
@@ -20160,8 +20160,8 @@
     {
       "_type": "SpeechEpisode",
       "engine": "cere",
-      "text": "Some are dashing for the door.",
-      "track": "cere-18859246-738f-31d3-8e1b-42600f5108f5"
+      "text": "Some are dashing for a door.",
+      "track": "dashing-door"
     },
     {
       "_type": "DrawShapeEpisode",
@@ -25767,8 +25767,8 @@
     {
       "_type": "SpeechEpisode",
       "engine": "cere",
-      "text": "Others might be even falling asleep.",
-      "track": "cere-cb325cec-0b32-3c13-84ed-dd0057b085e9"
+      "text": "Others are even falling asleep.",
+      "track": "falling-asleep"
     },
     {
       "_type": "DrawShapeEpisode",
@@ -26426,8 +26426,8 @@
     {
       "_type": "SpeechEpisode",
       "engine": "cere",
-      "text": "What if instead you had a cool and dynamic presentation. Kind of like this one.",
-      "track": "cere-3973f697-bc3f-3d77-a2c6-6c776ae0777e"
+      "text": "What if instead you had a fun and dynamic presentation. Kind of like this one.",
+      "track": "dynamic-pres"
     },
     {
       "_type": "DrawShapeEpisode",
@@ -31634,8 +31634,8 @@
     {
       "_type": "SpeechEpisode",
       "engine": "cere",
-      "text": "Your audience is engaged! Everyone wants to try your product!",
-      "track": "cere-6cd2ad8b-df6c-3010-ae6d-6a784e4a842a"
+      "text": "Your audience is now engaged and everyone wants to try your product!",
+      "track": "engaged"
     },
     {
       "_type": "DrawShapeEpisode",
@@ -32854,8 +32854,8 @@
     {
       "_type": "SpeechEpisode",
       "engine": "cere",
-      "text": "Some might even break into a spontaneous dance!",
-      "track": "cere-5d58017f-3e5b-38da-a96f-4ecdb04e6ea9"
+      "text": "They may even feel like getting a little loose and breaking it down right in the conference room!",
+      "track": "dance"
     },
     {
       "_type": "DrawShapeEpisode",
@@ -44419,6 +44419,12 @@
       },
       "shapeId": "www_clker_com-whiteboard_svg",
       "width": 600
+    },
+    {
+      "_type": "SpeechEpisode",
+      "engine": "cere",
+      "text": "Express yourself and never run out of markers again!",
+      "track": "express-yourself"
     },
     {
       "_type": "DrawTextEpisode",
@@ -63960,6 +63966,4375 @@
       },
       "text": "And never run out of markers again!",
       "width": 548.203125
+    },
+    {
+      "_type": "DrawTextEpisode",
+      "height": 30,
+      "position": {
+        "x": 2451,
+        "y": 200
+      },
+      "predraw": false,
+      "realHeight": 1024,
+      "realWidth": 4616,
+      "shape": {
+        "_type": "TextShape",
+        "glyphs": [
+          {
+            "_type": "Glyph",
+            "advX": 264,
+            "pathSegment": {
+              "_type": "PathSegment",
+              "segments": [
+                {
+                  "_type": "MoveToSegment",
+                  "point": {
+                    "x": 216,
+                    "y": -64
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 168,
+                    "y": -56
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 152,
+                    "y": -50
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 144,
+                    "y": -48
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 128,
+                    "y": -40
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 104,
+                    "y": -24
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 96,
+                    "y": -16
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 80,
+                    "y": 8
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 74,
+                    "y": 24
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 72,
+                    "y": 40
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 70,
+                    "y": 56
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 70,
+                    "y": 600
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 72,
+                    "y": 616
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 74,
+                    "y": 632
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 80,
+                    "y": 648
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 96,
+                    "y": 672
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 104,
+                    "y": 680
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 128,
+                    "y": 696
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 144,
+                    "y": 704
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 152,
+                    "y": 706
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 168,
+                    "y": 712
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 216,
+                    "y": 720
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 216,
+                    "y": 704
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 184,
+                    "y": 698
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 152,
+                    "y": 688
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 136,
+                    "y": 680
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 112,
+                    "y": 664
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 96,
+                    "y": 640
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 90,
+                    "y": 624
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 88,
+                    "y": 608
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 86,
+                    "y": 592
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 86,
+                    "y": 64
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 88,
+                    "y": 48
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 90,
+                    "y": 32
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 96,
+                    "y": 16
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 112,
+                    "y": -8
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 136,
+                    "y": -24
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 152,
+                    "y": -32
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 184,
+                    "y": -42
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 216,
+                    "y": -48
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 216,
+                    "y": -64
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 216,
+                    "y": -64
+                  }
+                },
+                {"_type": "ClosePathSegment"}
+              ]
+            }
+          },
+          {
+            "_type": "Glyph",
+            "advX": 608,
+            "pathSegment": {
+              "_type": "PathSegment",
+              "segments": [
+                {
+                  "_type": "MoveToSegment",
+                  "point": {
+                    "x": 360,
+                    "y": 12
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 366,
+                    "y": 12
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 424,
+                    "y": 32
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 440,
+                    "y": 40
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 464,
+                    "y": 56
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 480,
+                    "y": 72
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 496,
+                    "y": 96
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 512,
+                    "y": 128
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 517,
+                    "y": 144
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 520,
+                    "y": 160
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 524,
+                    "y": 192
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 524,
+                    "y": 272
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 520,
+                    "y": 304
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 517,
+                    "y": 320
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 512,
+                    "y": 336
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 496,
+                    "y": 368
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 480,
+                    "y": 392
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 464,
+                    "y": 408
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 440,
+                    "y": 424
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 424,
+                    "y": 432
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 366,
+                    "y": 451
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 360,
+                    "y": 452
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 248,
+                    "y": 452
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 241,
+                    "y": 451
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 184,
+                    "y": 432
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 168,
+                    "y": 424
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 144,
+                    "y": 408
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 128,
+                    "y": 392
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 112,
+                    "y": 368
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 96,
+                    "y": 336
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 90,
+                    "y": 320
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 88,
+                    "y": 304
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 84,
+                    "y": 272
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 84,
+                    "y": 192
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 88,
+                    "y": 160
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 90,
+                    "y": 144
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 96,
+                    "y": 128
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 112,
+                    "y": 96
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 128,
+                    "y": 72
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 144,
+                    "y": 56
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 168,
+                    "y": 40
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 184,
+                    "y": 32
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 241,
+                    "y": 12
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 248,
+                    "y": 12
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 360,
+                    "y": 12
+                  }
+                },
+                {"_type": "ClosePathSegment"},
+                {
+                  "_type": "MoveToSegment",
+                  "point": {
+                    "x": 256,
+                    "y": -4
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 224,
+                    "y": 0
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 176,
+                    "y": 16
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 160,
+                    "y": 24
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 136,
+                    "y": 40
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 112,
+                    "y": 64
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 96,
+                    "y": 88
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 80,
+                    "y": 120
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 74,
+                    "y": 136
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 72,
+                    "y": 152
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 68,
+                    "y": 184
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 68,
+                    "y": 280
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 72,
+                    "y": 312
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 74,
+                    "y": 328
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 80,
+                    "y": 344
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 96,
+                    "y": 376
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 112,
+                    "y": 400
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 136,
+                    "y": 424
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 160,
+                    "y": 440
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 176,
+                    "y": 448
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 224,
+                    "y": 464
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 256,
+                    "y": 468
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 352,
+                    "y": 468
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 384,
+                    "y": 464
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 432,
+                    "y": 448
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 448,
+                    "y": 440
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 472,
+                    "y": 424
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 496,
+                    "y": 400
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 512,
+                    "y": 376
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 528,
+                    "y": 344
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 533,
+                    "y": 328
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 536,
+                    "y": 312
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 540,
+                    "y": 280
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 540,
+                    "y": 184
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 536,
+                    "y": 152
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 533,
+                    "y": 136
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 528,
+                    "y": 120
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 512,
+                    "y": 88
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 496,
+                    "y": 64
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 472,
+                    "y": 40
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 448,
+                    "y": 24
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 432,
+                    "y": 16
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 384,
+                    "y": 0
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 352,
+                    "y": -4
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 256,
+                    "y": -4
+                  }
+                },
+                {"_type": "ClosePathSegment"}
+              ]
+            }
+          },
+          {
+            "_type": "Glyph",
+            "advX": 488,
+            "pathSegment": {
+              "_type": "PathSegment",
+              "segments": [
+                {
+                  "_type": "MoveToSegment",
+                  "point": {
+                    "x": 72,
+                    "y": 0
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 72,
+                    "y": 464
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 88,
+                    "y": 464
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 88,
+                    "y": 404
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 96,
+                    "y": 416
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 104,
+                    "y": 424
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 128,
+                    "y": 440
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 144,
+                    "y": 448
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 152,
+                    "y": 450
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 168,
+                    "y": 456
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 216,
+                    "y": 464
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 248,
+                    "y": 468
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 288,
+                    "y": 468
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 320,
+                    "y": 464
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 368,
+                    "y": 456
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 384,
+                    "y": 450
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 392,
+                    "y": 448
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 408,
+                    "y": 440
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 424,
+                    "y": 424
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 440,
+                    "y": 400
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 421,
+                    "y": 400
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 416,
+                    "y": 408
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 396,
+                    "y": 428
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 352,
+                    "y": 442
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 320,
+                    "y": 448
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 288,
+                    "y": 452
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 248,
+                    "y": 452
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 216,
+                    "y": 448
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 184,
+                    "y": 442
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 152,
+                    "y": 432
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 136,
+                    "y": 424
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 112,
+                    "y": 408
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 96,
+                    "y": 392
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 88,
+                    "y": 380
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 88,
+                    "y": 0
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 72,
+                    "y": 0
+                  }
+                },
+                {"_type": "ClosePathSegment"}
+              ]
+            }
+          },
+          {
+            "_type": "Glyph",
+            "advX": 408
+          },
+          {
+            "_type": "Glyph",
+            "advX": 160,
+            "pathSegment": {
+              "_type": "PathSegment",
+              "segments": [
+                {
+                  "_type": "MoveToSegment",
+                  "point": {
+                    "x": 72,
+                    "y": 0
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 72,
+                    "y": 464
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 88,
+                    "y": 464
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 88,
+                    "y": 0
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 72,
+                    "y": 0
+                  }
+                },
+                {"_type": "ClosePathSegment"},
+                {
+                  "_type": "MoveToSegment",
+                  "point": {
+                    "x": 72,
+                    "y": 528
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 72,
+                    "y": 592
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 88,
+                    "y": 592
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 88,
+                    "y": 528
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 72,
+                    "y": 528
+                  }
+                },
+                {"_type": "ClosePathSegment"}
+              ]
+            }
+          },
+          {
+            "_type": "Glyph",
+            "advX": 624,
+            "pathSegment": {
+              "_type": "PathSegment",
+              "segments": [
+                {
+                  "_type": "MoveToSegment",
+                  "point": {
+                    "x": 376,
+                    "y": 12
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 408,
+                    "y": 16
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 440,
+                    "y": 21
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 472,
+                    "y": 32
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 488,
+                    "y": 40
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 512,
+                    "y": 56
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 528,
+                    "y": 72
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 536,
+                    "y": 84
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 536,
+                    "y": 380
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 528,
+                    "y": 392
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 512,
+                    "y": 408
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 488,
+                    "y": 424
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 472,
+                    "y": 432
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 440,
+                    "y": 442
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 408,
+                    "y": 448
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 376,
+                    "y": 452
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 248,
+                    "y": 452
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 241,
+                    "y": 451
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 184,
+                    "y": 432
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 168,
+                    "y": 424
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 144,
+                    "y": 408
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 128,
+                    "y": 392
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 112,
+                    "y": 368
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 96,
+                    "y": 336
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 90,
+                    "y": 320
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 88,
+                    "y": 304
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 84,
+                    "y": 272
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 84,
+                    "y": 192
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 88,
+                    "y": 160
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 90,
+                    "y": 144
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 96,
+                    "y": 128
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 112,
+                    "y": 96
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 128,
+                    "y": 72
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 144,
+                    "y": 56
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 168,
+                    "y": 40
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 184,
+                    "y": 32
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 241,
+                    "y": 12
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 248,
+                    "y": 12
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 376,
+                    "y": 12
+                  }
+                },
+                {"_type": "ClosePathSegment"},
+                {
+                  "_type": "MoveToSegment",
+                  "point": {
+                    "x": 256,
+                    "y": -4
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 224,
+                    "y": 0
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 176,
+                    "y": 16
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 160,
+                    "y": 24
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 136,
+                    "y": 40
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 112,
+                    "y": 64
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 96,
+                    "y": 88
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 80,
+                    "y": 120
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 74,
+                    "y": 136
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 72,
+                    "y": 152
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 68,
+                    "y": 184
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 68,
+                    "y": 280
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 72,
+                    "y": 312
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 74,
+                    "y": 328
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 80,
+                    "y": 344
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 96,
+                    "y": 376
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 112,
+                    "y": 400
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 136,
+                    "y": 424
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 160,
+                    "y": 440
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 176,
+                    "y": 448
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 224,
+                    "y": 464
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 256,
+                    "y": 468
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 376,
+                    "y": 468
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 408,
+                    "y": 464
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 456,
+                    "y": 456
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 472,
+                    "y": 450
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 480,
+                    "y": 448
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 496,
+                    "y": 440
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 520,
+                    "y": 424
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 528,
+                    "y": 416
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 536,
+                    "y": 404
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 536,
+                    "y": 720
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 552,
+                    "y": 720
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 552,
+                    "y": 0
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 536,
+                    "y": 0
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 536,
+                    "y": 60
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 528,
+                    "y": 48
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 520,
+                    "y": 40
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 496,
+                    "y": 24
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 480,
+                    "y": 16
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 472,
+                    "y": 13
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 456,
+                    "y": 8
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 408,
+                    "y": 0
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 376,
+                    "y": -4
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 256,
+                    "y": -4
+                  }
+                },
+                {"_type": "ClosePathSegment"}
+              ]
+            }
+          },
+          {
+            "_type": "Glyph",
+            "advX": 608,
+            "pathSegment": {
+              "_type": "PathSegment",
+              "segments": [
+                {
+                  "_type": "MoveToSegment",
+                  "point": {
+                    "x": 524,
+                    "y": 240
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 524,
+                    "y": 272
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 520,
+                    "y": 304
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 517,
+                    "y": 320
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 512,
+                    "y": 336
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 496,
+                    "y": 368
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 480,
+                    "y": 392
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 464,
+                    "y": 408
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 440,
+                    "y": 424
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 424,
+                    "y": 432
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 366,
+                    "y": 451
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 360,
+                    "y": 452
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 248,
+                    "y": 452
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 241,
+                    "y": 451
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 184,
+                    "y": 432
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 168,
+                    "y": 424
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 144,
+                    "y": 408
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 128,
+                    "y": 392
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 112,
+                    "y": 368
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 96,
+                    "y": 336
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 90,
+                    "y": 320
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 88,
+                    "y": 304
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 84,
+                    "y": 272
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 84,
+                    "y": 240
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 524,
+                    "y": 240
+                  }
+                },
+                {"_type": "ClosePathSegment"},
+                {
+                  "_type": "MoveToSegment",
+                  "point": {
+                    "x": 256,
+                    "y": -4
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 224,
+                    "y": 0
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 176,
+                    "y": 16
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 160,
+                    "y": 24
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 136,
+                    "y": 40
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 112,
+                    "y": 64
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 96,
+                    "y": 88
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 80,
+                    "y": 120
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 74,
+                    "y": 136
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 72,
+                    "y": 152
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 68,
+                    "y": 184
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 68,
+                    "y": 280
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 72,
+                    "y": 312
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 74,
+                    "y": 328
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 80,
+                    "y": 344
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 96,
+                    "y": 376
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 112,
+                    "y": 400
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 136,
+                    "y": 424
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 160,
+                    "y": 440
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 176,
+                    "y": 448
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 224,
+                    "y": 464
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 256,
+                    "y": 468
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 352,
+                    "y": 468
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 384,
+                    "y": 464
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 432,
+                    "y": 448
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 448,
+                    "y": 440
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 472,
+                    "y": 424
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 496,
+                    "y": 400
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 512,
+                    "y": 376
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 528,
+                    "y": 344
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 533,
+                    "y": 328
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 536,
+                    "y": 312
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 540,
+                    "y": 280
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 540,
+                    "y": 224
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 84,
+                    "y": 224
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 84,
+                    "y": 192
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 88,
+                    "y": 160
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 90,
+                    "y": 144
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 96,
+                    "y": 128
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 112,
+                    "y": 96
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 128,
+                    "y": 72
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 144,
+                    "y": 56
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 168,
+                    "y": 40
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 184,
+                    "y": 32
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 241,
+                    "y": 12
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 248,
+                    "y": 12
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 376,
+                    "y": 12
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 408,
+                    "y": 16
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 440,
+                    "y": 21
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 484,
+                    "y": 36
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 504,
+                    "y": 56
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 509,
+                    "y": 64
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 528,
+                    "y": 64
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 512,
+                    "y": 40
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 496,
+                    "y": 24
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 480,
+                    "y": 16
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 472,
+                    "y": 13
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 456,
+                    "y": 8
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 408,
+                    "y": 0
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 376,
+                    "y": -4
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 256,
+                    "y": -4
+                  }
+                },
+                {"_type": "ClosePathSegment"}
+              ]
+            }
+          },
+          {
+            "_type": "Glyph",
+            "advX": 592,
+            "pathSegment": {
+              "_type": "PathSegment",
+              "segments": [
+                {
+                  "_type": "MoveToSegment",
+                  "point": {
+                    "x": 344,
+                    "y": 12
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 376,
+                    "y": 16
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 408,
+                    "y": 21
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 440,
+                    "y": 32
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 456,
+                    "y": 40
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 480,
+                    "y": 56
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 496,
+                    "y": 72
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 504,
+                    "y": 84
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 504,
+                    "y": 216
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 488,
+                    "y": 224
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 456,
+                    "y": 234
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 424,
+                    "y": 240
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 408,
+                    "y": 242
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 232,
+                    "y": 242
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 216,
+                    "y": 240
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 184,
+                    "y": 234
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 152,
+                    "y": 224
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 136,
+                    "y": 216
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 112,
+                    "y": 200
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 96,
+                    "y": 176
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 90,
+                    "y": 160
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 88,
+                    "y": 144
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 86,
+                    "y": 128
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 88,
+                    "y": 112
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 90,
+                    "y": 96
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 96,
+                    "y": 80
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 112,
+                    "y": 56
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 136,
+                    "y": 40
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 152,
+                    "y": 32
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 184,
+                    "y": 21
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 216,
+                    "y": 16
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 248,
+                    "y": 12
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 344,
+                    "y": 12
+                  }
+                },
+                {"_type": "ClosePathSegment"},
+                {
+                  "_type": "MoveToSegment",
+                  "point": {
+                    "x": 248,
+                    "y": -4
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 216,
+                    "y": 0
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 168,
+                    "y": 8
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 152,
+                    "y": 13
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 144,
+                    "y": 16
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 128,
+                    "y": 24
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 104,
+                    "y": 40
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 96,
+                    "y": 48
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 80,
+                    "y": 72
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 74,
+                    "y": 88
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 72,
+                    "y": 104
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 70,
+                    "y": 120
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 70,
+                    "y": 136
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 72,
+                    "y": 152
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 74,
+                    "y": 168
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 80,
+                    "y": 184
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 96,
+                    "y": 208
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 104,
+                    "y": 216
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 128,
+                    "y": 232
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 144,
+                    "y": 240
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 152,
+                    "y": 242
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 168,
+                    "y": 248
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 216,
+                    "y": 256
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 232,
+                    "y": 258
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 408,
+                    "y": 258
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 424,
+                    "y": 256
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 472,
+                    "y": 248
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 488,
+                    "y": 242
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 496,
+                    "y": 240
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 504,
+                    "y": 232
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 504,
+                    "y": 320
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 501,
+                    "y": 336
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 496,
+                    "y": 352
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 488,
+                    "y": 368
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 472,
+                    "y": 392
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 456,
+                    "y": 408
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 432,
+                    "y": 424
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 416,
+                    "y": 432
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 384,
+                    "y": 442
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 352,
+                    "y": 448
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 320,
+                    "y": 452
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 264,
+                    "y": 452
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 232,
+                    "y": 448
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 200,
+                    "y": 442
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 156,
+                    "y": 428
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 136,
+                    "y": 408
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 130,
+                    "y": 400
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 112,
+                    "y": 400
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 128,
+                    "y": 424
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 144,
+                    "y": 440
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 160,
+                    "y": 448
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 168,
+                    "y": 450
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 184,
+                    "y": 456
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 232,
+                    "y": 464
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 264,
+                    "y": 468
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 320,
+                    "y": 468
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 352,
+                    "y": 464
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 400,
+                    "y": 456
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 416,
+                    "y": 450
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 424,
+                    "y": 448
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 440,
+                    "y": 440
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 464,
+                    "y": 424
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 488,
+                    "y": 400
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 504,
+                    "y": 376
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 512,
+                    "y": 360
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 517,
+                    "y": 344
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 520,
+                    "y": 328
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 520,
+                    "y": 0
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 504,
+                    "y": 0
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 504,
+                    "y": 60
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 496,
+                    "y": 48
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 488,
+                    "y": 40
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 464,
+                    "y": 24
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 448,
+                    "y": 16
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 440,
+                    "y": 13
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 424,
+                    "y": 8
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 376,
+                    "y": 0
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 344,
+                    "y": -4
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 248,
+                    "y": -4
+                  }
+                },
+                {"_type": "ClosePathSegment"}
+              ]
+            }
+          },
+          {
+            "_type": "Glyph",
+            "advX": 592,
+            "pathSegment": {
+              "_type": "PathSegment",
+              "segments": [
+                {
+                  "_type": "MoveToSegment",
+                  "point": {
+                    "x": 208,
+                    "y": -4
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 176,
+                    "y": 0
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 128,
+                    "y": 8
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 112,
+                    "y": 13
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 104,
+                    "y": 16
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 88,
+                    "y": 24
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 72,
+                    "y": 40
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 56,
+                    "y": 64
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 74,
+                    "y": 64
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 80,
+                    "y": 56
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 100,
+                    "y": 36
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 144,
+                    "y": 21
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 176,
+                    "y": 16
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 208,
+                    "y": 12
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 360,
+                    "y": 12
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 392,
+                    "y": 16
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 424,
+                    "y": 21
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 456,
+                    "y": 32
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 472,
+                    "y": 40
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 496,
+                    "y": 56
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 512,
+                    "y": 80
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 517,
+                    "y": 96
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 520,
+                    "y": 112
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 522,
+                    "y": 128
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 520,
+                    "y": 144
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 517,
+                    "y": 160
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 512,
+                    "y": 176
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 499,
+                    "y": 195
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 480,
+                    "y": 208
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 464,
+                    "y": 216
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 456,
+                    "y": 218
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 424,
+                    "y": 224
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 184,
+                    "y": 224
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 136,
+                    "y": 232
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 120,
+                    "y": 240
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 96,
+                    "y": 256
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 80,
+                    "y": 280
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 74,
+                    "y": 296
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 72,
+                    "y": 312
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 70,
+                    "y": 328
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 70,
+                    "y": 344
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 72,
+                    "y": 360
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 74,
+                    "y": 376
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 80,
+                    "y": 392
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 96,
+                    "y": 416
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 104,
+                    "y": 424
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 128,
+                    "y": 440
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 144,
+                    "y": 448
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 152,
+                    "y": 450
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 168,
+                    "y": 456
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 216,
+                    "y": 464
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 248,
+                    "y": 468
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 360,
+                    "y": 468
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 392,
+                    "y": 464
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 440,
+                    "y": 456
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 456,
+                    "y": 450
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 464,
+                    "y": 448
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 480,
+                    "y": 440
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 496,
+                    "y": 424
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 512,
+                    "y": 400
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 493,
+                    "y": 400
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 488,
+                    "y": 408
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 468,
+                    "y": 428
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 424,
+                    "y": 442
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 392,
+                    "y": 448
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 360,
+                    "y": 452
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 248,
+                    "y": 452
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 216,
+                    "y": 448
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 184,
+                    "y": 442
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 152,
+                    "y": 432
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 136,
+                    "y": 424
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 112,
+                    "y": 408
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 96,
+                    "y": 384
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 90,
+                    "y": 368
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 88,
+                    "y": 352
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 86,
+                    "y": 336
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 88,
+                    "y": 320
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 90,
+                    "y": 304
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 96,
+                    "y": 288
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 108,
+                    "y": 268
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 128,
+                    "y": 256
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 144,
+                    "y": 248
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 152,
+                    "y": 245
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 184,
+                    "y": 240
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 424,
+                    "y": 240
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 472,
+                    "y": 232
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 488,
+                    "y": 224
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 512,
+                    "y": 208
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 528,
+                    "y": 184
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 533,
+                    "y": 168
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 536,
+                    "y": 152
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 538,
+                    "y": 136
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 538,
+                    "y": 120
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 536,
+                    "y": 104
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 533,
+                    "y": 88
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 528,
+                    "y": 72
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 512,
+                    "y": 48
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 504,
+                    "y": 40
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 480,
+                    "y": 24
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 464,
+                    "y": 16
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 456,
+                    "y": 13
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 440,
+                    "y": 8
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 392,
+                    "y": 0
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 360,
+                    "y": -4
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 208,
+                    "y": -4
+                  }
+                },
+                {"_type": "ClosePathSegment"}
+              ]
+            }
+          },
+          {
+            "_type": "Glyph",
+            "advX": 272,
+            "pathSegment": {
+              "_type": "PathSegment",
+              "segments": [
+                {
+                  "_type": "MoveToSegment",
+                  "point": {
+                    "x": 56,
+                    "y": -64
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 56,
+                    "y": -48
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 88,
+                    "y": -42
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 120,
+                    "y": -32
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 136,
+                    "y": -24
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 160,
+                    "y": -8
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 176,
+                    "y": 16
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 181,
+                    "y": 32
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 184,
+                    "y": 48
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 186,
+                    "y": 64
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 186,
+                    "y": 592
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 184,
+                    "y": 608
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 181,
+                    "y": 624
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 176,
+                    "y": 640
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 160,
+                    "y": 664
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 136,
+                    "y": 680
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 120,
+                    "y": 688
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 88,
+                    "y": 698
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 56,
+                    "y": 704
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 56,
+                    "y": 720
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 104,
+                    "y": 712
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 120,
+                    "y": 706
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 128,
+                    "y": 704
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 144,
+                    "y": 696
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 168,
+                    "y": 680
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 176,
+                    "y": 672
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 192,
+                    "y": 648
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 197,
+                    "y": 632
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 200,
+                    "y": 616
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 202,
+                    "y": 600
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 202,
+                    "y": 56
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 200,
+                    "y": 40
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 197,
+                    "y": 24
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 192,
+                    "y": 8
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 176,
+                    "y": -16
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 168,
+                    "y": -24
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 144,
+                    "y": -40
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 128,
+                    "y": -48
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 120,
+                    "y": -50
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 104,
+                    "y": -56
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 56,
+                    "y": -64
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 56,
+                    "y": -64
+                  }
+                },
+                {"_type": "ClosePathSegment"}
+              ]
+            }
+          }
+        ],
+        "height": 1024,
+        "text": "(or ideas)",
+        "width": 4616
+      },
+      "text": "(or ideas)",
+      "width": 135.234375
     }
   ]
 }

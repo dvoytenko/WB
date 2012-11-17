@@ -89,12 +89,13 @@
 	</div>
 	
 	<div id="container" style="position: relative; margin: 4px; padding: 0; width: 720px; height: 405px;">
+		<canvas id="bgCanvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 1;"></canvas>
 		<!--
-		<canvas id="gridCanvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 1;"></canvas>
+		<canvas id="gridCanvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 5;"></canvas>
 		-->
-		<canvas id="canvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 2;"></canvas>
-		<canvas id="animCanvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 3;"></canvas>
-		<canvas id="pointerCanvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 4;"></canvas>
+		<canvas id="canvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 11;"></canvas>
+		<canvas id="animCanvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 12;"></canvas>
+		<canvas id="pointerCanvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 13;"></canvas>
 	</div>
 
 	<script>
@@ -317,6 +318,8 @@
 				opts = {};
 			}
 			
+			var canvasStyle = 'whiteboard';
+			
 			// 720 x 405
 			var canvasWidth = 720;
 			var canvasHeight = 405;
@@ -332,21 +335,47 @@
 					//.scale(canvasWidth/realWidth, canvasHeight/realHeight)
 					//.translate(realWidth/2, realHeight/2);
 			
+			var strokeStyle;
+			var pointerStyle;
+			var bgCanvas = document.getElementById('bgCanvas');
+			if (canvasStyle == 'whiteboard') {
+				// leave it white or near white
+				strokeStyle = 'black';
+				pointerStyle = 'HandPoint';
+			} else if (canvasStyle == 'blackboard') {
+				var ctx = bgCanvas.getContext('2d');
+				ctx.fillStyle = '#221d1d';
+				ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+				strokeStyle = 'white';
+				pointerStyle = 'HandPoint';
+			} else if (canvasStyle == 'greenboard') {
+				var ctx = bgCanvas.getContext('2d');
+				ctx.fillStyle = '#2e8244';
+				ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+				strokeStyle = 'white';
+				pointerStyle = 'HandPoint';
+			} else if (canvasStyle == 'ipad') {
+				strokeStyle = 'black';
+				pointerStyle = 'SwiperPoint';
+			}
+			
 			var board = new WB.Board({
 				commitPane: new WB.Pane({
 					_desc: 'CommitPane',
-					canvas: document.getElementById('canvas'), 
+					canvas: document.getElementById('canvas'),
+					strokeStyle: strokeStyle,
 					defaultTransform: defaultTransform
 					}),
 				animationPane: new WB.Pane({
 					_desc: 'AnimationPane',
 					canvas: document.getElementById('animCanvas'), 
+					strokeStyle: strokeStyle,
 					defaultTransform: defaultTransform
 					}),
 				drawingSoundEngine: new WB.DrawingSoundEngine({
 					//baseVelocity: baseVelocity
 					}),
-				pointer: new WB.HandPoint({
+				pointer: new WB[pointerStyle]({
 					pane: new WB.Pane({
 						_desc: 'PointerPane',
 						canvas: document.getElementById('pointerCanvas'),

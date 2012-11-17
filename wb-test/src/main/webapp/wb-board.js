@@ -2,6 +2,7 @@
 
 /**
  * State:
+ * - pointer
  * - position
  * - velocity
  * - angle
@@ -188,7 +189,7 @@ WB.Board = WB.Class.extend('Board', {
 	},
 	
 	updateAnchorPoint: function(newPoint) {
-		console.log('updateAnchorPoint: ' + newPoint.x + ', ' + newPoint.y);
+		// console.log('updateAnchorPoint: ' + newPoint.x + ', ' + newPoint.y);
 		
 		var tr = new WB.Transform(this.commitPane.defaultTransform);
 		var oldPoint = tr.transformPoint(0, 0);

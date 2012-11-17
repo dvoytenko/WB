@@ -24,6 +24,17 @@ public class GroupShape extends Shape implements SizeAwareShape {
 	public List<String> tags;
 	
 	public List<Shape> shapes = new ArrayList<Shape>();
+	
+	public GroupShape() {
+	}
+
+	public GroupShape(Shape shape) {
+		this.shapes.add(shape);
+		if (shape instanceof SizeAwareShape) {
+			this.width = ((SizeAwareShape) shape).getWidth();
+			this.height = ((SizeAwareShape) shape).getHeight();
+		}
+	}
 
 	@Override
 	public Double getWidth() {
