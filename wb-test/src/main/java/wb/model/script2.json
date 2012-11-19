@@ -389,12 +389,14 @@
 			rate: 1.5
 		},
 
+		/*
 		{
 			_type: 'DrawTextEpisode',
 			text: '(or ideas)',
 			position: {x: 2451, y: 200},
 			height: 30
 		},
+		*/
 		
 	]
 	
