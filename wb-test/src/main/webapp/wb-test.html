@@ -318,7 +318,7 @@
 				opts = {};
 			}
 			
-			var canvasStyle = 'whiteboard';
+			var canvasStyle = 'ipad';
 			
 			// 720 x 405
 			var canvasWidth = 720;
@@ -347,13 +347,13 @@
 				ctx.fillStyle = '#221d1d';
 				ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 				strokeStyle = 'white';
-				pointerStyle = 'HandPoint';
+				pointerStyle = 'HandChalkPoint';
 			} else if (canvasStyle == 'greenboard') {
 				var ctx = bgCanvas.getContext('2d');
 				ctx.fillStyle = '#2e8244';
 				ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 				strokeStyle = 'white';
-				pointerStyle = 'HandPoint';
+				pointerStyle = 'HandChalkPoint';
 			} else if (canvasStyle == 'ipad') {
 				strokeStyle = 'black';
 				pointerStyle = 'SwiperPoint';
