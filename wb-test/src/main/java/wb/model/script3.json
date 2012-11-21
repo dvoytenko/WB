@@ -413,17 +413,17 @@
 
 		{
 			_type: 'DrawTextEpisode',
-			text: 'And never run out of markers again!',
+			text: 'And never run out of ideas or markers',
 			position: {x: 2245, y: 140},
-			height: 30,
+			height: 28,
 			rate: 1.5
 		},
 
 		{
 			_type: 'DrawTextEpisode',
-			text: '(or ideas)',
-			position: {x: 2451, y: 200},
-			height: 30
+			text: 'again!',
+			position: {x: 2480, y: 185},
+			height: 28
 		},
 		
 	]
