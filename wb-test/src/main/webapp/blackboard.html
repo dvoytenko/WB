@@ -229,6 +229,7 @@
 		background-image: url(images/play1pressed.png);
 		background-size: 128px 128px;
 		background-repeat: no-repeat;
+		opacity: 0.6;
 		width: 128px;
 		height: 128px;
 		margin: 138px auto;
@@ -249,7 +250,7 @@
 		margin: 138px auto;
 	}
 	
-	.Board {
+	.Board.Blackboard {
 		background-color: #221d1d;
 	}
 	
@@ -313,7 +314,7 @@
 			<div class="Demo">
 				<h2>Demo 1</h2>
 				<div id="script3" class="ScriptContainer Ready" style="width: 720px; height: 405px; position: relative;">
-					<div class="Board" style="position: relative; width: 720px; height: 405px;">
+					<div class="Board Blackboard" style="position: relative; width: 720px; height: 405px;">
 						<canvas class="CommitCanvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 2;"></canvas>
 						<canvas class="AnimCanvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 3;"></canvas>
 						<canvas class="PointerCanvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 4;"></canvas>
@@ -393,12 +394,12 @@
 			var board = new WB.Board({
 				commitPane: new WB.Pane({
 					canvas: commitCanvas,
-					strokeStyle: 'white',
+					strokeStyle: '#fefefe',
 					defaultTransform: defaultTransform
 					}),
 				animationPane: new WB.Pane({
 					canvas: animCanvas, 
-					strokeStyle: 'white',
+					strokeStyle: '#fefefe',
 					defaultTransform: defaultTransform
 					}),
 				drawingSoundEngine: new WB.DrawingSoundEngine({
