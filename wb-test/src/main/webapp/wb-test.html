@@ -75,6 +75,8 @@
 		<br/>
 		<a href="javascript:void(0);" onclick="script2()">Script 2</a>
 		<a href="javascript:void(0);" onclick="script3()">Script 3</a>
+		<a href="javascript:void(0);" onclick="script3Stepper()">Script 3 Stepper</a>
+		<a href="javascript:void(0);" onclick="script3Recorder()">Script 3 Recorder</a>
 		
 		<br/>
 		<a href="javascript:void(0);" onclick="image1()">Image 1</a>
@@ -433,6 +435,7 @@
 				opts = {};
 			}
 			
+			/*
 			WB.interceptor = function(obj, fnName, fn, args) {
 				if (fnName != 'frame') {
 					return fn.apply(obj, args);
@@ -444,6 +447,7 @@
 				console.log('-> ' + s + ': ' + obj.isDone() + '; ' + obj.getTimeLeft());
 				return ret;
 			};
+			*/
 			
 			// 720 x 405
 			var canvasWidth = 720;
@@ -513,9 +517,19 @@
 			stepper.start(animable);
 			$('#bottombar a.StepAction').css('display', 'inline');
 			$('#bottombar .Loading').css('display', 'none');
+			
+			if (opts.iniSteps) {
+				for (var i = 0; i < opts.iniSteps; i++) {
+					stepper.step();
+				}
+			}
 		}
 		
-		function stepScript(scriptId) {
+		function stepScript(scriptId, opts) {
+
+			if (!opts) {
+				opts = {};
+			}
 			
 			var urlResolver = function(path) {
 				if (path.substr(0,1) != '/') {
@@ -537,8 +551,10 @@
 					var script = parser.parse(json);
 					console.log(script);
 					
+					opts.urlResolver = urlResolver;
+					
 					stepAny(new WB.EpisodeList({episodes: script.episodes, pause: 100}),
-							{urlResolver: urlResolver});
+							opts);
 				}
 			});
 		}
@@ -556,7 +572,7 @@
 			var realWidth = 1440; // mm
 			var realHeight = 810; // mm
 			
-			var baseVelocity = 500;
+			var baseVelocity = 700;
 			if (opts.baseVelocity) {
 				baseVelocity = opts.baseVelocity;
 			}
@@ -597,7 +613,7 @@
 
 			$('#bottombar').html('Loading...');
 
-			var stepper = new WB.Stepper({board: board, interval: 10000});
+			var stepper = new WB.Stepper({board: board, fps: 30});
 			stepper.bind(function(event, opts) {
 				if (event == 'frame') {
 					var p = stepper.board.animationPane.getCurrentPoint();
@@ -1354,9 +1370,17 @@
 		function script1Stepper() {
 			stepScript('script1');
 		}
-		
+
 		function script1Recorder() {
 			recordScript('script1');
+		}
+
+		function script3Stepper() {
+			stepScript('script3', {iniSteps: 10});
+		}
+		
+		function script3Recorder() {
+			recordScript('script3');
 		}
 		
 		function eraser1() {

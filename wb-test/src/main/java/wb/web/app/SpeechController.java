@@ -24,11 +24,13 @@ import wb.util.IoHelper;
 @RequestMapping( { "/speech" })
 public class SpeechController {
 	
-	@RequestMapping(method = RequestMethod.POST, value="/save")
+	@RequestMapping(method = RequestMethod.POST, value="/save/{path:.*}")
 	@ResponseBody
-	public String save(HttpServletRequest req) throws IOException {
-		File dir = new File("target");
-		File file = new File(dir, "" + System.currentTimeMillis() + ".x");
+	public String save(@PathVariable("path") String path,
+			HttpServletRequest req) throws IOException {
+		final File tempDir = new File(System.getProperty("java.io.tmpdir"));
+		File file = new File(tempDir, path);
+		System.out.println("record speech: " + file);
 		OutputStream out = new FileOutputStream(file);
 		IoHelper.copy(req.getInputStream(), out);
 		out.close();
@@ -40,7 +42,7 @@ public class SpeechController {
 	public void temp(@PathVariable("path") String path,
 			HttpServletResponse resp) throws IOException {
 		
-		if (path.endsWith(".png")) {
+		if (path.endsWith(".wav")) {
 			resp.setContentType("audio/***");
 			ServletOutputStream out = resp.getOutputStream();
 			final File tempDir = new File(System.getProperty("java.io.tmpdir"));

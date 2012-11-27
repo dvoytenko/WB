@@ -15,7 +15,11 @@ import wb.util.IoHelper;
 
 public class Prod {
 	
-	// ffmpeg.exe -r 30 -b:v 1800 -i ^%010d.png -probesize 100 -analyzeduration 10000000 r30b1800.mp4
+	//// C:\Apps\ffmpeg\ffmpeg-20121020-git-04bf2e7-win64-static\bin\ffmpeg.exe -r 24 -b:v 1800 -i ^%010d.png -probesize 100 -analyzeduration 10000000 r24b1800.mp4
+	
+	// ffmpeg.exe -r 24 -b:v 1800 -i ^%010d.png -probesize 100 -analyzeduration 10000000 r24b1800.mp4
+	
+	// C:\Apps\ffmpeg\ffmpeg-20121020-git-04bf2e7-win64-static\bin\ffmpeg.exe -r 30 -b:v 1800 -i ^%010d.png -i oldest-story.wav -i whole-world-using.wav -probesize 100 -analyzeduration 10000000 r30b1800.mp4
 	
 	public static void main(String[] args) throws Exception {
 		final String frame = "1000";

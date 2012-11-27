@@ -27,13 +27,17 @@ import wb.util.IoHelper;
 @RequestMapping( { "/recorder" })
 public class RecorderController {
 	
+	private File getRecordingDir(String recordId) {
+		return new File("../work/recordings/" + recordId);
+	}
+	
 	@RequestMapping(method = {RequestMethod.GET, RequestMethod.POST}, value="/start")
 	@ResponseBody
 	public Recording start() {
 		Recording recording = new Recording();
 		recording.id = "" + System.currentTimeMillis() + "-" + 
 				String.valueOf(Math.round(Math.random() * 1000));
-		File writerDir = new File("target/" + recording.id);
+		File writerDir = getRecordingDir(recording.id);
 		if (writerDir.exists()) {
 			throw new RuntimeException("directory already exists: " + writerDir);
 		}
@@ -48,7 +52,7 @@ public class RecorderController {
 	public String frame(@RequestParam("recordId") String recordId, 
 			@RequestParam("frameIndex") int frameIndex,
 			Reader reader) throws Exception {
-		File writerDir = new File("target/" + recordId);
+		File writerDir = getRecordingDir(recordId);
 		if (!writerDir.exists()) {
 			throw new RuntimeException("directory doesn't exists: " + writerDir);
 		}
@@ -96,7 +100,7 @@ public class RecorderController {
 				imageDataList);
 		
 		ImageIO.write(image, "png", new File(writerDir, frameId + ".png"));
-		ImageIO.write(image, "jpg", new File(writerDir, frameId + ".jpg"));
+//		ImageIO.write(image, "jpg", new File(writerDir, frameId + ".jpg"));
 		
 		return "ok";
 	}
