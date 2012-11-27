@@ -222,7 +222,7 @@ public class CreateVideo {
 			}
 			
 			audioCoder = container.getStream(audiostreamt).getStreamCoder();
-			if (audioCoder.open() < 0) {
+			if (audioCoder.open(null, null) < 0) {
 				throw new RuntimeException("Cant open audio coder");
 			}
 			
