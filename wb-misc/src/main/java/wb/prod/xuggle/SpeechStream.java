@@ -3,8 +3,10 @@ package wb.prod.xuggle;
 import static com.xuggle.xuggler.Global.DEFAULT_TIME_UNIT;
 
 import java.io.File;
+import java.nio.ShortBuffer;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.concurrent.TimeUnit;
 
 import com.xuggle.mediatool.IMediaWriter;
 import com.xuggle.xuggler.IAudioSamples;
@@ -35,13 +37,17 @@ public class SpeechStream {
 	private int streamId;
 	
 	private final boolean actualEncode = true;
+	
+	private ScreechSubStream screechSubStream;
 
-	public SpeechStream(File root, IMediaWriter writer, int streamId, int sampleRate) {
+	public SpeechStream(File root, IMediaWriter writer, int streamId, int sampleRate,
+			ScreechSubStream screechSubStream) {
 		this.root = root;
 		this.writer = writer;
 		this.streamId = streamId;
 		this.sampleRate = sampleRate;
 		this.packetAudio = IPacket.make();
+		this.screechSubStream = screechSubStream;
 	}
 
 	public boolean isBlank() {
@@ -91,6 +97,12 @@ public class SpeechStream {
 		}
 	}
 
+	public void update(BoardState state) {
+		if (screechSubStream != null) {
+			screechSubStream.update(state);
+		}
+	}
+
 	public void advanceTo(long frameTime) {
 
 		while (!samplesQueue.isEmpty() 
@@ -98,9 +110,7 @@ public class SpeechStream {
 			IAudioSamples samples = samplesQueue.poll();
 			System.out.println("a: -> " + samples.getTimeStamp() 
 					+ " to " + samples.getNextPts());
-			if (actualEncode) {
-				writer.encodeAudio(streamId, samples);
-			}
+			encodeAudio(samples);
 		}
 
 		if (!samplesQueue.isEmpty() && container != null) {
@@ -143,9 +153,7 @@ public class SpeechStream {
 					IAudioSamples samples = samplesQueue.poll();
 					System.out.println("a: -> " + samples.getTimeStamp() 
 							+ " to " + samples.getNextPts());
-					if (actualEncode) {
-						writer.encodeAudio(streamId, samples);
-					}
+					encodeAudio(samples);
 				}
 
 				if (!samplesQueue.isEmpty() 
@@ -169,11 +177,9 @@ public class SpeechStream {
 				if (samples == null || samples.length != sampNum0) {
 					samples = new short[sampNum0];
 				}
-				if (actualEncode) {
-					writer.encodeAudio(streamId, samples, 
-							start + IAudioSamples.samplesToDefaultPts(totalSampleCount, sampleRate), 
-							DEFAULT_TIME_UNIT);
-				}
+				encodeAudio(samples, 
+						start + IAudioSamples.samplesToDefaultPts(totalSampleCount, sampleRate), 
+						DEFAULT_TIME_UNIT);
 				totalSampleCount += sampNum0;
 			}
 
@@ -181,6 +187,41 @@ public class SpeechStream {
 
 			System.out.println("b: " + start + "/" + frameTime);
 		}
+	}
+
+	private void encodeAudio(IAudioSamples samples) {
+		ShortBuffer buf = samples.getByteBuffer().asShortBuffer();
+		short[] array = new short[buf.limit()];
+		buf.get(array, 0, array.length);
+		encodeAudio(array, samples.getTimeStamp(), DEFAULT_TIME_UNIT);
+	}
+
+	private void encodeAudio(short[] samples, long timeStamp, TimeUnit timeUnit) {
+		if (!actualEncode) {
+			return;
+		}
+		
+		short[] sub;
+		if (screechSubStream == null) {
+			sub = null;
+		} else {
+			sub = screechSubStream.samples(samples.length);
+		}
+		if (sub == null || sub.length == 0) {
+			writer.encodeAudio(streamId, samples, timeStamp, timeUnit);
+		} else {
+			final int len = Math.min(samples.length, sub.length);
+			for (int i = 0; i < samples.length; i++) {
+				samples[i] = mix(samples[i], 0.5, i < len ? sub[i] : 0, 0.5);
+			}
+			writer.encodeAudio(streamId, samples, timeStamp, timeUnit);
+		}
+	}
+
+	private short mix(short s1, double v1, short s2, double v2) {
+		int n = (int) Math.round(v1 * ((int) s1) + v2 * ((int) s2));
+		return (short) (n > Short.MAX_VALUE ? Short.MAX_VALUE : 
+			(n < Short.MIN_VALUE ? Short.MIN_VALUE : n)); 
 	}
 
 }

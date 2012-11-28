@@ -68,7 +68,8 @@ public class CreateVideo {
 		screechStream.setOffset(frameRate);
 		*/
 		
-		SpeechStream speechStream = new SpeechStream(root, writer, speechId, speechRate);
+		SpeechStream speechStream = new SpeechStream(root, writer, speechId, speechRate,
+				new ScreechSubStream(new File(root, "wb-sounds-22050.wav"), 700.0));
 		
 //		boolean started = false;
 		Fragment fragment;
@@ -119,6 +120,7 @@ public class CreateVideo {
 			}
 			writer.encodeVideo(0, frame, frameTime, DEFAULT_TIME_UNIT);
 			
+			speechStream.update(fragment.boardState);
 			speechStream.advanceTo(frameTime);
 			
 			/*
