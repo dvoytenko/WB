@@ -139,64 +139,34 @@ public class ScreechStream {
 	}
 
 	private void resample(short[] samples) {
-		final int piStart = 1;
 		if (this.rate < 1e-3) {
 			// == 0
 			// do nothing: leave samples as 0
 		} else if (Math.abs(this.rate - 1) < 1e-3) {
 			// == 1
 			// push samples as is 1:1
-			this.iter.get(samples);
+			iter.get(samples);
 		} else if (this.rate < 1.0) {
 			// < 1
 			// play slower 1:n
 			// final int n = (int) Math.round(1 / this.rate);
-			int REDO1;
 			final int n = 2;
-			int pi = piStart;
-			int off = 0;
-			while (off < samples.length) {
-
-				ShortBuffer buf = samplesList.get(pi).getByteBuffer().asShortBuffer();
-				
-				for (int i = 0; i < buf.limit(); i++) {
-					short k = buf.get(i);
-					for (int j = 0; j < n; j++) {
-						samples[off++] = k;
-						if (off >= samples.length) {
-							break;
-						}
-					}
-				}
-				
-				pi = (pi + 1) % samplesList.size();
-				if (pi == 0) {
-					pi = piStart;
+			for (int i = 0; i < samples.length; i += n) {
+				short k = iter.get();
+				for (int j = 0; j < n; j++) {
+					samples[i + j] = k;
 				}
 			}
 		} else if (this.rate > 1.0) {
 			// > 1
 			// play faster: n:1
-			int REDO1;
 			final int n = 2;
-			int pi = piStart;
-			int off = 0;
-			while (off < samples.length) {
-
-				ShortBuffer buf = samplesList.get(pi).getByteBuffer().asShortBuffer();
-				
-				for (int i = 0; i < buf.limit(); i += n) {
-					short k = buf.get(i);
-					samples[off++] = k;
-					if (off >= samples.length) {
-						break;
-					}
+			for (int i = 0; i < samples.length; i++) {
+				short k = iter.get();
+				for (int j = 0; j < n - 1; j++) {
+					iter.get();
 				}
-				
-				pi = (pi + 1) % samplesList.size();
-				if (pi == 0) {
-					pi = piStart;
-				}
+				samples[i] = k;
 			}
 		}
 	}
