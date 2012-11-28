@@ -104,9 +104,9 @@
 		
 		{
 			_type: 'PasteImageEpisode',
-			imageId: 'best-friends',
-			position: {x: 1070, y: 40},
-			height: 100,
+			imageId: 'golf2',
+			position: {x: 1075, y: 20},
+			height: 145,
 			rotationDegree: 0,
 			action: 'move',
 			moveStartPosition: {x: 800, y: 500},

@@ -27,7 +27,7 @@ WB.MoveToSegment = WB.Segment.extend('MoveToSegment', {
 	},
 	
 	createAnimation: function() {
-		return new WB.MoveToAnimation(this);
+		return new WB.MoveToAnimation(this.point);
 	}
 	
 });
@@ -35,10 +35,10 @@ WB.MoveToSegment = WB.Segment.extend('MoveToSegment', {
 
 WB.MoveToAnimation = WB.Animation.extend('MoveToAnimation', {
 	
-	moveto: null,
+	point: null,
 	
-	init: function(moveto) {
-		this.moveto = moveto;
+	init: function(point) {
+		this.point = point;
 	},
 	
 	start: function(board) {
@@ -57,13 +57,13 @@ WB.MoveToAnimation = WB.Animation.extend('MoveToAnimation', {
 	frame: function(time) {
 		// TODO: implement moving cursor + timeLeft
 		var pane = this.board.animationPane;
-		pane.moveTo(this.moveto.point);
+		pane.moveTo(this.point);
 		this.done = true;
 		this.timeLeft = time;
 		
 		this.board.state({
 			pointer: 'draw',
-			position: pane.toGlobalPoint(this.moveto.point),
+			position: pane.toGlobalPoint(this.point),
 			velocity: 0,
 			angle: 0,
 			pressure: 0,

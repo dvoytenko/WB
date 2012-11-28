@@ -2,6 +2,11 @@
 /**
  */
 WB.PasteImageEpisode = WB.ShapeEpisodeBase.extend('PasteImageEpisode', {
+
+	getPointer: function() {
+		return null;
+	}
+
 });
 
 

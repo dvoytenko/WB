@@ -27,6 +27,10 @@ WB.Episode = WB.Class.extend('Episode', {
 		}
 	},
 	
+	getPointer: function() {
+		return null;
+	},
+	
 	prepare: function(board) {
 	},
 	
@@ -76,8 +80,20 @@ WB.EpisodeListAnimation = WB.ListAnimation.extend('EpisodeListAnimation', {
 		for (var i = 0; i < this.episodeList.episodes.length; i++) {
 			var episode = this.episodeList.episodes[i];
 			items.push(episode);
+			
+			var next = null;
 			if (i < this.episodeList.episodes.length - 1) {
-				var next = this.episodeList.episodes[i + 1];
+				next = this.episodeList.episodes[i + 1];
+			}
+			
+			// remove pointer
+			if (episode.getPointer() == 'draw' && 
+					(!next || next.getPointer() != 'draw')) {
+				items.push(new WB.MoveAwayAnimation());
+			}
+			
+			// pause
+			if (next) {
 				var pause = next.pause || next.pause == 0 ? 
 						next.pause : this.episodeList.pause;
 				if (pause) {
@@ -96,3 +112,65 @@ WB.EpisodeListAnimation = WB.ListAnimation.extend('EpisodeListAnimation', {
 	}
 	
 });
+
+
+WB.MoveAwayAnimation = WB.Animation.extend('MoveAwayAnimation', {
+	
+	createAnimation: function() {
+		return this;
+	},
+	
+	start: function(board) {
+		this.board = board;
+
+		var screenBounds = this.board.animationPane.globalBounds();
+		
+		var point = {
+				x: screenBounds.topleft.x + 30, 
+				y: screenBounds.bottomright.y + 30};
+		console.log('!MOVE AWAY! ' + JSON.stringify(point));
+		this.anim = new WB.MoveToAnimation(point);
+		
+		this.tr = null;
+		if (!this.tr) {
+			this.anim.start(this.board);
+		} else {
+			var that = this;
+			that.board.withTr(this.tr, function() {
+				that.anim.start(that.board);
+			});
+		}
+	},
+	
+	frame: function(time) {
+		if (!this.tr) {
+			this.anim.frame(time);
+		} else {
+			var that = this;
+			that.board.withTr(this.tr, function() {
+				that.anim.frame(time);
+			});
+		}
+	},
+	
+	isDone: function() {
+		return this.anim.isDone();
+	},
+	
+	end: function() {
+		if (!this.tr) {
+			this.anim.end();
+		} else {
+			var that = this;
+			that.board.withTr(this.tr, function() {
+				that.anim.end();
+			});
+		}
+	},
+	
+	getTimeLeft: function() {
+		return this.anim.getTimeLeft();
+	}
+	
+});
+

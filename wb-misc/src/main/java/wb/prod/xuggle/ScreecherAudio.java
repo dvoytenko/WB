@@ -1,141 +1,40 @@
 package wb.prod.xuggle;
 
+import static com.xuggle.xuggler.Global.DEFAULT_TIME_UNIT;
+
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import com.xuggle.mediatool.IMediaWriter;
 import com.xuggle.mediatool.ToolFactory;
-import com.xuggle.xuggler.IAudioSamples;
-import com.xuggle.xuggler.ICodec;
-import com.xuggle.xuggler.IContainer;
-import com.xuggle.xuggler.IPacket;
-import com.xuggle.xuggler.IStream;
-import com.xuggle.xuggler.IStreamCoder;
 
 public class ScreecherAudio {
 	
 	public static void main(String[] args) throws Exception {
 		
 		final File root = new File("C:\\Work\\WB\\work\\recordings\\t2");
-		final File file = new File(root, "wb-sounds-2.wav");
+		final File file = new File(root, "wb-sounds-22050.wav");
 		
-		final File destinationFile = new File(root, "x4.wav");
+		final File destinationFile = new File(root, "x5.wav");
 		
 		IMediaWriter writer = ToolFactory.makeWriter(destinationFile.toString());
 		writer.addAudioStream(0, 0, 1, 16000);
 		
-		IContainer container = IContainer.make();
+		ScreechStream screechStream = new ScreechStream(file, 
+				writer, 0, 22050, 700.0);
 		
-		if (container.open(file.getPath(), IContainer.Type.READ, null) < 0) {
-	        throw new IllegalArgumentException("Cant find " + file);
-		}
+		BoardState state = new BoardState();
+		state.height = 0.0;
+		state.velocity = 700.0;
 		
-		int audiostreamt = -1;
-		for (int i = 0; i < container.getNumStreams(); i++) {
-			IStream stream = container.getStream(i);
-			IStreamCoder code = stream.getStreamCoder();
-			if (code.getCodecType() == ICodec.Type.CODEC_TYPE_AUDIO) {
-				audiostreamt = i;
-				break;
-			}
-		}
-		if (audiostreamt == -1) {
-			throw new RuntimeException("No audio steam found");			
-		}
+		screechStream.update(state);
 		
-		IStreamCoder audioCoder = container.getStream(audiostreamt).getStreamCoder();
-		if (audioCoder.open(null, null) < 0) {
-			throw new RuntimeException("Cant open audio coder");
-		}
-		
-		// audioCoder.getChannels(), audioCoder.getSampleRate()
-		System.out.println("- channels: " + audioCoder.getChannels());
-		System.out.println("- sample rate: " + audioCoder.getSampleRate());
-		
-		IPacket packetAudio = IPacket.make();
-		
-		List<IAudioSamples> samplesList = new ArrayList<IAudioSamples>();
-		
-		while ((container.readNextPacket(packetAudio)) >= 0) {
-			
-			IAudioSamples samples = IAudioSamples.make(512, 
-                    audioCoder.getChannels(),
-                    IAudioSamples.Format.FMT_S32);
-            int offset = 0;
-            while (offset < packetAudio.getSize()) {
-                int bytesDecodedaudio = audioCoder.decodeAudio(samples, 
-                        packetAudio,
-                        offset);
-                if (bytesDecodedaudio < 0) {
-                    throw new RuntimeException("could not detect audio");
-                }
-                offset += bytesDecodedaudio;
-            
-                if (samples.isComplete()) {
-                	//colSamples.setTimeStamp(this.offset + colSamples.getTimeStamp());
-                	samplesList.add(samples);
-                	samples = IAudioSamples.make(512, 
-		                    audioCoder.getChannels(),
-		                    IAudioSamples.Format.FMT_S32);
-                }
-            }
-		}
-		
-		System.out.println(samplesList.size());
-		
-		/*
-		// at
-		int index = 0;
-		for (IAudioSamples samples : samplesList) {
-			int len = (int) samples.getNumSamples();
-			System.out.println("encode " + index + ": " + len);
-			writer.encodeAudio(0, samples);
-			index++;
-		}
-		*/
-
-		/*
-		// faster
-		int index = 0;
-		for (IAudioSamples samples : samplesList) {
-			int len = (int) samples.getNumSamples();
-			System.out.println("encode " + index + ": " + len);
-			short[] array = new short[len * 2];
-			samples.getByteBuffer().asShortBuffer().get(array, 0, len);
-			writer.encodeAudio(0, array);
-			index++;
-		}
-		*/
-
-		/*
-		// faster 2
-		int index = 0;
-		for (IAudioSamples samples : samplesList) {
-			int len = (int) samples.getNumSamples();
-			System.out.println("encode " + index + ": " + len);
-			short[] array = new short[len / 2];
-			samples.getByteBuffer().asShortBuffer().get(array, 0, len / 2);
-			writer.encodeAudio(0, array);
-			index++;
-		}
-		*/
-
-		// slower
-		int index = 0;
-		for (IAudioSamples samples : samplesList) {
-			//IAudioSamples.make(buffer, channels, Format.FMT_);
-			int len = (int) samples.getNumSamples();
-			System.out.println("encode " + index + ": " + len);
-			short[] array = new short[len];
-			short[] array2 = new short[len * 2];
-			samples.getByteBuffer().asShortBuffer().get(array, 0, len);
-			for (int i = 0; i < len; i++) {
-				array2[2 * i] = array[i];
-				array2[2 * i + 1] = array[i];
-			}
-			writer.encodeAudio(0, array2);
-			index++;
+		long frameTime = 0;
+		final long frameRate = DEFAULT_TIME_UNIT.convert(1000L / 30L, 
+				TimeUnit.MILLISECONDS);
+		for (int i = 0; i < 200; i++) {
+			frameTime += frameRate;
+			screechStream.advanceTo(frameTime);
 		}
 		
 		writer.close();

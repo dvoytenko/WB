@@ -60,6 +60,16 @@ WB.ShapeEpisodeBase = WB.Episode.extend('ShapeEpisodeBase', {
 			board.commitShape(this._shape(true), true);
 		}
 	},
+
+	getPointer: function() {
+		if (this.predraw || this.action == 'predraw') {
+			return null;
+		}
+		if (this.action == 'move') {
+			return 'move';
+		}
+		return 'draw';
+	},
 	
 	createAnimation: function() {
 		if (this.predraw || this.action == 'predraw') {
