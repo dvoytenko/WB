@@ -1384,7 +1384,34 @@
 		}
 		
 		function eraser1() {
+			
+			function grayscale(pixels) {
+				var d = pixels.data;
+				for (var i = 0; i < d.length; i += 4) {
+					var r = d[i];
+					var g = d[i+1];
+					var b = d[i+2];
+					// CIE luminance for the RGB
+					// The human eye is bad at seeing red and blue, so we de-emphasize them.
+					var v = 0.2126*r + 0.7152*g + 0.0722*b;
+					d[i] = d[i+1] = d[i+2] = v
+				}
+				return pixels;
+			}
+
+			function incAlpha(pixels, adj) {
+				var d = pixels.data;
+				for (var i = 0; i < d.length; i += 4) {
+					var a = d[i+3];
+					d[i+3] = a * adj;
+				}
+				return pixels;
+			}
+			
 			var pane = new WB.Pane({canvas: document.getElementById('canvas')});
+
+			var name = 'funnycat.png';
+			var tr = new WB.Transform().translate(200, 100).scale(0.5, 0.5);
 			
 			var eraser = new WB.EraserShape({
 				eraseAll: true,
@@ -1399,7 +1426,25 @@
 				})
 			});
 			
-			eraser.draw(pane);
+			var image = new Image();
+			image.onload = function() {
+				var shape = new WB.ImageShape({image: image});
+				var group = new WB.GroupShape({
+					transform: tr,
+					shapes: [shape]
+				});
+				group.draw(pane);
+				
+				//eraser.draw(pane);
+				
+				var context = pane.context;
+				context.strokeRect(260, 140, 50, 50);
+				
+				var pixels = context.getImageData(260, 140, 50, 50);
+				var gs = incAlpha(pixels, 0.05);
+				context.putImageData(gs, 260, 140);
+			};
+			image.src = 'images/' + name;
 		}
 		
 		function pan1() {

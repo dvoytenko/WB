@@ -14,20 +14,30 @@ import com.xuggle.xuggler.IStreamCoder;
 
 public class ScreechSubStream {
 
-	private List<IAudioSamples> samplesList = new ArrayList<IAudioSamples>();
-
 	private double baseVelocity;
 
 	private double rate;
 
-	private Iter iter;
+	private Iter iter100;
 
-	public ScreechSubStream(File file, double baseVelocity) {
+	private Iter iter075;
+
+	private Iter iter150;
+
+	private Iter iter200;
+
+	public ScreechSubStream(File root, double baseVelocity) {
 		this.baseVelocity = baseVelocity;
-		load(file);
+		this.iter100 = load(new File(root, "wb-sounds-22050.wav"));
+		this.iter075 = load(new File(root, "wb-sounds-22050-075.wav"));
+		this.iter150 = load(new File(root, "wb-sounds-22050-150.wav"));
+		this.iter200 = load(new File(root, "wb-sounds-22050-200.wav"));
 	}
 
-	private void load(File file) {
+	private static Iter load(File file) {
+		
+		List<IAudioSamples> samplesList = new ArrayList<IAudioSamples>();
+		
 		IContainer container = IContainer.make();
 		
 		if (container.open(file.getPath(), IContainer.Type.READ, null) < 0) {
@@ -83,7 +93,7 @@ public class ScreechSubStream {
             }
 		}
 		
-		this.iter = new Iter();
+		return new Iter(samplesList);
 	}
 	
 	public void update(BoardState state) {
@@ -111,45 +121,44 @@ public class ScreechSubStream {
 	}
 
 	private void resample(short[] samples) {
+		Iter iter;
 		if (this.rate < 1e-3) {
 			// == 0
 			// do nothing: leave samples as 0
+			iter = null;
 		} else if (Math.abs(this.rate - 1) < 1e-3) {
 			// == 1
 			// push samples as is 1:1
-			iter.get(samples);
+			iter = this.iter100;
 		} else if (this.rate < 1.0) {
 			// < 1
-			// play slower 1:n
-			// final int n = (int) Math.round(1 / this.rate);
-			final int n = 2;
-			for (int i = 0; i < samples.length; i += n) {
-				short k = iter.get();
-				for (int j = 0; j < n; j++) {
-					samples[i + j] = k;
-				}
-			}
+			iter = this.iter075;
+		} else if (this.rate >= 2.0) {
+			// >= 2
+			iter = this.iter200;
 		} else if (this.rate > 1.0) {
 			// > 1
 			// play faster: n:1
-			final int n = 2;
-			for (int i = 0; i < samples.length; i++) {
-				short k = iter.get();
-				for (int j = 0; j < n - 1; j++) {
-					iter.get();
-				}
-				samples[i] = k;
-			}
+			iter = this.iter150;
+		} else {
+			iter = this.iter100;
+		}
+
+		if (iter != null) {
+			iter.get(samples);
 		}
 	}
 	
-	private class Iter {
+	private static class Iter {
+		
+		private final List<IAudioSamples> samplesList;
 		
 		private int index = 0;
 		
 		private ShortBuffer buffer;
-		
-		public Iter() {
+
+		public Iter(List<IAudioSamples> samplesList) {
+			this.samplesList = samplesList;
 		}
 
 		public short get() {

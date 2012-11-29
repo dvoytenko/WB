@@ -69,7 +69,7 @@ public class CreateVideo {
 		*/
 		
 		SpeechStream speechStream = new SpeechStream(root, writer, speechId, speechRate,
-				new ScreechSubStream(new File(root, "wb-sounds-22050.wav"), 700.0));
+				new ScreechSubStream(root, 500.0));
 		
 //		boolean started = false;
 		Fragment fragment;
