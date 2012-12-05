@@ -296,13 +296,10 @@ WB.MoveShapeAnimation = WB.Animation.extend('MoveShapeAnimation', {
 		this.velocity = board.getBaseVelocity();
 		this.pane = board.animationPane;
 		
-    	this.dx = this.toPoint.x - this.fromPoint.x;
-    	this.dy = this.toPoint.y - this.fromPoint.y;
-        this.totalDistance = this.pane.distanceGlobal(this.fromPoint, 
-        		this.toPoint, false, true);
-        this.timeLeft = 0;
-        this.done = this.shape.isReady() && this.totalDistance < 1.0;
-
+		this.inter = new WB.PointInterpolator(this.fromPoint, this.toPoint, 
+				this.velocity/1000);
+		this.inter.start(board);
+		
         this.movedShape = new WB.GroupShape({
 			transform: new WB.Transform().translate(this.fromPoint.x, this.fromPoint.y),
 			shapes: [this.shape]
@@ -310,28 +307,23 @@ WB.MoveShapeAnimation = WB.Animation.extend('MoveShapeAnimation', {
 	},
 	
 	isDone: function() {
-		return this.done;
+		return this.shape.isReady() && this.inter.isDone();
+	},
+	
+	getTimeLeft: function() {
+		return this.inter.getTimeLeft();
 	},
 	
 	frame: function(time) {
-		var distance = time * this.velocity / 1000;
-		if (distance > this.totalDistance) {
-	        this.timeLeft = time - this.totalDistance / this.velocity * 1000;
-			distance = this.totalDistance;
-		}
-        
-        var x2 = this.dx * distance/this.totalDistance;
-        var y2 = this.dx != 0 ? (this.dy/this.dx) * x2 : 
-			this.dy * distance/this.totalDistance;
 		
-        var newPoint = WB.Geom.movePoint(this.fromPoint, x2, y2);
+		this.inter.frame(time);
+		
+        var newPoint = this.inter.getValue();
         
         this.movedShape.transform = new WB.Transform().translate(newPoint.x, newPoint.y);
 		// console.log('draw image @ ' + newPoint.x + ' x ' + newPoint.y);
         this.movedShape.draw(this.pane);
 		
-	    this.done = this.shape.isReady() && Math.abs(this.totalDistance - distance) < 1.0;
-	    
 	    var holdPoint;
 	    if (this.width && this.height) {
 	    	holdPoint = WB.Geom.movePoint(newPoint, this.width/2, this.height/3*2);
@@ -342,7 +334,7 @@ WB.MoveShapeAnimation = WB.Animation.extend('MoveShapeAnimation', {
 	    this.board.state({
 	    	pointer: 'move',
 	    	position: this.pane.toGlobalPoint(holdPoint),
-	    	velocity: this.velocity,
+	    	velocity: this.inter.velocity,
 	    	angle: WB.Geom.angle(this.fromPoint, newPoint),
 	    	height: 1.0
 	    });
@@ -352,10 +344,6 @@ WB.MoveShapeAnimation = WB.Animation.extend('MoveShapeAnimation', {
 		var p = this.toPoint;
         this.movedShape.transform = new WB.Transform().translate(p.x, p.y);
 		this.board.commitShape(this.movedShape, true);
-	},
-	
-	getTimeLeft: function() {
-		return this.timeLeft;
 	}
 	
 });
