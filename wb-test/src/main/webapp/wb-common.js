@@ -899,21 +899,21 @@ WB.NumInterpolator = WB.Animation.extend('NumInterpolator', {
 		this.board = board;
 		
         this.totalDistance = Math.abs(this.to - this.from);
+        this.dir = this.to >= this.from ? 1 : -1;
         this.totalTime = this.velocity ? this.totalDistance/this.velocity : this.maxTime;
-        if (!this.totalTime) {
+        if (!this.totalTime && this.totalTime != 0) {
         	throw "unknown time";
         }
         if (this.maxTime && this.totalTime > this.maxTime) {
         	this.totalTime = this.maxTime;
         	this.velocity = null;
         }
-        if (!this.velocity) {
+        if (!this.velocity && this.totalTime > 0) {
         	this.velocity = this.totalDistance / this.totalTime;
         }
         
-        this.dir = this.to >= this.from ? 1 : -1;
         this.timeLeft = 0;
-        this.done = this.totalTime < 10;
+        this.done = this.totalTime < 1;
         this.value = this.from;
 	},
 	
@@ -966,21 +966,21 @@ WB.PointInterpolator = WB.Animation.extend('PointInterpolator', {
 		
         this.totalDistance = this.pane.distanceGlobal(this.from, this.to, false, true);
         this.totalTime = this.velocity ? this.totalDistance/this.velocity : this.maxTime;
-        if (!this.totalTime) {
+        if (!this.totalTime && this.totalTime != 0) {
         	throw "unknown time";
         }
         if (this.maxTime && this.totalTime > this.maxTime) {
         	this.totalTime = this.maxTime;
         	this.velocity = null;
         }
-        if (!this.velocity) {
+        if (!this.velocity && this.totalTime > 0) {
         	this.velocity = this.totalDistance / this.totalTime;
         }
         
-    	this.dx = this.endPoint.x - this.startPoint.x;
-    	this.dy = this.endPoint.y - this.startPoint.y;
+    	this.dx = this.to.x - this.from.x;
+    	this.dy = this.to.y - this.from.y;
         this.timeLeft = 0;
-        this.done = this.totalTime < 10;
+        this.done = this.totalTime < 1;
         this.value = this.from;
 	},
 	
