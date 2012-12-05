@@ -57,18 +57,20 @@ WB.PanAnimation = WB.Animation.extend('PanAnimation', {
         
         this.board.updateAnchorPoint(newPoint);
         
-	    /*
-	    this.board.state({
-			pointer: 'draw',
-	    	position: this.pane.toGlobalPoint(newPoint),
-	    	velocity: this.inter.velocity,
-	    	angle: WB.Geom.angle(this.startPoint, newPoint),
-	    	height: 0.0
-	    });
-	     */
 	    this.board.state({
 	    	height: 1.0
 	    });
+	},
+	
+	end: function() {
+		var pane = this.board.animationPane;
+		var screenBounds = pane.globalBounds();
+		var resetPos = {
+				x: screenBounds.topleft.x + 30, 
+				y: screenBounds.bottomright.y + 30};
+		console.log('!RESET POS! ' + JSON.stringify(resetPos));
+		pane.moveTo(resetPos);
+	    this.board.state({position: resetPos});
 	}
 	
 });
