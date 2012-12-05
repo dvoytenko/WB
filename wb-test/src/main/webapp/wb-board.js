@@ -183,6 +183,11 @@ WB.Board = WB.Class.extend('Board', {
 		this.animationPane._clearCanvas();
 	},
 	
+	getResetPoint: function() {
+		var b = this.commitPane.globalBounds();
+		return {x: b.topleft.x + 30, y: b.bottomright.y + 30};
+	},
+	
 	getAnchorPoint: function() {
 		var tr = this.commitPane.defaultTransform;
 		return tr.transformPoint(0, 0);

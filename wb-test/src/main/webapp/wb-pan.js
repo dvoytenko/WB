@@ -64,10 +64,7 @@ WB.PanAnimation = WB.Animation.extend('PanAnimation', {
 	
 	end: function() {
 		var pane = this.board.animationPane;
-		var screenBounds = pane.globalBounds();
-		var resetPos = {
-				x: screenBounds.topleft.x + 30, 
-				y: screenBounds.bottomright.y + 30};
+		var resetPos = this.board.getResetPoint();
 		console.log('!RESET POS! ' + JSON.stringify(resetPos));
 		pane.moveTo(resetPos);
 	    this.board.state({position: resetPos});

@@ -123,12 +123,9 @@ WB.MoveAwayAnimation = WB.Animation.extend('MoveAwayAnimation', {
 	start: function(board) {
 		this.board = board;
 
-		var screenBounds = this.board.animationPane.globalBounds();
-		
-		var point = {
-				x: screenBounds.topleft.x + 30, 
-				y: screenBounds.bottomright.y + 30};
+		var point = this.board.getResetPoint();
 		console.log('!MOVE AWAY! ' + JSON.stringify(point));
+		
 		this.anim = new WB.MoveToAnimation(point);
 		
 		this.tr = null;
