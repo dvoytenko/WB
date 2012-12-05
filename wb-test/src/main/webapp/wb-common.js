@@ -883,3 +883,139 @@ WB.ListAnimation = WB.Animation.extend('ListAnimation', {
 	
 });
 
+
+/**
+ */
+WB.NumInterpolator = WB.Animation.extend('NumInterpolator', {
+	
+	init: function(from, to, velocity, maxTime) {
+		this.from = from;
+		this.to = to;
+		this.velocity = velocity;
+		this.maxTime = maxTime;
+	},
+	
+	start: function(board) {
+		this.board = board;
+		
+        this.totalDistance = Math.abs(this.to - this.from);
+        this.totalTime = this.velocity ? this.totalDistance/this.velocity : this.maxTime;
+        if (!this.totalTime) {
+        	throw "unknown time";
+        }
+        if (this.maxTime && this.totalTime > this.maxTime) {
+        	this.totalTime = this.maxTime;
+        	this.velocity = null;
+        }
+        if (!this.velocity) {
+        	this.velocity = this.totalDistance / this.totalTime;
+        }
+        
+        this.dir = this.to >= this.from ? 1 : -1;
+        this.timeLeft = 0;
+        this.done = this.totalTime < 10;
+        this.value = this.from;
+	},
+	
+	isDone: function() {
+		return this.done;
+	},
+	
+	getTimeLeft: function() {
+		return this.timeLeft;
+	},
+	
+	frame: function(time) {
+		if (time < this.totalTime) {
+			var distance = time * this.velocity;
+			if (distance > this.totalDistance) {
+				distance = this.totalDistance;
+			}
+			this.value = this.from + this.dir * distance;
+		} else {
+	        this.timeLeft = time - this.totalTime;
+			this.value = this.to;
+			this.done = true;
+		}
+	},
+	
+	end: function() {
+	},
+	
+	getValue: function() {
+		return this.value;
+	}
+	
+});
+
+
+/**
+ */
+WB.PointInterpolator = WB.Animation.extend('PointInterpolator', {
+	
+	init: function(from, to, velocity, maxTime) {
+		this.from = from;
+		this.to = to;
+		this.velocity = velocity;
+		this.maxTime = maxTime;
+	},
+	
+	start: function(board) {
+		this.board = board;
+		this.pane = board.animationPane;
+		
+        this.totalDistance = this.pane.distanceGlobal(this.from, this.to, false, true);
+        this.totalTime = this.velocity ? this.totalDistance/this.velocity : this.maxTime;
+        if (!this.totalTime) {
+        	throw "unknown time";
+        }
+        if (this.maxTime && this.totalTime > this.maxTime) {
+        	this.totalTime = this.maxTime;
+        	this.velocity = null;
+        }
+        if (!this.velocity) {
+        	this.velocity = this.totalDistance / this.totalTime;
+        }
+        
+    	this.dx = this.endPoint.x - this.startPoint.x;
+    	this.dy = this.endPoint.y - this.startPoint.y;
+        this.timeLeft = 0;
+        this.done = this.totalTime < 10;
+        this.value = this.from;
+	},
+	
+	isDone: function() {
+		return this.done;
+	},
+	
+	getTimeLeft: function() {
+		return this.timeLeft;
+	},
+	
+	frame: function(time) {
+		if (time < this.totalTime) {
+			var distance = time * this.velocity;
+			if (distance > this.totalDistance) {
+				distance = this.totalDistance;
+			}
+			
+	        var x2 = this.dx * distance/this.totalDistance;
+	        var y2 = this.dx != 0 ? (this.dy/this.dx) * x2 : 
+				this.dy * distance/this.totalDistance;
+	        this.value = WB.Geom.movePoint(this.from, x2, y2);
+		} else {
+	        this.timeLeft = time - this.totalTime;
+			this.value = this.to;
+			this.done = true;
+		}
+	},
+	
+	end: function() {
+	},
+	
+	getValue: function() {
+		return this.value;
+	}
+	
+});
+

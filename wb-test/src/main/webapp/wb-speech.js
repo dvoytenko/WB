@@ -156,6 +156,9 @@ WB.SpeechEpisode = WB.Episode.extend('SpeechEpisode', {
 		if (opts && opts.track) {
 			this.track = opts.track;
 		}
+		if (opts && opts.text) {
+			this.text = opts.text;
+		}
 	},
 	
 	createAnimation: function() {

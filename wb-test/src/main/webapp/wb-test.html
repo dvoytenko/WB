@@ -99,9 +99,11 @@
 		<canvas id="animCanvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 12;"></canvas>
 		<canvas id="pointerCanvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 13;"></canvas>
 	</div>
+	
+	<div id="done" style="display: none;">Done!</div>
 
 	<script>
-	
+
 		function status(s) {
 			$('#status').text(s);
 		}
@@ -320,7 +322,7 @@
 				opts = {};
 			}
 			
-			var canvasStyle = 'ipad';
+			var canvasStyle = 'whiteboard';
 			
 			// 720 x 405
 			var canvasWidth = 720;
@@ -649,14 +651,58 @@
 			        ]
 				};
 				
+				console.log('save frame ' + frameIndex);
+				/* XXX
 				$.ajax({
 					type: 'POST',
 					url: '/wb/service/recorder/frame?recordId=' + recordId + '&frameIndex=' + frameIndex,
 					contentType: 'application/json',
 					processData: false,
 					data: JSON.stringify(frame)
+				})
+				.done(function() {
+					console.log('frame ' + frameIndex + ' saved');
 				});
+				*/
 			}
+			$("#done").show();
+
+			/*
+			function nextStep() {
+				stepper.step();
+				frameIndex++;
+				
+				var frame = {
+					state: board._state,
+					speech: speechPlayer.playingUrl,
+					width: canvasWidth,
+					height: canvasHeight,
+					panes: [
+				        {id:'commit', data:commitCanvas.toDataURL()},
+				        {id:'animation', data:animCanvas.toDataURL()},
+				        {id:'pointer', data:pointerCanvas.toDataURL()},
+			        ]
+				};
+				
+				console.log('save frame ' + frameIndex);
+				$.ajax({
+					type: 'POST',
+					url: '/wb/service/recorder/frame?recordId=' + recordId + '&frameIndex=' + frameIndex,
+					contentType: 'application/json',
+					processData: false,
+					data: JSON.stringify(frame)
+				})
+				.done(function() {
+					console.log('frame ' + frameIndex + ' saved');
+					if (stepper.state == 'playing') {
+						nextStep();
+					} else {
+						$("#done").show();
+					}
+				});
+			};
+			nextStep();
+			*/
 		}
 		
 		function recordScript(scriptId) {

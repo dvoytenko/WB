@@ -44,6 +44,7 @@ public class RecorderController {
 		if (!writerDir.mkdir()) {
 			throw new RuntimeException("failed to create dir: " + writerDir);
 		}
+		System.out.println("recording: " + recording.id);
 		return recording;
 	}
 	

@@ -2,12 +2,14 @@
   "_type": "Script",
   "episodes": [
     {
+      "seq": 1,
       "_type": "SpeechEpisode",
       "engine": "cere",
       "text": "It's one of the oldest stories in the world. You came up with an idea, rolled up your sleeves, and created a product.",
       "track": "oldest-story"
     },
     {
+      "seq": 2,
       "_type": "DrawShapeEpisode",
       "height": 109.80916030534351,
       "position": {
@@ -1389,6 +1391,7 @@
       "width": 70
     },
     {
+      "seq": 3,
       "_type": "DrawShapeEpisode",
       "height": 105.48672566371681,
       "position": {
@@ -1786,12 +1789,14 @@
       "width": 120
     },
     {
+      "seq": 4,
       "_type": "SpeechEpisode",
       "engine": "cere",
       "text": "And now you want to get the word out and have the whole world to start using it!",
       "track": "whole-world-using"
     },
     {
+      "seq": 5,
       "_type": "DrawShapeEpisode",
       "height": 217.48091603053436,
       "position": {
@@ -4577,6 +4582,7 @@
       "width": 220
     },
     {
+      "seq": 6,
       "_type": "DrawShapeEpisode",
       "height": 109.33884297520662,
       "position": {
@@ -5184,6 +5190,7 @@
       "width": 70
     },
     {
+      "seq": 7,
       "_type": "DrawShapeEpisode",
       "height": 93.71900826446281,
       "position": {
@@ -5791,6 +5798,7 @@
       "width": 60
     },
     {
+      "seq": 8,
       "_type": "DrawShapeEpisode",
       "height": 93.71900826446281,
       "position": {
@@ -6398,6 +6406,7 @@
       "width": 60
     },
     {
+      "seq": 9,
       "_type": "DrawShapeEpisode",
       "height": 1,
       "position": {
@@ -6423,6 +6432,7 @@
       "width": 1
     },
     {
+      "seq": 10,
       "_type": "PanEpisode",
       "point": {
         "x": -720,
@@ -6430,12 +6440,14 @@
       }
     },
     {
+      "seq": 11,
       "_type": "SpeechEpisode",
       "engine": "cere",
       "text": "So, you\u2019ve invited your friends, family and your investors to see what you\u2019ve got. You\u2019ve also put together a decent Power Point presentation.",
       "track": "invite"
     },
     {
+      "seq": 12,
       "_type": "PasteImageEpisode",
       "action": "move",
       "height": 145,
@@ -6462,6 +6474,7 @@
       "width": 106.40547263681592
     },
     {
+      "seq": 13,
       "_type": "PasteImageEpisode",
       "action": "move",
       "height": 160,
@@ -6488,6 +6501,7 @@
       "width": 128.87272727272727
     },
     {
+      "seq": 14,
       "_type": "PasteImageEpisode",
       "action": "move",
       "height": 140,
@@ -6514,6 +6528,7 @@
       "width": 46.09053497942387
     },
     {
+      "seq": 15,
       "_type": "PasteImageEpisode",
       "action": "move",
       "height": 240,
@@ -6540,6 +6555,7 @@
       "width": 348.83720930232556
     },
     {
+      "seq": 16,
       "_type": "DrawTextEpisode",
       "height": 30,
       "position": {
@@ -6632,6 +6648,7 @@
       "width": 8.4375
     },
     {
+      "seq": 17,
       "_type": "DrawTextEpisode",
       "height": 30,
       "position": {
@@ -7249,6 +7266,7 @@
       "width": 18.75
     },
     {
+      "seq": 18,
       "_type": "DrawTextEpisode",
       "height": 30,
       "position": {
@@ -8125,12 +8143,14 @@
       "width": 17.8125
     },
     {
+      "seq": 19,
       "_type": "SpeechEpisode",
       "engine": "cere",
       "text": "But all of a sudden people seem bored.",
       "track": "bored"
     },
     {
+      "seq": 20,
       "_type": "DrawShapeEpisode",
       "height": 120,
       "position": {
@@ -8884,12 +8904,14 @@
       "width": 58.24561403508772
     },
     {
+      "seq": 21,
       "_type": "SpeechEpisode",
       "engine": "cere",
       "text": "Some are dashing for a door.",
       "track": "dashing-door"
     },
     {
+      "seq": 22,
       "_type": "DrawShapeEpisode",
       "height": 100,
       "position": {
@@ -9653,6 +9675,7 @@
       "width": 151.2396694214876
     },
     {
+      "seq": 23,
       "_type": "DrawShapeEpisode",
       "height": 50,
       "position": {
@@ -9833,6 +9856,7 @@
       "width": 160
     },
     {
+      "seq": 24,
       "_type": "DrawTextEpisode",
       "height": 15,
       "position": {
@@ -14491,12 +14515,14 @@
       "width": 85.8984375
     },
     {
+      "seq": 25,
       "_type": "SpeechEpisode",
       "engine": "cere",
       "text": "Others are even falling asleep.",
       "track": "falling-asleep"
     },
     {
+      "seq": 26,
       "_type": "DrawShapeEpisode",
       "height": 44.21052631578947,
       "position": {
@@ -15117,6 +15143,7 @@
       "width": 140
     },
     {
+      "seq": 27,
       "_type": "DrawShapeEpisode",
       "height": 1,
       "position": {
@@ -15141,8 +15168,11 @@
       },
       "width": 1
     },
-    {"_type": "SpeechEndEpisode"},
     {
+      "seq": 28,
+	"_type": "SpeechEndEpisode"},
+    {
+      "seq": 29,
       "_type": "PanEpisode",
       "point": {
         "x": -1440,
@@ -15150,12 +15180,14 @@
       }
     },
     {
+      "seq": 30,
       "_type": "SpeechEpisode",
       "engine": "cere",
       "text": "What if instead you had a fun and dynamic presentation. Kind of like this one.",
       "track": "dynamic-pres"
     },
     {
+      "seq": 31,
       "_type": "DrawShapeEpisode",
       "action": "predraw",
       "height": 286.9774919614148,
@@ -15559,6 +15591,7 @@
       "width": 250
     },
     {
+      "seq": 32,
       "_type": "DrawShapeEpisode",
       "height": 65,
       "pause": 3000,
@@ -15797,6 +15830,7 @@
       "width": 65
     },
     {
+      "seq": 33,
       "_type": "DrawShapeEpisode",
       "height": 47.06106870229008,
       "position": {
@@ -17178,6 +17212,7 @@
       "width": 30
     },
     {
+      "seq": 34,
       "_type": "DrawShapeEpisode",
       "height": 43.95280235988201,
       "position": {
@@ -17575,6 +17610,7 @@
       "width": 50
     },
     {
+      "seq": 35,
       "_type": "DrawShapeEpisode",
       "height": 59.31297709923664,
       "position": {
@@ -20360,12 +20396,14 @@
       "width": 60
     },
     {
+      "seq": 36,
       "_type": "SpeechEpisode",
       "engine": "cere",
       "text": "Your audience is now engaged and everyone wants to try your product!",
       "track": "engaged"
     },
     {
+      "seq": 37,
       "_type": "DrawShapeEpisode",
       "height": 140,
       "position": {
@@ -20973,6 +21011,7 @@
       "width": 89.62962962962963
     },
     {
+      "seq": 38,
       "_type": "DrawShapeEpisode",
       "height": 140,
       "position": {
@@ -21580,12 +21619,14 @@
       "width": 89.62962962962963
     },
     {
+      "seq": 39,
       "_type": "SpeechEpisode",
       "engine": "cere",
       "text": "They may even feel like getting a little loose and breaking it down right in the conference room!",
       "track": "dance"
     },
     {
+      "seq": 40,
       "_type": "DrawShapeEpisode",
       "height": 140,
       "position": {
@@ -26878,6 +26919,7 @@
       "width": 136.15384615384616
     },
     {
+      "seq": 41,
       "_type": "DrawShapeEpisode",
       "height": 80,
       "position": {
@@ -31072,6 +31114,7 @@
       "width": 80
     },
     {
+      "seq": 42,
       "_type": "DrawShapeEpisode",
       "height": 1,
       "position": {
@@ -31097,6 +31140,7 @@
       "width": 1
     },
     {
+      "seq": 43,
       "_type": "PanEpisode",
       "point": {
         "x": -2160,
@@ -31104,6 +31148,7 @@
       }
     },
     {
+      "seq": 44,
       "_type": "DrawShapeEpisode",
       "height": 350,
       "position": {
@@ -33149,12 +33194,14 @@
       "width": 600
     },
     {
+      "seq": 45,
       "_type": "SpeechEpisode",
       "engine": "cere",
       "text": "Express yourself and never run out of markers again!",
       "track": "express-yourself"
     },
     {
+      "seq": 46,
       "_type": "DrawTextEpisode",
       "height": 40,
       "position": {
@@ -39691,6 +39738,7 @@
       "width": 364.6875
     },
     {
+      "seq": 47,
       "_type": "DrawTextEpisode",
       "height": 28,
       "position": {
@@ -52787,6 +52835,7 @@
       "width": 547.96875
     },
     {
+      "seq": 48,
       "_type": "DrawTextEpisode",
       "height": 28,
       "position": {

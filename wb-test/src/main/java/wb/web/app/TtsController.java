@@ -13,6 +13,7 @@ import java.util.List;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,10 +25,14 @@ import wb.model.TtsEngine;
 import wb.model.TtsEngines;
 import wb.model.Voice;
 import wb.util.IoHelper;
+import wb.web.ServerContext;
 
 @Controller
 @RequestMapping( { "/tts" })
 public class TtsController {
+	
+	@Autowired
+	private ServerContext serverContext;
 	
 	private TtsEngines engines = new TtsEngines();
 	
@@ -79,7 +84,7 @@ public class TtsController {
 		
 		File file;
 		{
-			final File tempDir = getTempDir();
+			final File tempDir = serverContext.getWorkDir();
 			try {
 				file = File.createTempFile("wb-audio", ".wav", tempDir);
 			} catch (IOException e) {
@@ -100,27 +105,23 @@ public class TtsController {
 		return new Result(null, file.getName());
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value={"/temp/{path:.*}"})
-	@ResponseBody
+	@RequestMapping(method = {RequestMethod.GET, RequestMethod.HEAD}, value={"/temp/{path:.*}"})
 	public void temp(@PathVariable("path") String path,
 			HttpServletResponse resp) throws IOException {
 		
 		if (path.endsWith(".wav")) {
 			resp.setContentType("audio/wav");
+			File file = new File(serverContext.getWorkDir(), path);
+			resp.setContentLength((int) file.length());
 			ServletOutputStream out = resp.getOutputStream();
-			final File tempDir = getTempDir();
-			InputStream in = new BufferedInputStream(new FileInputStream(
-					new File(tempDir, path)));
+			InputStream in = new BufferedInputStream(new FileInputStream(file));
 			IoHelper.copy(in, out);
 			in.close();
+			out.close();
 			return;
 		}
 		
 		throw new RuntimeException("unknown temp file: " + path);
-	}
-	
-	private File getTempDir() {
-		return new File(System.getProperty("java.io.tmpdir"));
 	}
 	
 	public static class Result {

@@ -7,7 +7,13 @@ var DrawShapeEpisodeView = BaseEpisodeView.extend({
 	className: "Episode DrawShapeEpisode",
 	
 	modelIconPath: function() {
-		return this.model.get('thumbUrl');
+		if (this.model.get('thumbUrl')) {
+			return this.model.get('thumbUrl');
+		}
+		if (this.model.get('shapeId')) {
+			return 'shapedb/' + this.model.get('shapeId') + '.png';
+		}
+		return 'images/pencil.png';
 	},
 	
 	modelPosSize: function() {
@@ -116,9 +122,10 @@ var BoardShapeEditable = Kinetic.Group.extend({
 //			this.moveToTop();
 //		});
 		
-		if (shape) {
-			this._assignShape(shape);
-		}
+//		if (shape) {
+//			this._assignShape(shape);
+//		}
+		this.shape = shape;
 	},
 	
 	estimateSize: function(width, height) {
@@ -132,6 +139,8 @@ var BoardShapeEditable = Kinetic.Group.extend({
 	ready: function() {
 	    if (!this.shape) {
 	    	this.loadShape();
+	    } else {
+	    	this._assignShape(this.shape);
 	    }
 	},
 	

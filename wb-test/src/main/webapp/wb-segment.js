@@ -1,4 +1,5 @@
 
+
 WB.Segment = WB.Class.extend('Segment', {
 	
 	// potentially consider prevSegment and nextSegment in this contract

@@ -4,10 +4,14 @@
  */
 var DrawTextEpisodeView = BaseEpisodeView.extend({
 	
-	className: "Episode DrawTextEpisode",
+	className: "Episode DrawTextEpisode HasTextEpisode",
 
 	modelIconPath: function() {
 		return 'images/quill.png';
+	},
+	
+	modelDesc: function() {
+		return this.model.get('text');
 	},
 	
 	modelPosSize: function() {

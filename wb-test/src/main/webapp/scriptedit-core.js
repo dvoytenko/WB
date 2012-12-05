@@ -308,18 +308,41 @@ var EpisodeListView = Backbone.View.extend({
 		if (episode.listView) {
 			episode.listView.$el.toggleClass('selected', true);
 			
-			// TODO doesn't work properly yet, retest
-			var par = this.$el.offset();
-			var off = episode.listView.$el.offset();
-			off.top -= par.top;
-			off.left -= par.left;
-			console.log('new offset: ' + JSON.stringify(off));
-			off.left -= 20;
-			off.top -= 20;
-			this.$el.animate({
-			    scrollTop: off.top
-			  //  scrollLeft: offset.left
-			});
+			/*
+			var scrollTo = null;
+			var containerHeight = this.$el.height();
+			var containerTop = this.$el.scrollTop(); 
+			var containerBottom = containerTop + containerHeight;
+			console.log('container top ' + containerTop + '; bottom ' + containerBottom);
+			var elemTop = episode.listView.$el.offset().top - this.$el.offset().top;
+			var elemBottom = elemTop + episode.listView.$el.height();
+			console.log('elem top ' + elemTop + '; bottom ' + elemBottom);
+			if (containerTop + elemTop < containerTop) {
+				scrollTo = containerTop + elemTop;
+			} else if (containerTop + elemBottom > containerBottom) {
+				scrollTo = containerTop + elemBottom - containerHeight;
+			}
+			
+			if (scrollTo) {
+				console.log('scroll to: ' + scrollTo);
+				//this.$el.scrollTop(scrollTo);
+				this.$el.animate({scrollTop: scrollTo});
+			}
+			*/
+			
+			/*
+			episode.listView.$el[0].scrollIntoView(true);
+			*/
+		
+			var el = episode.listView.$el;
+			//var el = this.model.at(0).listView.$el;
+			console.log('el top: ' + this.$el.offset().top + '/' + this.$el.scrollTop());
+			console.log('list top: ' + this.$listEl.offset().top + '/' + this.$listEl.scrollTop());
+			console.log('elem top: ' + el.offset().top);
+			console.log('1st elem top: ' + this.model.at(0).listView.$el.offset().top);
+			var scrollTo = el.offset().top - this.$listEl.offset().top;
+			console.log(scrollTo);
+			this.$el.animate({scrollTop: scrollTo});
 		}
 	},
 	
@@ -353,8 +376,8 @@ var BoardView = Backbone.View.extend({
 	
 	initialize: function() {
 		
-		var canvasWidth = 592;
-		var canvasHeight = 333;
+		var canvasWidth = 720; // 592 (-128)
+		var canvasHeight = 405; // 333
 		
 	    this.stage = new Kinetic.Stage({
 	        container: "Board",
