@@ -120,6 +120,7 @@ WB.ShapeEpisodeAnimation = WB.Animation.extend('ShapeEpisodeAnimation', {
 		this.board.baseVelocity = this.oldVelocity * this.rate;
 		
 		this.animation.start(board);
+		this.board.state({pointer: 'draw'});
 
 		console.log('Episode started ' + this.episode._type);
 	},

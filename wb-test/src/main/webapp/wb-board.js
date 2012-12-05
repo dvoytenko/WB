@@ -75,7 +75,7 @@ WB.Board = WB.Class.extend('Board', {
 	},
 	
 	getCurrentPosition: function() {
-		return null;
+		return this._state.position;
 	},
 	
 	commitShape: function(shape, render) {
@@ -148,8 +148,7 @@ WB.Board = WB.Class.extend('Board', {
 	},
 	
 	resetPosition: function() {
-		// TODO smoothly move
-		this.state({position: {x: 10, y: 390}});
+		this.state({position: this.getResetPoint()});
 	},
 
 	beforeFrame: function() {

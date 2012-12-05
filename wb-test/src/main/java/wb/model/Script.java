@@ -12,8 +12,14 @@ public class Script {
 	}
 
 	public void prepare(PrepareScript preparator) {
+		
 		for (Episode episode : this.episodes) {
 			episode.prepare(preparator);
+		}
+		
+		int seq =  0;
+		for (Episode episode : this.episodes) {
+			episode.seq = ++seq;
 		}
 	}
 	

@@ -78,7 +78,6 @@ WB.MoveToAnimation = WB.Animation.extend('MoveToAnimation', {
         this.pane.moveTo(newPoint);
 		
 		this.board.state({
-			pointer: 'draw',
 			position: this.pane.toGlobalPoint(newPoint),
 	    	velocity: this.inter.velocity,
 	    	angle: WB.Geom.angle(this.startPoint, newPoint),

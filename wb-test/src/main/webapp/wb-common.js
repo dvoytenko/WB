@@ -702,9 +702,9 @@ WB.WaitForAnimation = WB.Animation.extend('WaitForAnimation', {
 			this.startTime = time;
 		}
 		this.done = (time - this.startTime) > this.maxTime || this.happenedCheck();
-		if (!this.done) {
-			this.board.resetPosition();
-		}
+//		if (!this.done) {
+//			this.board.resetPosition();
+//		}
 	},
 	
 	isDone: function() {

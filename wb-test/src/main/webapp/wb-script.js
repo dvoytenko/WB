@@ -124,6 +124,10 @@ WB.MoveAwayAnimation = WB.Animation.extend('MoveAwayAnimation', {
 		this.board = board;
 
 		var point = this.board.getResetPoint();
+		var currentPoint = this.board.getCurrentPosition();
+		if (currentPoint) {
+			point = {x: currentPoint.x - 10, y: point.y};
+		}
 		console.log('!MOVE AWAY! ' + JSON.stringify(point));
 		
 		this.anim = new WB.MoveToAnimation(point);
