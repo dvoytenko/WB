@@ -44,36 +44,47 @@ WB.MoveToAnimation = WB.Animation.extend('MoveToAnimation', {
 	
 	start: function(board) {
 		this.board = board;
-		this.timeLeft = 0;
-		this.done = false;
+		this.pane = board.animationPane;
+		// move twice (or more) as fast as you draw
+		this.velocity = board.getBaseVelocity() * 2;
+		
+		this.startPoint = this.pane.getCurrentPoint();
+		if (!this.startPoint) {
+			this.startPoint = this.point;
+		}
+		
+		this.inter = new WB.PointInterpolator(this.startPoint, this.point, 
+				this.velocity/1000);
+		this.inter.start(board);
 	},
 	
 	isDone: function() {
-		return this.done;
+		return this.inter.isDone();
+	},
+	
+	getTimeLeft: function() {
+		return this.inter.getTimeLeft();
 	},
 	
 	end: function() {
 	},
 	
 	frame: function(time) {
-		// TODO: implement moving cursor + timeLeft
-		var pane = this.board.animationPane;
-		pane.moveTo(this.point);
-		this.done = true;
-		this.timeLeft = time;
+		
+		this.inter.frame(time);
+
+        var newPoint = this.inter.getValue();
+		
+        this.pane.moveTo(newPoint);
 		
 		this.board.state({
 			pointer: 'draw',
-			position: pane.toGlobalPoint(this.point),
-			velocity: 0,
-			angle: 0,
+			position: this.pane.toGlobalPoint(newPoint),
+	    	velocity: this.inter.velocity,
+	    	angle: WB.Geom.angle(this.startPoint, newPoint),
 			pressure: 0,
-			height: 0
+			height: 1.0
 		});
-	},
-	
-	getTimeLeft: function() {
-		return this.timeLeft;
 	}
 	
 });
