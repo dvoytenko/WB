@@ -668,12 +668,15 @@
 					this.filter = null;
 				} else {
 					function contains(s1, s2) {
-						return s1 && s1.indexOf(s2) != -1;
+						if (!s1 || !s2) {
+							return false;
+						}
+						return s1.toLowerCase().indexOf(s2.toLowerCase()) != -1;
 					}
 					this.filter = function(shapeDescModel) {
 						var id = shapeDescModel.get('id');
 						var title = shapeDescModel.get('title');
-						var url = shapeDescModel.get('tags');
+						var url = shapeDescModel.get('url');
 						var tags = shapeDescModel.get('tags');
 						if (contains(id, val)) {
 							return true;

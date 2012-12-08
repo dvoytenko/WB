@@ -93,6 +93,8 @@ WB.HandPoint = WB.Pointer.extend('HandPoint', {
 		var pointer = state.pointer || 'draw';
 		//console.log('pointer ' + state.pointer + ' -> ' + pointer);
 		
+		this.zoomFactor = state.zoomFactor || 1;
+		
 		// console.log('marker: update: ' + JSON.stringify(state.position));
 		this.pane._clearCanvas();
 		
@@ -105,8 +107,8 @@ WB.HandPoint = WB.Pointer.extend('HandPoint', {
 		if (state.position && this.markerImage.complete && pt) {
 			var height = 550;
 			var width = height / (pt.height / pt.width);
-			var mx = state.position.x - pt.anchorX * width/pt.width;
-			var my = state.position.y - pt.anchorY * height/pt.height;
+			var mx = state.position.x - pt.anchorX / this.zoomFactor * width/pt.width;
+			var my = state.position.y - pt.anchorY / this.zoomFactor * height/pt.height;
 			
 			var context = this.pane.context;
 			
@@ -115,7 +117,7 @@ WB.HandPoint = WB.Pointer.extend('HandPoint', {
 //			                                       		mx, my, width, height]));
             context.drawImage(this.markerImage,
             		pt.x, pt.y, pt.width, pt.height,
-            		mx, my, width, height);
+            		mx, my, width/this.zoomFactor, height/this.zoomFactor);
 		}
 		
 		/*

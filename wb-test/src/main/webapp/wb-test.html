@@ -77,6 +77,9 @@
 		<a href="javascript:void(0);" onclick="script3()">Script 3</a>
 		<a href="javascript:void(0);" onclick="script3Stepper()">Script 3 Stepper</a>
 		<a href="javascript:void(0);" onclick="script3Recorder()">Script 3 Recorder</a>
+
+		<br/>
+		<a href="javascript:void(0);" onclick="script4()">Script 4</a>
 		
 		<br/>
 		<a href="javascript:void(0);" onclick="image1()">Image 1</a>
@@ -92,9 +95,7 @@
 	
 	<div id="container" style="position: relative; margin: 4px; padding: 0; width: 720px; height: 405px;">
 		<canvas id="bgCanvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 1;"></canvas>
-		<!--
 		<canvas id="gridCanvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 5;"></canvas>
-		-->
 		<canvas id="canvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 11;"></canvas>
 		<canvas id="animCanvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 12;"></canvas>
 		<canvas id="pointerCanvas" width="720" height="405" style="position: absolute; margin: 0; width: 720px; height: 405px; z-index: 13;"></canvas>
@@ -115,6 +116,9 @@
 			}
 			
 			var context = canvas.getContext('2d');
+			
+			var f = 'normal normal normal 8px arial';
+				
 			var width = canvas.width;
 			var height = canvas.height;
 			var delta = 50;
@@ -126,6 +130,10 @@
 				//context.strokeStyle = 'rgba(220,220,220,0.5)';
 				context.strokeStyle = 'rgba(0,255,0,1)';
 				context.stroke();
+				
+				context.font = f;
+				context.fillText('' + x, x + 2, 8);
+				
 				for (var y = delta; y < height; y += delta) {
 					context.beginPath();
 					context.moveTo(0, y);
@@ -134,6 +142,9 @@
 					//context.strokeStyle = 'rgba(220,220,220,0.1)';
 					context.strokeStyle = 'rgba(0,255,0,1)';
 					context.stroke();
+
+					context.font = f;
+					context.fillText('' + y, 2, y + 10);
 				}
 			}
 		}
@@ -302,7 +313,10 @@
 			player.bind(function(event, opts) {
 				if (event == 'frame') {
 					var p = player.board.animationPane.getCurrentPoint();
-					status('Time: ' + (opts.time) + ' milliseconds' 
+					var ap = player.board.getAnchorPoint();
+					status('Time: ' + (opts.time) + ' milliseconds'
+							+ '; Anchor: ' + Math.round(ap.x) + ',' + Math.round(ap.y)
+							+ '; Zoom: ' + player.board.getZoomFactor()
 							+ '; Position: ' + Math.round(p.x) + ',' + Math.round(p.y));
 				} else if (event == 'state') {
 					if (opts.state == 'playing') {
@@ -1411,6 +1425,10 @@
 			*/
 			
 			playScript('script3');
+		}
+
+		function script4() {
+			playScript('script4');
 		}
 
 		function script1Stepper() {

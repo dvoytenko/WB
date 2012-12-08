@@ -27,6 +27,8 @@ WB.Board = WB.Class.extend('Board', {
 	
 	showBounds: false,
 	
+	zoomFactor: 1,
+
 	init: function(opts) {
 		
 		if (opts && opts.urlResolver) {
@@ -58,6 +60,10 @@ WB.Board = WB.Class.extend('Board', {
 			this.baseVelocity = 100;
 		}
 		
+		if (opts && opts.zoomFactor) {
+			this.zoomFactor = opts.zoomFactor;
+		}
+		
 		if (opts && opts.showBounds) {
 			this.showBounds = opts.showBounds;
 		}
@@ -71,7 +77,7 @@ WB.Board = WB.Class.extend('Board', {
 	},
 	
 	getBaseVelocity: function() {
-		return this.baseVelocity;
+		return this.baseVelocity/this.zoomFactor;
 	},
 	
 	getCurrentPosition: function() {
@@ -144,11 +150,21 @@ WB.Board = WB.Class.extend('Board', {
 			for (var k in state) {
 				this._state[k] = state[k];
 			}
+			
+//			// xxx
+//			if (state.position) {
+//				console.log('state position: ' + this.s);
+//			}
 		}
 	},
 	
-	resetPosition: function() {
-		this.state({position: this.getResetPoint()});
+	resetPosition: function(updateAnimPane) {
+		var resetPos = this.getResetPoint();
+		console.log('!RESET POS! ' + JSON.stringify(resetPos));
+		if (updateAnimPane) {
+			this.animationPane.moveTo(resetPos);
+		}
+		this.state({position: resetPos});
 	},
 
 	beforeFrame: function() {
@@ -183,23 +199,40 @@ WB.Board = WB.Class.extend('Board', {
 	},
 	
 	getResetPoint: function() {
+		// TODO ensure that works correctly once zoomed. especially +30.
 		var b = this.commitPane.globalBounds();
 		return {x: b.topleft.x + 30, y: b.bottomright.y + 30};
 	},
 	
 	getAnchorPoint: function() {
 		var tr = this.commitPane.defaultTransform;
-		return tr.transformPoint(0, 0);
+		var p = tr.transformPoint(0, 0);
+//		p.x = p.x / this.zoomFactor;
+//		p.y = p.y / this.zoomFactor;
+		return p;
 	},
 	
 	updateAnchorPoint: function(newPoint) {
-		// console.log('updateAnchorPoint: ' + newPoint.x + ', ' + newPoint.y);
+		console.log('updateAnchorPoint: ' + newPoint.x + ', ' + newPoint.y);
 		
-		var tr = new WB.Transform(this.commitPane.defaultTransform);
-		var oldPoint = tr.transformPoint(0, 0);
-		var dx = newPoint.x - oldPoint.x;
-		var dy = newPoint.y - oldPoint.y;
-		tr.translate(dx, dy);
+		var tr = new WB.Transform();
+		// this.commitPane.defaultTransform
+		// var oldPoint = tr.transformPoint(0, 0);
+		// var dx = newPoint.x - oldPoint.x;
+		// var dy = newPoint.y - oldPoint.y;
+		// tr.translate(dx, dy);
+		tr.translate(newPoint.x*this.zoomFactor, newPoint.y*this.zoomFactor);
+		
+		if (this.zoomFactor != 1) {
+			/*
+			var cx = anchorPoint.x;
+			var cy = anchorPoint.y;
+			console.log('center: ' + cx + ', ' + cy);
+			*/
+//			tr.translate(- newPoint.x * (this.zoomFactor - 1), 
+//					- newPoint.y * (this.zoomFactor - 1));
+			tr.scale(this.zoomFactor, this.zoomFactor);
+		}
 		
 		this.commitPane.updateDefaultTransform(tr);
 		this.animationPane.updateDefaultTransform(tr);
@@ -241,6 +274,106 @@ WB.Board = WB.Class.extend('Board', {
 				// console.log('shape doesn\'t overlaps');
 			}
 		}
+		
+		this.state({anchorPoint: newPoint});
+	},
+	
+	getZoomFactor: function() {
+		return this.zoomFactor;
+	},
+	
+	updateZoomFactor: function(newZoomFactor, newAnchorPoint) {
+		
+		if (!newZoomFactor) {
+			return;
+		}
+		
+		if (newAnchorPoint) {
+			this.state({anchorPoint: newAnchorPoint});
+		}
+		
+		var anchorPoint = newAnchorPoint ? newAnchorPoint : this.getAnchorPoint();
+		var oldZoomFactor = this.zoomFactor;
+		
+		this.zoomFactor = newZoomFactor;
+		this.state({zoomFactor: newZoomFactor});
+		
+		var tr = new WB.Transform();
+		// this.commitPane.defaultTransform
+		// if (oldZoomFactor != 1 && oldZoomFactor != 0) {
+		//	tr.scale(1/oldZoomFactor, 1/oldZoomFactor);
+		//}
+		//tr.translate(-screenAnchorPoint.x, -screenAnchorPoint.y);
+		
+		// http://commons.oreilly.com/wiki/index.php/SVG_Essentials/Transforming_the_Coordinate_System#Technique:_Scaling_Around_a_Center_Point
+		// translate(-centerX*(factor-1), -centerY*(factor-1))
+		// scale(factor)
+//		var cx = anchorPoint.x;
+//		var cy = anchorPoint.y;
+//		console.log('center: ' + cx + ', ' + cy);
+//		tr.translate(- cx * (newZoomFactor - 1), -cy * (newZoomFactor - 1));
+		// tr.translate(- cx, -cy);
+		
+		tr.translate(anchorPoint.x*newZoomFactor, anchorPoint.y*newZoomFactor);
+		
+		tr.scale(newZoomFactor, newZoomFactor);
+		console.log('newZoomFactor: ' + newZoomFactor);
+
+		this.commitPane.updateDefaultTransform(tr);
+		this.commitPane.setZoomFactor(newZoomFactor);
+		this.animationPane.updateDefaultTransform(tr);
+		this.animationPane.setZoomFactor(newZoomFactor);
+		if (this.pointer && this.pointer.pane) {
+			// TODO put pointer's pane under board and have pointer access it from here
+			this.pointer.pane.updateDefaultTransform(tr);
+			this.pointer.pane.setZoomFactor(newZoomFactor);
+		}
+
+		// redraw main pane
+		var that = this;
+		var pane = this.commitPane;
+		pane._clearCanvas();
+		
+		// XXX restrict what's redrawn
+		for (var i = 0; i < this._shapes.length; i++) {
+			var c = this._shapes[i];
+			var tr = c.tr ? c.tr : new WB.Transform();
+			pane.withTr(tr, function() {
+				c.shape.draw(pane);
+			});
+		}
+
+		/*
+		var screenBounds = pane.globalBounds();
+		// console.log('screenBounds: ' + JSON.stringify(screenBounds));
+		for (var i = 0; i < this._shapes.length; i++) {
+			var c = this._shapes[i];
+			// console.log('shape bounds: ' + JSON.stringify(c.bounds));
+			var incl = !c.bounds || WB.Geom.boundsOverlap(screenBounds, c.bounds);
+			if (incl) {
+				// console.log('shape overlaps');
+				
+				var tr = c.tr ? c.tr : new WB.Transform();
+				pane.withTr(tr, function() {
+					if (that.showBounds && c.bounds) {
+						var loc = pane.toLocalBounds(c.bounds);
+						// console.log('local: ' + JSON.stringify(loc));
+						var ctx = pane.context;
+						ctx.save();
+						ctx.lineWidth = 1;
+						ctx.strokeStyle = 'blue';
+						ctx.strokeRect(loc.topleft.x, loc.topleft.y, 
+								loc.bottomright.x - loc.topleft.x,
+								loc.bottomright.y - loc.topleft.y);
+						ctx.restore();
+					}
+					c.shape.draw(pane);
+				});
+			} else {
+				// console.log('shape doesn\'t overlaps');
+			}
+		}
+		 */
 	},
 	
 	createAnimation: function(animation) {
@@ -259,6 +392,7 @@ WB.BoardAnimation = WB.Class.extend('BoardAnimation', {
 	
 	start: function(board) {
 		console.log('animation started');
+		this.board.resetPosition(true);
 		this.animation.start(board);
 	},
 	
@@ -277,7 +411,7 @@ WB.BoardAnimation = WB.Class.extend('BoardAnimation', {
 		this.board.animationPane._clearCanvas();
 		this.board.state({height: 1});
 		
-		this.board.resetPosition();
+		this.board.resetPosition(true);
 		
 		this.board.afterFrame();
 		console.log('animation stopped');

@@ -214,6 +214,8 @@ WB.Pane = WB.Class.extend('Pane', {
 	
 	context: null,
 	
+	zoomFactor: 1,
+	
     init: function(opts) {
     	this.trace = opts && opts.trace || false;
     	
@@ -248,6 +250,10 @@ WB.Pane = WB.Class.extend('Pane', {
 		this._setCanvasTransform(null);
 		
 		this.rendering = true;
+    },
+    
+    setZoomFactor: function(zoomFactor) {
+    	this.zoomFactor = zoomFactor;
     },
     
     updateDefaultTransform: function(defaultTransform) {
@@ -321,7 +327,7 @@ WB.Pane = WB.Class.extend('Pane', {
 		// default line width: 2.5 mm
 		var w0 = this.currentTransformInv.transformPoint(0, 0);
 		var w2 = this.currentTransformInv.transformPoint(2, 2);
-		this.lineWidth = WB.Geom.distance(w0, w2);
+		this.lineWidth = WB.Geom.distance(w0, w2)/this.zoomFactor;
 		// this.lineWidth = Math.sqrt(w*w*2);
 		// this.lineWidth = this.currentTransform.m[0]/this.defaultTransform.m[0]*2.5;
 		// this.context.lineWidth = this.lineWidth;

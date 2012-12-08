@@ -497,6 +497,7 @@ var BoardView = Backbone.View.extend({
 			this.layer.add(boardView);
 			// these properties are best to be set after adding a shape to the layer
 			boardView.setZIndex(model.get('seq'));
+			boardView.setSelected(false);
 			
 	        this.layer.draw();
 	        

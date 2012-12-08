@@ -1,5 +1,6 @@
 package wb.model;
 
+@Deprecated
 public class PanEpisode extends Episode {
 	
 	public Point point;
