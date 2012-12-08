@@ -1,0 +1,397 @@
+<html>
+
+<body>
+
+<style>
+	body {
+		margin: 0px;
+		padding: 0px;
+	}
+	canvas {
+		border: 1px solid #9C9898;
+	}
+	.progress {
+		display: none;
+	}
+	
+	#Editor {
+		width: 1000px;
+	}
+	
+	#BoardPane {
+		float: left; 
+		width: 728px;
+	}
+	
+	#EpisodesPane {
+		float: right; 
+		width: 262px;
+		border: 1px solid blue;
+	}
+	
+	#EpisodesPane .BottomBar {
+		padding: 10px;
+	}
+	
+	a.AddNewEpisodeAction .ui-button-icon-primary {
+		background-image: url('images/add.png');
+		background-size: 16px 16px;
+		/*
+		width: 22px;
+		height: 22px;
+		*/
+	}
+	
+	a.action img {
+		vertical-align: bottom;
+	}
+	
+	.EpisodeType {
+		border: 1px solid #eee;
+		margin: 4px;
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+		border-radius: 3px;
+		cursor: pointer;
+	}
+
+	.EpisodeType:hover {
+		background-color: whiteSmoke;
+	}
+
+	.EpisodeType .Icon {
+		float: left;
+		margin: 2px;
+	}
+
+	.EpisodeType .Icon img {
+		max-width: 50px;
+		max-height: 50px;
+	}
+
+	.EpisodeType .Desc {
+		margin-left: 55px;
+		margin-top: 10px;
+	}
+
+
+	
+	.Episode {
+		border: 1px solid #eee;
+		margin: 4px;
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+		border-radius: 3px;
+		cursor: pointer;
+		min-height: 40px;
+		padding: 4px;
+		width: 242px;
+	}
+
+	.Episode:hover {
+		background-color: whiteSmoke;
+	}
+
+	.Episode.selected {
+		background-color: whiteSmoke;
+		margin: 10px;
+	}
+
+	.Episode .footer {
+		clear: both;
+	}
+	
+	.Episode .Icon {
+		float: left;
+		margin: 2px;
+		width: 54px;
+		height: 54px;
+		padding: 2px;
+	}
+
+	.Episode .Icon img {
+		max-width: 50px;
+		max-height: 50px;
+	}
+	
+	.Episode .Info {
+		float: left;
+		margin-left: 10px;
+		margin-top: 10px;
+		width: 120px;
+	}
+
+	.Episode .Title {
+		font-weight: bold;
+	}
+
+	.Episode .Desc {
+	}
+	
+	.Episode .PosSize {
+		font-size: 10px;
+	}
+	
+	.Episode .Tools {
+		float: right;
+		width: 40px;
+	}
+
+	.Episode .Tools .Seq {
+		border: 1px solid gray;
+		background-color: #F4FA58;
+		font-size: 11px;
+		margin: 2px 4px 2px auto;
+		width: 20px;
+		padding: 0 2px;
+		text-align: center;
+	}
+	
+	.Episode .Tools .Menu {
+		margin: 10px 4px 0px auto;
+		width: 32px;
+	}
+	
+	.Episode .Tools .Menu a {
+		display: block; 
+		text-indent: -99999px; 
+		overflow: hidden; 
+		width: 32px; 
+		height: 32px; 
+		background-image: url(images/badge_down_32.png);
+		background-repeat: no-repeat;
+		background-position: 0 0;
+	}
+	
+	.Episode .MenuPopup {
+		min-height: 80px;
+		min-width: 80px;
+		border: 1px solid gray; 
+		border-radius: 5px;
+		padding: 1em;
+		box-shadow: 3px 3px 5px -1px rgba(0, 0, 0, 0.5);
+		background: lightgray; 
+		font-size: 12px; 
+		outline: none;
+		cursor: default;
+	}
+
+	
+	#EpisodesPane {
+		max-height: 500px;
+		overflow-y: auto;
+	}
+	
+	#EpisodesPane::-webkit-scrollbar-track {
+		-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+		border-radius: 10px;
+	}
+	
+</style>
+
+    <script src="kinetic-v3.10.5.js"></script>
+    <script src="scriptedit-core.js"></script>
+    <script src="scriptedit-shape.js"></script>
+    <script src="scriptedit-line.js"></script>
+    <script src="scriptedit-text.js"></script>
+
+	<div>Samples:
+		<a class="AddACar">Add a car</a>
+		<span> | </span>
+		<a class="AddALine">Add a line</a>
+		<span> | </span>
+		<a class="AddAText">Add a text</a>
+		<span> | </span>
+		<a class="AMove">Move/Zoom</a>
+	</div>
+
+	<div id="Editor">
+	
+		<div id="BoardPane">
+			<div id="Board">
+			</div>
+		</div>
+		
+		<div id="EpisodesPane">
+		</div>
+
+		<div style="clear: both;"></div>
+	</div>
+	
+	<div id="dialogs" style="display: block;">
+	
+		<div id="NewEpisodeDialog" title="Episode" style="border: 1px solid gray; width: 360px;">
+			<div id="NewEpisodeDialog-SelectType">
+			    <div>Select a type of episode:</div>
+			    
+			    <div class="EpisodeType BasicShape" data-type="BasicShape">
+			    	<div class="Icon">
+				    	<img src="images/shapes.png"/>
+			    	</div>
+			    	<div class="Desc">
+			    		A simple shape such as a rectangle or an oval 
+			    	</div>
+			    	<div style="clear: both;"></div>
+			    </div>
+
+			    <div class="EpisodeType Line" data-type="Line">
+			    	<div class="Icon">
+				    	<img src="images/arrow_right.png"/>
+			    	</div>
+			    	<div class="Desc">
+			    		A line or an arrow 
+			    	</div>
+			    	<div style="clear: both;"></div>
+			    </div>
+
+			    <div class="EpisodeType Shape" data-type="Shape">
+			    	<div class="Icon">
+				    	<img src="images/image.png"/>
+			    	</div>
+			    	<div class="Desc">
+			    		A drawing from the gallery
+			    	</div>
+			    	<div style="clear: both;"></div>
+			    </div>
+			    
+			    <div class="EpisodeType Math" data-type="Math">
+			    	<div class="Icon" style="margin-left: 10px;">
+				    	<img src="images/formula32.png"/>
+			    	</div>
+			    	<div class="Desc">
+			    		A formula
+			    	</div>
+			    	<div style="clear: both;"></div>
+			    </div>
+			    
+			    <div class="EpisodeType Text" data-type="Text">
+			    	<div class="Icon">
+				    	<img src="images/quill.png"/>
+			    	</div>
+			    	<div class="Desc">
+			    		Text 
+			    	</div>
+			    	<div style="clear: both;"></div>
+			    </div>
+			    
+			    <div class="EpisodeType Speech" data-type="Speech">
+			    	<div class="Icon">
+				    	<img src="images/microphone.png"/>
+			    	</div>
+			    	<div class="Desc">
+			    		Speak
+			    	</div>
+			    	<div style="clear: both;"></div>
+			    </div>
+			    
+			    <div class="EpisodeType Pan" data-type="Pan">
+			    	<div class="Icon">
+				    	<img src="images/compass.png"/>
+			    	</div>
+			    	<div class="Desc">
+			    		Pan board
+			    	</div>
+			    	<div style="clear: both;"></div>
+			    </div>
+			    
+			    <div class="EpisodeType Pause" data-type="Pause">
+			    	<div class="Icon">
+				    	<img src="images/pause.png"/>
+			    	</div>
+			    	<div class="Desc">
+			    		A pause
+			    	</div>
+			    	<div style="clear: both;"></div>
+			    </div>
+			</div>
+		</div>
+		
+	</div>
+
+	<script type="text/javascript">
+	
+		episodeListModel = new EpisodeList();
+		
+		episodeListView = new EpisodeListView({
+			model: episodeListModel,
+			el: $('#EpisodesPane')
+			});
+		
+		boardView = new BoardView({
+			model: episodeListModel
+		});
+		
+		$('a.AddACar').click(function() {
+
+			var episode = new Episode({
+				_type: 'DrawShapeEpisode',
+				id: 'episode-' + episodeListModel.length,
+				shapeId: 'openclipart_org-car-outline-modified-by-molumen',
+//				position: {x: 20, y: 20},
+//				width: 200,
+//				height: 200,
+				realWidth: null,
+				realHeight: null,
+				rotationDegree: 0,
+				rate: 1,
+				title: 'A car',
+				thumbUrl: '/wb/shapedb/openclipart_org-car-outline-modified-by-molumen.png',
+				seq: episodeListModel.length + 1
+			});
+			
+			episodeListModel.add(episode);
+			episode.select();
+		});
+
+		$('a.AddALine').click(function() {
+
+			var episode = new Episode({
+				_type: 'DrawLineEpisode',
+				id: 'episode-' + episodeListModel.length,
+				point1: {x: 10, y: 10},
+				point2: {x: 100, y: 100},
+				point1Type: 'caret',
+				point2Type: 'triangle',
+				rate: 1,
+				title: 'A line',
+				seq: episodeListModel.length + 1
+			});
+			
+			episodeListModel.add(episode);
+			episode.select();
+		});
+
+		$('a.AddAText').click(function() {
+
+			var episode = new Episode({
+				_type: 'DrawTextEpisode',
+				id: 'episode-' + episodeListModel.length,
+				text: 'Hello World!',
+				position: null,
+				width: null,
+				height: null,
+				realWidth: null,
+				realHeight: null,
+				rotationDegree: 0,
+				rate: 1,
+				title: 'Hello World!',
+				seq: episodeListModel.length + 1
+			});
+			
+			episodeListModel.add(episode);
+			episode.select();
+		});
+
+		$('a.AMove').click(function() {
+			
+			// boardView.zoomMove(0.2, 0.2, -100, -100);
+			var stage = boardView.stage;
+			stage.setOffset(-100, -100);
+			stage.setScale(0.2, 0.2);
+			stage.draw();
+		});
+		
+	</script>
+	
+</body>
+</html>

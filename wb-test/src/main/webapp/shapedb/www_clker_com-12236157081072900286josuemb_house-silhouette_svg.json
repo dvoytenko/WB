@@ -1,0 +1,153 @@
+{
+  "_type": "GroupShape",
+  "author": "OCAL",
+  "height": 619,
+  "id": "www_clker_com-12236157081072900286josuemb_house-silhouette_svg",
+  "shapes": [{
+    "_type": "GroupShape",
+    "shapes": [{
+      "_type": "GroupShape",
+      "shapes": [{
+        "_type": "PathShape",
+        "pathSegment": {
+          "_type": "PathSegment",
+          "segments": [
+            {
+              "_type": "MoveToSegment",
+              "point": {
+                "x": 650.43739,
+                "y": 457.29046
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 650.45349,
+                "y": 550.55609
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 615.57849,
+                "y": 522.64984
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 615.57849,
+                "y": 835.24359
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 131.32849,
+                "y": 835.24359
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 131.32849,
+                "y": 517.05609
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 93.640991,
+                "y": 550.55609
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 95.562866,
+                "y": 456.87838
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 128.14194,
+                "y": 424.96234
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 128.54724,
+                "y": 424.96234
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 128.54724,
+                "y": 246.33734
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 187.14099,
+                "y": 246.33734
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 187.14099,
+                "y": 377.30609
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 371.35974,
+                "y": 217.11859
+              }
+            },
+            {
+              "_type": "LineToSegment",
+              "point": {
+                "x": 650.43739,
+                "y": 457.29046
+              }
+            },
+            {"_type": "ClosePathSegment"}
+          ]
+        }
+      }],
+      "transform": {
+        "_type": "Transform",
+        "m": [
+          1,
+          0,
+          0,
+          1,
+          -88.640991,
+          -212.11859
+        ]
+      }
+    }]
+  }],
+  "source": "www.clker.com",
+  "tags": [],
+  "title": "House",
+  "transform": {
+    "_type": "Transform",
+    "m": [
+      1,
+      0,
+      0,
+      1,
+      -5,
+      -5
+    ]
+  },
+  "url": "http://www.clker.com/cliparts/2/8/f/6/12236157081072900286josuemb_house-silhouette.svg",
+  "width": 557
+}

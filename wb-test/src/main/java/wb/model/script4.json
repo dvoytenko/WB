@@ -1,0 +1,100 @@
+{
+	episodes: [
+	
+		/*
+		{
+			_type: 'DrawShapeEpisode',
+			position: {x: 700, y: 280},
+			width: 1,
+			height: 1,
+			realWidth: 1,
+			realHeight: 1,
+			shape: {
+				_type: 'RectangleShape',
+				topleft: {x: 0, y: 0},
+				width: 10,
+				height: 10
+			}
+		},
+		*/
+		
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'www_clker_com-12236157081072900286josuemb_house-silhouette_svg',
+			position: {x: 280, y: 118},
+			width: 205,
+			height: 115,
+		},
+
+		{
+			_type: 'PanZoomEpisode',
+			zoomFactor: 2.8,
+			panTo: {x: -250, y: -100}
+		},
+		
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'www_clker_com-11970902691035892752Chrisdesign_comic_TV_svg',
+			position: {x: 360, y: 168},
+			width: 47,
+			height: 58,
+		},
+
+		{
+			_type: 'DrawShapeEpisode',
+			position: {x: 425, y: 203},
+			width: 1,
+			height: 1,
+			realWidth: 1,
+			realHeight: 1,
+			shape: {
+				_type: 'PathShape',
+				pathSegment: {
+					_type: 'PathSegment',
+					segments: [
+						{
+							_type: 'MoveToSegment',
+							point: {x: 0, y: 30}
+						},
+						{
+							_type: 'LineToSegment',
+							point: {x: 0, y: 10}
+						},
+						{
+							_type: 'ArcToSvgSegment',
+							radiusX: 15,
+							radiusY: 15,
+							sweepFlag: 1,
+							endPoint: {x: 30, y: 10}
+						},
+						{
+							_type: 'LineToSegment',
+							point: {x: 30, y: 30}
+						},
+					]
+				}
+			}
+		},
+
+		/*
+			panTo: {x: -450, y: -250}
+		*/
+		{
+			_type: 'PanZoomEpisode',
+			zoomFactor: 8,
+			panTo: {x: -390, y: -190}
+		},
+		
+		{
+			_type: 'PasteImageEpisode',
+			imageId: 'mouse1',
+			position: {x: 428, y: 210},
+			width: 25,
+			rotationDegree: 0,
+			action: 'move',
+			moveStartPosition: {x: 380, y: 250},
+		},
+		
+	]
+	
+}

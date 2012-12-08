@@ -1,0 +1,49 @@
+<?xml version="1.0"?><svg width="330.47946" height="325.95135" xmlns="http://www.w3.org/2000/svg">
+ <title>Mouse</title>
+
+ <g>
+  <title>Layer 1</title>
+  <ellipse transform="rotate(56.3066, 279.449, 364.92)" ry="140.389161" rx="9.664822" id="svg_7" cy="364.919326" cx="279.448962" stroke-linecap="round" stroke-width="4" stroke="#000000" fill="#ffaaaa"/>
+  <ellipse fill="#7f7f7f" stroke="#000000" stroke-width="4" stroke-linecap="round" cx="156.839715" cy="322.948333" rx="111.500001" ry="134.500001" id="svg_34"/>
+  <path fill="none" stroke="#000000" stroke-width="4" stroke-linecap="round" id="svg_6" d="m118.239723,89.048653c-1,-3 -1.459511,-9.053513 -1,-11c0.513741,-2.176262 2,-5 2,-6l1,0"/>
+  <circle fill="#7f7f7f" stroke="#000000" stroke-width="4" stroke-linecap="round" cx="159.339722" cy="139.448639" r="124.615234" id="svg_29"/>
+  <path d="m355.174805,67.14447c0.358765,-2.779037 0.544678,-5.625919 0.544678,-8.49939c0,-37.16486 -30.883667,-67.331071 -68.988403,-67.331031c-38.104721,0 -69.033768,30.16615 -69.033768,67.331031c0,35.777428 28.633057,65.061272 64.76741,67.198219" stroke-miterlimit="4" stroke-linecap="round" stroke-width="4" stroke="#000000" fill-rule="nonzero" fill="#7f7f7f" id="svg_4" transform="rotate(88.0439, 286.709, 58.5781)"/>
+  <path d="m95.348427,71.174103c0.343925,-2.905899 0.522133,-5.882782 0.522133,-8.887432c0,-38.861671 -29.606552,-70.405161 -66.135469,-70.405121c-36.529,0 -66.17901,31.54343 -66.17901,70.405121c0,37.4109 27.44897,68.031734 62.08906,70.266262" id="path2388" stroke-miterlimit="4" stroke-linecap="round" stroke-width="4" stroke="#000000" fill-rule="nonzero" fill="#7f7f7f" transform="rotate(-11.4362, 29.7129, 62.2168)"/>
+  <path d="m186.32341,171.101944c0,14.548065 -14.603165,31.962784 -22.100342,31.962784c-8.437592,0 -22.100327,-17.414719 -22.100327,-31.962784c0,-14.548141 9.90097,-12.897293 22.100327,-12.897293c12.199371,0 22.100342,-1.650848 22.100342,12.897293z" id="path2390" stroke-miterlimit="4" stroke-linecap="round" stroke-width="2" fill-rule="nonzero" fill="#ffaaaa"/>
+  <path d="m126.530823,107.612083c0.001884,5.738403 -3.521736,10.39167 -7.869026,10.39167c-4.34729,0 -7.870903,-4.653267 -7.869019,-10.39167c-0.001884,-5.738426 3.521729,-10.39167 7.869019,-10.39167c4.34729,0 7.870911,4.653244 7.869026,10.39167z" id="path2399" stroke-miterlimit="4" stroke-linecap="round" stroke-width="2" stroke="#000000" fill-rule="nonzero" fill="#000000"/>
+  <path d="m204.873901,105.612083c0.001892,5.738403 -3.521729,10.39167 -7.869019,10.39167c-4.34729,0 -7.870911,-4.653267 -7.869019,-10.39167c-0.001892,-5.738426 3.521729,-10.39167 7.869019,-10.39167c4.34729,0 7.870911,4.653244 7.869019,10.39167z" id="path2397" stroke-miterlimit="4" stroke-linecap="round" stroke-width="2" stroke="#000000" fill-rule="nonzero" fill="#000000"/>
+  <g transform="matrix(2.21766, 0, 0, 1.40582, -258.933, -659.885)" id="g3221" stroke-miterlimit="4" stroke-linecap="round" stroke-width="2.85967" stroke="#000000">
+   <path d="m209.101288,589.535278c32.735107,-15.108521 47.843628,-1.259033 47.843628,-1.259033" id="path2445" stroke-miterlimit="4" stroke-linecap="round" stroke-width="2.85967" stroke="#000000" fill-rule="evenodd" fill-opacity="0.75" fill="none"/>
+   <path d="m205.953674,595.200928c23.921783,-15.108521 44.696014,9.442871 44.696014,9.442871" id="path2447" stroke-miterlimit="4" stroke-linecap="round" stroke-width="2.85967" stroke="#000000" fill-rule="evenodd" fill-opacity="0.75" fill="none"/>
+   <path d="m205.953674,598.348511c25.180878,-12.590454 29.587494,18.256226 29.587494,18.256226" id="path2449" stroke-miterlimit="4" stroke-linecap="round" stroke-width="2.85967" stroke="#000000" fill-rule="evenodd" fill-opacity="0.75" fill="none"/>
+  </g>
+  <g transform="matrix(-2.03413, 0, 0, 1.40582, 1104.25, -659.885)" id="g3384" stroke-miterlimit="4" stroke-linecap="round" stroke-width="2.85967" stroke="#000000">
+   <path d="m484.885864,590.957764c32.735107,-15.108521 47.843628,-1.259033 47.843628,-1.259033" id="path3386" stroke-miterlimit="4" stroke-linecap="round" stroke-width="2.85967" stroke="#000000" fill-rule="evenodd" fill-opacity="0.75" fill="none"/>
+   <path d="m481.73822,596.623535c23.921814,-15.108521 44.695984,9.442749 44.695984,9.442749" id="path3388" stroke-miterlimit="4" stroke-linecap="round" stroke-width="2.85967" stroke="#000000" fill-rule="evenodd" fill-opacity="0.75" fill="none"/>
+   <path d="m481.73822,599.771118c25.180847,-12.590454 29.587524,18.256104 29.587524,18.256104" id="path3390" stroke-miterlimit="4" stroke-linecap="round" stroke-width="2.85967" stroke="#000000" fill-rule="evenodd" fill-opacity="0.75" fill="none"/>
+  </g>
+  <ellipse fill="#7f7f7f" stroke="#000000" stroke-width="4" stroke-linecap="round" cx="108.839686" cy="307.448369" rx="24.499999" ry="41" id="svg_35"/>
+  <ellipse fill="#ffaaaa" stroke="#000000" stroke-width="4" stroke-linecap="round" cx="291.464299" cy="57.217927" id="svg_37" rx="35.631773" ry="50" transform="rotate(42.2651, 291.465, 57.2188)"/>
+  <ellipse fill="#ffaaaa" stroke="#000000" stroke-width="4" stroke-linecap="round" cx="22.241124" cy="66.047822" rx="35.631773" ry="50" transform="rotate(-27.198, 22.2409, 66.0489)" id="svg_39"/>
+  <ellipse fill="#7f7f7f" stroke="#000000" stroke-width="4" stroke-linecap="round" cx="208.239558" cy="313.047795" rx="24.499999" ry="41" id="svg_40"/>
+  <line fill="none" stroke="#000000" stroke-width="4" stroke-linecap="round" x1="99.239716" y1="324.048645" x2="100.239716" y2="342.048645" id="svg_41"/>
+  <line fill="none" stroke="#000000" stroke-width="4" stroke-linecap="round" x1="109.239716" y1="326.048645" x2="110.239716" y2="350.048645" id="svg_42"/>
+  <line fill="none" stroke="#000000" stroke-width="4" stroke-linecap="round" x1="120.239716" y1="325.048645" x2="120.239716" y2="340.048645" id="svg_43"/>
+  <line fill="none" stroke="#000000" stroke-width="4" stroke-linecap="round" x1="198.239716" y1="325.048645" x2="198.239716" y2="348.048645" id="svg_44"/>
+  <line fill="none" stroke="#000000" stroke-width="4" stroke-linecap="round" x1="209.239716" y1="333.048645" x2="210.239716" y2="352.048645" id="svg_45"/>
+  <line fill="none" stroke="#000000" stroke-width="4" stroke-linecap="round" x1="219.239716" y1="327.048645" x2="222.239716" y2="346.048645" id="svg_46"/>
+  <path fill="#7f7f7f" stroke="#000000" stroke-width="4" stroke-linecap="round" d="m98.84005,441.186981c-69.348619,29.68927 -76.05978,40.716736 -76.59602,40.675476c-0.53627,-0.04126 128.048206,-3.351807 127.511967,-3.393066c-0.53627,-0.04129 -8.411942,-33.041077 -8.948196,-33.082336c-0.53627,-0.04129 -41.967751,-4.200073 -41.967751,-4.200073z" id="svg_49" transform="rotate(5.36429, 86, 461.525)"/>
+  <path fill="#7f7f7f" stroke="#000000" stroke-width="4" stroke-linecap="round" d="m212.525177,443.860107c63.70285,28.548187 69.867615,39.151794 70.360199,39.112152c0.492615,-0.039703 -117.623596,-3.222992 -117.131012,-3.262695c0.492615,-0.039673 7.727142,-31.771118 8.219696,-31.810822c0.492645,-0.039673 38.551117,-4.038635 38.551117,-4.038635z" transform="rotate(-1.99673, 224.32, 463.416)" id="svg_50"/>
+  <line id="svg_10" y2="376.048645" x2="274.239716" y1="362.048645" x1="268.239716" stroke-linecap="round" stroke-width="4" stroke="#000000" fill="none"/>
+  <line id="svg_11" y2="367.048645" x2="289.239536" y1="354.048645" x1="282.239536" stroke-linecap="round" stroke-width="4" stroke="#000000" fill="none"/>
+  <line id="svg_12" y2="359.048645" x2="299.239716" y1="347.048645" x1="292.239716" stroke-linecap="round" stroke-width="4" stroke="#000000" fill="none"/>
+  <line id="svg_13" y2="352.048645" x2="312.239716" y1="338.048645" x1="305.239716" stroke-linecap="round" stroke-width="4" stroke="#000000" fill="none"/>
+  <line id="svg_14" y2="345.049178" x2="323.240196" y1="332.049179" x1="315.240196" stroke-linecap="round" stroke-width="4" stroke="#000000" fill="none"/>
+  <line id="svg_15" y2="338.048645" x2="337.239716" y1="325.048645" x1="330.239716" stroke-linecap="round" stroke-width="4" stroke="#000000" fill="none"/>
+  <line id="svg_16" y2="328.048645" x2="349.239716" y1="317.048645" x1="344.239716" stroke-linecap="round" stroke-width="4" stroke="#000000" fill="none"/>
+  <line id="svg_17" y2="314.048645" x2="362.239716" y1="307.048645" x1="358.239716" stroke-linecap="round" stroke-width="4" stroke="#000000" fill="none"/>
+  <line id="svg_18" y2="307.048645" x2="375.239716" y1="301.048645" x1="371.239716" stroke-linecap="round" stroke-width="4" stroke="#000000" fill="none"/>
+  <line id="svg_19" y2="299.048645" x2="389.239716" y1="293.048645" x1="386.239716" stroke-linecap="round" stroke-width="4" stroke="#000000" fill="none"/>
+  <line id="svg_20" y2="383.048645" x2="263.239716" y1="375.048645" x1="262.239716" stroke-linecap="round" stroke-width="4" stroke="#000000" fill="none"/>
+ </g>
+</svg>
