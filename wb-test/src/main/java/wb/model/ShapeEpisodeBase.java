@@ -19,6 +19,7 @@ public abstract class ShapeEpisodeBase extends Episode {
 	
 	public Double rate;
 	
+	@Deprecated
 	public boolean predraw;
 	
 	public String action;

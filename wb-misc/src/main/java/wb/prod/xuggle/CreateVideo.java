@@ -31,7 +31,7 @@ public class CreateVideo {
 	
 	public static void main(String[] args) throws Exception {
 		
-		final File root = new File("C:\\Work\\WB\\work\\recordings\\t3");
+		final File root = new File("C:\\Work\\WB\\work\\recordings\\t4");
 		final File target = new File(root, "z1.mp4");
 		
 		final boolean printFrameIndex = false;

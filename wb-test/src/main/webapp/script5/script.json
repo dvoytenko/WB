@@ -1,0 +1,46 @@
+{
+  "_type": "Script",
+  "episodes": [
+    {
+      "_type": "DrawShapeEpisode",
+      "action": "predraw",
+      "height": 1,
+      "position": {
+        "x": 100,
+        "y": 100
+      },
+      "predraw": false,
+      "realHeight": 1,
+      "realWidth": 1,
+      "seq": 1,
+      "shape": {
+        "_type": "RectangleShape",
+        "height": 50,
+        "topleft": {
+          "x": 0,
+          "y": 0
+        },
+        "width": 50
+      },
+      "width": 1
+    },
+    {
+      "_type": "PanZoomEpisode",
+      "panTo": {
+        "x": -75,
+        "y": -75
+      },
+      "seq": 2,
+      "zoomFactor": 2
+    },
+    {
+      "_type": "PanZoomEpisode",
+      "panTo": {
+        "x": 0,
+        "y": 0
+      },
+      "seq": 3,
+      "zoomFactor": 1
+    }
+  ]
+}

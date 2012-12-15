@@ -16,6 +16,13 @@ WB.GeomProto = WB.Class.extend('GeomProto', {
 	movePoint: function(p, dx, dy) {
 		return {x: p.x + dx, y: p.y + dy};
 	},
+	
+	pointsEqual: function(p1, p2, eps) {
+		if (!eps) {
+			eps = 0;
+		}
+		return Math.abs(p1.x - p2.x) <= eps && Math.abs(p1.y - p2.y) <= eps;
+	},
 
 	/**
 	 * Angle b/w two points

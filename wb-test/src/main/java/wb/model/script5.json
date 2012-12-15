@@ -1,0 +1,40 @@
+{
+	episodes: [
+	
+		{
+			_type: 'DrawShapeEpisode',
+			position: {x: 100, y: 100},
+			width: 1,
+			height: 1,
+			realWidth: 1,
+			realHeight: 1,
+			action: 'predraw',
+			shape: {
+				_type: 'RectangleShape',
+				topleft: {x: 0, y: 0},
+				width: 50,
+				height: 50
+			}
+		},
+		
+		{
+			_type: 'PanZoomEpisode',
+			zoomFactor: 2,
+			panTo: {x: -75, y: -75}
+		},
+
+		{
+			_type: 'PanZoomEpisode',
+			zoomFactor: 1,
+			panTo: {x: 0, y: 0}
+		},
+		
+		/*
+			Zoom 2 -> 1
+			Zoom 2 -> 3
+			+Zoom 1 -> 2
+		*/
+		
+	]
+	
+}

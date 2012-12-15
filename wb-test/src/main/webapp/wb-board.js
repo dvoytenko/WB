@@ -207,8 +207,8 @@ WB.Board = WB.Class.extend('Board', {
 	getAnchorPoint: function() {
 		var tr = this.commitPane.defaultTransform;
 		var p = tr.transformPoint(0, 0);
-//		p.x = p.x / this.zoomFactor;
-//		p.y = p.y / this.zoomFactor;
+		p.x = p.x / this.zoomFactor;
+		p.y = p.y / this.zoomFactor;
 		return p;
 	},
 	

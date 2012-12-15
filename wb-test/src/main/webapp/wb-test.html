@@ -80,6 +80,7 @@
 
 		<br/>
 		<a href="javascript:void(0);" onclick="script4()">Script 4</a>
+		<a href="javascript:void(0);" onclick="script5()">Script 5</a>
 		
 		<br/>
 		<a href="javascript:void(0);" onclick="image1()">Image 1</a>
@@ -599,6 +600,15 @@
 					
 			var speechPlayer = new WB.SpeechPlayerPseudo({urlResolver: opts.urlResolver});
 			
+			var dummyPointer = new WB.Pointer();
+			
+			var handPointer = new WB.HandPoint({
+				pane: new WB.Pane({
+					canvas: document.getElementById('pointerCanvas'),
+					defaultTransform: defaultTransform
+					})
+			});
+			
 			var board = new WB.Board({
 				commitPane: new WB.Pane({
 					canvas: document.getElementById('canvas'), 
@@ -611,12 +621,7 @@
 //				drawingSoundEngine: new WB.DrawingSoundEngine({
 //					//baseVelocity: baseVelocity
 //					}),
-				pointer: new WB.HandPoint({
-					pane: new WB.Pane({
-						canvas: document.getElementById('pointerCanvas'),
-						defaultTransform: defaultTransform
-						})
-					}),
+				pointer: dummyPointer, // dummyPointer vs handPointer
 				speechPlayer: speechPlayer,
 				urlResolver: opts.urlResolver,
 				baseVelocity: baseVelocity,
@@ -625,7 +630,9 @@
 			
 			board.commitPane._clearCanvas();
 			board.animationPane._clearCanvas();
-			board.pointer.pane._clearCanvas();
+			if (board.pointer.pane) {
+				board.pointer.pane._clearCanvas();
+			}
 
 			$('#bottombar').html('Loading...');
 
@@ -643,7 +650,7 @@
 
 			var commitCanvas = board.commitPane.canvas;
 			var animCanvas = board.animationPane.canvas;
-			var pointerCanvas = board.pointer.pane.canvas;
+			var pointerCanvas = board.pointer.pane ? board.pointer.pane.canvas : null;
 			
 			var canvasWidth = commitCanvas.width;
 			var canvasHeight = commitCanvas.height;
@@ -661,12 +668,13 @@
 					panes: [
 				        {id:'commit', data:commitCanvas.toDataURL()},
 				        {id:'animation', data:animCanvas.toDataURL()},
-				        {id:'pointer', data:pointerCanvas.toDataURL()},
+				        {id:'pointer', data: pointerCanvas ? pointerCanvas.toDataURL() : null},
 			        ]
 				};
 				
 				console.log('save frame ' + frameIndex);
-				/* XXX
+				/* XXX this blocks PhantomJS
+				*/
 				$.ajax({
 					type: 'POST',
 					url: '/wb/service/recorder/frame?recordId=' + recordId + '&frameIndex=' + frameIndex,
@@ -677,7 +685,6 @@
 				.done(function() {
 					console.log('frame ' + frameIndex + ' saved');
 				});
-				*/
 			}
 			$("#done").show();
 
@@ -694,7 +701,7 @@
 					panes: [
 				        {id:'commit', data:commitCanvas.toDataURL()},
 				        {id:'animation', data:animCanvas.toDataURL()},
-				        {id:'pointer', data:pointerCanvas.toDataURL()},
+				        {id:'pointer', data: pointerCanvas ? pointerCanvas.toDataURL() : null},
 			        ]
 				};
 				
@@ -1431,6 +1438,10 @@
 			playScript('script4');
 		}
 
+		function script5() {
+			playScript('script5');
+		}
+		
 		function script1Stepper() {
 			stepScript('script1');
 		}

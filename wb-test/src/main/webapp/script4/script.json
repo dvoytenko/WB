@@ -918,6 +918,15 @@
         "width": 192
       },
       "width": 25
+    },
+    {
+      "_type": "PanZoomEpisode",
+      "panTo": {
+        "x": 0,
+        "y": 0
+      },
+      "seq": 7,
+      "zoomFactor": 1.1
     }
   ]
 }

@@ -122,8 +122,11 @@ public class RecorderController {
 		g.fillRect(0, 0, width, height);
 		
 		for (String imageData : imageDataList) {
-			BufferedImage image = convImage(imageData);
-			g.drawImage(image, null, 0, 0);
+			if (imageData != null && !imageData.isEmpty() 
+					&& !imageData.equals("null")) {
+				BufferedImage image = convImage(imageData);
+				g.drawImage(image, null, 0, 0);
+			}
 		}
 		
 		return all;
@@ -134,7 +137,8 @@ public class RecorderController {
 		// data:image/png;base64,
 		final String prefix = "data:image/png;base64,";
 		if (!imageData.startsWith(prefix)) {
-			throw new IllegalArgumentException("unknown image data: " + imageData.substring(0, 50));
+			throw new IllegalArgumentException("unknown image data: " 
+					+ (imageData.length() < 50 ? imageData : imageData.substring(0, 50)));
 		}
 		String data = imageData.substring(prefix.length());
 		byte[] bytes = Base64.decodeBase64(data);
