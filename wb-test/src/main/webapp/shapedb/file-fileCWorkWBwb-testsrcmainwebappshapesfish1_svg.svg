@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="411.41467" height="164.25203" id="svg3747" version="1.1" inkscape:version="0.47 r22583" sodipodi:docname="New document 4">
+  <defs id="defs3749">
+    <inkscape:perspective sodipodi:type="inkscape:persp3d" inkscape:vp_x="0 : 526.18109 : 1" inkscape:vp_y="0 : 1000 : 0" inkscape:vp_z="744.09448 : 526.18109 : 1" inkscape:persp3d-origin="372.04724 : 350.78739 : 1" id="perspective3755"/>
+    <inkscape:perspective id="perspective3735" inkscape:persp3d-origin="0.5 : 0.33333333 : 1" inkscape:vp_z="1 : 0.5 : 1" inkscape:vp_y="0 : 1000 : 0" inkscape:vp_x="0 : 0.5 : 1" sodipodi:type="inkscape:persp3d"/>
+  </defs>
+  <sodipodi:namedview id="base" pagecolor="#ffffff" bordercolor="#666666" borderopacity="1.0" inkscape:pageopacity="0.0" inkscape:pageshadow="2" inkscape:zoom="0.59196304" inkscape:cx="246.79071" inkscape:cy="-161.25673" inkscape:document-units="px" inkscape:current-layer="layer1" showgrid="false" inkscape:window-width="1680" inkscape:window-height="998" inkscape:window-x="-8" inkscape:window-y="-8" inkscape:window-maximized="1"/>
+  <g inkscape:label="Layer 1" inkscape:groupmode="layer" id="layer1" transform="translate(-157.42422,-38.517042)">
+    <path id="path3596" d="m 305.7867,142.97116 c 38.04281,19.04201 66.65606,41.6201 114.22072,57.09142 -6.26438,-24.29625 9.95341,-41.6749 18.27531,-61.48306 l -132.49603,4.39164 z" style="fill:#72a0ff;fill-opacity:1;stroke:none" sodipodi:nodetypes="cccc"/>
+    <path style="fill:#b8d6ff;fill-opacity:1;stroke:none" d="m 343.53981,43.274278 c -36.711,0.01764 -73.38746,4.095573 -108.38124,13.004551 -25.07504,7.162231 -53.06564,16.706253 -65.35237,37.006039 -8.91804,15.637452 8.93366,25.878152 24.96035,34.489022 1.06509,0.5878 2.13371,1.16229 3.20619,1.73794 8.81399,-3.53535 34.94844,-0.2325 36.75979,-7.44588 -12.12495,17.99638 -26.92373,8.02215 -27.53075,12.18026 33.35118,16.4915 69.98724,27.09954 108.59099,29.66475 55.41102,2.62088 105.19875,-1.34554 156.11454,-20.31432 19.60729,-7.86954 50.51169,-20.05367 51.32902,-39.55455 0.0619,-7.794601 -4.55365,-15.119714 -10.81715,-20.885191 C 488.01426,62.44955 452.14562,54.373093 418.42085,48.697835 393.7975,45.154595 368.65786,43.262177 343.53981,43.274278 z" id="path2816" sodipodi:nodetypes="ccccccccccccc"/>
+    <path style="fill:#85b5ff;fill-opacity:1;stroke:none" d="m 473.6024,99.79796 88.31127,-51.886918 c -11.8552,27.002079 -17.66251,66.271228 -9.90043,91.315628 L 473.6024,99.79796 z" id="path2818" sodipodi:nodetypes="cccc"/>
+    <path id="path3605" d="m 294.67142,58.960725 c 14.5507,3.066993 22.47718,23.917635 17.70325,46.566415 -4.77392,22.64881 -20.44194,38.52619 -34.99264,35.45918 -0.8098,-0.17069 -1.59043,-0.41947 -2.35816,-0.69748 12.12509,-2.47451 23.6185,-16.6064 27.5872,-35.43495 4.50848,-21.389465 -2.31699,-41.151866 -15.34511,-45.868973 2.46325,-0.503949 4.94798,-0.542188 7.40546,-0.02416 z" style="fill:#ffffff;fill-opacity:1;stroke:none"/>
+    <path style="fill:#4c98ff;fill-opacity:1;stroke:none" d="m 288.91825,58.960725 c 14.5507,3.066993 22.47718,23.917635 17.70325,46.566415 -4.77392,22.64881 -20.44193,38.52619 -34.99263,35.45918 -0.8098,-0.17069 -1.59043,-0.41947 -2.35816,-0.69748 12.12509,-2.47451 23.61849,-16.6064 27.58719,-35.43495 4.50849,-21.389465 -2.31699,-41.151866 -15.3451,-45.868973 2.46325,-0.503949 4.94797,-0.542188 7.40545,-0.02416 z" id="path3600"/>
+    <path sodipodi:type="arc" style="fill:#4c98ff;fill-opacity:1;stroke:none" id="path2820" sodipodi:cx="145.73042" sodipodi:cy="340.4332" sodipodi:rx="28.668282" sodipodi:ry="29.862793" d="m 174.3987,340.4332 a 28.668282,29.862793 0 1 1 -57.33656,0 28.668282,29.862793 0 1 1 57.33656,0 z" transform="matrix(0.95886091,0,0,0.95886091,100.58191,-249.88207)"/>
+    <path style="fill:#80aeff;fill-opacity:1;stroke:none" d="m 261.11725,141.82579 c 39.41234,20.58213 75.28752,46.11631 120.23926,58.94328 -1.47066,-25.78806 1.5353,-46.08135 12.25677,-63.33492 -24.89258,5.91144 -32.52967,17.37188 -132.49603,4.39164 z" id="path3594" sodipodi:nodetypes="cccc"/>
+    <path transform="matrix(0.47943047,0,0,0.47943047,155.18667,-97.149725)" d="m 174.3987,340.4332 a 28.668282,29.862793 0 1 1 -57.33656,0 28.668282,29.862793 0 1 1 57.33656,0 z" sodipodi:ry="29.862793" sodipodi:rx="28.668282" sodipodi:cy="340.4332" sodipodi:cx="145.73042" id="path3598" style="fill:#ffffff;fill-opacity:1;stroke:none" sodipodi:type="arc"/>
+  </g>
+  <metadata>
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+        <cc:license rdf:resource="http://creativecommons.org/licenses/publicdomain/"/>
+        <dc:publisher>
+          <cc:Agent rdf:about="http://openclipart.org/">
+            <dc:title>Open Clip Art Library</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title>Ordinary fish</dc:title>
+        <dc:date>2010-09-09T21:06:49</dc:date>
+        <dc:description>Blue fish with big eyes</dc:description>
+        <dc:source>http://openclipart.org/detail/84133/ordinary-fish-by-mlampret</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>mlampret</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>blue</rdf:li>
+            <rdf:li>clip art</rdf:li>
+            <rdf:li>clipart</rdf:li>
+            <rdf:li>fish</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License rdf:about="http://creativecommons.org/licenses/publicdomain/">
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction"/>
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Distribution"/>
+        <cc:permits rdf:resource="http://creativecommons.org/ns#DerivativeWorks"/>
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>

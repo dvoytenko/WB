@@ -81,6 +81,10 @@
 		<br/>
 		<a href="javascript:void(0);" onclick="script4()">Script 4</a>
 		<a href="javascript:void(0);" onclick="script5()">Script 5</a>
+
+		<br/>
+		<a href="javascript:void(0);" onclick="script6()">Script 6</a>
+		<a href="javascript:void(0);" onclick="script6Recorder()">Script 6 Recorder</a>
 		
 		<br/>
 		<a href="javascript:void(0);" onclick="image1()">Image 1</a>
@@ -621,7 +625,7 @@
 //				drawingSoundEngine: new WB.DrawingSoundEngine({
 //					//baseVelocity: baseVelocity
 //					}),
-				pointer: dummyPointer, // dummyPointer vs handPointer
+				pointer: handPointer, // dummyPointer vs handPointer
 				speechPlayer: speechPlayer,
 				urlResolver: opts.urlResolver,
 				baseVelocity: baseVelocity,
@@ -1434,6 +1438,24 @@
 			playScript('script3');
 		}
 
+		function script6() {
+			
+			/*
+			WB.interceptor = function(obj, fnName, fn, args) {
+				if (fnName != 'start' && fnName != 'end' && fnName != 'outline') {
+					return fn.apply(obj, args);
+				}
+				
+				var s = '' + obj._type;
+				console.log(fnName + ': ' + s);
+				var ret = fn.apply(obj, args);
+				return ret;
+			};
+			*/
+			
+			playScript('script6');
+		}
+
 		function script4() {
 			playScript('script4');
 		}
@@ -1456,6 +1478,10 @@
 		
 		function script3Recorder() {
 			recordScript('script3');
+		}
+		
+		function script6Recorder() {
+			recordScript('script6');
 		}
 		
 		function eraser1() {

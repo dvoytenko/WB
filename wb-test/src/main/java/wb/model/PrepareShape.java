@@ -53,7 +53,10 @@ public class PrepareShape {
 //		prepareAndSave("http://openclipart.org/detail/5326/art-deco-empire-state-building-by-boort");
 //		prepareAndSave("http://openclipart.org/detail/11580/fire-tower-by-johnny_automatic");
 		
-		prepareAndSave(new File("src/main/webapp/shapes/audio10.svg").toURI().toString());
+//		prepareAndSave(new File("src/main/webapp/shapes/audio10.svg").toURI().toString());
+		
+//		prepareAndSave(new File("src/main/webapp/shapes/bluefin2a.svg").toURI().toString());
+		prepareAndSave(new File("src/main/webapp/shapes/cat9.svg").toURI().toString());
 		
 		// (not good) prepare("http://openclipart.org/detail/1186/leaning-tower-of-pisa-by-johnny_automatic");
 		// (not good) prepare("http://openclipart.org/detail/6942/coit-tower-from-below-by-stevelambert-6942");

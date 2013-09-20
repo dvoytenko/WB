@@ -1,0 +1,116 @@
+{
+	episodes: [
+	
+		/*
+			Part 1
+		 */
+
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'file-fileCWorkWBwb-testsrcmainwebappshapesWagon2_svg',
+			position: {x: 50, y: 100},
+			width: 250,
+			rotationDegree: 0
+		},
+		
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'file-fileCWorkWBwb-testsrcmainwebappshapesbluefin2b_svg',
+			position: {x: 425, y: 95},
+			width: 250,
+			rotationDegree: 0
+		},
+		
+		{
+			_type: 'DrawShapeEpisode',
+			_desc: 'arrow',
+			position: {x: 0, y: 0},
+			width: 1, height: 1, realWidth: 1, realHeight: 1,
+			shape: {
+				_type: 'PathShape',
+				pathSegment: {
+					_type: 'PathSegment',
+					segments: [
+						{
+							_type: 'MoveToSegment',
+							point: {x: 310, y: 160}
+						},
+						{
+							_type: 'LineToSegment',
+							point: {x: 410, y: 160}
+						},
+						{
+							_type: 'MoveToSegment',
+							point: {x: 380, y: 140}
+						},
+						{
+							_type: 'LineToSegment',
+							point: {x: 410, y: 160}
+						},
+						{
+							_type: 'MoveToSegment',
+							point: {x: 380, y: 180}
+						},
+						{
+							_type: 'LineToSegment',
+							point: {x: 410, y: 160}
+						},
+					]
+				}
+			}
+		},
+		
+		{
+			_type: 'DrawShapeEpisode',
+			_desc: 'cross it',
+			position: {x: 0, y: 0},
+			width: 1, height: 1, realWidth: 1, realHeight: 1,
+			shape: {
+				_type: 'PathShape',
+				pathSegment: {
+					_type: 'PathSegment',
+					segments: [
+						{
+							_type: 'MoveToSegment',
+							point: {x: 25, y: 75}
+						},
+						{
+							_type: 'LineToSegment',
+							point: {x: 300, y: 225}
+						},
+						{
+							_type: 'MoveToSegment',
+							point: {x: 300, y: 75}
+						},
+						{
+							_type: 'LineToSegment',
+							point: {x: 25, y: 225}
+						},
+					]
+				}
+			}
+		},
+		
+		{
+			_type: 'DrawTextEpisode',
+			text: 'go/bluefin',
+			position: {x: 260, y: 300},
+			height: 40
+		},
+
+		{
+			_type: 'PanEpisode',
+			point: {x: -720, y: 0}
+		},
+		
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'file-fileCWorkWBwb-testsrcmainwebappshapescat9_svg',
+			position: {x: 960, y: 85},
+			width: 250,
+			rotationDegree: 0
+		},
+		
+	]
+	
+}

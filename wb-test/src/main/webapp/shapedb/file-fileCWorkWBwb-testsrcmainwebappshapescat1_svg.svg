@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://web.resource.org/cc/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="842.34631" height="396.62708" id="svg2" sodipodi:version="0.32" inkscape:version="0.44+devel" sodipodi:modified="true" version="1.0">
+  <defs id="defs4"/>
+  <sodipodi:namedview id="base" pagecolor="#ffffff" bordercolor="#666666" borderopacity="1.0" gridtolerance="10000" guidetolerance="10" objecttolerance="10" inkscape:pageopacity="0.0" inkscape:pageshadow="2" inkscape:zoom="0.66273196" inkscape:cx="628.60579" inkscape:cy="557.36819" inkscape:document-units="px" inkscape:current-layer="layer1" showguides="true" inkscape:guide-bbox="true" inkscape:window-width="1152" inkscape:window-height="841" inkscape:window-x="-4" inkscape:window-y="-4"/>
+  <g inkscape:label="Layer 1" inkscape:groupmode="layer" id="layer1" transform="translate(73.490097,-351.93772)">
+    <path style="opacity:1;fill:#000000" d="M -11.428571,352.36218 C -11.428571,352.36218 40.781899,390.52794 72.21047,399.09936 C 103.63904,407.67079 175.44961,416.38322 264.02104,430.66893 C 352.59247,444.95465 474.28571,478.07647 474.28571,478.07647 C 474.28571,478.07647 482.85714,469.50504 525.71429,458.07647 C 568.57143,446.6479 600.75445,465.13899 646.46874,453.71042 C 692.18302,442.28184 728.00821,428.69753 740,420.93361 C 756.65905,410.14794 779.98837,427.30694 762.85714,438.07647 C 743.11327,450.48844 708.46665,472.2574 668.57143,480.93361 C 621.1094,491.25541 557.14286,480.93361 540,486.6479 C 522.85714,492.36218 498.86832,505.46033 498.86832,505.46033 C 498.86832,505.46033 491.42857,535.21933 500,555.21932 C 508.57143,575.21932 557.14286,632.36218 557.14286,632.36218 C 557.14286,632.36218 560,669.50504 574.28571,686.64789 C 588.57143,703.79075 598.58261,717.35427 611.42857,726.64789 C 619.81909,732.71815 611.45257,755.20031 597.14286,746.64789 C 584.06948,738.83439 560,726.64789 551.42857,715.21932 C 542.85714,703.79075 528.57143,660.93361 528.57143,660.93361 C 528.57143,660.93361 485.71429,658.07646 451.42857,635.21932 C 417.14286,612.36218 398.9771,567.21825 398.9771,567.21825 C 398.9771,567.21825 396.41421,553.2165 395.6904,553.20778 C 395.62526,553.19792 394.38071,558.19437 396.52922,567.27459 C 363.49698,565.64063 279.92717,562.68517 252.6041,554.64897 C 204.03267,540.36325 122.85714,512.36218 122.85714,512.36218 L 185.71429,472.36218 C 185.71429,472.36218 148.57143,498.07647 125.71429,506.6479 C 102.85714,515.21933 80,515.21933 68.571429,515.21933 C 57.142857,515.21933 46.267632,531.15996 14.285714,540.93361 C -7.7600749,547.67079 -23.012158,570.08513 -40,578.07646 C -47.528435,581.61794 -65.714285,584.50503 -71.42857,578.07646 C -80.562816,553.87031 -57.049689,554.24714 -45.714286,549.50504 C -22.142858,537.36218 11.428571,520.93361 31.428571,503.79075 C 51.428571,486.6479 73.121816,460.37797 73.121816,460.37797 L 48.571429,450.64263 C 48.571429,450.64263 20.013237,473.44215 0.51144747,463.79075 C -21.070726,453.10977 -11.359815,411.66393 1.5932516,406.07754 C 14.711,400.42013 -11.428571,346.64789 -11.428571,352.36218 z " id="path2160" sodipodi:nodetypes="csscsssssscscsssscscccsccssssccsccssc"/>
+    <path style="opacity:1;fill:#000000" d="M 551.96947,628.42323 C 551.96947,628.42323 611.58665,656.61935 631.96947,667.67079 C 640.27946,672.17642 642.83961,693.84977 629.11232,690.52793 C 613.29386,686.70005 567.03708,668.21169 567.03708,668.21169 L 551.96947,628.42323 z " id="path2162" sodipodi:nodetypes="csscc"/>
+    <path style="opacity:1;fill:#000000" d="M 56.74502,524.46155 C 44.708197,555.41337 24.924235,574.16112 15.475915,586.3652 C 5.1586386,599.69168 31.35216,607.65936 39.94989,597.34209 C 48.547621,587.02481 57.278608,544.88968 79.099118,541.65701 C 90.706055,539.93746 103.17276,553.69383 115.20959,548.53519 C 127.24641,543.37655 151.58416,525.07406 151.58416,525.07406 C 142.80126,522.33109 124.16059,515.61285 116.83989,512.91196 C 105.34259,513.53833 89.616744,517.29031 75.660028,517.58336 C 65.791589,515.52078 61.123874,519.81464 56.74502,524.46155 z " id="path2166" sodipodi:nodetypes="csssscccc"/>
+  </g>
+  <metadata>
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+        <cc:license rdf:resource="http://creativecommons.org/licenses/publicdomain/"/>
+        <dc:publisher>
+          <cc:Agent rdf:about="http://openclipart.org/">
+            <dc:title>Open Clip Art Library</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title>Leaping cat</dc:title>
+        <dc:date>2006-11-07T05:46:37</dc:date>
+        <dc:description>hand trace of jumping black cat&#13;\nand test of non-English tags</dc:description>
+        <dc:source>http://openclipart.org/detail/1323/leaping-cat-by-zeimusu</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>zeimusu</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>animal</rdf:li>
+            <rdf:li>animal</rdf:li>
+            <rdf:li>black</rdf:li>
+            <rdf:li>black</rdf:li>
+            <rdf:li>cat</rdf:li>
+            <rdf:li>cat</rdf:li>
+            <rdf:li>clip art</rdf:li>
+            <rdf:li>clipart</rdf:li>
+            <rdf:li>feline</rdf:li>
+            <rdf:li>feline</rdf:li>
+            <rdf:li>image</rdf:li>
+            <rdf:li>jump</rdf:li>
+            <rdf:li>jump</rdf:li>
+            <rdf:li>media</rdf:li>
+            <rdf:li>pet</rdf:li>
+            <rdf:li>pet</rdf:li>
+            <rdf:li>png</rdf:li>
+            <rdf:li>public domain</rdf:li>
+            <rdf:li>silhouette</rdf:li>
+            <rdf:li>silhouette</rdf:li>
+            <rdf:li>svg</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License rdf:about="http://creativecommons.org/licenses/publicdomain/">
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction"/>
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Distribution"/>
+        <cc:permits rdf:resource="http://creativecommons.org/ns#DerivativeWorks"/>
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>

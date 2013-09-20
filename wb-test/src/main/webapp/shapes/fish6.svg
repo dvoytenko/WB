@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="1052.3622" height="744.09448" id="svg3229" version="1.1" inkscape:version="0.48.2 r9819" sodipodi:docname="Fish parasite.svg" inkscape:export-filename="C:\Users\mounir\Pictures\svg\FishParasite.png" inkscape:export-xdpi="90" inkscape:export-ydpi="90">
+  <defs id="defs3231">
+    <inkscape:path-effect effect="skeletal" id="path-effect4062" is_visible="true" pattern="M 0,5 C 0,2.24 2.24,0 5,0 7.76,0 10,2.24 10,5 10,7.76 7.76,10 5,10 2.24,10 0,7.76 0,5 z" copytype="single_stretched" prop_scale="1" scale_y_rel="false" spacing="0" normal_offset="0" tang_offset="0" prop_units="false" vertical_pattern="false" fuse_tolerance="0"/>
+    <inkscape:path-effect fuse_tolerance="0" vertical_pattern="false" prop_units="false" tang_offset="0" normal_offset="0" spacing="0" scale_y_rel="false" prop_scale="3" copytype="single_stretched" pattern="m -428.30468,-204.05081 0,10 10,-5 z" is_visible="true" id="path-effect4044" effect="skeletal"/>
+    <inkscape:path-effect is_visible="true" id="path-effect4042" effect="spiro"/>
+    <inkscape:path-effect effect="skeletal" id="path-effect4038" is_visible="true" pattern="m -282.84271,102.19658 0,10 10,-5 z" copytype="single_stretched" prop_scale="3" scale_y_rel="false" spacing="0" normal_offset="0" tang_offset="0" prop_units="false" vertical_pattern="false" fuse_tolerance="0"/>
+    <inkscape:path-effect effect="spiro" id="path-effect4036" is_visible="true"/>
+    <inkscape:path-effect effect="skeletal" id="path-effect3258" is_visible="true" pattern="m 97.857143,216.48199 0,10 9.999997,-5 z" copytype="single_stretched" prop_scale="1" scale_y_rel="false" spacing="0" normal_offset="0" tang_offset="0" prop_units="false" vertical_pattern="false" fuse_tolerance="0"/>
+    <inkscape:path-effect effect="spiro" id="path-effect3256" is_visible="true"/>
+    <inkscape:path-effect effect="spiro" id="path-effect3209" is_visible="true"/>
+    <inkscape:path-effect effect="skeletal" id="path-effect3211" is_visible="true" pattern="m 73.571905,154.81814 0,10 10,-5 z" copytype="single_stretched" prop_scale="2" scale_y_rel="false" spacing="0" normal_offset="0" tang_offset="0" prop_units="false" vertical_pattern="false" fuse_tolerance="0"/>
+    <inkscape:path-effect is_visible="true" id="path-effect3197" effect="spiro"/>
+    <inkscape:path-effect fuse_tolerance="0" vertical_pattern="false" prop_units="false" tang_offset="0" normal_offset="0" spacing="0" scale_y_rel="false" prop_scale="3" copytype="single_stretched" pattern="m 73.571905,-5.18186 0,10 10,-5 z" is_visible="true" id="path-effect3199" effect="skeletal"/>
+  </defs>
+  <sodipodi:namedview id="base" pagecolor="#ffffff" bordercolor="#666666" borderopacity="1.0" inkscape:pageopacity="0" inkscape:pageshadow="2" inkscape:zoom="0.7" inkscape:cx="525.25635" inkscape:cy="382.997" inkscape:document-units="px" inkscape:current-layer="layer1" showgrid="false" showborder="true" inkscape:window-width="1366" inkscape:window-height="705" inkscape:window-x="-4" inkscape:window-y="-4" inkscape:window-maximized="1"/>
+  <g inkscape:label="Calque 1" inkscape:groupmode="layer" id="layer1" transform="translate(0,-308.2677)">
+    <path sodipodi:nodetypes="cssc" inkscape:connector-curvature="0" inkscape:original-d="M 113.55698,647.32944 C 280.68655,543.72426 410.91455,511.34746 511.38275,512.9766 c 165.1364,2.67775 249.8719,97.2276 285.9192,118.35881 57.9784,33.98732 161.9396,-93.96496 161.9396,-93.96496" inkscape:path-effect="#path-effect3197;#path-effect3199" id="path3195" d="m 100.87567,639.31793 25.36262,16.02302 c 18.76156,-30.82023 43.08982,-58.4402 71.30719,-81.39372 28.22437,-22.9446 60.37718,-41.25561 94.76617,-53.48374 34.38411,-12.2426 71.07378,-18.42326 107.84248,-18.46048 2e-5,0 3e-5,0 5e-5,0 36.76856,-0.0289 73.6667,6.08487 108.46718,18.4005 23.94766,8.45203 47.04298,19.83244 69.81666,32.06957 22.83623,12.28414 45.39585,25.48625 68.62578,37.72153 23.31983,12.29291 47.42621,23.49992 72.66752,31.6725 10e-6,0 2e-5,0 3e-5,10e-6 24.99891,8.10299 51.24741,13.0487 77.5867,12.5213 33.1943,-0.68581 66.00594,-10.18953 94.2306,-27.15403 28.22373,-16.96611 51.77891,-41.3435 67.6929,-69.86394 -16.79486,28.01077 -40.9581,51.41074 -69.22516,67.22324 -28.26612,15.81411 -60.61383,24.03001 -92.73054,23.68871 -25.49114,-0.25399 -50.73898,-5.88833 -74.80582,-14.48923 -24.32176,-8.70062 -47.52953,-20.41324 -70.15198,-33.23027 -22.55352,-12.78785 -44.63064,-26.65165 -67.34999,-39.80313 -22.64897,-13.12428 -46.01973,-25.53202 -70.83392,-35.21008 -36.14417,-14.06222 -74.78402,-21.75516 -113.69651,-22.92993 -1e-5,0 -2e-5,0 -3e-5,0 -38.91237,-1.18307 -78.14408,4.14981 -115.47069,16.12519 -37.32172,11.98985 -72.52562,30.55286 -103.79162,54.40391 -31.27301,23.84214 -58.64524,52.9996 -80.30962,86.16907 z" style="opacity:1;fill:#0055d4;fill-rule:evenodd;stroke:none"/>
+    <path style="opacity:1;fill:#0055d4;fill-rule:evenodd;stroke:none" d="m 122.01119,646.33963 -16.90842,10.68202 c 21.18058,32.77792 48.04548,61.67914 78.80922,85.37317 30.75906,23.69998 65.45444,42.22099 102.28738,54.25055 36.83619,12.01992 75.64423,17.4941 114.19932,16.51441 38.55518,-0.97415 76.90476,-8.4039 112.82499,-22.17503 24.66976,-9.47372 47.99462,-21.71023 70.66438,-34.68666 22.73882,-13.00692 44.89636,-26.76044 67.56262,-39.45619 22.73868,-12.72968 46.09622,-24.35803 70.57124,-32.97065 24.22218,-8.51791 49.6368,-14.03748 75.26929,-14.16124 32.29631,-0.17012 64.72134,8.26042 92.98056,24.26626 28.25983,16.00477 52.32173,39.56765 68.96978,67.66336 -16.0608,-28.43549 -39.71733,-52.64999 -67.94828,-69.42383 -28.23157,-16.77276 -60.96589,-26.06184 -93.98058,-26.57647 -26.19794,-0.39716 -52.27966,4.66331 -77.12323,12.84929 -25.08806,8.26058 -49.04468,19.55187 -72.24829,31.93213 -23.11719,12.32738 -45.59639,25.63977 -68.41314,38.06847 -22.7529,12.38499 -45.89413,23.93662 -69.98621,32.59299 -35.02443,12.60673 -72.21287,18.9837 -109.33875,19.15541 -1e-5,0 -2e-5,0 -3e-5,0 -37.12597,0.16616 -74.23932,-5.87321 -109.11385,-18.07128 -34.87778,-12.18841 -67.5391,-30.54142 -96.27041,-53.6371 -28.72664,-23.10161 -53.56223,-50.97784 -72.80759,-82.18961 z" id="path3203" inkscape:path-effect="#path-effect3209;#path-effect3211" inkscape:original-d="m 113.55698,651.68064 c 167.12957,103.60518 297.35757,135.98198 397.82577,134.35284 165.1364,-2.67775 249.8719,-97.2276 285.9192,-118.35881 57.9784,-33.98732 161.9396,93.96496 161.9396,93.96496" inkscape:connector-curvature="0" sodipodi:nodetypes="cssc"/>
+    <path style="opacity:1;fill:#0055d4;fill-opacity:1;fill-rule:evenodd;stroke:none" d="m 196.1846,734.88511 -5.22634,8.52558 c 20.58278,12.11326 44.14165,18.808 67.79581,19.37813 10e-6,0 10e-6,0 2e-5,0 23.65433,0.56601 47.28556,-4.99616 68.03313,-15.90251 19.73569,-10.38279 36.58041,-25.75557 49.10027,-43.92863 12.52313,-18.17072 20.78041,-39.23094 23.39822,-60.95264 -3.42222,21.60957 -12.41932,42.1413 -25.3788,59.53346 -12.96274,17.38981 -29.95491,31.72676 -49.30838,40.99387 0,0 -10e-6,0 -10e-6,0 -20.37742,9.76694 -43.19796,14.19627 -65.53169,12.82648 0,0 0,0 0,0 -22.33391,-1.36566 -44.22284,-8.53078 -62.88223,-20.47374 z" id="path3254" inkscape:path-effect="#path-effect3256;#path-effect3258" inkscape:original-d="m 193.57143,739.1479 c 59.14912,22.71326 101.684,19.72148 132.12144,5.56144 61.45329,-28.58916 73.59284,-102.7043 73.59284,-102.7043" inkscape:connector-curvature="0" sodipodi:nodetypes="csc"/>
+    <path sodipodi:type="arc" style="fill:#0055d4;fill-opacity:1;fill-rule:nonzero;stroke:none" id="path5210" sodipodi:cx="254.28572" sodipodi:cy="289.09448" sodipodi:rx="17.142857" sodipodi:ry="16.428572" d="m 271.42858,289.09448 a 17.142857,16.428572 0 1 1 -34.28572,0 17.142857,16.428572 0 1 1 34.28572,0 z" transform="translate(7.142857,318.2677)"/>
+    <path transform="matrix(0.61043044,0,0,0.61043044,97.5265,431.2902)" d="m 271.42858,289.09448 a 17.142857,16.428572 0 1 1 -34.28572,0 17.142857,16.428572 0 1 1 34.28572,0 z" sodipodi:ry="16.428572" sodipodi:rx="17.142857" sodipodi:cy="289.09448" sodipodi:cx="254.28572" id="path5214" style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none" sodipodi:type="arc"/>
+  </g>
+  <metadata>
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+        <cc:license rdf:resource="http://creativecommons.org/licenses/publicdomain/"/>
+        <dc:publisher>
+          <cc:Agent rdf:about="http://openclipart.org/">
+            <dc:title>Open Clip Art Library</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title>Poisson</dc:title>
+        <dc:date>2012-06-14T12:45:42</dc:date>
+        <dc:description>Vecteur de poisson Ã  utiliser librement&#13;\nA fish vector to be used freely</dc:description>
+        <dc:source>http://openclipart.org/detail/170686/poisson-by-mounir.boukhari-170686</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>mounir.boukhari</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>Fish</rdf:li>
+            <rdf:li>clip art</rdf:li>
+            <rdf:li>clipart</rdf:li>
+            <rdf:li>marin</rdf:li>
+            <rdf:li>marine</rdf:li>
+            <rdf:li>poisson</rdf:li>
+            <rdf:li>sea</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License rdf:about="http://creativecommons.org/licenses/publicdomain/">
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction"/>
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Distribution"/>
+        <cc:permits rdf:resource="http://creativecommons.org/ns#DerivativeWorks"/>
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>
