@@ -2,6 +2,7 @@
 
 WB.CurveSegment = WB.Segment.extend('CurveSegment', {
 
+	/* abstract */
 	expand: function(pane) {
 		return [];
 	},
@@ -24,8 +25,11 @@ WB.CurveSegment = WB.Segment.extend('CurveSegment', {
 	
 	createAnimation: function() {
 		return new WB.CurveSegmentAnimation(this);
-	}
+	},
 	
+	polygon: function(pane, points) {
+		this.pathSegment().polygon(pane, points);
+	}
 });
 
 

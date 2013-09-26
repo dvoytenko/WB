@@ -2,7 +2,7 @@ package wb.model;
 
 public class EraserEpisode extends Episode {
 	
-	public boolean eraseAll;
+	public PathSegment pathSegment;
 
 	@Override
 	public Animation createAnimation() {

@@ -1,6 +1,24 @@
 
 
 /**
+ * <Point>
+ */
+WB.point = function(x, y) {
+	return {x: x, y: y};
+};
+
+
+/**
+ * <Point>
+ */
+WB.bounds = function(x1, y1, x2, y2) {
+	return {
+		topleft: WB.point(Math.min(x1, x2), Math.min(y1, y2)),
+		bottomright: WB.point(Math.max(x1, x2), Math.max(y1, y2))};
+};
+
+
+/**
  * 
  */
 WB.GeomProto = WB.Class.extend('GeomProto', {
@@ -30,6 +48,16 @@ WB.GeomProto = WB.Class.extend('GeomProto', {
 	angle: function(p1, p2) {
 		return Math.atan2(p1.y - p2.y, p1.x - p2.x);
 	},
+	
+	/**
+	 * Sign operator
+	 */
+	sign: function(d) {
+		if (d == null || d == undefined) {
+			return null;
+		}
+		return d < 0 ? -1 : d > 0 ? 1 : 0;
+	},
 
 	/**
 	 * 
@@ -56,6 +84,33 @@ WB.GeomProto = WB.Class.extend('GeomProto', {
 		return this.PI_2 * degree / 360; 
 	},
 	
+	lineY: function(line, x) {
+		// start/end
+		var x1 = line.start.x;
+		var x2 = line.end.x;
+		var y1 = line.start.y;
+		var y2 = line.end.y;
+		if (x < Math.min(x1, x2) || x > Math.max(x1, x2)) {
+			// x outside of the [x1, x2] range
+			return null;
+		}
+		if (x == x1) {
+			// touches the start or a vertical line
+			return y1;
+		}
+		if (x == x2) {
+			// touches the end or a vertical line
+			return y2;
+		}
+		if (x1 == x2) {
+			// vertical line, but not touching
+			return null;
+		}
+		var a = (y2 - y1) / (x2 - x1);
+		var b = y1 - a * x1;
+		return a * x + b;
+	},
+	
 	boundsOverlap: function(b1, b2) {
 		// topleft/bottomright
 		return (b1.topleft.x <= b2.bottomright.x && b2.topleft.x <= b1.bottomright.x)
@@ -68,6 +123,17 @@ WB.GeomProto = WB.Class.extend('GeomProto', {
 			topleft: {x: Math.min(b1.topleft.x, b2.topleft.x), y: Math.min(b1.topleft.y, b2.topleft.y)},
 			bottomright: {x: Math.max(b1.bottomright.x, b2.bottomright.x), y: Math.max(b1.bottomright.y, b2.bottomright.y)},
 		};
+	},
+	
+	intersectBounds: function(b1, b2) {
+		if (!this.boundsOverlap(b1, b2)) {
+			return null;
+		}
+		return WB.bounds(
+				Math.max(b1.topleft.x, b2.topleft.x),
+				Math.max(b1.topleft.y, b2.topleft.y),
+				Math.min(b1.bottomright.x, b2.bottomright.x),
+				Math.min(b1.bottomright.y, b2.bottomright.y));
 	},
 	
 	moveBounds: function(b, dx, dy) {
@@ -83,6 +149,11 @@ WB.GeomProto = WB.Class.extend('GeomProto', {
 			topleft: {x: b.topleft.x - d, y: b.topleft.y - d},
 			bottomright: {x: b.bottomright.x + d, y: b.bottomright.y + d}
 		};
+	},
+	
+	pointWithinBounds: function(b, p) {
+		return (p.x >= b.topleft.x && p.x <= b.bottomright.x &&
+				p.y >= b.topleft.y && p.y <= b.bottomright.y);
 	}
 	
 });

@@ -47,8 +47,13 @@ WB.PathSegment = WB.Segment.extend('PathSegment', {
 
 	createAnimation: function() {
 		return new WB.PathSegmentAnimation(this);
-	}
+	},
 	
+	polygon: function(pane, points) {
+		for (var i = 0; i < this.segments.length; i++) {
+			this.segments[i].polygon(pane, points);
+		}
+	}
 });
 
 

@@ -85,6 +85,9 @@
 		<br/>
 		<a href="javascript:void(0);" onclick="script6()">Script 6</a>
 		<a href="javascript:void(0);" onclick="script6Recorder()">Script 6 Recorder</a>
+
+		<br/>
+		<a href="javascript:void(0);" onclick="script7()">Script 7</a>
 		
 		<br/>
 		<a href="javascript:void(0);" onclick="image1()">Image 1</a>
@@ -109,6 +112,7 @@
 	<div id="done" style="display: none;">Done!</div>
 
 	<script>
+		var showGrid = false;
 
 		function status(s) {
 			$('#status').text(s);
@@ -154,7 +158,9 @@
 			}
 		}
 		
-		grid();
+		if (showGrid) {
+			grid();
+		}
 		
 		function soundfx1() {
 			status('Running DrawingSoundEngine...');
@@ -1456,6 +1462,24 @@
 			playScript('script6');
 		}
 
+		function script7() {
+			
+			/*
+			WB.interceptor = function(obj, fnName, fn, args) {
+				if (fnName != 'start' && fnName != 'end' && fnName != 'outline') {
+					return fn.apply(obj, args);
+				}
+				
+				var s = '' + obj._type;
+				console.log(fnName + ': ' + s);
+				var ret = fn.apply(obj, args);
+				return ret;
+			};
+			*/
+			
+			playScript('script7');
+		}
+
 		function script4() {
 			playScript('script4');
 		}
@@ -1514,14 +1538,22 @@
 			var name = 'funnycat.png';
 			var tr = new WB.Transform().translate(200, 100).scale(0.5, 0.5);
 			
+			// context.strokeRect(260, 140, 50, 50);
 			var eraser = new WB.EraserShape({
-				eraseAll: true,
 				pathSegment: new WB.PathSegment({
 					segments: [
-						new WB.MoveToSegment({point: {x: 100, y: 200}}),
-						new WB.LineToSegment({point: {x: 200, y: 200}}),
-						new WB.LineToSegment({point: {x: 250, y: 250}}),
-						new WB.LineToSegment({point: {x: 100, y: 300}}),
+						/* rect
+						new WB.MoveToSegment({point: {x: 260, y: 140}}),
+						new WB.LineToSegment({point: {x: 260 + 50, y: 140}}),
+						new WB.LineToSegment({point: {x: 260 + 50, y: 140 + 50}}),
+						new WB.LineToSegment({point: {x: 260, y: 140 + 50}}),
+						*/
+						// diamond
+						new WB.MoveToSegment({point: {x: 260, y: 140 + 25}}),
+						new WB.LineToSegment({point: {x: 260 + 25, y: 140}}),
+						new WB.LineToSegment({point: {x: 260 + 50, y: 140 + 25}}),
+						new WB.LineToSegment({point: {x: 260 + 25, y: 140 + 50}}),
+						// close
 						new WB.ClosePathSegment()
 						]
 				})
@@ -1536,17 +1568,19 @@
 				});
 				group.draw(pane);
 				
-				//eraser.draw(pane);
+				eraser.draw(pane);
 				
 				var context = pane.context;
-				context.strokeRect(260, 140, 50, 50);
+				// context.strokeRect(260, 140, 50, 50);
 				
-				var pixels = context.getImageData(260, 140, 50, 50);
-				var gs = incAlpha(pixels, 0.05);
-				context.putImageData(gs, 260, 140);
+				// XXX
+				//var pixels = context.getImageData(260, 140, 50, 50);
+				//var gs = incAlpha(pixels, 0.5);
+				//context.putImageData(gs, 260, 140);
 			};
 			image.src = 'images/' + name;
 		}
+		eraser1();
 		
 		function pan1() {
 

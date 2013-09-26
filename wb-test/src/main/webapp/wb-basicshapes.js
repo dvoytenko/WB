@@ -163,7 +163,7 @@ WB.PolylineShape = WB.PathBasedShape.extend('PolylineShape', {
 WB.PolygonShape = WB.PathBasedShape.extend('PolygonShape', {
 	
 	/**
-	 * array of points
+	 * Array<Point>
 	 */
 	points: null,
 	

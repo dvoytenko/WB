@@ -8,6 +8,10 @@ WB.Segment = WB.Class.extend('Segment', {
 
 	createAnimation: function() {
 		return null;
+	},
+	
+	polygon: function(pane, points) {
+		throw 'polygon is not supported for ' + this._type;
 	}
 	
 });
@@ -15,6 +19,7 @@ WB.Segment = WB.Class.extend('Segment', {
 
 WB.MoveToSegment = WB.Segment.extend('MoveToSegment', {
 
+	/* <Point> */
 	point: null,
 	
 	init: function(opts) {
@@ -29,6 +34,10 @@ WB.MoveToSegment = WB.Segment.extend('MoveToSegment', {
 	
 	createAnimation: function() {
 		return new WB.MoveToAnimation(this.point);
+	},
+	
+	polygon: function(pane, points) {
+		points.push(this.point);
 	}
 	
 });
@@ -100,6 +109,16 @@ WB.ClosePathSegment = WB.Segment.extend('ClosePathSegment', {
 
 	createAnimation: function() {
 		return new WB.ClosePathAnimation();
+	},
+	
+	polygon: function(pane, points) {
+		if (points.length > 1) {
+			var first = points[0];
+			var last = points[points.length - 1];
+			if (!WB.Geom.pointsEqual(first, last)) {
+				points.push(first);
+			}
+		}
 	}
 	
 });
@@ -158,6 +177,10 @@ WB.LineSegment = WB.Segment.extend('LineSegment', {
 	
 	createAnimation: function() {
 		return new WB.LineAnimation(this);
+	},
+	
+	polygon: function(pane, points) {
+		points.push(this.resolvePoint(pane));
 	}
 	
 });
