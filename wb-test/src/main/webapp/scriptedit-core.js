@@ -302,8 +302,8 @@ var EpisodeListView = Backbone.View.extend({
 	},
 	
 	episodeSelected: function(episode) {
-		// console.log('EpisodeListView.selected: ');
-		// console.log(episode);
+		console.log('EpisodeListView.selected: ');
+		console.log(episode);
 		this.$el.find('.Episode.selected').removeClass('selected');
 		if (episode.listView) {
 			episode.listView.$el.toggleClass('selected', true);
@@ -484,9 +484,10 @@ var BoardView = Backbone.View.extend({
 		
 		var js = model.toJSON();
 		
-		// console.log('add shape or placeholder');
+		console.log('add shape or placeholder');
 		
 		var boardClass = this._getBoardClass(js._type);
+		console.log(boardClass);
 		
 		if (boardClass != BoardElementViewNone) {
 			var boardView = new boardClass({
@@ -494,6 +495,9 @@ var BoardView = Backbone.View.extend({
 				spaceWidth: this.stage.attrs.width,
 				spaceHeight: this.stage.attrs.height
 				});
+			console.log('boardView:');
+			console.log(boardView);
+			console.log('boardView.type:' + boardView.shapeType);
 			this.layer.add(boardView);
 			// these properties are best to be set after adding a shape to the layer
 			boardView.setZIndex(model.get('seq'));
@@ -533,15 +537,19 @@ var BoardView = Backbone.View.extend({
 	episodeSelected: function(episode) {
 		console.log('BoardView.selected: ');
 		console.log(episode);
+		console.log(this.model.length);
 		for (var i = 0; i < this.model.length; i++) {
+			console.log(i);
 			var other = this.model.at(i);
 			if (other != episode && other.boardView) {
 				other.boardView.setSelected(false);
 			}
 		}
 		if (episode.boardView) {
+			console.log(episode.boardView);
 			episode.boardView.setSelected(true);
 		}
+		console.log('layer draw');
 		this.layer.draw();
 	}
 	

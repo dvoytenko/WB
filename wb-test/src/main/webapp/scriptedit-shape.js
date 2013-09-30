@@ -336,8 +336,8 @@ var BoardShapeEditable = Kinetic.Group.extend({
 		var anchor = new Kinetic.Circle({
 			x: x,
 			y: y,
-			stroke: "#666",
-			fill: "#ddd",
+			stroke: "#666666",
+			fill: "#dddddd",
 			strokeWidth: 2,
 			radius: 8,
 			name: name,
@@ -378,7 +378,7 @@ var BoardShapeEditable = Kinetic.Group.extend({
 			this.setStrokeWidth(2);
 			this.getLayer().draw();
 		});
-		
+
 		this.add(anchor);
 	}
 	
