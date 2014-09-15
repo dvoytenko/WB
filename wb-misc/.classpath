@@ -3,12 +3,10 @@
 	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Work/WB/jlatexmath/lib/jlatexmath-1.0.0.jar" sourcepath="C:/Work/WB/jlatexmath/lib/jlatexmath-src-all-1.0.0.zip"/>
-	<classpathentry kind="lib" path="C:/Work/WB/jlatexmath/lib/jlatexmath-embedded-fop-1.0.0.jar"/>
-	<classpathentry kind="lib" path="C:/Work/WB/jlatexmath/lib/jlatexmath-fonts.zip"/>
-	<classpathentry kind="lib" path="C:/Work/WB/jlatexmath/lib/jlatexmath-fop-1.0.0.jar"/>
-	<classpathentry kind="lib" path="C:/Work/WB/rastertovector/runsxz.jar" sourcepath="C:/Work/WB/rastertovector/source.jar"/>
-	<classpathentry kind="lib" path="C:/Work/WB/rastertovector/jai-codec-1.1.3.jar"/>
-	<classpathentry kind="lib" path="C:/Work/WB/rastertovector/jai-core-1.1.3.jar"/>
+	<classpathentry kind="lib" path="/Users/dvoytenko/work/WB/jlatexmath/lib/jlatexmath-1.0.0.jar"/>
+	<classpathentry kind="lib" path="/Users/dvoytenko/work/WB/jlatexmath/lib/jlatexmath-embedded-fop-1.0.0.jar"/>
+	<classpathentry kind="lib" path="/Users/dvoytenko/work/WB/jlatexmath/lib/jlatexmath-fonts.zip"/>
+	<classpathentry kind="lib" path="/Users/dvoytenko/work/WB/jlatexmath/lib/jlatexmath-fop-1.0.0.jar"/>
+	<classpathentry kind="lib" path="/Users/dvoytenko/work/WB/jlatexmath/lib/jlatexmath-fop-src-1.0.0.zip"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
