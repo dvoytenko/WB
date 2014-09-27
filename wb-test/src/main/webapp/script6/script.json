@@ -25116,7 +25116,7 @@
       },
       "predraw": false,
       "realHeight": 1024,
-      "realWidth": 4912,
+      "realWidth": 5672,
       "seq": 5,
       "shape": {
         "_type": "TextShape",
@@ -29825,14 +29825,115 @@
                 {"_type": "ClosePathSegment"}
               ]
             }
+          },
+          {
+            "_type": "Glyph",
+            "advX": 760,
+            "pathSegment": {
+              "_type": "PathSegment",
+              "segments": [
+                {
+                  "_type": "MoveToSegment",
+                  "point": {
+                    "x": 56,
+                    "y": 0
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 368,
+                    "y": 312
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 56,
+                    "y": 624
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 80,
+                    "y": 624
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 380,
+                    "y": 324
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 680,
+                    "y": 624
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 704,
+                    "y": 624
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 392,
+                    "y": 312
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 704,
+                    "y": 0
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 680,
+                    "y": 0
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 380,
+                    "y": 300
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 80,
+                    "y": 0
+                  }
+                },
+                {
+                  "_type": "LineToSegment",
+                  "point": {
+                    "x": 56,
+                    "y": 0
+                  }
+                },
+                {"_type": "ClosePathSegment"}
+              ]
+            }
           }
         ],
         "height": 1024,
-        "text": "go/bluefin",
-        "width": 4912
+        "text": "go/bluefinX",
+        "width": 5672
       },
-      "text": "go/bluefin",
-      "width": 191.875
+      "text": "go/bluefinX",
+      "width": 221.5625
     },
     {
       "_type": "PanEpisode",
