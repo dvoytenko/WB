@@ -2,12 +2,12 @@
 batik-1.7
 canvg
 chromiumembed
-fonts
+/fonts
 freetts-1.2
 marytts-5.0
 marytts-src
 svgkit-0.1
 delineate-0.5
 rastertovector
-work
+/work
 xuggler
