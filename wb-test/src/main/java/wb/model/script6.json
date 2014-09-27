@@ -93,7 +93,7 @@
 		
 		{
 			_type: 'DrawTextEpisode',
-			text: 'go/bluefin',
+			text: 'go/bluefinX',
 			position: {x: 260, y: 300},
 			height: 40
 		},
