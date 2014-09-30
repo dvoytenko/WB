@@ -56,8 +56,9 @@ public class PrepareShape {
 //		prepareAndSave(new File("src/main/webapp/shapes/audio10.svg").toURI().toString());
 		
 //		prepareAndSave(new File("src/main/webapp/shapes/bluefin2a.svg").toURI().toString());
-		prepareAndSave(new File("src/main/webapp/shapes/cat9.svg").toURI().toString());
-		
+//		prepareAndSave(new File("src/main/webapp/shapes/cat9.svg").toURI().toString());
+		prepareAndSave(new File("src/main/webapp/shapes/atom2.svg").toURI().toString());
+	
 		// (not good) prepare("http://openclipart.org/detail/1186/leaning-tower-of-pisa-by-johnny_automatic");
 		// (not good) prepare("http://openclipart.org/detail/6942/coit-tower-from-below-by-stevelambert-6942");
 		// (not good) prepare("http://openclipart.org/detail/9333/clock-tower-by-johnny_automatic");

@@ -93,10 +93,14 @@
 		
 		{
 			_type: 'DrawTextEpisode',
-			text: 'go/bluefinX',
+			text: 'go/bluefin',
 			position: {x: 260, y: 300},
 			height: 40
 		},
+
+		/*
+			Part 2
+		 */
 
 		{
 			_type: 'PanEpisode',
@@ -106,11 +110,81 @@
 		{
 			_type: 'DrawShapeEpisode',
 			shapeId: 'file-fileCWorkWBwb-testsrcmainwebappshapescat9_svg',
-			position: {x: 960, y: 85},
-			width: 250,
+			position: {x: 860, y: 85},
+			width: 150,
 			rotationDegree: 0
 		},
+
+		{
+			_type: 'DrawShapeEpisode',
+			_desc: 'arrow',
+			position: {x: 770, y: 0},
+			width: 1, height: 1, realWidth: 1, realHeight: 1,
+			shape: {
+				_type: 'PathShape',
+				pathSegment: {
+					_type: 'PathSegment',
+					segments: [
+						{
+							_type: 'MoveToSegment',
+							point: {x: 310, y: 160}
+						},
+						{
+							_type: 'LineToSegment',
+							point: {x: 410, y: 160}
+						},
+						{
+							_type: 'MoveToSegment',
+							point: {x: 380, y: 140}
+						},
+						{
+							_type: 'LineToSegment',
+							point: {x: 410, y: 160}
+						},
+						{
+							_type: 'MoveToSegment',
+							point: {x: 380, y: 180}
+						},
+						{
+							_type: 'LineToSegment',
+							point: {x: 410, y: 160}
+						},
+					]
+				}
+			}
+		},
+
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'file-fileUsersdvoytenkoworkWBwb-testsrcmainwebappshapestau_svg',
+			position: {x: 1250, y: 125},
+			width: 70,
+			rotationDegree: 0
+		},
+
+		{
+			_type: 'DrawTextEpisode',
+			text: '+',
+			position: {x: 1330, y: 100},
+			height: 40
+		},
+
+
+		{
+			_type: 'DrawTextEpisode',
+			text: 'go/tau+',
+			position: {x: 1010, y: 300},
+			height: 40
+		},
 		
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'file-fileUsersdvoytenkoworkWBwb-testsrcmainwebappshapesatom_svg',
+			position: {x: 1180, y: 285},
+			width: 100,
+			rotationDegree: 0
+		},
+
 	]
 	
 }

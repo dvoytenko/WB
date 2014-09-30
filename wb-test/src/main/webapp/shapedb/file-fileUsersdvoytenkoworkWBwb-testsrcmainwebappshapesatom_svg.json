@@ -1,0 +1,363 @@
+{
+  "_type": "GroupShape",
+  "height": 385,
+  "id": "file-fileUsersdvoytenkoworkWBwb-testsrcmainwebappshapesatom_svg",
+  "shapes": [{
+    "_type": "GroupShape",
+    "shapes": [{
+      "_type": "GroupShape",
+      "shapes": [
+        {
+          "_type": "GroupShape",
+          "shapes": [{
+            "_type": "PathShape",
+            "pathSegment": {
+              "_type": "PathSegment",
+              "segments": [
+                {
+                  "_type": "MoveToSegment",
+                  "point": {
+                    "x": 445.71,
+                    "y": 929.51
+                  }
+                },
+                {
+                  "_type": "ArcToSvgSegment",
+                  "endPoint": {
+                    "x": 154.28999999999996,
+                    "y": 929.51
+                  },
+                  "largeArcFlag": 1,
+                  "radiusX": 145.71,
+                  "radiusY": 74.286,
+                  "sweepFlag": 1,
+                  "xAxisRotation": 0
+                },
+                {
+                  "_type": "ArcToSvgSegment",
+                  "endPoint": {
+                    "x": 445.71,
+                    "y": 929.51
+                  },
+                  "largeArcFlag": 1,
+                  "radiusX": 145.71,
+                  "radiusY": 74.286,
+                  "sweepFlag": 1,
+                  "xAxisRotation": 0
+                },
+                {"_type": "ClosePathSegment"}
+              ]
+            }
+          }],
+          "transform": {
+            "_type": "Transform",
+            "m": [
+              -1.0305,
+              -0.74866,
+              -0.89666,
+              0.54124,
+              1494.2,
+              80.644
+            ]
+          }
+        },
+        {
+          "_type": "GroupShape",
+          "shapes": [{
+            "_type": "PathShape",
+            "pathSegment": {
+              "_type": "PathSegment",
+              "segments": [
+                {
+                  "_type": "MoveToSegment",
+                  "point": {
+                    "x": 330.95,
+                    "y": 602.7
+                  }
+                },
+                {
+                  "_type": "ArcToSvgSegment",
+                  "endPoint": {
+                    "x": 296.78,
+                    "y": 602.7
+                  },
+                  "largeArcFlag": 1,
+                  "radiusX": 17.087,
+                  "radiusY": 17.087,
+                  "sweepFlag": 1,
+                  "xAxisRotation": 0
+                },
+                {
+                  "_type": "ArcToSvgSegment",
+                  "endPoint": {
+                    "x": 330.95,
+                    "y": 602.7
+                  },
+                  "largeArcFlag": 1,
+                  "radiusX": 17.087,
+                  "radiusY": 17.087,
+                  "sweepFlag": 1,
+                  "xAxisRotation": 0
+                },
+                {"_type": "ClosePathSegment"}
+              ]
+            }
+          }],
+          "transform": {
+            "_type": "Transform",
+            "m": [
+              0.57895,
+              0,
+              0,
+              0.57895,
+              74.806,
+              -103.41
+            ]
+          }
+        },
+        {
+          "_type": "GroupShape",
+          "shapes": [{
+            "_type": "PathShape",
+            "pathSegment": {
+              "_type": "PathSegment",
+              "segments": [
+                {
+                  "_type": "MoveToSegment",
+                  "point": {
+                    "x": 471.43,
+                    "y": 452.36
+                  }
+                },
+                {
+                  "_type": "ArcToSvgSegment",
+                  "endPoint": {
+                    "x": 140,
+                    "y": 452.36
+                  },
+                  "largeArcFlag": 1,
+                  "radiusX": 165.71,
+                  "radiusY": 94.286,
+                  "sweepFlag": 1,
+                  "xAxisRotation": 0
+                },
+                {
+                  "_type": "ArcToSvgSegment",
+                  "endPoint": {
+                    "x": 471.43,
+                    "y": 452.36
+                  },
+                  "largeArcFlag": 1,
+                  "radiusX": 165.71,
+                  "radiusY": 94.286,
+                  "sweepFlag": 1,
+                  "xAxisRotation": 0
+                },
+                {"_type": "ClosePathSegment"}
+              ]
+            }
+          }],
+          "transform": {
+            "_type": "Transform",
+            "m": [
+              1.0028,
+              0,
+              0,
+              0.64128,
+              45.06,
+              69.043
+            ]
+          }
+        },
+        {
+          "_type": "GroupShape",
+          "shapes": [{
+            "_type": "PathShape",
+            "pathSegment": {
+              "_type": "PathSegment",
+              "segments": [
+                {
+                  "_type": "MoveToSegment",
+                  "point": {
+                    "x": 411.43,
+                    "y": 360.93
+                  }
+                },
+                {
+                  "_type": "ArcToSvgSegment",
+                  "endPoint": {
+                    "x": 268.57,
+                    "y": 360.93
+                  },
+                  "largeArcFlag": 1,
+                  "radiusX": 71.429,
+                  "radiusY": 140,
+                  "sweepFlag": 1,
+                  "xAxisRotation": 0
+                },
+                {
+                  "_type": "ArcToSvgSegment",
+                  "endPoint": {
+                    "x": 411.43,
+                    "y": 360.93
+                  },
+                  "largeArcFlag": 1,
+                  "radiusX": 71.429,
+                  "radiusY": 140,
+                  "sweepFlag": 1,
+                  "xAxisRotation": 0
+                },
+                {"_type": "ClosePathSegment"}
+              ]
+            }
+          }],
+          "transform": {
+            "_type": "Transform",
+            "m": [
+              0.82871,
+              0.55292,
+              -0.42022,
+              1.0904,
+              221.54,
+              -222.42
+            ]
+          }
+        },
+        {
+          "_type": "GroupShape",
+          "shapes": [{
+            "_type": "PathShape",
+            "pathSegment": {
+              "_type": "PathSegment",
+              "segments": [
+                {
+                  "_type": "MoveToSegment",
+                  "point": {
+                    "x": 330.95,
+                    "y": 602.7
+                  }
+                },
+                {
+                  "_type": "ArcToSvgSegment",
+                  "endPoint": {
+                    "x": 296.78,
+                    "y": 602.7
+                  },
+                  "largeArcFlag": 1,
+                  "radiusX": 17.087,
+                  "radiusY": 17.087,
+                  "sweepFlag": 1,
+                  "xAxisRotation": 0
+                },
+                {
+                  "_type": "ArcToSvgSegment",
+                  "endPoint": {
+                    "x": 330.95,
+                    "y": 602.7
+                  },
+                  "largeArcFlag": 1,
+                  "radiusX": 17.087,
+                  "radiusY": 17.087,
+                  "sweepFlag": 1,
+                  "xAxisRotation": 0
+                },
+                {"_type": "ClosePathSegment"}
+              ]
+            }
+          }],
+          "transform": {
+            "_type": "Transform",
+            "m": [
+              0.57895,
+              0,
+              0,
+              0.57895,
+              90.093,
+              125.99
+            ]
+          }
+        },
+        {
+          "_type": "GroupShape",
+          "shapes": [{
+            "_type": "PathShape",
+            "pathSegment": {
+              "_type": "PathSegment",
+              "segments": [
+                {
+                  "_type": "MoveToSegment",
+                  "point": {
+                    "x": 330.95,
+                    "y": 602.7
+                  }
+                },
+                {
+                  "_type": "ArcToSvgSegment",
+                  "endPoint": {
+                    "x": 296.78,
+                    "y": 602.7
+                  },
+                  "largeArcFlag": 1,
+                  "radiusX": 17.087,
+                  "radiusY": 17.087,
+                  "sweepFlag": 1,
+                  "xAxisRotation": 0
+                },
+                {
+                  "_type": "ArcToSvgSegment",
+                  "endPoint": {
+                    "x": 330.95,
+                    "y": 602.7
+                  },
+                  "largeArcFlag": 1,
+                  "radiusX": 17.087,
+                  "radiusY": 17.087,
+                  "sweepFlag": 1,
+                  "xAxisRotation": 0
+                },
+                {"_type": "ClosePathSegment"}
+              ]
+            }
+          }],
+          "transform": {
+            "_type": "Transform",
+            "m": [
+              0.57895,
+              0,
+              0,
+              0.57895,
+              274.66,
+              57.092
+            ]
+          }
+        }
+      ],
+      "transform": {
+        "_type": "Transform",
+        "m": [
+          1,
+          0,
+          0,
+          1,
+          -184.75,
+          -200.72
+        ]
+      }
+    }]
+  }],
+  "source": "file",
+  "tags": [],
+  "title": "atom.svg",
+  "transform": {
+    "_type": "Transform",
+    "m": [
+      1,
+      0,
+      0,
+      1,
+      50,
+      34
+    ]
+  },
+  "width": 434
+}
