@@ -26,18 +26,18 @@
     },
     {
       "_type": "PanZoomEpisode",
-      "panTo": {
-        "x": -75,
-        "y": -75
+      "origin": {
+        "x": 100,
+        "y": 100
       },
       "seq": 2,
       "zoomFactor": 2
     },
     {
       "_type": "PanZoomEpisode",
-      "panTo": {
-        "x": 0,
-        "y": 0
+      "origin": {
+        "x": 100,
+        "y": 100
       },
       "seq": 3,
       "zoomFactor": 1

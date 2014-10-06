@@ -20,13 +20,14 @@
 		{
 			_type: 'PanZoomEpisode',
 			zoomFactor: 2,
-			panTo: {x: -75, y: -75}
+			origin: {x: 100, y: 100}
 		},
+		/* panTo: {x: -75, y: -75} */
 
 		{
 			_type: 'PanZoomEpisode',
 			zoomFactor: 1,
-			panTo: {x: 0, y: 0}
+			origin: {x: 100, y: 100}
 		},
 		
 		/*

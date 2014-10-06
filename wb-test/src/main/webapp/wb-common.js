@@ -31,10 +31,23 @@ WB.GeomProto = WB.Class.extend('GeomProto', {
 
 	PI_2: Math.PI * 2,
 	
+	/**
+	 * @return {!Point}
+	 */
 	movePoint: function(p, dx, dy) {
 		return {x: p.x + dx, y: p.y + dy};
 	},
-	
+
+	/**
+	 * @return {!Point}
+	 */
+	addPoint: function(p1, p2, dir) {
+		if (!dir) {
+			dir = 1;
+		}
+		return {x: p1.x + dir * p2.x, y: p1.y + dir * p2.y};
+	},
+
 	pointsEqual: function(p1, p2, eps) {
 		if (!eps) {
 			eps = 0;

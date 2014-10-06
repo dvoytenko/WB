@@ -83,7 +83,7 @@ WB.PanZoomEpisode = WB.Episode.extend('PanZoomEpisode', {
 	
 	zoomFactor: null,
 	
-	anchor: null,
+	origin: null,
 	
 	panTo: null,
 	
@@ -97,7 +97,7 @@ WB.PanZoomEpisode = WB.Episode.extend('PanZoomEpisode', {
 	},
 	
 	createAnimation: function() {
-		return new WB.PanZoomAnimation3(this);
+		return new WB.PanZoomAnimation4(this);
 	}
 	
 });
@@ -440,7 +440,12 @@ WB.PanZoomAnimation3 = WB.Animation.extend('PanZoomAnimation3', {
 		this.endPan = panTo;
 		
 		// XXX: next "Multiples of Zoom"
-		
+		/**
+		 * Formula:
+		 *   translateX = scalePointX * (newWidth - oldWidth) / newWidth
+		 * See:
+		 *   http://youtu.be/lcD9CF0bxyk?t=15m57s 
+		 */
 		throw "!xxx!";
 	},
 	
@@ -500,4 +505,295 @@ WB.PanZoomAnimation3 = WB.Animation.extend('PanZoomAnimation3', {
 });
 
 
+
+
+WB.PanZoomAnimation3 = WB.Animation.extend('PanZoomAnimation3', {
+	
+	panzoom: null,
+	
+	init: function(panzoom) {
+		this.panzoom = panzoom;
+	},
+	
+	start: function(board) {
+		this.board = board;
+		
+		this.board.state({
+			pointer: 'panzoom',
+			height: 1.0
+		});
+
+		var rate = 1;
+		
+		var startZoom = this.board.getZoomFactor();
+		var endZoom = this.panzoom.zoomFactor ? this.panzoom.zoomFactor : startZoom;
+
+		var anchorPoint = board.getAnchorPoint();
+		var panTo = this.panzoom.panTo ? this.panzoom.panTo : anchorPoint;
+		console.log('pan: ' + JSON.stringify(anchorPoint) + ' -> ' + JSON.stringify(panTo));
+		
+		var zoomEndPan = anchorPoint;
+
+		if (endZoom && endZoom != startZoom) {
+			
+			// zoom growth = (Z1 - Z0)/Z0
+			var gz = (endZoom - startZoom)/startZoom;
+			console.log('gz = ' + gz);
+			
+			this.zoomer = new WB.NumInterpolator(0, gz, 1 / 1000 * rate);
+			this.zoomer.start(board);
+			console.log('zoomer velocity ' + this.zoomer.velocity 
+					+ '; time: ' + this.zoomer.totalTime);
+			
+			var zoomTime = this.zoomer.totalTime;
+			
+			// zoom distance = BV * ln(Z1) / (Z1 - 1)
+			var adjVelo = endZoom == 1 ? 1 : Math.log(endZoom) / (endZoom - 1);
+			var zoomDist = (board.getBaseVelocity()/1000 * rate) * adjVelo * zoomTime;
+			console.log('zoomDist: ' + zoomDist);
+
+			var totalDist = WB.Geom.distance(anchorPoint, panTo);
+			console.log('totalDist: ' + totalDist);
+			
+			if (totalDist > 1) {
+				if (totalDist <= zoomDist) {
+					zoomEndPan = panTo;
+				} else {
+					var dd = zoomDist/totalDist;
+					zoomEndPan = {x: (anchorPoint.x + panTo.x) * dd, 
+							y: (anchorPoint.y + panTo.y) * dd};
+				}
+			}
+			console.log('zoomEndPan: ' + JSON.stringify(zoomEndPan));
+		}
+
+		if (panTo && !WB.Geom.pointsEqual(zoomEndPan, panTo)) {
+			var v = board.getBaseVelocity() / endZoom;
+			console.log('tail velocity: ' + v);
+			this.panner = new WB.PointInterpolator(zoomEndPan, panTo, v / 1000 * rate);
+			this.panner.start(board);
+			console.log('tail pan: ' + JSON.stringify(zoomEndPan) + ' -> ' + JSON.stringify(panTo));
+		}
+
+		this.startZoom = startZoom;
+		this.endZoom = endZoom;
+		this.endPan = panTo;
+		
+		// XXX: next "Multiples of Zoom"
+		/**
+		 * Formula:
+		 *   translateX = scalePointX * (newWidth - oldWidth) / newWidth
+		 * See:
+		 *   http://youtu.be/lcD9CF0bxyk?t=15m57s 
+		 */
+		throw "!xxx!";
+	},
+	
+	frame: function(time) {
+		
+		// zoom
+		if (this.zoomer) {
+			this.zoomer.frame(time);
+
+			// z = Z0 * (gz + 1)
+	        var gz = this.zoomer.getValue();
+	        var z = this.startZoom * (gz + 1);
+			console.log('new zoom ' + z);
+			
+	        this.board.updateZoomFactor(z); // , {x: px, y: py}
+	        
+		} else if (this.panner) {
+			
+			// pan
+			this.panner.frame(time);
+	        this.board.updateAnchorPoint(this.panner.getValue());
+		}
+	},
+	
+	isDone: function() {
+		if (this.zoomer && !this.zoomer.isDone()) {
+			return false;
+		}
+		if (this.panner && !this.panner.isDone()) {
+			return false;
+		}
+		return true;
+	},
+	
+	getTimeLeft: function() {
+		var t = 150;
+		if (this.panner && this.panner.getTimeLeft() < t) {
+			t = this.panner.getTimeLeft();
+		}
+		if (this.zoomer && this.zoomer.getTimeLeft() < t) {
+			t = this.zoomer.getTimeLeft();
+		}
+		return t;
+	},
+	
+	end: function() {
+		
+        this.board.updateZoomFactor(this.endZoom, this.endPan);
+        
+		var pane = this.board.animationPane;
+		var resetPos = this.board.getResetPoint();
+		console.log('!RESET POS! ' + JSON.stringify(resetPos));
+		pane.moveTo(resetPos);
+	    this.board.state({position: resetPos});
+	}
+	
+});
+
+
+
+
+WB.PanZoomAnimation4 = WB.Animation.extend('PanZoomAnimation4', {
+	
+	panzoom: null,
+	
+	init: function(panzoom) {
+		this.panzoom = panzoom;
+	},
+	
+	start: function(board) {
+		this.board = board;
+		
+		this.board.state({
+			pointer: 'panzoom',
+			height: 1.0
+		});
+
+		var rate = 1;
+		
+		var startZoom = this.board.getZoomFactor();
+		var endZoom = this.panzoom.zoomFactor ? this.panzoom.zoomFactor : startZoom;
+
+		var anchor = board.getAnchorPoint();
+		var origin = WB.point(0, 0);
+		if (this.panzoom.origin) {
+			origin = WB.Geom.addPoint(this.panzoom.origin, anchor);
+		} else {
+			// TODO XXX
+			//var panTo = this.panzoom.panTo ? this.panzoom.panTo : origin;
+			//console.log('pan: ' + JSON.stringify(origin) + ' -> ' + JSON.stringify(panTo));
+			/*
+			 * origin: {x: 100, y: 100}
+			 * endPoint: {"x":-50,"y":-50}
+        var gz = this.zoomer.getValue();
+        var z = this.startZoom * (gz + 1);
+		console.log('new zoom ' + z);
+		
+		var zz = (z - this.startZoom) / z;
+		var tp = WB.Geom.addPoint(this.anchor,
+				WB.point(- this.origin.x * zz, - this.origin.y * zz));
+		console.log('new anchor: ' + JSON.stringify(tp));
+        this.board.updateZoomFactor(z, tp);
+			 * */
+		}
+		console.log('origin: ' + JSON.stringify(origin) + '; at anchor: ' +
+				JSON.stringify(anchor));
+		
+		/**
+		 * XXX
+		 * Formula:
+		 *   translateX = scalePointX * (newWidth - oldWidth) / newWidth
+		 * See:
+		 *   http://youtu.be/lcD9CF0bxyk?t=15m57s 
+		 */
+		if (endZoom && endZoom != startZoom) {
+			
+			// zoom growth = (Z1 - Z0) / Z0
+			var gz = (endZoom - startZoom) / startZoom;
+			console.log('gz = ' + gz);
+			
+			this.zoomer = new WB.NumInterpolator(0, gz, 1 / 1000 * rate);
+			this.zoomer.start(board);
+			console.log('zoomer velocity ' + this.zoomer.velocity 
+					+ '; time: ' + this.zoomer.totalTime);
+			
+			var zoomTime = this.zoomer.totalTime;
+			
+			// zoom distance = BV * ln(Z1) / (Z1 - 1)
+			var adjVelo = endZoom == 1 ? 1 : Math.log(endZoom) / (endZoom - 1);
+			var zoomDist = (board.getBaseVelocity()/1000 * rate) * adjVelo * zoomTime;
+			console.log('zoomDist: ' + zoomDist);
+
+			/*
+			var totalDist = WB.Geom.distance(anchorPoint, panTo);
+			console.log('totalDist: ' + totalDist);
+			
+			if (totalDist > 1) {
+				if (totalDist <= zoomDist) {
+					zoomEndPan = panTo;
+				} else {
+					var dd = zoomDist/totalDist;
+					zoomEndPan = {x: (anchorPoint.x + panTo.x) * dd, 
+							y: (anchorPoint.y + panTo.y) * dd};
+				}
+			}
+			console.log('zoomEndPan: ' + JSON.stringify(zoomEndPan));
+			*/
+		}
+
+		/*
+		if (panTo && !WB.Geom.pointsEqual(zoomEndPan, panTo)) {
+			var v = board.getBaseVelocity() / endZoom;
+			console.log('tail velocity: ' + v);
+			this.panner = new WB.PointInterpolator(zoomEndPan, panTo, v / 1000 * rate);
+			this.panner.start(board);
+			console.log('tail pan: ' + JSON.stringify(zoomEndPan) + ' -> ' + JSON.stringify(panTo));
+		}
+		*/
+
+		this.startZoom = startZoom;
+		this.endZoom = endZoom;
+		this.anchor = anchor;
+		this.origin = origin;
+	},
+	
+	frame: function(time) {
+
+		this.zoomer.frame(time);
+
+		// z = Z0 * (gz + 1)
+        var gz = this.zoomer.getValue();
+        var z = this.startZoom * (gz + 1);
+		console.log('new zoom ' + z);
+		
+		var zz = (z - this.startZoom) / z;
+		var tp = WB.Geom.addPoint(this.anchor,
+				WB.point(- this.origin.x * zz, - this.origin.y * zz));
+		console.log('new anchor: ' + JSON.stringify(tp));
+        this.board.updateZoomFactor(z, tp);
+        // updateAnchorPoint
+	},
+	
+	isDone: function() {
+		return this.zoomer.isDone();
+	},
+	
+	getTimeLeft: function() {
+		var t = 150;
+		if (this.zoomer && this.zoomer.getTimeLeft() < t) {
+			t = this.zoomer.getTimeLeft();
+		}
+		return t;
+	},
+	
+	end: function() {
+		
+		var zz = (this.endZoom - this.startZoom) / this.endZoom;
+		var tp = WB.Geom.addPoint(this.anchor,
+				WB.point(- this.origin.x * zz, - this.origin.y * zz));
+		console.log('end anchor: ' + JSON.stringify(tp));
+        this.board.updateZoomFactor(this.endZoom, tp);
+        
+		var pane = this.board.animationPane;
+		var resetPos = this.board.getResetPoint();
+		console.log('!RESET POS! ' + JSON.stringify(resetPos));
+		pane.moveTo(resetPos);
+	    this.board.state({position: resetPos});
+	}
+	
+});
 

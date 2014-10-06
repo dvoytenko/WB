@@ -67,25 +67,28 @@ WB.HandPoint = WB.Pointer.extend('HandPoint', {
 		this.markerImage = new Image();
 		this.markerImage.src = 'pointer/HandPoint.png';
 		
+		this.eraserImage = new Image();
+		this.eraserImage.src = 'pointer/HandEraser.png';
+		
 		this.pointers = {
 			draw: {
+				image: this.markerImage,
 				x: 0,
 				y: 0,
 				width: 146,
 				height: 449,
 				anchorX: 31,
 				anchorY: 31
-			}
-			/*
-			move: {
-				x: 146,
+			},
+			eraser: {
+				image: this.eraserImage,
+				x: 0,
 				y: 0,
-				width: 146,
-				height: 449,
-				anchorX: 77,
-				anchorY: 18
+				width: 101,
+				height: 450,
+				anchorX: 43,
+				anchorY: 16
 			}
-			*/
 		};
 	},
 	
@@ -97,14 +100,10 @@ WB.HandPoint = WB.Pointer.extend('HandPoint', {
 		
 		// console.log('marker: update: ' + JSON.stringify(state.position));
 		this.pane._clearCanvas();
-		
+
 		var pt = this.pointers[pointer];
-		
-		/*
-			original size: 146x449 (1/3.1)
-			anchor: 32,31
-		*/
-		if (state.position && this.markerImage.complete && pt) {
+		var image = pt ? pt.image : null;
+		if (state.position && image && image.complete && pt) {
 			var height = 550;
 			var width = height / (pt.height / pt.width);
 			var mx = state.position.x - pt.anchorX / this.zoomFactor * width/pt.width;
@@ -115,30 +114,10 @@ WB.HandPoint = WB.Pointer.extend('HandPoint', {
 //			console.log('marker: image ' + JSON.stringify([state.position.x, state.position.y,
 //			                                               pt.x, pt.y, pt.width, pt.height,
 //			                                       		mx, my, width, height]));
-            context.drawImage(this.markerImage,
+            context.drawImage(image,
             		pt.x, pt.y, pt.width, pt.height,
             		mx, my, width/this.zoomFactor, height/this.zoomFactor);
 		}
-		
-		/*
-		if (state.position && this.markerImage.complete && pointer == 'draw') {
-			var height = 550;
-			var width = height / 3.1;
-			var mx = state.position.x - 32*width/146;
-			var my = state.position.y - 31*height/449;
-			
-			var context = this.pane.context;
-			
-//			context.save();
-//            context.shadowColor = 'black';
-//            context.shadowBlur = 30;
-//            context.shadowOffsetX = -5;
-//            context.shadowOffsetY = 5;
-//			console.log('render hand @ ' + mx + ',' + my);
-            context.drawImage(this.markerImage, mx, my, width, height);
-//			context.restore();
-		}
-		*/
 	}
 	
 });

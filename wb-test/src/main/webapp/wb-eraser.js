@@ -356,7 +356,7 @@ WB.EraseLineAnimation = WB.Animation.extend('EraseLineAnimation', {
         this.pane.moveTo(newPoint);
 
 		this.board.state({
-			pointer: 'eraser', // TODO: 'eraser' vs 'draw'
+			pointer: 'eraser',
 			position: this.pane.toGlobalPoint(newPoint),
 	    	velocity: this._inter.velocity,
 	    	angle: WB.Geom.angle(prevPoint, newPoint),
