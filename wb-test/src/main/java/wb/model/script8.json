@@ -2,8 +2,78 @@
 	episodes: [
 	
 		{
+			_type: 'DrawTextEpisode',
+			action: 'predraw',
+			text: 'Days without RPC replay',
+			position: {x: 80, y: 70},
+			height: 40
+		},
+		{
+			_type: 'DrawTextEpisode',
+			action: 'predraw',
+			text: 'breakage',
+			position: {x: 235, y: 130},
+			height: 40
 		},
 		
+		{
+			_type: 'DrawShapeEpisode',
+			position: {x: 250, y: 220},
+			width: 1,
+			height: 1,
+			realWidth: 1,
+			realHeight: 1,
+			action: 'predraw',
+			shape: {
+				_type: 'RectangleShape',
+				topleft: {x: 0, y: 0},
+				width: 150,
+				height: 150
+			}
+		},
+
+		{
+			_type: 'DrawTextEpisode',
+			action: 'predraw',
+			text: '7',
+			position: {x: 300, y: 240},
+			height: 80
+		},
+
+		{
+			_type: 'EraserEpisode',
+			pathSegment: {
+				_type: 'PathSegment',
+				segments: [
+					{
+						_type: 'MoveToSegment',
+						point: {x: 290, y: 230}
+					},
+					{
+						_type: 'LineToSegment',
+						point: {x: 360, y: 230}
+					},
+					{
+						_type: 'LineToSegment',
+						point: {x: 360, y: 330}
+					},
+					{
+						_type: 'LineToSegment',
+						point: {x: 290, y: 330}
+					},
+					{
+						_type: 'ClosePathSegment'
+					}
+				]
+			}
+		},
+		
+		{
+			_type: 'DrawTextEpisode',
+			text: '0',
+			position: {x: 300, y: 240},
+			height: 80
+		},
 	]
 	
 }
