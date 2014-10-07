@@ -74,6 +74,20 @@
 			position: {x: 300, y: 240},
 			height: 80
 		},
+		
+		{
+			_type: 'PanEpisode',
+			point: {x: 0, y: -405}
+		},
+		
+		{
+			_type: 'DrawShapeEpisode',
+			shapeId: 'file-fileUsersdvoytenkoworkWBwb-testsrcmainwebappshapesface_of_an_angry_man_svg',
+			position: {x: 200, y: 450},
+			width: 250,
+			rotationDegree: 0
+		},
+		
 	]
 	
 }

@@ -180,7 +180,7 @@ WB.EraserShape = WB.Shape.extend('EraserShape', {
 			var pixels = context.getImageData(x, y, width, height);
 			var d = pixels.data;
 			for (var i = 0; i < d.length; i += 4) {
-				d[i+3] = 255 * 0.04;
+				d[i+3] = 255 * 0.01;
 			}
 			context.putImageData(pixels, x, y);
 		}
