@@ -1,7 +1,7 @@
 
 
 /**
- * <Point>
+ * @return {!Point}
  */
 WB.point = function(x, y) {
 	return {x: x, y: y};
@@ -9,7 +9,7 @@ WB.point = function(x, y) {
 
 
 /**
- * <Point>
+ * @return {!Bounds}
  */
 WB.bounds = function(x1, y1, x2, y2) {
 	return {

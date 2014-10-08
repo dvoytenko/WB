@@ -47,11 +47,11 @@
 				segments: [
 					{
 						_type: 'MoveToSegment',
-						point: {x: 290, y: 230}
+						point: {x: 290, y: 240}
 					},
 					{
 						_type: 'LineToSegment',
-						point: {x: 360, y: 230}
+						point: {x: 360, y: 240}
 					},
 					{
 						_type: 'LineToSegment',

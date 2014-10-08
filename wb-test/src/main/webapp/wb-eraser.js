@@ -18,6 +18,12 @@ WB.EraserEpisode = WB.Episode.extend('EraserEpisode', {
 		});
 	},
 	
+	prepare: function(board) {
+		if (this.predraw || this.action == 'predraw') {
+			board.commitShape(this._eraser(), true);
+		}
+	},
+	
 	createAnimation: function() {
 		return this._eraser().createAnimation();
 	}
@@ -26,8 +32,6 @@ WB.EraserEpisode = WB.Episode.extend('EraserEpisode', {
 
 
 WB.EraserShape = WB.Shape.extend('EraserShape', {
-	
-	transform: null,
 	
 	pathSegment: null,
 	
@@ -46,14 +50,10 @@ WB.EraserShape = WB.Shape.extend('EraserShape', {
 	
 	draw: function(pane) {
 		this.prepare(pane);
-		if (!this.transform) {
-			this.drawPartial(pane, this._bounds);
-		} else {
-			var that = this;
-			pane.withTr(this.transform, function() {
-				that.drawPartial(pane, this._bounds);
-			});
-		}
+		var that = this;
+		pane.withTr(pane.defaultTransform, function() {
+			that.drawPartial(pane, that._bounds);
+		});
 	},
 	
 	prepare: function(pane) {
@@ -172,6 +172,7 @@ WB.EraserShape = WB.Shape.extend('EraserShape', {
 		context.save();
 		
 		function bleach(bounds) {
+			bounds = pane.toGlobalBounds(bounds);
 			var x = bounds.topleft.x;
 			var y = bounds.topleft.y;
 			var width = bounds.bottomright.x - bounds.topleft.x + 1;
@@ -253,7 +254,7 @@ WB.EraserShape = WB.Shape.extend('EraserShape', {
 
 WB.EraserAnimation = WB.Animation.extend('EraserAnimation', {
 	
-	/** <EraserShape> */
+	/** @type {!EraserShape} */
 	eraser: null,
 	
 	_anim: null,
@@ -263,6 +264,7 @@ WB.EraserAnimation = WB.Animation.extend('EraserAnimation', {
 	},
 	
 	start: function(board) {
+		this.board = board;
 		this.pane = board.commitPane;
 		this.eraser.prepare(this.pane);
 		
@@ -297,6 +299,7 @@ WB.EraserAnimation = WB.Animation.extend('EraserAnimation', {
 	
 	end: function() {
 		this._anim.end();
+		this.board.commitShape(this.eraser, false);
 	},
 	
 	frame: function(time) {
@@ -311,6 +314,9 @@ WB.EraserAnimation = WB.Animation.extend('EraserAnimation', {
 
 
 WB.EraseLineAnimation = WB.Animation.extend('EraseLineAnimation', {
+	/** @type {!EraserShape} */
+	eraser: null,
+
 	init: function(eraser, bounds) {
 		this.eraser = eraser;
 		this.bounds = bounds;
@@ -341,6 +347,7 @@ WB.EraseLineAnimation = WB.Animation.extend('EraseLineAnimation', {
 	
 	end: function() {
 		this._inter.end();
+		this.board.commitShape(this.eraser, false);
 	},
 	
 	frame: function(time) {

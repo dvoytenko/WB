@@ -87,7 +87,7 @@ WB.HandPoint = WB.Pointer.extend('HandPoint', {
 				width: 101,
 				height: 450,
 				anchorX: 43,
-				anchorY: 16
+				anchorY: 6
 			}
 		};
 	},

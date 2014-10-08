@@ -672,23 +672,12 @@ WB.PanZoomAnimation4 = WB.Animation.extend('PanZoomAnimation4', {
 		var origin = WB.point(0, 0);
 		if (this.panzoom.origin) {
 			origin = WB.Geom.addPoint(this.panzoom.origin, anchor);
-		} else {
-			// TODO XXX
-			//var panTo = this.panzoom.panTo ? this.panzoom.panTo : origin;
-			//console.log('pan: ' + JSON.stringify(origin) + ' -> ' + JSON.stringify(panTo));
-			/*
-			 * origin: {x: 100, y: 100}
-			 * endPoint: {"x":-50,"y":-50}
-        var gz = this.zoomer.getValue();
-        var z = this.startZoom * (gz + 1);
-		console.log('new zoom ' + z);
-		
-		var zz = (z - this.startZoom) / z;
-		var tp = WB.Geom.addPoint(this.anchor,
-				WB.point(- this.origin.x * zz, - this.origin.y * zz));
-		console.log('new anchor: ' + JSON.stringify(tp));
-        this.board.updateZoomFactor(z, tp);
-			 * */
+		} else if (this.panzoom.panTo) {
+			var panTo = this.panzoom.panTo;
+			var zz = endZoom / (endZoom - startZoom);
+			var tp = WB.point(- panTo.x * zz, - panTo.y * zz);
+			origin = WB.Geom.addPoint(tp, anchor);
+			console.log('pan: ' + JSON.stringify(panTo) + ' -> ' + JSON.stringify(origin));
 		}
 		console.log('origin: ' + JSON.stringify(origin) + '; at anchor: ' +
 				JSON.stringify(anchor));

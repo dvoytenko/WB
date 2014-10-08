@@ -2,6 +2,14 @@
 	episodes: [
 	
 		{
+			_type: 'DrawTextEpisode',
+			action: 'predraw',
+			text: 'V2',
+			position: {x: 10, y: 10},
+			height: 20
+		},
+	
+		{
 			_type: 'DrawShapeEpisode',
 			position: {x: 100, y: 100},
 			width: 1,
@@ -12,29 +20,22 @@
 			shape: {
 				_type: 'RectangleShape',
 				topleft: {x: 0, y: 0},
-				width: 50,
-				height: 50
+				width: 100,
+				height: 100
 			}
 		},
 		
 		{
 			_type: 'PanZoomEpisode',
 			zoomFactor: 2,
-			origin: {x: 100, y: 100}
+			panTo: {x: -75, y: -75}
 		},
-		/* panTo: {x: -75, y: -75} */
 
 		{
 			_type: 'PanZoomEpisode',
 			zoomFactor: 1,
-			origin: {x: 100, y: 100}
+			origin: {x: 150, y: 150}
 		},
-		
-		/*
-			Zoom 2 -> 1
-			Zoom 2 -> 3
-			+Zoom 1 -> 2
-		*/
 		
 	]
 	
