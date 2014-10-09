@@ -4,7 +4,7 @@
 		{
 			_type: 'DrawTextEpisode',
 			action: 'predraw',
-			text: 'V5',
+			text: 'V8',
 			position: {x: 10, y: 10},
 			height: 20
 		},
@@ -12,7 +12,7 @@
 		{
 			_type: 'DrawShapeEpisode',
 			shapeId: 'www_clker_com-12236157081072900286josuemb_house-silhouette_svg',
-			position: {x: 260, y: 118},
+			position: {x: 235, y: 118},
 			width: 205,
 			height: 115,
 		},
@@ -22,20 +22,20 @@
 		{
 			_type: 'PanZoomEpisode',
 			zoomFactor: 2.8,
-			origin: {x: 465, y: 232}
+			origin: {x: 345, y: 170}
 		},
 		
 		{
 			_type: 'DrawShapeEpisode',
 			shapeId: 'www_clker_com-11970902691035892752Chrisdesign_comic_TV_svg',
-			position: {x: 340, y: 168},
+			position: {x: 315, y: 168},
 			width: 47,
 			height: 58,
 		},
 
 		{
 			_type: 'DrawShapeEpisode',
-			position: {x: 405, y: 203},
+			position: {x: 380, y: 203},
 			width: 1,
 			height: 1,
 			realWidth: 1,
@@ -74,13 +74,13 @@
 		{
 			_type: 'PanZoomEpisode',
 			zoomFactor: 8,
-			origin: {x: 465, y: 232}
+			origin: {x: 420, y: 230}
 		},
 		
 		{
 			_type: 'PasteImageEpisode',
 			imageId: 'mouse1',
-			position: {x: 408, y: 210},
+			position: {x: 383, y: 210},
 			width: 25,
 			rotationDegree: 0,
 			action: 'move',
@@ -90,7 +90,7 @@
 		{
 			_type: 'PanZoomEpisode',
 			zoomFactor: 1.1,
-			origin: {x: 405, y: 232}
+			origin: {x: 370, y: 170}
 		},
 		
 	]
