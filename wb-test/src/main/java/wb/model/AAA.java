@@ -10,7 +10,7 @@ public class AAA {
 	
 	public static void main(String[] args) throws Exception {
 		
-		final String scr = "script4";
+		final String scr = "script9";
 		
 		System.out.println("Script: " + scr);
 		
