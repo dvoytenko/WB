@@ -4,7 +4,7 @@
 		{
 			_type: 'DrawTextEpisode',
 			action: 'predraw',
-			text: 'V2',
+			text: 'V3',
 			position: {x: 10, y: 10},
 			height: 20
 		},
@@ -27,7 +27,7 @@
 		
 		{
 			_type: 'PanZoomEpisode',
-			zoomFactor: 2,
+			zoomFactor: 3,
 			panTo: {x: -75, y: -75}
 		},
 

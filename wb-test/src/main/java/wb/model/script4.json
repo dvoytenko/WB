@@ -4,7 +4,7 @@
 		{
 			_type: 'DrawTextEpisode',
 			action: 'predraw',
-			text: 'V8',
+			text: 'V9',
 			position: {x: 10, y: 10},
 			height: 20
 		},
