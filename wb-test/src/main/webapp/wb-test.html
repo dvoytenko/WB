@@ -444,7 +444,8 @@
 				return '/wb/' + scriptId + path;
 			}
 
-			$.ajax({url: urlResolver('script.json'), contentType: 'application/json'})
+			$.ajax({url: urlResolver('script.json') + '?cpb=' + Math.random(),
+					contentType: 'application/json'})
 			.done(function(json) {
 				console.log('got data');
 				if (json) {
@@ -573,7 +574,7 @@
 				return '/wb/' + scriptId + path;
 			}
 
-			$.ajax({url: urlResolver('script.json'), contentType: 'application/json'})
+			$.ajax({url: urlResolver('script.json') + '?cpb=' + Math.random(), contentType: 'application/json'})
 			.done(function(json) {
 				console.log('got data');
 				if (json) {
@@ -753,7 +754,7 @@
 				return '/wb/' + scriptId + path;
 			}
 
-			$.ajax({url: urlResolver('script.json'), contentType: 'application/json'})
+			$.ajax({url: urlResolver('script.json') + '?cpb=' + Math.random(), contentType: 'application/json'})
 			.done(function(json) {
 				console.log('got data');
 				if (json) {

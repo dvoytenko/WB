@@ -97,18 +97,39 @@ WB.PanZoomEpisode = WB.Episode.extend('PanZoomEpisode', {
 	},
 	
 	createAnimation: function() {
-		if (!this.zoomFactor) {
-			var point = this.panTo;
-			var pan = new WB.PanEpisode({point: point});
-			return new WB.PanAnimation(pan);
-		}
-		return new WB.PanZoomAnimation4(this);
+		return new WB.PanZoomAnimation(this);
 	}
 	
 });
 
 
-WB.PanZoomAnimation4 = WB.Animation.extend('PanZoomAnimation4', {
+WB.PanZoomAnimation = WB.AnimationDelegate.extend('PanZoomAnimation', {
+	
+	init: function(panZoomEpisode) {
+		this.panZoomEpisode = panZoomEpisode;
+	},
+	
+	start: function(board) {
+		this.board = board;
+		this.pane = board.animationPane;
+		
+		this.animation = this.createAnimation_(board);
+		this.animation.start(board);
+	},
+	
+	createAnimation_: function(board) {
+		var startZoom = board.getZoomFactor();
+		var endZoom = this.panZoomEpisode.zoomFactor || startZoom;
+		if (startZoom == endZoom) {
+			return new WB.PanAnimation(new WB.PanEpisode(
+					{point: this.panZoomEpisode.panTo}));
+		}
+		return new WB.PanZoomAnimationZoomer(this.panZoomEpisode);
+	}
+});
+
+
+WB.PanZoomAnimationZoomer = WB.Animation.extend('PanZoomAnimationZoomer', {
 	
 	panzoom: null,
 	
@@ -126,33 +147,30 @@ WB.PanZoomAnimation4 = WB.Animation.extend('PanZoomAnimation4', {
 
 		var rate = 1;
 		
-		var startZoom = this.board.getZoomFactor();
-		var endZoom = this.panzoom.zoomFactor ? this.panzoom.zoomFactor : startZoom;
+		var z0 = this.board.getZoomFactor();
+		var z1 = this.panzoom.zoomFactor ? this.panzoom.zoomFactor : startZoom;
+		if (z0 == z1) {
+			throw 'startZoom == endZoom';
+		}
+		var startZoom = Math.min(z0, z1);
+		var endZoom = Math.max(z0, z1);
+		var dir = z0 < z1 ? 1 : -1;
 
-		/*
-		 * current anchor: {"x":-350.625,"y":-187.75}
-		 * origin: {x: 370, y: 170}
-		 * origin' = origin + anchor: {x: 19.375, y: -17.75}
-		 *   origin'' = origin - anchor: {x: -720, y: -358}
-		 * zz: (1.1 - 8) / 1.1 = -6.2727
-		 * tp': zz * origin' = {x: -121.53, y: 111.34}
-		 * tp: anchor - tp' = {x: -229.095, y: -299.09}
-		 */
 		var anchor = board.getAnchorPoint();
 		console.log('current anchor: ' + JSON.stringify(anchor));
 		var origin = WB.point(0, 0);
 		if (this.panzoom.origin) {
 			origin = WB.Geom.addPoint(this.panzoom.origin, anchor);
-			/*
-			var zz = (z - this.startZoom) / z;
-			var newAnchor = WB.Geom.addPoint(this.anchor,
-					WB.point(- this.origin.x * zz, - this.origin.y * zz));
-			 */
 		} else if (this.panzoom.panTo) {
 			var panTo = this.panzoom.panTo;
 			var zz = endZoom / (endZoom - startZoom);
-			var tp = WB.point(- panTo.x * zz, - panTo.y * zz);
-			origin = WB.Geom.addPoint(tp, anchor);
+			if (dir == 1) {
+				// origin = anchor - panTo * zz
+				origin = WB.Geom.addPoint(anchor, WB.Geom.multiPoint(panTo, zz), -1);
+			} else {
+				// origin = panTo + anchor * zz
+				origin = WB.Geom.addPoint(panTo, WB.Geom.multiPoint(panTo, zz), 1);
+			}
 			console.log('pan: ' + JSON.stringify(panTo) + ' -> ' + JSON.stringify(origin));
 		}
 		console.log('origin: ' + JSON.stringify(origin) + '; at anchor: ' +
@@ -164,55 +182,34 @@ WB.PanZoomAnimation4 = WB.Animation.extend('PanZoomAnimation4', {
 		 * See:
 		 *   http://youtu.be/lcD9CF0bxyk?t=15m57s 
 		 */
-		if (endZoom && endZoom != startZoom) {
-			
-			// zoom growth = (Z1 - Z0) / Z0
-			var gz = (endZoom - startZoom) / startZoom;
-			console.log('gz = ' + gz);
-			
+		// zoom growth = (Z1 - Z0) / Z0
+		var gz = (endZoom - startZoom) / startZoom;
+		console.log('gz = ' + gz);
+		
+		if (dir == 1) {
 			this.zoomer = new WB.NumInterpolator(0, gz, 1 / 1000 * rate);
-			this.zoomer.start(board);
-			console.log('zoomer velocity ' + this.zoomer.velocity 
-					+ '; time: ' + this.zoomer.totalTime);
-			
-			var zoomTime = this.zoomer.totalTime;
-			
-			// zoom distance = BV * ln(Z1) / (Z1 - 1)
-			var adjVelo = endZoom == 1 ? 1 : Math.log(endZoom) / (endZoom - 1);
-			var zoomDist = (board.getBaseVelocity()/1000 * rate) * adjVelo * zoomTime;
-			console.log('zoomDist: ' + zoomDist);
-
-			/*
-			var totalDist = WB.Geom.distance(anchorPoint, panTo);
-			console.log('totalDist: ' + totalDist);
-			
-			if (totalDist > 1) {
-				if (totalDist <= zoomDist) {
-					zoomEndPan = panTo;
-				} else {
-					var dd = zoomDist/totalDist;
-					zoomEndPan = {x: (anchorPoint.x + panTo.x) * dd, 
-							y: (anchorPoint.y + panTo.y) * dd};
-				}
-			}
-			console.log('zoomEndPan: ' + JSON.stringify(zoomEndPan));
-			*/
+		} else {
+			this.zoomer = new WB.NumInterpolator(gz, 0, 1 / 1000 * rate);
 		}
+		this.zoomer.start(board);
+		console.log('zoomer velocity ' + this.zoomer.velocity 
+				+ '; time: ' + this.zoomer.totalTime);
+		
+		var zoomTime = this.zoomer.totalTime;
+		
+		// zoom distance = BV * ln(Z1) / (Z1 - 1)
+		var adjVelo = endZoom == 1 ? 1 : Math.log(endZoom) / (endZoom - 1);
+		var zoomDist = (board.getBaseVelocity()/1000 * rate) * adjVelo * zoomTime;
+		console.log('zoomDist: ' + zoomDist);
 
-		/*
-		if (panTo && !WB.Geom.pointsEqual(zoomEndPan, panTo)) {
-			var v = board.getBaseVelocity() / endZoom;
-			console.log('tail velocity: ' + v);
-			this.panner = new WB.PointInterpolator(zoomEndPan, panTo, v / 1000 * rate);
-			this.panner.start(board);
-			console.log('tail pan: ' + JSON.stringify(zoomEndPan) + ' -> ' + JSON.stringify(panTo));
-		}
-		*/
-
+		// startZoom < endZoom so that the back zooming could be simply played back
 		this.startZoom = startZoom;
 		this.endZoom = endZoom;
-		this.anchor = anchor;
+		this.dir = dir;
 		this.origin = origin;
+		this.anchor = anchor;
+		this.endAnchor = WB.Geom.multiPoint(WB.Geom.addPoint(anchor, origin, -1),
+				(endZoom - startZoom) / endZoom);
 	},
 	
 	frame: function(time) {
@@ -225,8 +222,8 @@ WB.PanZoomAnimation4 = WB.Animation.extend('PanZoomAnimation4', {
 		console.log('new zoom ' + z);
 		
 		var zz = (z - this.startZoom) / z;
-		var tp = WB.Geom.addPoint(this.anchor,
-				WB.point(- this.origin.x * zz, - this.origin.y * zz));
+		var tp = WB.point((this.anchor.x - this.origin.x) * zz,
+				(this.anchor.y - this.origin.y) * zz);
 		console.log('new zz: ' + zz);
 		console.log('new tp\': ' + JSON.stringify(WB.point(this.origin.x * zz, this.origin.y * zz)));
 		if (this.panzoom.origin) {
@@ -253,11 +250,8 @@ WB.PanZoomAnimation4 = WB.Animation.extend('PanZoomAnimation4', {
 	
 	end: function() {
 		
-		var zz = (this.endZoom - this.startZoom) / this.endZoom;
-		var tp = WB.Geom.addPoint(this.anchor,
-				WB.point(- this.origin.x * zz, - this.origin.y * zz));
-		console.log('end anchor: ' + JSON.stringify(tp));
-        this.board.updateZoomFactor(this.endZoom, tp);
+		console.log('end anchor: ' + JSON.stringify(this.endAnchor));
+        this.board.updateZoomFactor(this.endZoom, this.endAnchor);
         
 		var pane = this.board.animationPane;
 		var resetPos = this.board.getResetPoint();

@@ -4,7 +4,7 @@
 		{
 			_type: 'DrawTextEpisode',
 			action: 'predraw',
-			text: 'V5',
+			text: 'V6',
 			position: {x: 10, y: 10},
 			height: 20
 		},
@@ -25,19 +25,32 @@
 			}
 		},
 		
+		/*
+		*/
+		{
+			_type: 'PanEpisode',
+			point: {x: -50, y: -50}
+		},
+		
 		{
 			_type: 'PanZoomEpisode',
 			zoomFactor: 2,
-			origin: {x: 150, y: 150}
+			panTo: {x: -75, y: -75} 
 		},
-		/* panTo: {x: -75, y: -75} */
+		/* 
+			origin: {x: 150, y: 150}
+		*/
 
+		/*
 		{
 			_type: 'PanZoomEpisode',
 			zoomFactor: 1,
 			panTo: {x: 0, y: 0}
 		},
-		/* origin: {x: 150, y: 150} */
+		*/
+		/*
+		   origin: {x: 150, y: 150}
+		 */
 		
 	]
 	

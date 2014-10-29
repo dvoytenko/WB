@@ -48,6 +48,15 @@ WB.GeomProto = WB.Class.extend('GeomProto', {
 		return {x: p1.x + dir * p2.x, y: p1.y + dir * p2.y};
 	},
 
+	/**
+	 * @param {!Point} p
+	 * @param {number} scalar
+	 * @return {!Point}
+	 */
+	multiPoint: function(p, scalar) {
+		return {x: p.x * scalar, y: p.y * scalar};
+	},
+
 	pointsEqual: function(p1, p2, eps) {
 		if (!eps) {
 			eps = 0;
